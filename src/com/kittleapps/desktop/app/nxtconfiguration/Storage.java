@@ -238,10 +238,10 @@ public class Storage {
 
 	REMOVEROOFS_TOOLTIP =
 			"<html>" +
-					"Note: \"None\" is NOT natively an option for NXT.<br>" +
+					"Note: \"None\" is not natively an option for NXT.<br>" +
 					"<br>" +
-					"This option WILL cause graphical issues.<br>" +
-					"Set to another option if you dislike the roofs." +
+					"This option may cause graphical issues.<br>" +
+					"Set to another option if you dislike the roofs always being visible." +
 			"</html>",
 	AO_TOOLTIP =
 			"<html>" +
@@ -260,36 +260,36 @@ public class Storage {
 			"</html>",
 	MAXFOREGOUNDFPS_TOOLTIP =
 			"<html>" +
-				"Manually set the Maximum Frames-Per-Second (FPS) while NXT is the focused window.<br>" +
+				"Manually set the maximum Frames-Per-Second (FPS) while NXT is the focused window.<br>" +
 				"<br>" +
-				"By-Default this is +10 of your refresh rate. (60hz = 70 Max FPS here)<br>" +
-				"Currently the Minimum for this value is 5, and the maximum 300." +
+				"By-default this is +10 of your refresh rate. (Example: 60hz = 70 max FPS)<br>" +
+				"Currently the minimum for this value is 5, and the maximum 300." +
 			"</html>",
 	MAXBACKGOUNDFPS_TOOLTIP =
 			"<html>" +
-				"Manually set the Maximum Frames-Per-Second (FPS) while NXT is not the focused window.<br>" +
+				"Manually set the maximum Frames-Per-Second (FPS) while NXT is not the focused window.<br>" +
 				"<br>" +
-				"By-Default this is 30. (Half the \"Normal\" Refresh rate for the common 60hz monitors)<br>" +
-				"Currently the Minimum for this value is 5, and the maximum 300." +
+				"By-default this is 30. (Half the \"normal\" refresh rate for the common 60hz monitors)<br>" +
+				"Currently the minimum for this value is 5, and the maximum 300." +
 			"</html>",
 	INTERFACESCALING_TOOLTIP =
 			"<html>" +
 					"Manually set the interface scaling for all interfaces.<br>" +
 					"<br>" +
-					"By-Default this is 100.<br>" +
-					"Currently the Minimum for this value is 100 (100%), and the maximum 400 (400%).<br>" +
+					"By-default this is 100.<br>" +
+					"Currently the minimum for this value is 100 (100%), and the maximum 400 (400%).<br>" +
 					"<br>" +
-					"NOTE: This Option is currently experimental, and may cause graphical issues for some.<br>" +
+					"NOTE: This option is currently experimental, and may cause graphical issues for some.<br>" +
 					"This includes messing up some layouts while using the New Interface System."+
 			"</html>",
 	GAMESCALING_TOOLTIP =
 			"<html>" +
 				"Manually set the game render scaling for the 3D world underlay.<br>" +
 				"<br>" +
-				"By-Default this is 100.<br>" +
-				"Currently the Minimum for this value is 33 (33%), and the maximum 200 (200%).<br>" +
+				"By-default this is 100.<br>" +
+				"Currently the minimum for this value is 33 (33%), and the maximum 200 (200%).<br>" +
 				"<br>" +
-				"This Option is currently experimental, and may cause graphical issues for some.<br>" +
+				"This option is currently experimental, and may cause graphical issues for some.<br>" +
 				"This includes blurs, and loss of FPS depending on the settings used."+
 			"</html>",
 	DOF_TOOLTIP =
@@ -311,13 +311,13 @@ public class Storage {
 				"To clear this slot use the value -1.<br>"+
 				"If Slots 1 or 2 have -1 as their value, any later numbers will be disabled.<br>" +
 				"<br>"+
-				"The removal is currently NOT a NXT limitation, but it causes graphical issues." +
+				"The removal is currently not a NXT limitation, but it causes graphical issues." +
 			"</html>",
 	GLOBAL_AUDIO_MUTE_TOOLTIP =
 			"<html>"+
 				"Disables the audio streams while logged in the game.<br>" +
 				"<br>"+
-				"Other volume options will remain uneffected." +
+				"Other volume setting's options will remain uneffected." +
 			"</html>",
 	REMEMBER_USERNAME_TOOLTIP =
 			"<html>" +
@@ -329,15 +329,15 @@ public class Storage {
 			"<html>"+
 				"Randomize your login screen's wallpaper.<br>" +
 				"<br>" +
-				"NOTE: The FIRST frame of this will be the ID input to the Right<br>" +
-				"If this option is unchecked, that ID's wallpaper will be used." +
+				"NOTE: The first frame of this will be the id input to the Right<br>" +
+				"If this option is unchecked, that id's wallpaper will be used." +
 			"</html>",
 	WALLPAPER_ID_TOOLTIP =
 			"<html>" +
-				"Input your desired wallpaper ID.<br>" +
+				"Input your desired wallpaper id.<br>" +
 				"<br>" +
-				"NOTE: This will apply to the FIRST wallpaper while randomizing.<br>" +
-				"This will also be the Static ID if randomizing is OFF.<br>" +
+				"NOTE: This will apply to the first wallpaper while randomizing.<br>" +
+				"This will also be the static id if randomizing is off.<br>" +
 				"<br>" +
 				"ID: 0 = Default." +
 			"</html>",
@@ -356,19 +356,19 @@ public class Storage {
 			"<html>" +
 				"This will clear the Developer Console's command history logs.<br>" +
 				"<br>" +
-				"Note: Using this will instantly write to your client's settings." +
+				"Note: Using this button will instantly write to your client's settings." +
 			"</html>",
 	POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP =
 			"<html>" +
 				"This will populate the Developer Console's command history with player-allowed commands.<br>" +
 				"<br>" +
-				"Note: Using this will instantly write to your client's settings." +
+				"Note: Using this button will instantly write to your client's settings." +
 			"</html>",
 	POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP =
 			"<html>" +
 				"This will populate the Developer Console's command history with all known commands.<br>" +
 				"<br>" +
-				"Note: Using this will instantly write to your client's settings<br>" +
+				"Note: Using this button will instantly write to your client's settings<br>" +
 				"Note: This list in incomplete, and many commands are not use-able by players."+
 			"</html>",
 	BOOSTED_VOLUMES_TOOLTIP =
