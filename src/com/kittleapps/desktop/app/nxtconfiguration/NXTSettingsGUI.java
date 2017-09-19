@@ -52,13 +52,14 @@ public class NXTSettingsGUI extends JFrame {
 		GroundDecorationsCheckbox,
 		TerrainBlendingCheckbox,
 		HeatHazeCheckbox,
-		ShowSensitiveInformation,
 		RememberUsernameCheckbox,
 		RandomizeLoginWallpaperCheckbox,
 		GlobalAudioMuteCheckbox,
 		InGameSoundEffectsBoostCheckbox,
 		InGameAmbientSoundEffectsBoostCheckbox,
-		InGameVoiceOverBoostCheckbox;
+		InGameVoiceOverBoostCheckbox,
+		ShowSensitiveInformation,
+		AllowWritingCheckbox;
 
 	public static JComboBox<?>
 		RemoveRoofsComboBox,
@@ -74,8 +75,7 @@ public class NXTSettingsGUI extends JFrame {
 		DepthOfFieldComboBox,
 		TextureQualityComboBox,
 		AnisotropicFilteringComboBox,
-		VolumetricLightingComboBox,
-		WindowModeComboBox;
+		VolumetricLightingComboBox;
 
 	public static JSlider
 		BrightnessSlider,
@@ -99,12 +99,12 @@ public class NXTSettingsGUI extends JFrame {
 	public static JButton
 		AddSpriteFlagToUsername,
 		AddColourFlagToUsername,
+		BecomeZezima,
 		ClearConsole,
-		FavouriteWorld1To2147m,
-		FavouriteWorld2To2147m,
-		FavouriteWorld3To2147m,
-		btnRead,
-		btnWrite;
+		PlayerConsole,
+		JagexConsole,
+		ReadSettings,
+		WriteSettings;
 
 	public static JFrame frame;
 	public static void main(final String[] args) {
@@ -719,6 +719,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameSoundEffectsSlider);
 
 		InGameSoundEffectsBoostCheckbox = new JCheckBox("Boost?");
+		InGameSoundEffectsBoostCheckbox.setToolTipText(Storage.BOOSTED_VOLUMES_TOOLTIP);
 		InGameSoundEffectsBoostCheckbox.addActionListener(e -> {
 			if (InGameSoundEffectsBoostCheckbox.isSelected()) {
 				InGameSoundEffectsSlider.setMaximum(255);
@@ -745,6 +746,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameAmbientSoundEffectsSlider);
 
 		InGameAmbientSoundEffectsBoostCheckbox = new JCheckBox("Boost?");
+		InGameAmbientSoundEffectsBoostCheckbox.setToolTipText(Storage.BOOSTED_VOLUMES_TOOLTIP);
 		InGameAmbientSoundEffectsBoostCheckbox.addActionListener(e -> {
 			if (InGameAmbientSoundEffectsBoostCheckbox.isSelected()) {
 				InGameAmbientSoundEffectsSlider.setMaximum(255);
@@ -771,6 +773,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameVoiceOverSlider);
 
 		InGameVoiceOverBoostCheckbox = new JCheckBox("Boost?");
+		InGameVoiceOverBoostCheckbox.setToolTipText(Storage.BOOSTED_VOLUMES_TOOLTIP);
 		InGameVoiceOverBoostCheckbox.addActionListener(e -> {
 			if (InGameVoiceOverBoostCheckbox.isSelected()) {
 				InGameVoiceOverSlider.setMaximum(255);
@@ -801,7 +804,7 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
 
-		AddSpriteFlagToUsername = new JButton("Add sprite flag to Username");
+		AddSpriteFlagToUsername = new JButton("Add <sprite=ID,SUB_ID> to your Username");
 		AddSpriteFlagToUsername.setToolTipText(Storage.ADD_SPRITE_FLAG_TOOLTIP);
 		AddSpriteFlagToUsername.addActionListener(e -> {
 			if (UsernameInput != null) {
@@ -812,18 +815,40 @@ public class NXTSettingsGUI extends JFrame {
 		AddSpriteFlagToUsername.setBounds(15, 15, 225, 25);
 		SpecialMechanicsTab.add(AddSpriteFlagToUsername);
 
-		AddColourFlagToUsername = new JButton("Add colour flag to Username");
+		AddColourFlagToUsername = new JButton("Add <col=RRGGBB> to your Username");
 		AddColourFlagToUsername.setToolTipText(Storage.ADD_COLOUR_FLAG_TOOLTIP);
 		AddColourFlagToUsername.addActionListener(e ->{
 			if (UsernameInput != null) {
-				UsernameInput.setText(UsernameInput.getText() + "<col=ffffff></col>");
+				UsernameInput.setText(UsernameInput.getText() + "<col=RRGGBB></col>");
 			}
 		});
 		AddColourFlagToUsername.setFont(new Font("Dialog", Font.PLAIN, 11));
 		AddColourFlagToUsername.setBounds(245, 15, 225, 25);
 		SpecialMechanicsTab.add(AddColourFlagToUsername);
-
-		ClearConsole = new JButton("Clear Developer Console Log");
+		
+		BecomeZezima = new JButton("Become a God, Become Zezima.");
+		BecomeZezima.setEnabled(false);
+		BecomeZezima.setFont(new Font("Dialog", Font.PLAIN, 11));
+		BecomeZezima.addActionListener(e -> {
+			Connection conn;
+			try {
+				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
+				Statement stmt;
+				stmt = conn.createStatement();
+				String Zezima = "<sprite=203><col=FF3030>Z<col=FF4D72>e<col=FF69B4>z<col=FF69B4>i<col=FF4D72>m<col=FF3030>a<sprite=203>";
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"', '"+Zezima+"');");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"', '1');");
+				stmt.executeBatch();
+			} catch(final SQLException e1) {
+				e1.printStackTrace();
+			}
+		});
+		BecomeZezima.setBounds(475, 15, 225, 25);
+		SpecialMechanicsTab.add(BecomeZezima);
+		
+		ClearConsole = new JButton("Clear Developer Console History Log");
 		ClearConsole.setToolTipText(Storage.CLEAR_DEV_CONSOLE_LOGS_TOOLTIP);
 		ClearConsole.setEnabled(false);
 		ClearConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -839,71 +864,52 @@ public class NXTSettingsGUI extends JFrame {
 				e1.printStackTrace();
 			}
 		});
-		ClearConsole.setBounds(475, 15, 225, 25);
+		ClearConsole.setBounds(15, 45, 225, 25);
 		SpecialMechanicsTab.add(ClearConsole);
 
-		FavouriteWorld1To2147m = new JButton("Set favourite world 1 to 2147m");
-		FavouriteWorld1To2147m.setToolTipText(Storage.FAVOURITE_WORLD_TO_2147M_TOOLTIP.replace("{{{SLOT}}}","first"));
-		FavouriteWorld1To2147m.setEnabled(false);
-		FavouriteWorld1To2147m.addActionListener(e -> {
-			Storage.nxtClientSettings_FavouriteWorld1 = 2147000000;
+		PlayerConsole = new JButton("Player Developer Console History Log");
+		PlayerConsole.setToolTipText(Storage.POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP);
+		PlayerConsole.setEnabled(false);
+		PlayerConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
+		PlayerConsole.addActionListener(e -> {
 			Connection conn;
 			try {
 				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
-				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"';");
-				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"', '" + Storage.nxtClientSettings_FavouriteWorld1 + "');");
+				stmt.addBatch("DELETE FROM 'console';");
+				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[0].length; i++){
+					stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[0][i]+"');");
+				}
 				stmt.executeBatch();
 			} catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
-		FavouriteWorld1To2147m.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld1To2147m.setBounds(15, 45, 225, 25);
-		SpecialMechanicsTab.add(FavouriteWorld1To2147m);
+		PlayerConsole.setBounds(245, 45, 225, 25);
+		SpecialMechanicsTab.add(PlayerConsole);
 
-		FavouriteWorld2To2147m = new JButton("Set favourite world 2 to 2147m");
-		FavouriteWorld2To2147m.setToolTipText(Storage.FAVOURITE_WORLD_TO_2147M_TOOLTIP.replace("{{{SLOT}}}","second"));
-		FavouriteWorld2To2147m.setEnabled(false);
-		FavouriteWorld2To2147m.addActionListener(e -> {
-			Storage.nxtClientSettings_FavouriteWorld2 = 2147000000;
+		JagexConsole = new JButton("Jagex Developer Console History Log");
+		JagexConsole.setToolTipText(Storage.POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP);
+		JagexConsole.setEnabled(false);
+		JagexConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
+		JagexConsole.addActionListener(e -> {
 			Connection conn;
 			try {
 				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
-				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"';");
-				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"', '" + Storage.nxtClientSettings_FavouriteWorld2 + "');");
+				stmt.addBatch("DELETE FROM 'console';");
+				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[1].length; i++){
+					stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[1][i]+"');");
+				}
 				stmt.executeBatch();
 			} catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
-		FavouriteWorld2To2147m.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld2To2147m.setBounds(245, 45, 225, 25);
-		SpecialMechanicsTab.add(FavouriteWorld2To2147m);
-
-		FavouriteWorld3To2147m = new JButton("Set favourite world 3 to 2147m");
-		FavouriteWorld3To2147m.setToolTipText(Storage.FAVOURITE_WORLD_TO_2147M_TOOLTIP.replace("{{{SLOT}}}","third"));
-		FavouriteWorld3To2147m.setEnabled(false);
-		FavouriteWorld3To2147m.addActionListener(e -> {
-			Storage.nxtClientSettings_FavouriteWorld3 = 2147000000;
-			Connection conn;
-			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Statement stmt;
-				stmt = conn.createStatement();
-				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"';");
-				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"', '" + Storage.nxtClientSettings_FavouriteWorld3 + "');");
-				stmt.executeBatch();
-			} catch(final SQLException e1) {
-				e1.printStackTrace();
-			}
-		});
-		FavouriteWorld3To2147m.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld3To2147m.setBounds(475, 45, 225, 25);
-		SpecialMechanicsTab.add(FavouriteWorld3To2147m);
+		JagexConsole.setBounds(475, 45, 225, 25);
+		SpecialMechanicsTab.add(JagexConsole);
 
 		final JScrollPane VerboseOutputTab = new JScrollPane();
 		VerboseOutputTab.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -937,9 +943,31 @@ public class NXTSettingsGUI extends JFrame {
 		ShowSensitiveInformation.setBackground(optionBackgroundColor);
 		contentPane.add(ShowSensitiveInformation);
 
-		btnRead = new JButton("Read");
-		btnRead.setToolTipText("Read information currently saved in your setting file(s); Writes to Read-Only Information output.");
-		btnRead.addActionListener(e -> {
+		AllowWritingCheckbox = new JCheckBox("Allow Writing?");
+		AllowWritingCheckbox.setToolTipText("Allow writing of all settings when \"Write\" is clicked; Some special mechanic values will be written instantly.");
+		AllowWritingCheckbox.addActionListener(e -> {
+			if (AllowWritingCheckbox.isSelected()) {
+				WriteSettings.setEnabled(true);
+				BecomeZezima.setEnabled(true);
+				ClearConsole.setEnabled(true);
+				PlayerConsole.setEnabled(true);
+				JagexConsole.setEnabled(true);
+			} else {
+				WriteSettings.setEnabled(false);
+				BecomeZezima.setEnabled(false);
+				ClearConsole.setEnabled(false);
+				PlayerConsole.setEnabled(false);
+				JagexConsole.setEnabled(false);
+			}
+		});
+		
+		AllowWritingCheckbox.setBounds(250, 610, 130, 25);
+		AllowWritingCheckbox.setBackground(optionBackgroundColor);
+		contentPane.add(AllowWritingCheckbox);
+		
+		ReadSettings = new JButton("Read Settings");
+		ReadSettings.setToolTipText("Read information currently saved in your setting file(s); Writes to Read-Only Information output.");
+		ReadSettings.addActionListener(e -> {
 			if ((VerboseOutputArea != null) && (VerboseOutputAreaEditor != null)) {
 				VerboseOutputArea.setText("<html></html>");
 				UsernameInput.setText("");
@@ -949,35 +977,14 @@ public class NXTSettingsGUI extends JFrame {
 			/* Apply */
 			JCache.Read();
 		});
-		btnRead.setBounds(582, 610, 75, 25);
-		contentPane.add(btnRead);
+		ReadSettings.setBounds(480, 610, 125, 25);
+		contentPane.add(ReadSettings);
 
-		btnWrite = new JButton("Write");
-		btnWrite.setBounds(662, 610, 75, 25);
-		btnWrite.setEnabled(false);
-		btnWrite.addActionListener(e -> JCache.Write());
-		contentPane.add(btnWrite);
-
-		final JCheckBox AllowWritingCheckbox = new JCheckBox("Allow Writing?");
-		AllowWritingCheckbox.setToolTipText("Allow writing of all settings when \"Write\" is clicked; Some special mechanic values will be written instantly.");
-		AllowWritingCheckbox.addActionListener(e -> {
-			if (AllowWritingCheckbox.isSelected()) {
-				btnWrite.setEnabled(true);
-				ClearConsole.setEnabled(true);
-				FavouriteWorld1To2147m.setEnabled(true);
-				FavouriteWorld2To2147m.setEnabled(true);
-				FavouriteWorld3To2147m.setEnabled(true);
-			} else {
-				btnWrite.setEnabled(false);
-				ClearConsole.setEnabled(false);
-				FavouriteWorld1To2147m.setEnabled(false);
-				FavouriteWorld2To2147m.setEnabled(false);
-				FavouriteWorld3To2147m.setEnabled(false);
-			}
-		});
-		AllowWritingCheckbox.setBounds(250, 610, 130, 25);
-		AllowWritingCheckbox.setBackground(optionBackgroundColor);
-		contentPane.add(AllowWritingCheckbox);
+		WriteSettings = new JButton("Write Settings");
+		WriteSettings.setBounds(610, 610, 125, 25);
+		WriteSettings.setEnabled(false);
+		WriteSettings.addActionListener(e -> JCache.Write());
+		contentPane.add(WriteSettings);
 
 
 

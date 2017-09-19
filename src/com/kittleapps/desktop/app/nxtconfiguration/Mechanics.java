@@ -110,4 +110,20 @@ public class Mechanics {
 			e.printStackTrace();
 		}
 	}
+
+	public static boolean isMac() {
+		return (Storage.OS.indexOf("mac") >= 0);
+	}
+
+	public static boolean isSolaris() {
+		return (Storage.OS.indexOf("sunos") >= 0);
+	}
+
+	public static boolean isUnix() {
+		return ((Storage.OS.indexOf("nix") >= 0) || (Storage.OS.indexOf("nux") >= 0) || (Storage.OS.indexOf("aix") > 0));
+	}
+
+	public static boolean isWindows() {
+		return (Storage.OS.indexOf("win") >= 0);
+	}
 }

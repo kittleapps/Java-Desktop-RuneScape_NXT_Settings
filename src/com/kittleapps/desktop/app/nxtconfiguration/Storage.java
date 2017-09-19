@@ -90,8 +90,48 @@ public class Storage {
 		Settings_db
 	;
 	public static StringBuilder messages;
-	
-	public static String[][] GRAPHICS_OPTIONS = {
+	public final static String[][] DEVELOPER_CONSOLE_COMMANDS = {
+			{
+			/* Player-Enabled Commands */
+				"help",
+				"commands",
+				"cls",
+				"deletejs5caches",
+				"renderer",
+				"getcamerapos",
+				"displayfps",
+				"displayfpssmall",
+				"displayfpsfull"
+			},
+			{
+			/* Known Jagex Moderator Commands */
+				"help",
+				"commands",
+				"cls",
+				"deletejs5caches",
+				"renderer",
+				"getcamerapos",
+				"displayfps",
+				"displayfpssmall",
+				"displayfpsfull",
+				"360camera",
+				"debugcamera",
+				"getclientvarp",
+				"clientdrop",
+				"directlogin ",
+				"setlobby ",
+				"setvar ",
+				"setstat ",
+				"advancestat",
+				"give ",
+				"tele ",
+				"teleto ",
+				"teletome ",
+				"~ftfi",
+				"~hideall",
+			}
+	};
+	public final static String[][] GRAPHICS_OPTIONS = {
 		// Graphics options used for Drop-Down menus in the graphics settings.
 		{
 			/* Remove Roofs */
@@ -192,7 +232,7 @@ public class Storage {
 			"Ultra"
 		},
 	};
-	public static String
+	public final static String
 
 	// HTML-Based Tooltip storage.
 
@@ -316,13 +356,26 @@ public class Storage {
 			"<html>" +
 				"This will clear the Developer Console's command history logs.<br>" +
 				"<br>" +
-				"Note: Using this will instantly Write to your client's settings." +
+				"Note: Using this will instantly write to your client's settings." +
 			"</html>",
-	FAVOURITE_WORLD_TO_2147M_TOOLTIP =
+	POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP =
 			"<html>" +
-				"This will set your {{{SLOT}}} favourite world slot to: 2,147,000,000;<br>" +
+				"This will populate the Developer Console's command history with player-allowed commands.<br>" +
 				"<br>" +
 				"Note: Using this will instantly write to your client's settings." +
+			"</html>",
+	POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP =
+			"<html>" +
+				"This will populate the Developer Console's command history with all known commands.<br>" +
+				"<br>" +
+				"Note: Using this will instantly write to your client's settings<br>" +
+				"Note: This list in incomplete, and many commands are not use-able by players."+
+			"</html>",
+	BOOSTED_VOLUMES_TOOLTIP =
+			"<html>" +
+				"Checking this will make the slider's maximum goto '254'<br>"+
+				"When the volume's over the default '127' it will allow a boosted volume to occur.<br>"+
+				"This allows for louder sound effects, like mining sounds, to be heard better."+
 			"</html>"
 	;
 	public static void init() {
@@ -337,13 +390,13 @@ public class Storage {
 		OS_TYPE = -1;
 		FrameRate = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getRefreshRate();
 
-		if (isWindows()) {
+		if (Mechanics.isWindows()) {
 			OS_TYPE = 0;
-		} else if (isUnix()) {
+		} else if (Mechanics.isUnix()) {
 			OS_TYPE = 1;
-		} else if (isMac()) {
+		} else if (Mechanics.isMac()) {
 			OS_TYPE = 2;
-		} else if (isSolaris()) {
+		} else if (Mechanics.isSolaris()) {
 			OS_TYPE = 3;
 		} else {
 			OS_TYPE = -1;
@@ -353,21 +406,5 @@ public class Storage {
 		} catch(final ClassNotFoundException eString) {
 			System.err.println("Could not init JDBC driver - driver not found");
 		}
-	}
-
-	public static boolean isMac() {
-		return (OS.indexOf("mac") >= 0);
-	}
-
-	public static boolean isSolaris() {
-		return (OS.indexOf("sunos") >= 0);
-	}
-
-	public static boolean isUnix() {
-		return ((OS.indexOf("nix") >= 0) || (OS.indexOf("nux") >= 0) || (OS.indexOf("aix") > 0));
-	}
-
-	public static boolean isWindows() {
-		return (OS.indexOf("win") >= 0);
 	}
 }

@@ -100,9 +100,9 @@ public class JCache {
 				}
 			}
 			else {
-				Mechanics.SendVerboseMessage("Error: Unknown OS Value: "+System.getProperty("os.name"));
-				System.out.println("Error: Unknown OS Value: "+System.getProperty("os.name"));
-				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: Unknown OS Value: "+System.getProperty("os.name")+"\n\nSettings will not be read, Aborting program functions.");
+				Mechanics.SendVerboseMessage("Error: Unknown OS Value: "+Storage.OS);
+				System.out.println("Error: Unknown OS Value: "+Storage.OS);
+				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: Unknown OS Value: "+Storage.OS+"\n\nSettings will not be read, Aborting program functions.");
 				System.exit(0);
 			}
 
