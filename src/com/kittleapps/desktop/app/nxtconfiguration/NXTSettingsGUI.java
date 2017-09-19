@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.NumberFormat;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -37,88 +38,112 @@ import javax.swing.text.NumberFormatter;
 import javax.swing.text.html.HTMLEditorKit;
 
 public class NXTSettingsGUI extends JFrame {
-
-	private static final long serialVersionUID = 6599149859239454448L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4228920598014351419L;
 	public static JEditorPane VerboseOutputArea;
 	public static HTMLEditorKit VerboseOutputAreaEditor;
-	public static JCheckBox FlickeringEffectsCheckbox,
-	ShadowsCheckbox,
-	CustomCursorsCheckbox,
-	LoadingScreensCheckbox,
-	GroundDecorationsCheckbox,
-	TerrainBlendingCheckbox,
-	ShowSensitiveInformation,
-	RememberUsernameCheckbox,
-	RandomizeLoginWallpaperCheckbox,
-	GlobalAudioMuteCheckbox;
-	public static JComboBox < ?>RemoveRoofsComboBox,
-	DrawDistanceComboBox,
-	ShadowQualityComboBox,
-	VSyncComboBox,
-	AntiAliasingModeComboBox,
-	AntiAliasingQualityComboBox,
-	WaterQualityComboBox,
-	LightingDetailComboBox,
-	AmbientOcclusionComboBox,
-	BloomQualityComboBox,
-	DepthOfFieldComboBox,
-	TextureQualityComboBox,
-	AnisotropicFilteringComboBox,
-	VolumetricLightingComboBox,
-	HeatHazeComboBox,
-	WindowModeComboBox;
-	public static JSlider BrightnessSlider,
-	LoginMusicSlider,
-	InGameMusicSlider,
-	InGameSoundEffectsSlider,
-	InGameAmbientSoundEffectsSlider,
-	InGameVoiceOverSlider;
-	public static JTextField UsernameInput,
-	FavouriteWorld1Input,
-	FavouriteWorld2Input,
-	FavouriteWorld3Input,
-	WallpaperIDInput;
-	public static JButton AddSpriteFlagToUsername,
-	AddColourFlagToUsername,
-	ClearConsole,
-	FavouriteWorld1To2147m,
-	FavouriteWorld2To2147m,
-	FavouriteWorld3To2147m,
-	btnRead,
-	btnWrite;
-
+	public static JCheckBox
+		FlickeringEffectsCheckbox,
+		ShadowsCheckbox,
+		CustomCursorsCheckbox,
+		LoadingScreensCheckbox,
+		GroundDecorationsCheckbox,
+		TerrainBlendingCheckbox,
+		HeatHazeCheckbox,
+		ShowSensitiveInformation,
+		RememberUsernameCheckbox,
+		RandomizeLoginWallpaperCheckbox,
+		GlobalAudioMuteCheckbox,
+		InGameSoundEffectsBoostCheckbox,
+		InGameAmbientSoundEffectsBoostCheckbox,
+		InGameVoiceOverBoostCheckbox;
+	
+	public static JComboBox<?>
+		RemoveRoofsComboBox,
+		DrawDistanceComboBox,
+		ShadowQualityComboBox,
+		VSyncComboBox,
+		AntiAliasingModeComboBox,
+		AntiAliasingQualityComboBox,
+		WaterQualityComboBox,
+		LightingDetailComboBox,
+		AmbientOcclusionComboBox,
+		BloomQualityComboBox,
+		DepthOfFieldComboBox,
+		TextureQualityComboBox,
+		AnisotropicFilteringComboBox,
+		VolumetricLightingComboBox,
+		WindowModeComboBox;
+	
+	public static JSlider
+		BrightnessSlider,
+		LoginMusicSlider,
+		InGameMusicSlider,
+		InGameSoundEffectsSlider,
+		InGameAmbientSoundEffectsSlider,
+		InGameVoiceOverSlider;
+	
+	public static JTextField
+		MaxForegroundFpsInput,
+		MaxBackgroundFpsInput,
+		GameRenderScaleInput,
+		InterfaceScaleInput,
+		UsernameInput,
+		FavouriteWorld1Input,
+		FavouriteWorld2Input,
+		FavouriteWorld3Input,
+		WallpaperIDInput;
+	
+	public static JButton
+		AddSpriteFlagToUsername,
+		AddColourFlagToUsername,
+		ClearConsole,
+		FavouriteWorld1To2147m,
+		FavouriteWorld2To2147m,
+		FavouriteWorld3To2147m,
+		btnRead,
+		btnWrite;
+	
+	public static JFrame frame;
 	public static void main(final String[] args) {
 		EventQueue.invokeLater(() -> {
 			try {
+				//Initialize values, and load the program.
 				Storage.init();
-				NXTSettingsGUI frame = new NXTSettingsGUI();
-				frame.setVisible(true);
+				frame = new NXTSettingsGUI();
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		});
 	}
 
-	private final JPanel contentPane;
+	public static JPanel contentPane;
 
 	public NXTSettingsGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 760, 675);
+		Color backgroundColour = new Color(45, 45, 45), optionBackgroundColor = new Color (40, 40, 40);
+		frame = this;
+		frame.setVisible(true);
+		frame.setAlwaysOnTop(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 755, 675);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(45, 45, 45));
+		contentPane.setBackground(backgroundColour);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setResizable(false);
-		setTitle("NXT Settings");
+		frame.setResizable(false);
+		frame.setTitle("NXT Settings");
 		try {
+			// Apply dark theme.
 			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 		} catch(ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
 		}
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 750, 25);
+		menuBar.setBounds(0, 0, 755, 25);
 		contentPane.add(menuBar);
 		JMenu FileMenu = new JMenu("File");
 		menuBar.add(FileMenu);
@@ -137,13 +162,13 @@ public class NXTSettingsGUI extends JFrame {
 			fileChooser.setSelectedFile(new File("Settings.jcache"));
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooser.setFileFilter(filter);
-			int returnVal = fileChooser.showOpenDialog(NXTSettingsGUI.this);
+			int returnVal = fileChooser.showOpenDialog(NXTSettingsGUI.frame);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
 				if (file.getName().equalsIgnoreCase("Settings.jcache")) {
 					Settings.Cache_settings_location = file.getAbsolutePath();
 				} else {
-					JOptionPane.showMessageDialog(NXTSettingsGUI.this, "The File at:\n\n" + file.getAbsolutePath() + " was not the Cache file this program is loking for. Please select 'Settings.jcache'");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:\n\n" + file.getAbsolutePath() + " was not the Cache file this program is loking for. Please select 'Settings.jcache'");
 				}
 			} else {
 
@@ -165,13 +190,13 @@ public class NXTSettingsGUI extends JFrame {
 			fileChooser.setSelectedFile(new File("preferences.cfg"));
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooser.setFileFilter(filter);
-			int returnVal = fileChooser.showOpenDialog(NXTSettingsGUI.this);
+			int returnVal = fileChooser.showOpenDialog(NXTSettingsGUI.frame);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
 				if (file.getName().equalsIgnoreCase("preferences.cfg")) {
 					Settings.preferences_config = file;
 				} else {
-					JOptionPane.showMessageDialog(NXTSettingsGUI.this, "The File at:\n\n" + file.getAbsolutePath() + " was not the preference file this program is loking for. Please select 'preferences.cfg'");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:\n\n" + file.getAbsolutePath() + " was not the preference file this program is loking for. Please select 'preferences.cfg'");
 				}
 			} else {
 
@@ -179,6 +204,21 @@ public class NXTSettingsGUI extends JFrame {
 		});
 		FileMenu.add(FileMenuSelectPreferences);
 
+		JMenuItem FileMenuAlwaysOnTop = new JMenuItem("Toggle Always On Top");
+		FileMenuAlwaysOnTop.addActionListener(e -> {
+			if (frame.isAlwaysOnTop()){
+				frame.setAlwaysOnTop(false);
+				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now disabled.");
+				
+			}
+			else{
+				frame.setAlwaysOnTop(true);
+				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now enabled.");
+				
+			}
+		});
+		FileMenu.add(FileMenuAlwaysOnTop);
+		
 		JMenuItem FileMenuExit = new JMenuItem("Exit");
 		FileMenuExit.addActionListener(e -> System.exit(0));
 
@@ -188,9 +228,46 @@ public class NXTSettingsGUI extends JFrame {
 		tabbedPane.setBounds(15, 26, 720, 569);
 		contentPane.add(tabbedPane);
 
+		
+		NumberFormat intFormat = NumberFormat.getIntegerInstance();
+		
+		NumberFormatter FpsNumberFormatter = new NumberFormatter(intFormat);
+		FpsNumberFormatter.setValueClass(Integer.class);
+		FpsNumberFormatter.setAllowsInvalid(false);
+		
+		NumberFormatter InterfaceScalingNumberFormatter = new NumberFormatter(intFormat);
+		InterfaceScalingNumberFormatter.setValueClass(Integer.class);
+		InterfaceScalingNumberFormatter.setAllowsInvalid(false);
+		
+		NumberFormatter GameScalingNumberFormatter = new NumberFormatter(intFormat);
+		GameScalingNumberFormatter.setValueClass(Integer.class);
+		GameScalingNumberFormatter.setAllowsInvalid(false);
+		
+		NumberFormatter WorldNumberFormatter = new NumberFormatter(intFormat);
+		WorldNumberFormatter.setValueClass(Integer.class);
+		WorldNumberFormatter.setAllowsInvalid(false);
+		WorldNumberFormatter.setMinimum(-1);
+		WorldNumberFormatter.setMaximum(Integer.MAX_VALUE);
+		
+		NumberFormatter WallpaperNumberFormatter = new NumberFormatter(intFormat);
+		WallpaperNumberFormatter.setValueClass(Integer.class);
+		WallpaperNumberFormatter.setAllowsInvalid(false);
+		WallpaperNumberFormatter.setMinimum(0);
+		
+		
+		
+		
+		
+		/* Graphics Settings */
+		
+		
+		
+		
+		
 		JPanel GraphicsSettingsTab = new JPanel();
 		tabbedPane.addTab("Graphics Settings", null, GraphicsSettingsTab, "Edit your graphics settings here.");
-		GraphicsSettingsTab.setBackground(Color.BLACK);
+		GraphicsSettingsTab.setBackground(backgroundColour);
+		GraphicsSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		GraphicsSettingsTab.setLayout(null);
 
 		JLabel RemoveRoofsLabel = new JLabel("Remove Roofs");
@@ -200,10 +277,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		RemoveRoofsComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[0]);
 		RemoveRoofsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_RemoveRoofs = RemoveRoofsComboBox.getSelectedIndex());
-		RemoveRoofsComboBox.setToolTipText("<html>Note: \"None\" is NOT natively an option for NXT.<br>"+
-				"<br>"+
-				"This option WILL cause graphical issues.<br>" +
-				"Set to another option if you dislike the roofs.</html>");
+		RemoveRoofsComboBox.setToolTipText(Storage.REMOVEROOFS_TOOLTIP);
 		RemoveRoofsComboBox.setBounds(165, 15 + (30 * 0), 175, 25);
 		RemoveRoofsComboBox.setSelectedIndex(1);
 		GraphicsSettingsTab.add(RemoveRoofsComboBox);
@@ -308,20 +382,51 @@ public class NXTSettingsGUI extends JFrame {
 		BloomQualityComboBox.setBounds(165, 15 + (30 * 9), 175, 25);
 		GraphicsSettingsTab.add(BloomQualityComboBox);
 
-		JLabel DepthOfFieldLabel = new JLabel("Unknown Option");
+		JLabel DepthOfFieldLabel = new JLabel("Depth of Field");
 		DepthOfFieldLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		DepthOfFieldLabel.setToolTipText("This Option is Bokehen.");
+		DepthOfFieldLabel.setToolTipText(Storage.DOF_TOOLTIP);
 		DepthOfFieldLabel.setBounds(15, 15 + (30 * 10), 150, 25);
 		GraphicsSettingsTab.add(DepthOfFieldLabel);
 
 		DepthOfFieldComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[10]);
-		DepthOfFieldComboBox.setToolTipText("This Option is Bokehen.");
+		DepthOfFieldComboBox.setToolTipText(Storage.DOF_TOOLTIP);
 		DepthOfFieldComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_DepthOfField = DepthOfFieldComboBox.getSelectedIndex());
-		DepthOfFieldComboBox.setEnabled(false);
 		DepthOfFieldComboBox.setBounds(165, 15 + (30 * 10), 175, 25);
 		GraphicsSettingsTab.add(DepthOfFieldComboBox);
 
+		JLabel MaxForegroundFpsLabel = new JLabel("Maximum Foreground FPS");
+		MaxForegroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		MaxForegroundFpsLabel.setToolTipText(Storage.MAXFOREGOUNDFPS_TOOLTIP);
+		MaxForegroundFpsLabel.setBounds(15, 15 + (30 * 11), 150, 25);
+		GraphicsSettingsTab.add(MaxForegroundFpsLabel);
+		
+		MaxForegroundFpsInput = new JFormattedTextField(WorldNumberFormatter);
+		MaxForegroundFpsInput.setFont(new Font("Dialog", Font.PLAIN, 12));
+		MaxForegroundFpsInput.setHorizontalAlignment(SwingConstants.RIGHT);
+		MaxForegroundFpsInput.setToolTipText(Storage.MAXFOREGOUNDFPS_TOOLTIP);
+		MaxForegroundFpsInput.setText("" + (Storage.FrameRate + 10));
+		MaxForegroundFpsInput.setBounds(165, 15 + (30 * 11), 175, 25);
+		GraphicsSettingsTab.add(MaxForegroundFpsInput);
+		
+		JLabel InterfaceScalingLabel = new JLabel("Interface Scale");
+		InterfaceScalingLabel.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
+		InterfaceScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InterfaceScalingLabel.setBounds(15, 15 + (30 * 12), 150, 25);
+		GraphicsSettingsTab.add(InterfaceScalingLabel);
+		
+		InterfaceScaleInput = new JFormattedTextField(InterfaceScalingNumberFormatter);
+		InterfaceScaleInput.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
+		InterfaceScaleInput.setText("100");
+		InterfaceScaleInput.setHorizontalAlignment(SwingConstants.RIGHT);
+		InterfaceScaleInput.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InterfaceScaleInput.setBounds(165, 15 + (30 * 12), 175, 25);
+		GraphicsSettingsTab.add(InterfaceScaleInput);
+		
+		
 		// Right Column
+		
+		
+		
 		JLabel BrightnessLabel = new JLabel("Brightness");
 		BrightnessLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		BrightnessLabel.setBounds(355, 15 + (30 * 0), 150, 25);
@@ -334,6 +439,7 @@ public class NXTSettingsGUI extends JFrame {
 		BrightnessSlider.setPaintTicks(true);
 		BrightnessSlider.setBounds(505, 15 + (30 * 0), 175, 25);
 		BrightnessSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		BrightnessSlider.setBackground(optionBackgroundColor);
 		GraphicsSettingsTab.add(BrightnessSlider);
 
 		JLabel TextureQualityLabel = new JLabel("Texture Quality");
@@ -442,22 +548,58 @@ public class NXTSettingsGUI extends JFrame {
 		TerrainBlendingCheckbox.setBounds(665, 15 + (30 * 9) + 5, 15, 15);
 		GraphicsSettingsTab.add(TerrainBlendingCheckbox);
 
-		JLabel HeatHazeLabel = new JLabel("Unknown Option");
+		JLabel HeatHazeLabel = new JLabel("Heat Haze");
 		HeatHazeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		HeatHazeLabel.setToolTipText("This Option is in a mild haze.");
+		HeatHazeLabel.setToolTipText(Storage.HEATHAZE_TOOLTIP);
 		HeatHazeLabel.setBounds(355, 15 + (30 * 10), 150, 25);
 		GraphicsSettingsTab.add(HeatHazeLabel);
+	
+		HeatHazeCheckbox = new JCheckBox();
+		HeatHazeCheckbox.setHorizontalAlignment(SwingConstants.CENTER);
+		HeatHazeCheckbox.setBounds(665, 15 + (30 * 10) + 5, 15, 15);
+		GraphicsSettingsTab.add(HeatHazeCheckbox);
+		
+		JLabel MaxBackgroundFpsLabel = new JLabel("Maximum Background FPS");
+		MaxBackgroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		MaxBackgroundFpsLabel.setToolTipText(Storage.MAXBACKGOUNDFPS_TOOLTIP);
+		MaxBackgroundFpsLabel.setBounds(355, 15 + (30 * 11), 150, 25);
+		GraphicsSettingsTab.add(MaxBackgroundFpsLabel);
 
-		HeatHazeComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[14]);
-		HeatHazeComboBox.setToolTipText("This Option is in a mild haze.");
-		HeatHazeComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_HeatHaze = HeatHazeComboBox.getSelectedIndex());
-		HeatHazeComboBox.setEnabled(false);
-		HeatHazeComboBox.setBounds(505, 15 + (30 * 10), 175, 25);
-		GraphicsSettingsTab.add(HeatHazeComboBox);
-
+		MaxBackgroundFpsInput = new JFormattedTextField(WorldNumberFormatter);
+		MaxBackgroundFpsInput.setFont(new Font("Dialog", Font.PLAIN, 12));
+		MaxBackgroundFpsInput.setHorizontalAlignment(SwingConstants.RIGHT);
+		MaxBackgroundFpsInput.setToolTipText(Storage.MAXBACKGOUNDFPS_TOOLTIP);
+		MaxBackgroundFpsInput.setText("30");
+		MaxBackgroundFpsInput.setBounds(505, 15 + (30 * 11), 175, 25);
+		GraphicsSettingsTab.add(MaxBackgroundFpsInput);
+		
+		JLabel GameScalingLabel = new JLabel("Game Render Scale");
+		GameScalingLabel.setToolTipText(Storage.GAMESCALING_TOOLTIP);
+		GameScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		GameScalingLabel.setBounds(355, 15 + (30 * 12), 150, 25);
+		GraphicsSettingsTab.add(GameScalingLabel);
+		
+		GameRenderScaleInput = new JFormattedTextField(GameScalingNumberFormatter);
+		GameRenderScaleInput.setToolTipText(Storage.GAMESCALING_TOOLTIP);
+		GameRenderScaleInput.setText("100");
+		GameRenderScaleInput.setHorizontalAlignment(SwingConstants.RIGHT);
+		GameRenderScaleInput.setFont(new Font("Dialog", Font.PLAIN, 12));
+		GameRenderScaleInput.setBounds(505, 15 + (30 * 12), 175, 25);
+		GraphicsSettingsTab.add(GameRenderScaleInput);
+		
+		
+		
+		/* Client Settings */
+		
+		
+		
+		
+		
+		
 		JPanel ClientSettingsTab = new JPanel();
 		tabbedPane.addTab("Client Settings", null, ClientSettingsTab, "Edit your client settings here.");
-		ClientSettingsTab.setBackground(Color.BLACK);
+		ClientSettingsTab.setBackground(backgroundColour);
+		ClientSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		ClientSettingsTab.setLayout(null);
 
 		JLabel UsernameLabel = new JLabel("Username");
@@ -466,29 +608,10 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(UsernameLabel);
 
 		UsernameInput = new JTextField();
-		UsernameInput.setToolTipText(
-				"<html>This will be the display username when loading NXT.<br>"+
-				"Currently this field allows Jagex's Colour+Sprite flags to be used.<br>" +
-				"<br>"+
-				"NOTE: When using sprite+colour flags it will still read is-if you types them here<br>" +
-				"Graphically it may be a login-able name, but it will have invalid characters/login names.<br>"+
-				"<br>"+
-				"Some HTML elements like &lt;br&gt;, &lt;b&gt;, and &lt;i&gt; can be used as well.</html>"
-				);
+		UsernameInput.setToolTipText(Storage.USERNAME_INPUT_TOOLTIP);
 		UsernameInput.setBounds(170, 15, 535, 25);
 		ClientSettingsTab.add(UsernameInput);
 		UsernameInput.setColumns(10);
-
-		NumberFormat intFormat = NumberFormat.getIntegerInstance();
-		NumberFormatter WorldNumberFormatter = new NumberFormatter(intFormat);
-		WorldNumberFormatter.setValueClass(Integer.class);
-		WorldNumberFormatter.setAllowsInvalid(false);
-		WorldNumberFormatter.setMinimum( - 1);
-		WorldNumberFormatter.setMaximum(255);
-		NumberFormatter WallpaperNumberFormatter = new NumberFormatter(intFormat);
-		WallpaperNumberFormatter.setValueClass(Integer.class);
-		WallpaperNumberFormatter.setAllowsInvalid(false);
-		WallpaperNumberFormatter.setMinimum(0);
 
 		JLabel FavouriteWorld1Label = new JLabel("Favourite world 1");
 		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -496,14 +619,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld1Label);
 
 		FavouriteWorld1Input = new JFormattedTextField(WorldNumberFormatter);
-		FavouriteWorld1Input.setToolTipText(
-				"<html>To clear this slot use the value -1.<br>"+
-				"If Slots 1 or 2 have -1 as their value, any later numbers will be disabled.<br>" +
-				"<br>"+
-				"The removal is currently NOT a NXT limitation, but it causes graphical issues.</html>"
-				);
-		FavouriteWorld1Input.setText("-1");
-		FavouriteWorld1Input.setDocument(new TextLimitor(4));
+		FavouriteWorld1Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
 		FavouriteWorld1Input.setBounds(170, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld1Input);
 
@@ -513,14 +629,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld2Label);
 
 		FavouriteWorld2Input = new JFormattedTextField(WorldNumberFormatter);
-		FavouriteWorld2Input.setToolTipText(
-				"<html>To clear this slot use the value -1.<br>"+
-				"If Slots 1 or 2 have -1 as their value, any later numbers will be disabled.<br>" +
-				"<br>"+
-				"The removal is currently NOT a NXT limitation, but it causes graphical issues.</html>"
-				);
-		FavouriteWorld2Input.setText("-1");
-		FavouriteWorld2Input.setDocument(new TextLimitor(4));
+		FavouriteWorld2Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
 		FavouriteWorld2Input.setBounds(395, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld2Input);
 
@@ -530,105 +639,83 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld3Label);
 
 		FavouriteWorld3Input = new JFormattedTextField(WorldNumberFormatter);
-		FavouriteWorld3Input.setToolTipText(
-				"<html>To clear this slot use the value -1.<br>" +
-				"If Slots 1 or 2 have -1 as their value any later numbers will be disabled.<br>" +
-				"<br>" +
-				"The removal is currently NOT a NXT limitation, but it causes graphical issues.</html>"
-				);
-		FavouriteWorld3Input.setText("-1");
-		FavouriteWorld3Input.setDocument(new TextLimitor(4));
+		FavouriteWorld3Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
 		FavouriteWorld3Input.setBounds(620, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld3Input);
 
 		GlobalAudioMuteCheckbox = new JCheckBox("Global Audio Mute?");
 		GlobalAudioMuteCheckbox.addActionListener(e -> Storage.nxtClientSettings_GlobalMute = GlobalAudioMuteCheckbox.isSelected());
-		GlobalAudioMuteCheckbox.setToolTipText(
-				"<html>Disables the audio streams WHILE LOGGED IN<br>" +
-				"Other volume options should remain uneffected.</html>"
-				);
+		GlobalAudioMuteCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
 		GlobalAudioMuteCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		GlobalAudioMuteCheckbox.setBounds(15, 75, 150, 25);
+		GlobalAudioMuteCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(GlobalAudioMuteCheckbox);
 
 		RememberUsernameCheckbox = new JCheckBox("Remember Saved Username?");
 		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
-
-		RememberUsernameCheckbox.setToolTipText(
-				"<html>Redundant feature for here;<br>" +
-				"if unchecked NXT will clear the username on the next client load.</html>"
-				);
+		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
 		RememberUsernameCheckbox.setBounds(170, 75, 220, 25);
+		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RememberUsernameCheckbox);
 
 		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize Wallpaper? Use ID:");
 		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
-		RandomizeLoginWallpaperCheckbox.setToolTipText(
-				"<html>Randomize your login screen's wallpaper.<br>" +
-				"<br>" +
-				"NOTE: The FIRST frame of this will be the ID input to the Right<br>" +
-				"If this option is unchecked, that ID's wallpaper will be used.</html>"
-				);
+		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
 		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		RandomizeLoginWallpaperCheckbox.setBounds(395, 75, 220, 25);
+		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
 
 		WallpaperIDInput = new JFormattedTextField(WallpaperNumberFormatter);
 		WallpaperIDInput.setText("0");
-		WallpaperIDInput.setToolTipText(
-				"<html>Input your desired wallpaper ID.<br>" +
-				"<br>" +
-				"NOTE: This will apply to the FIRST wallpaper in randomizing.<br>" +
-				"This will also be the Static ID if randomizing if OFF.<br>" +
-				"<br>" +
-				"ID: 0 = Default.</html>"
-				);
+		WallpaperIDInput.setToolTipText(Storage.WALLPAPER_ID_TOOLTIP);
 		WallpaperIDInput.setBounds(620, 75, 85, 25);
 		FavouriteWorld2Input.setDocument(new TextLimitor(2));
 		ClientSettingsTab.add(WallpaperIDInput);
+		
+		LoginMusicSlider = new JSlider();
+		LoginMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_LoginMusicVolume = LoginMusicSlider.getValue());
+		
+		JLabel LoginMusicLabel = new JLabel("Login Music Volume");
+		LoginMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		LoginMusicLabel.setBounds(15, 105, 150, 25);
+		ClientSettingsTab.add(LoginMusicLabel);
+		
+		LoginMusicSlider.setMaximum(255);
+		LoginMusicSlider.setPaintTicks(false);
+		LoginMusicSlider.setBounds(170, 105, 535, 25);
+		LoginMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		ClientSettingsTab.add(LoginMusicSlider);
 
 		JLabel InGameMusicLabel = new JLabel("Game Music Volume");
 		InGameMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameMusicLabel.setBounds(15, 105, 150, 25);
+		InGameMusicLabel.setBounds(15, 135, 150, 25);
 		ClientSettingsTab.add(InGameMusicLabel);
 
 		InGameMusicSlider = new JSlider();
 		InGameMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameMusicVolume = InGameMusicSlider.getValue());
-		InGameMusicSlider.setMaximum(127);
-		InGameMusicSlider.setValue(127);
-		InGameMusicSlider.setPaintTicks(true);
-		InGameMusicSlider.setBounds(170, 105, 445, 25);
+		InGameMusicSlider.setMaximum(255);
+		InGameMusicSlider.setMajorTickSpacing(51);
+		InGameMusicSlider.setPaintTicks(false);
+		InGameMusicSlider.setBounds(170, 135, 535, 25);
 		InGameMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ClientSettingsTab.add(InGameMusicSlider);
 
-		JCheckBox InGameMusicBoostCheckbox = new JCheckBox("Boost?");
-		InGameMusicBoostCheckbox.addActionListener(e -> {
-			if (InGameMusicBoostCheckbox.isSelected()) {
-				InGameMusicSlider.setMaximum(255);
-			} else {
-				InGameMusicSlider.setMaximum(127);
-			}
-		});
-		InGameMusicBoostCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameMusicBoostCheckbox.setBounds(620, 105, 85, 25);
-		ClientSettingsTab.add(InGameMusicBoostCheckbox);
-
 		JLabel InGameSoundEffectsLabel = new JLabel("Sound Effect Volume");
 		InGameSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameSoundEffectsLabel.setBounds(15, 135, 150, 25);
+		InGameSoundEffectsLabel.setBounds(15, 165, 150, 25);
 		ClientSettingsTab.add(InGameSoundEffectsLabel);
 
 		InGameSoundEffectsSlider = new JSlider();
 		InGameSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameSoundEffectsVolume = InGameSoundEffectsSlider.getValue());
-		InGameSoundEffectsSlider.setMaximum(127);
-		InGameSoundEffectsSlider.setValue(127);
-		InGameSoundEffectsSlider.setPaintTicks(true);
-		InGameSoundEffectsSlider.setBounds(170, 135, 445, 25);
+		InGameSoundEffectsSlider.setMaximum(255);
+		InGameSoundEffectsSlider.setPaintTicks(false);
+		InGameSoundEffectsSlider.setBounds(170, 165, 445, 25);
 		InGameSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ClientSettingsTab.add(InGameSoundEffectsSlider);
 
-		JCheckBox InGameSoundEffectsBoostCheckbox = new JCheckBox("Boost?");
+		InGameSoundEffectsBoostCheckbox = new JCheckBox("Boost?");
 		InGameSoundEffectsBoostCheckbox.addActionListener(e -> {
 			if (InGameSoundEffectsBoostCheckbox.isSelected()) {
 				InGameSoundEffectsSlider.setMaximum(255);
@@ -637,24 +724,24 @@ public class NXTSettingsGUI extends JFrame {
 			}
 		});
 		InGameSoundEffectsBoostCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameSoundEffectsBoostCheckbox.setBounds(620, 135, 85, 25);
+		InGameSoundEffectsBoostCheckbox.setBounds(620, 165, 85, 25);
+		InGameSoundEffectsBoostCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(InGameSoundEffectsBoostCheckbox);
 
 		JLabel InGameAmbientSoundEffectsLabel = new JLabel("Ambient Sound Volume");
 		InGameAmbientSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameAmbientSoundEffectsLabel.setBounds(15, 165, 150, 25);
+		InGameAmbientSoundEffectsLabel.setBounds(15, 195, 150, 25);
 		ClientSettingsTab.add(InGameAmbientSoundEffectsLabel);
 
 		InGameAmbientSoundEffectsSlider = new JSlider();
 		InGameAmbientSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = InGameAmbientSoundEffectsSlider.getValue());
-		InGameAmbientSoundEffectsSlider.setMaximum(127);
-		InGameAmbientSoundEffectsSlider.setValue(127);
-		InGameAmbientSoundEffectsSlider.setPaintTicks(true);
-		InGameAmbientSoundEffectsSlider.setBounds(170, 165, 445, 25);
+		InGameAmbientSoundEffectsSlider.setMaximum(255);
+		InGameAmbientSoundEffectsSlider.setPaintTicks(false);
+		InGameAmbientSoundEffectsSlider.setBounds(170, 195, 445, 25);
 		InGameAmbientSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ClientSettingsTab.add(InGameAmbientSoundEffectsSlider);
 
-		JCheckBox InGameAmbientSoundEffectsBoostCheckbox = new JCheckBox("Boost?");
+		InGameAmbientSoundEffectsBoostCheckbox = new JCheckBox("Boost?");
 		InGameAmbientSoundEffectsBoostCheckbox.addActionListener(e -> {
 			if (InGameAmbientSoundEffectsBoostCheckbox.isSelected()) {
 				InGameAmbientSoundEffectsSlider.setMaximum(255);
@@ -663,24 +750,24 @@ public class NXTSettingsGUI extends JFrame {
 			}
 		});
 		InGameAmbientSoundEffectsBoostCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameAmbientSoundEffectsBoostCheckbox.setBounds(620, 165, 85, 25);
+		InGameAmbientSoundEffectsBoostCheckbox.setBounds(620, 195, 85, 25);
+		InGameAmbientSoundEffectsBoostCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(InGameAmbientSoundEffectsBoostCheckbox);
 
 		JLabel InGameVoiceOverLabel = new JLabel("Voice Over Volume");
 		InGameVoiceOverLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameVoiceOverLabel.setBounds(15, 195, 150, 25);
+		InGameVoiceOverLabel.setBounds(15, 225, 150, 25);
 		ClientSettingsTab.add(InGameVoiceOverLabel);
 
 		InGameVoiceOverSlider = new JSlider();
 		InGameVoiceOverSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameVoiceOverVolume = InGameVoiceOverSlider.getValue());
-		InGameVoiceOverSlider.setMaximum(127);
-		InGameVoiceOverSlider.setValue(127);
-		InGameVoiceOverSlider.setPaintTicks(true);
-		InGameVoiceOverSlider.setBounds(170, 195, 445, 25);
+		InGameVoiceOverSlider.setMaximum(255);
+		InGameVoiceOverSlider.setPaintTicks(false);
+		InGameVoiceOverSlider.setBounds(170, 225, 445, 25);
 		InGameVoiceOverSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ClientSettingsTab.add(InGameVoiceOverSlider);
 
-		JCheckBox InGameVoiceOverBoostCheckbox = new JCheckBox("Boost?");
+		InGameVoiceOverBoostCheckbox = new JCheckBox("Boost?");
 		InGameVoiceOverBoostCheckbox.addActionListener(e -> {
 			if (InGameVoiceOverBoostCheckbox.isSelected()) {
 				InGameVoiceOverSlider.setMaximum(255);
@@ -689,33 +776,30 @@ public class NXTSettingsGUI extends JFrame {
 			}
 		});
 		InGameVoiceOverBoostCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameVoiceOverBoostCheckbox.setBounds(620, 195, 85, 25);
+		InGameVoiceOverBoostCheckbox.setBounds(620, 225, 85, 25);
+		InGameVoiceOverBoostCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(InGameVoiceOverBoostCheckbox);
-
-		JLabel LobbyMusicLabel = new JLabel("Login Music Volume");
-		LobbyMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		LobbyMusicLabel.setBounds(15, 232, 150, 25);
-		ClientSettingsTab.add(LobbyMusicLabel);
-
-		LoginMusicSlider = new JSlider();
-		LoginMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_LoginMusicVolume = LoginMusicSlider.getValue());
-		LoginMusicSlider.setMaximum(254);
-		LoginMusicSlider.setValue(254);
-		LoginMusicSlider.setPaintTicks(true);
-		LoginMusicSlider.setBounds(170, 232, 535, 25);
-		LoginMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(LoginMusicSlider);
+		
+		
+		
+		
+		
+		
+		/* Special Mechanics */
+		
+		
+		
+		
+		
 
 		JPanel SpecialMechanicsTab = new JPanel();
 		tabbedPane.addTab("Special Mechanics", null, SpecialMechanicsTab, "Add special mechanics here. (More details inside)");
-		SpecialMechanicsTab.setBackground(Color.BLACK);
+		SpecialMechanicsTab.setBackground(backgroundColour);
+		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
 
 		AddSpriteFlagToUsername = new JButton("Add sprite flag to Username");
-		AddSpriteFlagToUsername.setToolTipText(
-				"<html>Adds the &lt;sprite=#,#&gt; flag to your username field.<br>" +
-				"This flag is that Jagex uses to add sprites to the chatbox e.g. staffmodlevel Crowns.</html>"
-				);
+		AddSpriteFlagToUsername.setToolTipText(Storage.ADD_SPRITE_FLAG_TOOLTIP);
 		AddSpriteFlagToUsername.addActionListener(e -> {
 			if (UsernameInput != null) {
 				UsernameInput.setText(UsernameInput.getText() + "<sprite=SPRITE_ID,SPRITE_SUB_ID>");
@@ -726,11 +810,7 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.add(AddSpriteFlagToUsername);
 
 		AddColourFlagToUsername = new JButton("Add colour flag to Username");
-		AddColourFlagToUsername.setToolTipText(
-				"<html>Adds the &lt;col=RRGGBB&gt; flag to your username field.<br>" +
-				"This flag is used by Jagex to change the colours of text full or mid-sentence e.g: Green warnings.<br>" +
-				"As far as I've known, this does NOT support alpha. Keep it RRGGBB where possible.</html>"
-				);
+		AddColourFlagToUsername.setToolTipText(Storage.ADD_COLOUR_FLAG_TOOLTIP);
 		AddColourFlagToUsername.addActionListener(e ->{
 			if (UsernameInput != null) {
 				UsernameInput.setText(UsernameInput.getText() + "<col=ffffff></col>");
@@ -741,12 +821,7 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.add(AddColourFlagToUsername);
 
 		ClearConsole = new JButton("Clear Developer Console Log");
-		ClearConsole.setToolTipText(
-				"<html>This will clear the Developer Console's command history logs.<br>" +
-				"<br>" +
-				"Note: Using this will instantly Write to your client's settings.<br>" +
-				"This may clear any previous values!</html>"
-				);
+		ClearConsole.setToolTipText(Storage.CLEAR_DEV_CONSOLE_LOGS_TOOLTIP);
 		ClearConsole.setEnabled(false);
 		ClearConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		ClearConsole.addActionListener(e -> {
@@ -765,12 +840,7 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.add(ClearConsole);
 
 		FavouriteWorld1To2147m = new JButton("Set favourite world 1 to 2147m");
-		FavouriteWorld1To2147m.setToolTipText(
-				"<html>This will set your first favourite world slot to: 2,147,000,000;<br>" +
-				"<br>" +
-				"Note: Using this will instantly Write to your client's settings.<br>" +
-				"This may clear any previous values!</html>"
-				);
+		FavouriteWorld1To2147m.setToolTipText(Storage.FAVOURITE_WORLD_TO_2147M_TOOLTIP.replace("{{{SLOT}}}","first"));
 		FavouriteWorld1To2147m.setEnabled(false);
 		FavouriteWorld1To2147m.addActionListener(e -> {
 			Storage.nxtClientSettings_FavouriteWorld1 = 2147000000;
@@ -779,7 +849,7 @@ public class NXTSettingsGUI extends JFrame {
 				conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld1 + "\" WHERE KEY=\"998\";");@SuppressWarnings("unused")
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld1 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"\";");@SuppressWarnings("unused")
 				int[] Updates = stmt.executeBatch();
 			} catch(SQLException e1) {
 				e1.printStackTrace();
@@ -790,12 +860,7 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.add(FavouriteWorld1To2147m);
 
 		FavouriteWorld2To2147m = new JButton("Set favourite world 2 to 2147m");
-		FavouriteWorld2To2147m.setToolTipText(
-				"<html>This will set your second favourite world slot to: 2,147,000,000;<br>" +
-				"<br>" +
-				"Note: Using this will instantly Write to your client's settings.<br>" +
-				"This may clear any previous values!</html>"
-				);
+		FavouriteWorld2To2147m.setToolTipText(Storage.FAVOURITE_WORLD_TO_2147M_TOOLTIP.replace("{{{SLOT}}}","second"));
 		FavouriteWorld2To2147m.setEnabled(false);
 		FavouriteWorld2To2147m.addActionListener(e -> {
 			Storage.nxtClientSettings_FavouriteWorld2 = 2147000000;
@@ -804,7 +869,7 @@ public class NXTSettingsGUI extends JFrame {
 				conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld2 + "\" WHERE KEY=\"999\";");@SuppressWarnings("unused")
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld2 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"\";");@SuppressWarnings("unused")
 				int[] Updates = stmt.executeBatch();
 			} catch(SQLException e1) {
 				e1.printStackTrace();
@@ -815,12 +880,7 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.add(FavouriteWorld2To2147m);
 
 		FavouriteWorld3To2147m = new JButton("Set favourite world 3 to 2147m");
-		FavouriteWorld3To2147m.setToolTipText(
-				"<html>This will set your third favourite world slot to: 2,147,000,000;<br>" +
-				"<br>" +
-				"Note: Using this will instantly Write to your client's settings.<br>" +
-				"This may clear any previous values!</html>"
-				);
+		FavouriteWorld3To2147m.setToolTipText(Storage.FAVOURITE_WORLD_TO_2147M_TOOLTIP.replace("{{{SLOT}}}","third"));
 		FavouriteWorld3To2147m.setEnabled(false);
 		FavouriteWorld3To2147m.addActionListener(e -> {
 			Storage.nxtClientSettings_FavouriteWorld3 = 2147000000;
@@ -829,7 +889,7 @@ public class NXTSettingsGUI extends JFrame {
 				conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld3 + "\" WHERE KEY=\"4272\";");@SuppressWarnings("unused")
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld3 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"\";");@SuppressWarnings("unused")
 				int[] Updates = stmt.executeBatch();
 			} catch(SQLException e1) {
 				e1.printStackTrace();
@@ -842,6 +902,8 @@ public class NXTSettingsGUI extends JFrame {
 		JScrollPane VerboseOutputTab = new JScrollPane();
 		VerboseOutputTab.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		VerboseOutputTab.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		VerboseOutputTab.setBackground(backgroundColour);
+		VerboseOutputTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		tabbedPane.addTab("Read-Only Information", null, VerboseOutputTab, "Read the Verbose information as it occurs.");
 
 		VerboseOutputArea = new JEditorPane();
@@ -853,9 +915,20 @@ public class NXTSettingsGUI extends JFrame {
 		VerboseOutputArea.setEditorKit(VerboseOutputAreaEditor);
 		VerboseOutputTab.setViewportView(VerboseOutputArea);
 
+		
+		
+		
+		
+		/* Bottom Pane */
+		
+		
+		
+		
+		
 		ShowSensitiveInformation = new JCheckBox("Show Sensitive Information?");
 		ShowSensitiveInformation.setToolTipText("Show information such as: Your Username, UID, etc.");
 		ShowSensitiveInformation.setBounds(15, 610, 230, 25);
+		ShowSensitiveInformation.setBackground(optionBackgroundColor);
 		contentPane.add(ShowSensitiveInformation);
 
 		btnRead = new JButton("Read");
@@ -865,6 +938,9 @@ public class NXTSettingsGUI extends JFrame {
 				VerboseOutputArea.setText("<html></html>");
 				UsernameInput.setText("");
 			}
+			/* Init */
+			Settings.TestRead();
+			/* Apply */
 			Settings.TestRead();
 		});
 		btnRead.setBounds(582, 610, 75, 25);
@@ -894,7 +970,13 @@ public class NXTSettingsGUI extends JFrame {
 			}
 		});
 		AllowWritingCheckbox.setBounds(250, 610, 130, 25);
+		AllowWritingCheckbox.setBackground(optionBackgroundColor);
 		contentPane.add(AllowWritingCheckbox);
+		
+		
+		
+		 /* Currently required to force a read twice, due to an issue with the audio sliders. */
+		Settings.TestRead();
 		Settings.TestRead();
 	}
 }

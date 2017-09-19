@@ -16,15 +16,17 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * When writing the username saved is cleared automatically.
     * There's no persistant log/data file being stored. (other then Jagex's `Settings.jcache` of course)
   * Your username and UID will **NOT** be taken/stolen.
-    * Straps on a tin-foil hat to reply `You can check the source code here if you still don't believe me.`
+    * Straps on a tin-foil hat to reply: `You can check the source code here if you still don't believe me.`
   * **NO** Pre-compiled versions will be made, due to the above points. (people get paranoia, and point fingers)
 - - - -
 **Current Features**:
 * All current graphics settings options
   * Includes "None" for the remove roofs option
-    * this may cause grapahical issues in some areas.
-  * Depth-of-Field is Disabled, due to it only being teased on twitter at the time of this application's creation. See more at: https://twitter.com/JagexDark/status/874975145621934080
-  * Heat Haze was an option in the settings, while currently unused I added it to this program anyways under the same pretenses as the Depth-of-Field by mere guessing it may be a future addition.
+    * This may cause graphical issues in some areas.
+  * Depth-of-Field is only using placeholder values currently, it's not enabled live at this moment. See more here: https://twitter.com/JagexDark/status/874975145621934080
+    * Same applies to Heat Haze
+  * Maximum Foreground/Background FPS, Game Render/Interface Scaling options are added. They are live, but currently their options are not.
+    * Scaling is currently experimental, and not meant for full use my players. Visual issues may happen.
 * All audio options
   * Includes boosting the volumes for most audio streams
     * While I personally have not heard any quality-issues, this makes the in-game bars go past their normal limits visually.
@@ -43,8 +45,8 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * `Show sensitive information?` is unchecked. (due to personal security it will not be read automatically until it's checked)
     * The username field is blank on-writing.
 * Favourite world editing
-  * Buttons are included to make it `2,147,000,000` for fun.
-  * Allows editing up-to 255 for visual purposes.
+  * Buttons are included to make it `2,147,000,000` for fun. (redundant)
+  * Allows editing up-to 2,147,483,647 for visual purposes.
     * Note any world that is NOT valid will act as-if it's not on your language, or is offline.
     * In addition the the above, while in-game any invalid world will NOT show but will act as-is the slots are taken.
     * Setting to `-1` is done by-default, `-1` will also be applied to slots 2 and/or 3 depending if 1 and or 2 is set to `-1` to prevent visual glitching/skipping of the worlds. 

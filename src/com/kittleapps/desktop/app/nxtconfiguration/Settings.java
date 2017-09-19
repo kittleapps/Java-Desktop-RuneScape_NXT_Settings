@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;
@@ -21,47 +22,71 @@ import com.sun.jna.platform.win32.Advapi32Util;
 public class Settings {
 
 	public static String
-	NXT_REGISTRY_LOCATION_BASE = "Software\\Jagex\\RuneScape",
-	Cache_settings_location = "",
-	configuration_location = "",
-	launcher_client_position = "",
-	current_line = "";
-	private static int
-	splash_x_position,
-	splash_y_position;
-	public static File
-	preferences_config,
-	Settings_db;
+		NXT_REGISTRY_LOCATION_BASE = "Software\\Jagex\\RuneScape",
+		Cache_settings_location = "",
+		configuration_location = "",
+		launcher_client_position = "",
+		current_line = "";
+	private static int splash_x_position, splash_y_position;
+	public static File preferences_config, Settings_db;
 	private static boolean NXT_INSTALLED;
 	private static BufferedReader reader;
-	private static StringBuilder
-	sb,
-	messages;
+	private static StringBuilder sb, messages;
 
 	private static String graphicsSettingsFilter(final int FilterType, final String msg) {
 		String value = msg.replace(" ", "_=_").replace("_", " ");
 		if (FilterType == -1) {} else if (FilterType == 0) {
-			value = value.replace("0", "Disabled").replace("1", "Enabled");
+			value = value.replace("0", "Disabled")
+						 .replace("1", "Enabled");
 		} else if (FilterType == 1) {
-			value = value.replace("0", "Low").replace("1", "Medium").replace("2", "High").replace("3", "Ultra");
+			value = value.replace("0", "Low")
+						 .replace("1", "Medium")
+						 .replace("2", "High")
+						 .replace("3", "Ultra");
 		} else if (FilterType == 2) {
-			value = value.replace("0", "Off").replace("1", "Low").replace("2", "Medium").replace("3", "High").replace("4", "Ultra");
+			value = value.replace("0", "Off")
+						  .replace("1", "Low")
+						  .replace("2", "Medium")
+						  .replace("3", "High")
+						  .replace("4", "Ultra");
 		} else if (FilterType == 3) {
-			value = value.replace("0", "Off").replace("1", "SSAO").replace("2", "HBAO");
+			value = value.replace("0", "Off")
+						 .replace("1", "SSAO")
+						 .replace("2", "HBAO");
 		} else if (FilterType == 4) {
-			value = value.replace("0", "Off").replace("1", "Compressed").replace("2", "Uncompressed");
+			value = value.replace("0", "Off")
+						 .replace("1", "Compressed")
+						 .replace("2", "Uncompressed");
 		} else if (FilterType == 5) {
-			value = value.replace("0", "Off").replace("1", "FXAA").replace("2", "MSAA").replace("3", "FXAA+MSAA");
+			value = value.replace("0", "Off")
+						 .replace("1", "FXAA")
+						 .replace("2", "MSAA")
+						 .replace("3", "FXAA+MSAA");
 		} else if (FilterType == 6) {
-			value = value.replace("0", "Off").replace("1", "x2").replace("2", "x4").replace("3", "x8").replace("4", "x16");
+			value = value.replace("0", "Off")
+						 .replace("1", "x2")
+						 .replace("2", "x4")
+						 .replace("3", "x8")
+						 .replace("4", "x16");
 		} else if (FilterType == 7) {
-			value = value.replace("-1", "Adaptive").replace("0", "Off").replace("1", "On").replace("2", "Half").replace("3", "Quarter");
+			value = value.replace("-1", "Adaptive")
+						 .replace("0",  "Off")
+						 .replace("1",  "On")
+						 .replace("2",  "Half")
+						 .replace("3",  "Quarter");
 		} else if (FilterType == 8) {
-			value = value.replace("0", "None").replace("1", "Selectively").replace("2", "Always").replace("3", "All");
+			value = value.replace("0", "None")
+						 .replace("1", "Selectively")
+						 .replace("2", "Always")
+						 .replace("3", "All");
 		} else if (FilterType == 10) {
 			value = value.replace("0", "Off (0)");
 		} else if (FilterType == 11) {
-			value = value.replace("0", "Lowest (Slider = 0%)").replace("1", "Low (Slider = 25%)").replace("2", "Medium (Slider = 50%)").replace("3", "High (Slider = 75%)").replace("4", "Highest (Slider = 100%)");
+			value = value.replace("0", "Lowest (Slider = 0%)")
+						 .replace("1", "Low (Slider = 25%)")
+						 .replace("2", "Medium (Slider = 50%)")
+						 .replace("3", "High (Slider = 75%)")
+						 .replace("4", "Highest (Slider = 100%)");
 		} else {
 			value = "Invalid FilterType Used.";
 		}
@@ -72,7 +97,9 @@ public class Settings {
 		messages.append("<div class='test'><font color=\"green\">" + msg + "</font></div>\n");
 		Document doc = NXTSettingsGUI.VerboseOutputArea.getDocument();
 		try {
-			NXTSettingsGUI.VerboseOutputAreaEditor.insertHTML((HTMLDocument) doc, doc.getLength(), "<div class='test'><font color=\"green\">" + msg.replace("{{nl}}", "<br>").replace("\t", "&ensp;&ensp;&ensp;") + "</font></div>", 0, 0, null);
+			NXTSettingsGUI.VerboseOutputAreaEditor.insertHTML((HTMLDocument) doc, doc.getLength(), "<div class='test'><font color=\"green\">" +
+															 msg.replace("{{nl}}", "<br>").replace("\t", "&ensp;&ensp;&ensp;") +
+															 "</font></div>", 0, 0, null);
 		} catch(BadLocationException | IOException e) {
 			e.printStackTrace();
 		}
@@ -80,20 +107,23 @@ public class Settings {
 
 	public static void TestRead() {
 		int OS_TYPE = Storage.OS_TYPE;
+		NXTSettingsGUI.VerboseOutputArea.setText("");
 		messages = new StringBuilder("<html>");
 
 		if (OS_TYPE == 0) {
 			NXT_REGISTRY_LOCATION_BASE = "Software\\Jagex\\RuneScape";
 			NXT_INSTALLED = Advapi32Util.registryKeyExists(HKEY_CURRENT_USER, NXT_REGISTRY_LOCATION_BASE);
-			SendVerboseMessage("NXT's installed: " + ("" + NXT_INSTALLED).replace("true", "Yes.").replace("false", "No."));
+			SendVerboseMessage("NXT's installed: " + ("" + NXT_INSTALLED).replace("true", "Yes.")
+																		 .replace("false", "No."));
 		} else if (OS_TYPE == 1) {
 			NXT_REGISTRY_LOCATION_BASE = "/usr/bin/runescape-launcher";
 			NXT_INSTALLED = new File(NXT_REGISTRY_LOCATION_BASE).exists();
-			SendVerboseMessage("NXT's installed: " + ("" + NXT_INSTALLED).replace("true", "Yes.").replace("false", "No."));
+			SendVerboseMessage("NXT's installed: " + ("" + NXT_INSTALLED).replace("true", "Yes.")
+																		 .replace("false", "No."));
 		}
 		if (NXT_INSTALLED) {
 			if (OS_TYPE == 0) {
-				configuration_location = Advapi32Util.registryGetStringValue(HKEY_CURRENT_USER, NXT_REGISTRY_LOCATION_BASE, "splash").replace("splash6.gif", "preferences.cfg");
+				configuration_location = Advapi32Util.registryGetStringValue(HKEY_CURRENT_USER, NXT_REGISTRY_LOCATION_BASE, "splash").replace("splash6.gif", "preferences.cfg").replace("\\", "/");
 				splash_x_position = Advapi32Util.registryGetIntValue(HKEY_CURRENT_USER, NXT_REGISTRY_LOCATION_BASE + "\\Persistent_Options\\LauncherSplash\\Splash", "x");
 				splash_y_position = Advapi32Util.registryGetIntValue(HKEY_CURRENT_USER, NXT_REGISTRY_LOCATION_BASE + "\\Persistent_Options\\LauncherSplash\\Splash", "y");
 				launcher_client_position = Advapi32Util.registryGetStringValue(HKEY_CURRENT_USER, NXT_REGISTRY_LOCATION_BASE, "client_position");
@@ -103,8 +133,8 @@ public class Settings {
 				SendVerboseMessage("NXT's splash screen Y-coordinate is set to: " + splash_y_position);
 				SendVerboseMessage("NXT's client position is set to: " + launcher_client_position);
 			} else if (OS_TYPE == 1) {
-				configuration_location = new File(System.getProperty("user.home") + "/Jagex/launcher/preferences.cfg").getAbsolutePath();
-				try (BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.home") + "/.runescape"))) {
+				configuration_location = new File(System.getProperty("user.home").replace("\\", "/") + "/Jagex/launcher/preferences.cfg").getAbsolutePath();
+				try (BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.home").replace("\\", "/") + "/.runescape"))) {
 					String line;
 					while ((line = br.readLine()) != null) {
 						if (line.startsWith("client_position")) {
@@ -120,9 +150,11 @@ public class Settings {
 					e.printStackTrace();
 				}
 			}
-			Cache_settings_location = "";
 
+
+			Cache_settings_location = "";
 			preferences_config = new File(configuration_location);
+
 
 			if (preferences_config.exists()) {
 				try {
@@ -133,7 +165,12 @@ public class Settings {
 							SendVerboseMessage("NXT's graphics device is currently set to: " + current_line.trim().replace("graphics_device=", ""));
 						}
 						if (current_line.startsWith("compatibility=")) {
-							String CompatMode = current_line.trim().replace("compatibility=", "").replace("true", "On.").replace("false", "Off.").replace("default", "Automatic.");
+							String CompatMode = current_line.trim()
+															.replace("compatibility=", "")
+															.replace("true", "On.")
+															.replace("false", "Off.")
+															.replace("default", "Automatic."
+									);
 							if (CompatMode.equals("On.")) {
 								Storage.nxtClientSettings_CompatibilityMode = 0;
 							} else if (CompatMode.equals("Off.")) {
@@ -147,28 +184,44 @@ public class Settings {
 							SendVerboseMessage("NXT's compatibility mode is currently: " + CompatMode);
 						}
 						if (current_line.startsWith("dont_ask_graphics=")) {
-							SendVerboseMessage("NXT will currently" + current_line.trim().replace("dont_ask_graphics=", "").replace("1", " NOT ").replace("0", " ") + " ask to switch to compatibility mode on-error.");
+							SendVerboseMessage("NXT will currently" + 
+												current_line.trim().replace("dont_ask_graphics=", "")
+																   .replace("1", " NOT ")
+																   .replace("0", " ") +
+											   "ask to switch to compatibility mode on-error."
+									);
 						}
 						if (current_line.startsWith("confirm_quit=")) {
-							SendVerboseMessage("NXT will currently" + current_line.trim().replace("confirm_quit=", "").replace("0", " NOT ").replace("1", " ") + "ask if it's okay to close the program while logged in.");
+							SendVerboseMessage("NXT will currently" + 
+												current_line.trim()
+															.replace("confirm_quit=", "")
+															.replace("0", " NOT ")
+															.replace("1", " ") +
+												"ask if it's okay to close the program while logged in."
+									);
 						}
 						if (current_line.startsWith("graphics_version=")) {
 							SendVerboseMessage("NXT's last read graphics driver version was: " + current_line.trim().replace("graphics_version=", ""));
 						}
 						if (current_line.startsWith("cache_folder=")) {
 							if (OS_TYPE == 0) {
-								SendVerboseMessage("NXT's cache is located at: " + current_line.trim().replace("cache_folder=", "") + "/RuneScape");
-								SendVerboseMessage("NXT's secondary client is located at: " + current_line.trim().replace("cache_folder=", "") + "/launcher/rs2client.exe");
+								SendVerboseMessage("NXT's cache is located at: " + current_line.trim().replace("cache_folder=", "").replace("\\", "/") + "/RuneScape");
 							} else if (OS_TYPE == 1) {
-								SendVerboseMessage("NXT's cache is located at: " + current_line.trim().replace("cache_folder=", "") + "/RuneScape");
-								SendVerboseMessage("NXT's secondary client is located at: " + current_line.trim().replace("cache_folder=", "") + "/launcher/rs2client");
+								SendVerboseMessage("NXT's cache is located at: " + current_line.trim().replace("cache_folder=", "").replace("\\", "/") + "/RuneScape");
 							}
 						}
 						if (current_line.startsWith("Language=")) {
-							SendVerboseMessage("NXT's server language is currently set to: " + current_line.trim().replace("Language=", "").replace("0", "English (English/Standard Servers)").replace("1", "Deutsch (Dutch Servers)").replace("2", "Fran�ais (French Servers)").replace("3", "portugu� (Portuguese/Brazilian Servers)"));
+							SendVerboseMessage("NXT's server language is currently set to: " +
+									current_line.trim()
+												.replace("Language=", "")
+												.replace("0", "English (English/Standard Servers)")
+												.replace("1", "Deutsch (Dutch Servers)")
+												.replace("2", "Fran�ais (French Servers)")
+												.replace("3", "portugu� (Portuguese/Brazilian Servers)")
+									);
 						}
 						if (current_line.startsWith("user_folder=")) {
-							Cache_settings_location = current_line.trim().replace("user_folder=", "") + "/RuneScape/Settings.jcache";
+							Cache_settings_location = current_line.trim().replace("user_folder=", "").replace("\\", "/") + "/RuneScape/Settings.jcache";
 							SendVerboseMessage("NXT's standard cache/graphics settings are located at: " + Cache_settings_location);
 						}
 					}
@@ -190,8 +243,8 @@ public class Settings {
 					System.err.println("Could not init JDBC driver - driver not found");
 				}
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM Config")) {
+						Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("SELECT * FROM Config")) {
 					while (rs.next()) {
 						sb.append(rs.getString("KEY").trim() + " " + rs.getString("DATA").trim() + "\n");
 					}
@@ -202,8 +255,8 @@ public class Settings {
 					System.err.println(e.getMessage());
 				}
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM \"player\"")) {
+						Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("SELECT * FROM \"player\"")) {
 					while (rs.next()) {
 						if (rs.getString("KEY").equals("uid")) {
 							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
@@ -222,12 +275,31 @@ public class Settings {
 
 				SendVerboseMessage("NXT's current graphics settings are currently:");
 				for (String Line: sb.toString().split("\n")) {
-					if (Line.startsWith("CustomCursors") || Line.startsWith("Shadows") || Line.startsWith("FlickeringEffects") || Line.startsWith("GroundDecor") || Line.startsWith("GroundBlending")) {
-						SendVerboseMessage(graphicsSettingsFilter(0, Line.replace("CustomCursors", "Custom_Cursors").replace("FlickeringEffects", "Flickering_Effects").replace("GroundDecor", "Ground_Decororations").replace("GroundBlending", "Terrain_Blending")));
-					} else if (Line.startsWith("DrawDistance") || Line.startsWith("ShadowQuality") || Line.startsWith("LightingQuality") || Line.startsWith("AntialiasingQuality") || Line.startsWith("Reflections")) {
-						SendVerboseMessage(graphicsSettingsFilter(1, Line.replace("DrawDistance", "Draw_Distance").replace("ShadowQuality", "Shadow_Quality").replace("LightingQuality", "Lighting_Quality").replace("AntialiasingQuality", "Anti-aliasing_Quality").replace("Reflections", "Water_Detail")));
-					} else if (Line.startsWith("VolumetricLighting") || Line.startsWith("Bloom")) {
-						SendVerboseMessage(graphicsSettingsFilter(2, Line.replace("VolumetricLighting", "Volumetric_Lighting_Quality").replace("Bloom", "Bloom_Quality")));
+					if (Line.startsWith("CustomCursors") ||
+							Line.startsWith("Shadows") ||
+							Line.startsWith("FlickeringEffects") ||
+							Line.startsWith("GroundDecor") ||
+							Line.startsWith("GroundBlending")) {
+						SendVerboseMessage(graphicsSettingsFilter(0, Line.replace("CustomCursors", "Custom_Cursors")
+																		 .replace("FlickeringEffects", "Flickering_Effects")
+																		 .replace("GroundDecor", "Ground_Decororations")
+																		 .replace("GroundBlending", "Terrain_Blending")
+								));
+					} else if (Line.startsWith("DrawDistance") ||
+							Line.startsWith("ShadowQuality") ||
+							Line.startsWith("LightingQuality") ||
+							Line.startsWith("AntialiasingQuality") ||
+							Line.startsWith("Reflections")) {
+						SendVerboseMessage(graphicsSettingsFilter(1, Line.replace("DrawDistance", "Draw_Distance")
+																	 	 .replace("ShadowQuality", "Shadow_Quality")
+																		 .replace("LightingQuality", "Lighting_Quality")
+																		 .replace("AntialiasingQuality", "Anti-aliasing_Quality")
+																		 .replace("Reflections", "Water_Detail")
+								));
+					} else if (Line.startsWith("VolumetricLighting") ||
+							Line.startsWith("Bloom")) {
+						SendVerboseMessage(graphicsSettingsFilter(2, Line.replace("VolumetricLighting", "Volumetric_Lighting_Quality")
+								.replace("Bloom", "Bloom_Quality")));
 					} else if (Line.startsWith("AmbientOcclusion")) {
 						SendVerboseMessage(graphicsSettingsFilter(3, Line.replace("AmbientOcclusion", "Ambient_Occlusion")));
 					} else if (Line.startsWith("Texturing")) {
@@ -240,16 +312,41 @@ public class Settings {
 						SendVerboseMessage(graphicsSettingsFilter(7, Line));
 					} else if (Line.startsWith("RemoveRoof")) {
 						SendVerboseMessage(graphicsSettingsFilter(8, Line.replace("RemoveRoof", "Remove_Roofs")));
-					} else if (Line.startsWith("VolumeLoginMusic") || Line.startsWith("VolumeMainEffects") || Line.startsWith("VolumeBackgroundEffects") || Line.startsWith("VolumeMainMusic") || Line.startsWith("VolumeSpeech")) {
-						SendVerboseMessage(graphicsSettingsFilter(10, Line.replace("VolumeLoginMusic", "Login_Music_Volume").replace("VolumeMainMusic", "In-Game_Music_Volume").replace("VolumeMainEffects", "Sound_Effects_Volume").replace("VolumeBackgroundEffects", "Ambient_Sounds_Volume").replace("VolumeSpeech", "Voice_Over_Volume")));
+					} else if (Line.startsWith("Version")) {
+						NXTSettingsGUI.frame.setTitle("NXT Settings (Settings Version: "+Line.replace("Version ", "")+")");
+					} else if (Line.startsWith("VolumeLoginMusic") ||
+							Line.startsWith("VolumeMainEffects") ||
+							Line.startsWith("VolumeBackgroundEffects") ||
+							Line.startsWith("VolumeMainMusic") ||
+							Line.startsWith("VolumeSpeech")) {
+						SendVerboseMessage(graphicsSettingsFilter(10, Line.replace("VolumeLoginMusic", "Login_Music_Volume")
+																		  .replace("VolumeMainMusic", "In-Game_Music_Volume")
+																		  .replace("VolumeMainEffects", "Sound_Effects_Volume")
+																		  .replace("VolumeBackgroundEffects", "Ambient_Sounds_Volume")
+																		  .replace("VolumeSpeech", "Voice_Over_Volume")
+								));
 					} else if (Line.startsWith("Brightness")) {
 						SendVerboseMessage(graphicsSettingsFilter(11, Line.replace("Brightness", "Brightness_Slider")));
-					} else if (Line.startsWith("ConsoleKeyJavaStyle") || Line.startsWith("ConsoleKeyPress") || Line.startsWith("DiskCacheSize") || Line.startsWith("AutoSetup") || Line.startsWith("CameraOcclusion") || Line.startsWith("Version") || Line.startsWith("ResizableResolution") || Line.startsWith("AnimDetail") || Line.startsWith("Water") || Line.startsWith("TextureQuality")) {
+					} else if (Line.startsWith("MaxForegroundFps") ||
+							Line.startsWith("MaxBackgroundFps")) {
+						SendVerboseMessage(graphicsSettingsFilter(-1, Line.replace("MaxForegroundFps", "Maximum_Foreground_FPS")
+								.replace("MaxBackgroundFps", "Maximum_Background_FPS")));
+					} else if (Line.startsWith("ConsoleKeyJavaStyle") ||
+							Line.startsWith("ConsoleKeyPress") ||
+							Line.startsWith("DiskCacheSize") ||
+							Line.startsWith("AutoSetup") ||
+							Line.startsWith("CameraOcclusion") ||
+							Line.startsWith("ResizableResolution") ||
+							Line.startsWith("AnimDetail") ||
+							Line.startsWith("Water") ||
+							Line.startsWith("TextureQuality")) {
 						/* 
 						 * These currently have no meaning for the intention of the program, so they will be ignored here.
 						 */
 					} else {
-						SendVerboseMessage(graphicsSettingsFilter( - 1, Line.replace("DOF", "Depth_Of_Field").replace("HeatHaze", "Heat_Haze").replace("FullScreen", "Full_Screen_")));
+						SendVerboseMessage(graphicsSettingsFilter( - 1, Line.replace("DOF", "Depth_Of_Field")
+																			.replace("HeatHaze", "Heat_Haze")
+																			.replace("FullScreen", "Full_Screen_")));
 					}
 				}
 				for (String Line: sb.toString().split("\n")) {
@@ -334,38 +431,79 @@ public class Settings {
 						NXTSettingsGUI.DepthOfFieldComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DepthOfField);
 					}
 					else if (Line.startsWith("HeatHaze")) {
-						Storage.nxtGraphicsSetting_HeatHaze = new Integer(Line.replace("HeatHaze ", ""));
-						NXTSettingsGUI.HeatHazeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_HeatHaze);
+						Storage.nxtGraphicsSetting_HeatHaze = Line.replace("HeatHaze ", "").equals("1");
+						NXTSettingsGUI.HeatHazeCheckbox.setSelected(Storage.nxtGraphicsSetting_HeatHaze);
+					}
+					else if (Line.startsWith("MaxForegroundFps")) {
+						Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(Line.replace("MaxForegroundFps ", ""));
+						if (Storage.nxtGraphicsSetting_MaxForegroundFps < 5){
+							Storage.nxtGraphicsSetting_MaxForegroundFps = 5;
+						} else if (Storage.nxtGraphicsSetting_MaxForegroundFps > 300){
+							Storage.nxtGraphicsSetting_MaxForegroundFps = 300;
+						}
+						NXTSettingsGUI.MaxForegroundFpsInput.setText(""+Storage.nxtGraphicsSetting_MaxForegroundFps);
+						if (NXTSettingsGUI.MaxForegroundFpsInput.getText().equals("") ||
+							NXTSettingsGUI.MaxForegroundFpsInput.getText() == null){
+							NXTSettingsGUI.MaxForegroundFpsInput.setText(""+(Storage.FrameRate + 10));
+							Storage.nxtGraphicsSetting_MaxForegroundFps = Storage.FrameRate + 10;
+						}
+					}
+					else if (Line.startsWith("MaxBackgroundFps")) {
+						Storage.nxtGraphicsSetting_MaxBackgroundFps = new Integer(Line.replace("MaxBackgroundFps ", ""));
+						if (Storage.nxtGraphicsSetting_MaxBackgroundFps < 5){
+							Storage.nxtGraphicsSetting_MaxBackgroundFps = 5;
+						} else if (Storage.nxtGraphicsSetting_MaxBackgroundFps > 300){
+							Storage.nxtGraphicsSetting_MaxBackgroundFps = 300;
+						}
+						NXTSettingsGUI.MaxBackgroundFpsInput.setText(""+Storage.nxtGraphicsSetting_MaxBackgroundFps);
+						if (NXTSettingsGUI.MaxBackgroundFpsInput.getText().equals("") ||
+							NXTSettingsGUI.MaxBackgroundFpsInput.getText() == null){
+							NXTSettingsGUI.MaxBackgroundFpsInput.setText("30");
+							Storage.nxtGraphicsSetting_MaxBackgroundFps = 30;
+						}
+					}
+					
+					else if (Line.startsWith("GameRenderScale")) {
+						Storage.nxtClientSettings_GameRenderScale = new Integer(Line.replace("GameRenderScale ", ""));
+						if (Storage.nxtClientSettings_GameRenderScale < 33){
+							Storage.nxtClientSettings_GameRenderScale = 33;
+						} else if (Storage.nxtClientSettings_GameRenderScale > 200){
+							Storage.nxtClientSettings_GameRenderScale = 200;
+						}
+						NXTSettingsGUI.GameRenderScaleInput.setText(""+Storage.nxtClientSettings_GameRenderScale);
+						if (NXTSettingsGUI.GameRenderScaleInput.getText().equals("") ||
+							NXTSettingsGUI.GameRenderScaleInput.getText() == null){
+							NXTSettingsGUI.GameRenderScaleInput.setText("100");
+							Storage.nxtClientSettings_GameRenderScale = 100;
+						}
+					}
+					
+					else if (Line.startsWith("InterfaceScale")) {
+						Storage.nxtClientSettings_InterfaceScale = new Integer(Line.replace("InterfaceScale ", ""));
+						if (Storage.nxtClientSettings_InterfaceScale < 100){
+							Storage.nxtClientSettings_InterfaceScale = 100;
+						} else if (Storage.nxtClientSettings_InterfaceScale > 400){
+							Storage.nxtClientSettings_InterfaceScale = 400;
+						}
+						NXTSettingsGUI.InterfaceScaleInput.setText(""+Storage.nxtClientSettings_InterfaceScale);
+						if (NXTSettingsGUI.InterfaceScaleInput.getText().equals("") ||
+							NXTSettingsGUI.InterfaceScaleInput.getText() == null){
+							NXTSettingsGUI.InterfaceScaleInput.setText("100");
+							Storage.nxtClientSettings_InterfaceScale = 100;
+						}
 					}
 					else if (Line.startsWith("VolumeLoginMusic")) {
 						Storage.nxtClientSettings_LoginMusicVolume = new Integer(Line.replace("VolumeLoginMusic ", ""));
-						NXTSettingsGUI.LoginMusicSlider.setValue(Storage.nxtClientSettings_LoginMusicVolume);
-					}
-					else if (Line.startsWith("VolumeMainMusic")) {
-						Storage.nxtClientSettings_InGameMusicVolume = new Integer(Line.replace("VolumeMainMusic ", ""));
-						NXTSettingsGUI.InGameMusicSlider.setValue(Storage.nxtClientSettings_InGameMusicVolume);
-					}
-					else if (Line.startsWith("VolumeMainEffects")) {
-						Storage.nxtClientSettings_InGameSoundEffectsVolume = new Integer(Line.replace("VolumeMainEffects ", ""));
-						NXTSettingsGUI.InGameSoundEffectsSlider.setValue(Storage.nxtClientSettings_InGameSoundEffectsVolume);
-					}
-					else if (Line.startsWith("VolumeBackgroundEffects")) {
-						Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = new Integer(Line.replace("VolumeBackgroundEffects ", ""));
-						NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setValue(Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
-					}
-					else if (Line.startsWith("VolumeSpeech")) {
-						Storage.nxtClientSettings_InGameVoiceOverVolume = new Integer(Line.replace("VolumeSpeech ", ""));
-						NXTSettingsGUI.InGameVoiceOverSlider.setValue(Storage.nxtClientSettings_InGameVoiceOverVolume);
 					}
 					else {}
 				}
 
 				SendVerboseMessage("{{nl}}NXT's username+favourite world log:");
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
+						Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
 					while (rs.next()) {
-						if (rs.getString("KEY").equals("3683")) {
+						if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME)) {
 							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
 								SendVerboseMessage("\t" + "NXT's saved username was once: " + rs.getString("DATA"));
 								NXTSettingsGUI.UsernameInput.setText(rs.getString("DATA"));
@@ -373,15 +511,15 @@ public class Settings {
 								SendVerboseMessage("\t" + "NXT's saved username was once: (CENSORED)");
 							}
 						}
-						else if (rs.getString("KEY").equals("998")) {
+						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1)) {
 							SendVerboseMessage("\tNXT's favourite world slot #1 was once: " + rs.getString("DATA"));
 							NXTSettingsGUI.FavouriteWorld1Input.setText(rs.getString("DATA"));
 						}
-						else if (rs.getString("KEY").equals("999")) {
+						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2)) {
 							SendVerboseMessage("\tNXT's favourite world slot #2 was once: " + rs.getString("DATA"));
 							NXTSettingsGUI.FavouriteWorld2Input.setText(rs.getString("DATA"));
 						}
-						else if (rs.getString("KEY").equals("4272")) {
+						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3)) {
 							SendVerboseMessage("\tNXT's favourite world slot #3 was once: " + rs.getString("DATA"));
 							NXTSettingsGUI.FavouriteWorld3Input.setText(rs.getString("DATA"));
 						}
@@ -394,34 +532,27 @@ public class Settings {
 				}
 
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
+						Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
 					while (rs.next()) {
-						if (rs.getString("KEY").equals("3698")) {
+						if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS)) {
 							Storage.nxtGraphicsSetting_LoadingScreens = rs.getString("DATA").equals("1");
 							NXTSettingsGUI.LoadingScreensCheckbox.setSelected(Storage.nxtGraphicsSetting_LoadingScreens);
 						}
-						else if (rs.getString("KEY").equals("6042")) {
+						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER)) {
 							Storage.nxtClientSettings_RandomizeLoginWallpaper = rs.getString("DATA").equals("1");
 							NXTSettingsGUI.RandomizeLoginWallpaperCheckbox.setSelected(Storage.nxtClientSettings_RandomizeLoginWallpaper);
 						}
-						else if (rs.getString("KEY").equals("6040")) {
+						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID)) {
 							Storage.nxtClientSettings_LoginWallpaperID = new Integer(rs.getString("DATA"));
 							NXTSettingsGUI.WallpaperIDInput.setText("" + Storage.nxtClientSettings_LoginWallpaperID);
 						}
-						else if (rs.getString("KEY").equals("6042")) {
-							Storage.nxtClientSettings_RandomizeLoginWallpaper = rs.getString("DATA").equals("1");
-							NXTSettingsGUI.RandomizeLoginWallpaperCheckbox.setSelected(Storage.nxtClientSettings_RandomizeLoginWallpaper);
-						}
-						else if (rs.getString("KEY").equals("3681")) {
+						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME)) {
 							Storage.nxtClientSettings_RememberUsername = rs.getString("DATA").equals("1");
 							NXTSettingsGUI.RememberUsernameCheckbox.setSelected(Storage.nxtClientSettings_RememberUsername);
 						}
-						else if (rs.getString("KEY").equals("3513")) {
-							Storage.nxtClientSettings_GlobalMute = rs.getString("DATA").equals("1");
-							NXTSettingsGUI.GlobalAudioMuteCheckbox.setSelected(Storage.nxtClientSettings_GlobalMute);
-						}
 					}
+					Legality.CheckAudio();
 					conn.close();
 					stmt.close();
 					rs.close();
@@ -431,8 +562,8 @@ public class Settings {
 
 				SendVerboseMessage("{{nl}}NXT's Developer-Console log:");
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM \"console\"")) {
+						Statement stmt = conn.createStatement();
+						ResultSet rs = stmt.executeQuery("SELECT * FROM \"console\"")) {
 					while (rs.next()) {
 						SendVerboseMessage("\t" + rs.getString("DATA"));
 					}
@@ -457,28 +588,14 @@ public class Settings {
 	}
 
 	public static void TestWrite() {
-		System.out.println(Cache_settings_location);
+		System.out.print("Saving updated values to: "+Cache_settings_location+"...");
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
 			Statement stmt;
 			stmt = conn.createStatement();
+
 			// Graphics Settings.
 			Legality.CheckSettings();
-			/*
-			 * vt-varc:
-			 * 998 = Favourite world 1
-			 * 999 = Favourite world 2
-			 * 3513 = Global mute
-			 * 3514 = In-Game Music Volume
-			 * 3515 = In-Game SoundEffects Volume
-			 * 3516 = In-Game Ambient Effects Volume
-			 * 3517 = In-Game Voice-Over Volume
-			 * 3681 = "Remember Username"
-			 * 3683 = Username
-			 * 4272 = Favourite world 3
-			 * 6040 = Wallpaper (0 = Default; 1+ = Wallpaper id)
-			 * 6042 = Randomize Wallpaper (use above ID)
-			 */
 
 			// Left Column
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_RemoveRoofs + "\" WHERE KEY=\"RemoveRoof\";");
@@ -491,6 +608,9 @@ public class Settings {
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_LightingQuality + "\" WHERE KEY=\"LightingQuality\";");
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_AmbientOcclusion + "\" WHERE KEY=\"AmbientOcclusion\";");
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_Bloom + "\" WHERE KEY=\"Bloom\";");
+			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_DepthOfField + "\" WHERE KEY=\"DOF\";");
+			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_MaxForegroundFps + "\" WHERE KEY=\"MaxForegroundFps\";");
+			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InterfaceScale + "\" WHERE KEY=\"InterfaceScale\";");
 
 			// Right Column
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_Brightness + "\" WHERE KEY=\"Brightness\";");
@@ -514,9 +634,9 @@ public class Settings {
 				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"CustomCursors\";");
 			}
 			if (Storage.nxtGraphicsSetting_LoadingScreens) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\"3698\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"\";");
 			} else {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\"3698\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"\";");
 			}
 			if (Storage.nxtGraphicsSetting_GroundDecor) {
 				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"GroundDecor\";");
@@ -528,6 +648,13 @@ public class Settings {
 			} else {
 				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"GroundBlending\";");
 			}
+			if (Storage.nxtGraphicsSetting_HeatHaze) {
+				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"HeatHaze\";");
+			} else {
+				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"HeatHaze\";");
+			}
+			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_MaxBackgroundFps + "\" WHERE KEY=\"MaxBackgroundFps\";");
+			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_GameRenderScale + "\" WHERE KEY=\"GameRenderScale\";");
 
 			// Volumes
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_LoginMusicVolume + "\" WHERE KEY=\"VolumeLoginMusic\";");
@@ -535,43 +662,47 @@ public class Settings {
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InGameSoundEffectsVolume + "\" WHERE KEY=\"VolumeMainEffects\";");
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume + "\" WHERE KEY=\"VolumeBackgroundEffects\";");
 			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InGameVoiceOverVolume + "\" WHERE KEY=\"VolumeSpeech\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameMusicVolume + "\" WHERE KEY=\"3514\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameSoundEffectsVolume + "\" WHERE KEY=\"3515\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume + "\" WHERE KEY=\"3516\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameVoiceOverVolume + "\" WHERE KEY=\"3517\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameMusicVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME+"\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameSoundEffectsVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME+"\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME+"\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameVoiceOverVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME+"\";");
 			if (Storage.nxtClientSettings_GlobalMute) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\"3513\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"\";");
 			} else {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\"3513\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"\";");
 			}
 
 			// Player Info;
 			Legality.CheckSettingsBeforeSave();
-			if (Storage.nxtClientSettings_RememberUsername && Storage.nxtClientSettings_TemporaryUsername != null && !Storage.nxtClientSettings_TemporaryUsername.equals("")) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_TemporaryUsername + "\" WHERE KEY=\"3683\";");
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\"3681\";");
+			if (Storage.nxtClientSettings_RememberUsername &&
+					Storage.nxtClientSettings_TemporaryUsername != null &&
+					!Storage.nxtClientSettings_TemporaryUsername.equals("")) {
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_TemporaryUsername + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"\";");
 			} else {
 				// Redundancy check, No remember = no set. (it would clear on-load anyways if username field was set)
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"\" WHERE KEY=\"3683\";");
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\"3681\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"\";");
 			}
 			Storage.nxtClientSettings_TemporaryUsername = "";
 			/* Clears some base-less paranoia if any for this value */
 
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld1 + "\" WHERE KEY=\"998\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld2 + "\" WHERE KEY=\"999\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld3 + "\" WHERE KEY=\"4272\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld1 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld2 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld3 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"\";");
 
 			// Wallpaper related;
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_LoginWallpaperID + "\" WHERE KEY=\"6040\";");
+			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_LoginWallpaperID + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID+"\";");
 			if (Storage.nxtClientSettings_RandomizeLoginWallpaper) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\"6042\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"\";");
 			} else {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\"6042\";");
+				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"\";");
 			}
 
 			// Execute/Save the changes.
 			stmt.executeBatch();
+			System.out.print(" Saved.\n");
+			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Saved updated values to:\n\n"+Cache_settings_location);
 
 		} catch(SQLException e) {
 			e.printStackTrace();
