@@ -34,6 +34,19 @@ public class Settings {
 	private static StringBuilder sb, messages;
 
 	private static String graphicsSettingsFilter(final int FilterType, final String msg) {
+		/*
+		 * > Get filter type/ID
+		 *
+		 * > Get the String from msg
+		 *
+		 * > Replace spaces with "_=_" for verbose output use
+		 *
+		 * > Replace underscores with spaces for verbose output use
+		 *
+		 * > Replace some values with a user-friendly readable string for Verbose output use
+		 *
+		 * > Return the value prepended with a tab
+		 */
 		String value = msg.replace(" ", "_=_").replace("_", " ");
 		if (FilterType == -1) {} else if (FilterType == 0) {
 			value = value.replace("0", "Disabled")
@@ -94,10 +107,20 @@ public class Settings {
 	}
 
 	private static void SendVerboseMessage(final String msg) {
-		messages.append("<div class='test'><font color=\"green\">" + msg + "</font></div>\n");
-		Document doc = NXTSettingsGUI.VerboseOutputArea.getDocument();
+		/*
+		 * > Get the String in msg
+		 *
+		 * > Convert to a <html> formatted String
+		 *
+		 * > Initialize a temporary Document
+		 *
+		 * > Append to NXTSettingsGUI.VerboseOutputAreaEditor
+		 */
+		messages.append("<div class=\"test\"><font color=\"green\">" + msg + "</font></div>\n");
+		final Document doc = NXTSettingsGUI.VerboseOutputArea.getDocument();
 		try {
-			NXTSettingsGUI.VerboseOutputAreaEditor.insertHTML((HTMLDocument) doc, doc.getLength(), "<div class='test'><font color=\"green\">" +
+			NXTSettingsGUI.VerboseOutputAreaEditor.insertHTML((HTMLDocument) doc, doc.getLength(),
+															"<div class=\"test\"><font color=\"green\">" +
 															 msg.replace("{{nl}}", "<br>").replace("\t", "&ensp;&ensp;&ensp;") +
 															 "</font></div>", 0, 0, null);
 		} catch(BadLocationException | IOException e) {
@@ -106,7 +129,39 @@ public class Settings {
 	}
 
 	public static void TestRead() {
-		int OS_TYPE = Storage.OS_TYPE;
+		/*
+		 * This will run Twice initially at the start of the program, to force all values to change properly
+		 *
+		 * > Check which Operating System the user has currently
+		 *  > If failed, tell user their OS is known at the time, Abort the program
+		 *
+		 * > Clear Verbose Output
+		 *
+		 * > Check system if NXT is installed
+		 *  > If failed, Abort the program as they don't have NXT installed to begin with
+		 *
+		 * > Get the Configuration file's path
+		 *  > If failed, tell user the configuration at {$configuration_location} is non-existant. Abort the program
+		 *
+		 * > Get the splash screen+launcher positions
+		 *  > Set+Output the values
+		 *
+		 * > Read the preference file
+		 *  > Set+Output the values
+		 *
+		 * > Start the Sqlite3 drivers
+		 *
+		 * > Start reading Settings.jcache
+		 *  > Add to a StringBuilder for a seperate function
+		 *  > Output the values, Parsed where needed
+		 *
+		 * > Read the StringBuilder values
+		 *  > Set the Storage flags to the read values
+		 *  > Set some fields prior to legality checks
+		 *
+		 * > Start legality checks
+		 */
+		final int OS_TYPE = Storage.OS_TYPE;
 		NXTSettingsGUI.VerboseOutputArea.setText("");
 		messages = new StringBuilder("<html>");
 
@@ -132,7 +187,7 @@ public class Settings {
 				SendVerboseMessage("NXT's splash screen X-coordinate is set to: " + splash_x_position);
 				SendVerboseMessage("NXT's splash screen Y-coordinate is set to: " + splash_y_position);
 				SendVerboseMessage("NXT's client position is set to: " + launcher_client_position);
-			} else if (OS_TYPE == 1) {
+			} else if (OS_TYPE >= 1 && OS_TYPE <= 3) {
 				configuration_location = new File(System.getProperty("user.home").replace("\\", "/") + "/Jagex/launcher/preferences.cfg").getAbsolutePath();
 				try (BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.home").replace("\\", "/") + "/.runescape"))) {
 					String line;
@@ -146,9 +201,15 @@ public class Settings {
 						}
 					}
 
-				} catch(IOException e) {
+				} catch(final IOException e) {
 					e.printStackTrace();
 				}
+			}
+			else {
+				SendVerboseMessage("Error: Unknown OS Value: "+System.getProperty("os.name"));
+				System.out.println("Error: Unknown OS Value: "+System.getProperty("os.name"));
+				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: Unknown OS Value: "+System.getProperty("os.name")+"\n\nSettings will not be read, Aborting program functions.");
+				System.exit(0);
 			}
 
 
@@ -165,7 +226,7 @@ public class Settings {
 							SendVerboseMessage("NXT's graphics device is currently set to: " + current_line.trim().replace("graphics_device=", ""));
 						}
 						if (current_line.startsWith("compatibility=")) {
-							String CompatMode = current_line.trim()
+							final String CompatMode = current_line.trim()
 															.replace("compatibility=", "")
 															.replace("true", "On.")
 															.replace("false", "Off.")
@@ -184,7 +245,7 @@ public class Settings {
 							SendVerboseMessage("NXT's compatibility mode is currently: " + CompatMode);
 						}
 						if (current_line.startsWith("dont_ask_graphics=")) {
-							SendVerboseMessage("NXT will currently" + 
+							SendVerboseMessage("NXT will currently" +
 												current_line.trim().replace("dont_ask_graphics=", "")
 																   .replace("1", " NOT ")
 																   .replace("0", " ") +
@@ -192,7 +253,7 @@ public class Settings {
 									);
 						}
 						if (current_line.startsWith("confirm_quit=")) {
-							SendVerboseMessage("NXT will currently" + 
+							SendVerboseMessage("NXT will currently" +
 												current_line.trim()
 															.replace("confirm_quit=", "")
 															.replace("0", " NOT ")
@@ -226,11 +287,13 @@ public class Settings {
 						}
 					}
 					reader.close();
-				} catch(IOException e) {
+				} catch(final IOException e) {
 					e.printStackTrace();
 				}
 			} else {
 				SendVerboseMessage("The configuration file does NOT exist at: " + configuration_location);
+				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: The configuration file does NOT exist at: " + configuration_location+"\n\nAborting the program's functioning.");
+				System.exit(0);
 			}
 
 			Settings_db = new File(Cache_settings_location);
@@ -239,7 +302,7 @@ public class Settings {
 			if (Settings_db.isFile()) {
 				try {
 					Class.forName("org.sqlite.JDBC");
-				} catch(ClassNotFoundException eString) {
+				} catch(final ClassNotFoundException eString) {
 					System.err.println("Could not init JDBC driver - driver not found");
 				}
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
@@ -251,12 +314,12 @@ public class Settings {
 					conn.close();
 					stmt.close();
 					rs.close();
-				} catch(SQLException e) {
+				} catch(final SQLException e) {
 					System.err.println(e.getMessage());
 				}
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
 						Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * FROM \"player\"")) {
+						ResultSet rs = stmt.executeQuery("SELECT * FROM 'player'")) {
 					while (rs.next()) {
 						if (rs.getString("KEY").equals("uid")) {
 							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
@@ -269,12 +332,12 @@ public class Settings {
 					conn.close();
 					stmt.close();
 					rs.close();
-				} catch(SQLException e) {
+				} catch(final SQLException e) {
 					SendVerboseMessage("\t" + "No settings found.{{nl}}");
 				}
 
 				SendVerboseMessage("NXT's current graphics settings are currently:");
-				for (String Line: sb.toString().split("\n")) {
+				for (final String Line: sb.toString().split("\n")) {
 					if (Line.startsWith("CustomCursors") ||
 							Line.startsWith("Shadows") ||
 							Line.startsWith("FlickeringEffects") ||
@@ -328,9 +391,14 @@ public class Settings {
 					} else if (Line.startsWith("Brightness")) {
 						SendVerboseMessage(graphicsSettingsFilter(11, Line.replace("Brightness", "Brightness_Slider")));
 					} else if (Line.startsWith("MaxForegroundFps") ||
-							Line.startsWith("MaxBackgroundFps")) {
+							Line.startsWith("MaxBackgroundFps") ||
+							Line.startsWith("InterfaceScale") ||
+							Line.startsWith("GameRenderScale")) {
 						SendVerboseMessage(graphicsSettingsFilter(-1, Line.replace("MaxForegroundFps", "Maximum_Foreground_FPS")
-								.replace("MaxBackgroundFps", "Maximum_Background_FPS")));
+																		  .replace("MaxForegroundFps", "Maximum_Foreground_FPS")
+																		  .replace("InterfaceScale", "Interface_Scale")
+																		  .replace("GameRenderScale", "Game_Render_Scale")
+								));
 					} else if (Line.startsWith("ConsoleKeyJavaStyle") ||
 							Line.startsWith("ConsoleKeyPress") ||
 							Line.startsWith("DiskCacheSize") ||
@@ -340,7 +408,7 @@ public class Settings {
 							Line.startsWith("AnimDetail") ||
 							Line.startsWith("Water") ||
 							Line.startsWith("TextureQuality")) {
-						/* 
+						/*
 						 * These currently have no meaning for the intention of the program, so they will be ignored here.
 						 */
 					} else {
@@ -349,7 +417,7 @@ public class Settings {
 																			.replace("FullScreen", "Full_Screen_")));
 					}
 				}
-				for (String Line: sb.toString().split("\n")) {
+				for (final String Line: sb.toString().split("\n")) {
 					if (Line.startsWith("CustomCursors")) {
 						Storage.nxtGraphicsSetting_CustomCursors = Line.replace("CustomCursors ", "").equals("1");
 						NXTSettingsGUI.CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
@@ -462,7 +530,7 @@ public class Settings {
 							Storage.nxtGraphicsSetting_MaxBackgroundFps = 30;
 						}
 					}
-					
+
 					else if (Line.startsWith("GameRenderScale")) {
 						Storage.nxtClientSettings_GameRenderScale = new Integer(Line.replace("GameRenderScale ", ""));
 						if (Storage.nxtClientSettings_GameRenderScale < 33){
@@ -477,7 +545,7 @@ public class Settings {
 							Storage.nxtClientSettings_GameRenderScale = 100;
 						}
 					}
-					
+
 					else if (Line.startsWith("InterfaceScale")) {
 						Storage.nxtClientSettings_InterfaceScale = new Integer(Line.replace("InterfaceScale ", ""));
 						if (Storage.nxtClientSettings_InterfaceScale < 100){
@@ -501,7 +569,7 @@ public class Settings {
 				SendVerboseMessage("{{nl}}NXT's username+favourite world log:");
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
 						Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
+						ResultSet rs = stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
 					while (rs.next()) {
 						if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME)) {
 							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
@@ -527,13 +595,13 @@ public class Settings {
 					conn.close();
 					stmt.close();
 					rs.close();
-				} catch(SQLException e) {
+				} catch(final SQLException e) {
 					SendVerboseMessage("\t" + "No history.{{nl}}");
 				}
 
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
 						Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
+						ResultSet rs = stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
 					while (rs.next()) {
 						if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS)) {
 							Storage.nxtGraphicsSetting_LoadingScreens = rs.getString("DATA").equals("1");
@@ -556,21 +624,21 @@ public class Settings {
 					conn.close();
 					stmt.close();
 					rs.close();
-				} catch(SQLException e) {
+				} catch(final SQLException e) {
 					SendVerboseMessage("\t" + "No history.{{nl}}");
 				}
 
 				SendVerboseMessage("{{nl}}NXT's Developer-Console log:");
 				try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
 						Statement stmt = conn.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * FROM \"console\"")) {
+						ResultSet rs = stmt.executeQuery("SELECT * FROM 'console'")) {
 					while (rs.next()) {
 						SendVerboseMessage("\t" + rs.getString("DATA"));
 					}
 					conn.close();
 					stmt.close();
 					rs.close();
-				} catch(SQLException e) {
+				} catch(final SQLException e) {
 					SendVerboseMessage("\t" + "No history.{{nl}}");
 				}
 			} else {
@@ -588,123 +656,227 @@ public class Settings {
 	}
 
 	public static void TestWrite() {
+		/*
+		 * > Output where the Settings.jcache file will be saved to
+		 *
+		 * > Initialize the Sqlite3 database
+		 *  > Set it to edit Settings.jcache
+		 *
+		 * > Start a Legality check
+		 *
+		 * > Start adding batches to delete older entries
+		 *
+		 * > Start adding batches to insert updated entries
+		 *
+		 * > Repeat the last two until finished for all values
+		 *  > Boolean-type entries will be manually 1 <> 0 dependant on their value related to true <> false
+		 *  > Legality checks will take place before username+favourite world settings to prevent invalid values
+		 *  > Temporary username field will be cleared to prevent any paranoia post-saving
+		 *
+		 * > Execute batches (write to the database)
+		 *
+		 * > Output that the files were saved, in a dialogue, with the path to the file
+		 */
 		System.out.print("Saving updated values to: "+Cache_settings_location+"...");
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
+			final Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Cache_settings_location);
 			Statement stmt;
 			stmt = conn.createStatement();
-
-			// Graphics Settings.
 			Legality.CheckSettings();
 
 			// Left Column
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_RemoveRoofs + "\" WHERE KEY=\"RemoveRoof\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_DrawDistance + "\" WHERE KEY=\"DrawDistance\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_ShadowQuality + "\" WHERE KEY=\"ShadowQuality\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_VSync + "\" WHERE KEY=\"VSync\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_AntiAliasingMode + "\" WHERE KEY=\"AntialiasingMode\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_AntiAliasingQuality + "\" WHERE KEY=\"AntialiasingQuality\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_WaterQuality + "\" WHERE KEY=\"Reflections\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_LightingQuality + "\" WHERE KEY=\"LightingQuality\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_AmbientOcclusion + "\" WHERE KEY=\"AmbientOcclusion\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_Bloom + "\" WHERE KEY=\"Bloom\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_DepthOfField + "\" WHERE KEY=\"DOF\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_MaxForegroundFps + "\" WHERE KEY=\"MaxForegroundFps\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InterfaceScale + "\" WHERE KEY=\"InterfaceScale\";");
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='RemoveRoof';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('RemoveRoof', '" + Storage.nxtGraphicsSetting_RemoveRoofs + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='DrawDistance';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('DrawDistance', '" + Storage.nxtGraphicsSetting_DrawDistance + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='ShadowQuality';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('ShadowQuality', '" + Storage.nxtGraphicsSetting_ShadowQuality + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='VSync';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('VSync', '" + Storage.nxtGraphicsSetting_VSync + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='AntialiasingMode';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('AntialiasingMode', '" + Storage.nxtGraphicsSetting_AntiAliasingMode + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='AntialiasingQuality';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('AntialiasingQuality', '" + Storage.nxtGraphicsSetting_AntiAliasingQuality + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='Reflections';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('Reflections', '" + Storage.nxtGraphicsSetting_WaterQuality + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='LightingQuality';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('LightingQuality', '" + Storage.nxtGraphicsSetting_LightingQuality + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='AmbientOcclusion';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('AmbientOcclusion', '" + Storage.nxtGraphicsSetting_AmbientOcclusion + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='Bloom';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('Bloom', '" + Storage.nxtGraphicsSetting_Bloom + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='DOF';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('DOF', '" + Storage.nxtGraphicsSetting_DepthOfField + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='MaxForegroundFps';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('MaxForegroundFps', '" + Storage.nxtGraphicsSetting_MaxForegroundFps + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='InterfaceScale';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('InterfaceScale', '" + Storage.nxtClientSettings_InterfaceScale + "');");
+
 
 			// Right Column
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_Brightness + "\" WHERE KEY=\"Brightness\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_TextureQuality + "\" WHERE KEY=\"Texturing\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_AnisotropicFiltering + "\" WHERE KEY=\"AnisotropicFiltering\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_VolumetricLighting + "\" WHERE KEY=\"VolumetricLighting\";");
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='Brightness';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('Brightness', '" + Storage.nxtGraphicsSetting_Brightness + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='Texturing';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('Texturing', '" + Storage.nxtGraphicsSetting_TextureQuality + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='AnisotropicFiltering';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('AnisotropicFiltering', '" + Storage.nxtGraphicsSetting_AnisotropicFiltering + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='VolumetricLighting';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('VolumetricLighting', '" + Storage.nxtGraphicsSetting_VolumetricLighting + "');");
 
 			if (Storage.nxtGraphicsSetting_FlickeringEffects) {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"FlickeringEffects\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='FlickeringEffects';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('FlickeringEffects', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"FlickeringEffects\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='FlickeringEffects';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('FlickeringEffects', '0');");
 			}
 			if (Storage.nxtGraphicsSetting_Shadows) {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"Shadows\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='Shadows';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('Shadows', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"Shadows\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='Shadows';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('Shadows', '0');");
 			}
 			if (Storage.nxtGraphicsSetting_CustomCursors) {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"CustomCursors\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='CustomCursors';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('CustomCursors', '1');");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS+"', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"CustomCursors\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='CustomCursors';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('CustomCursors', '0');");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS+"', '0');");
 			}
 			if (Storage.nxtGraphicsSetting_LoadingScreens) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"\";");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"\";");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS+"', '0');");
 			}
 			if (Storage.nxtGraphicsSetting_GroundDecor) {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"GroundDecor\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='GroundDecor';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('GroundDecor', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"GroundDecor\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='GroundDecor';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('GroundDecor', '0');");
 			}
 			if (Storage.nxtGraphicsSetting_TerrainBlending) {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"GroundBlending\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='GroundBlending';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('GroundBlending', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"GroundBlending\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='GroundBlending';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('GroundBlending', '0');");
 			}
 			if (Storage.nxtGraphicsSetting_HeatHaze) {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"1\" WHERE KEY=\"HeatHaze\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='HeatHaze';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('HeatHaze', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"Config\" SET DATA=\"0\" WHERE KEY=\"HeatHaze\";");
+				stmt.addBatch("DELETE FROM 'Config' WHERE KEY='HeatHaze';");
+				stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('HeatHaze', '0');");
 			}
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtGraphicsSetting_MaxBackgroundFps + "\" WHERE KEY=\"MaxBackgroundFps\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_GameRenderScale + "\" WHERE KEY=\"GameRenderScale\";");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='MaxBackgroundFps';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('MaxBackgroundFps', '" + Storage.nxtGraphicsSetting_MaxBackgroundFps + "');");
+
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='GameRenderScale';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('GameRenderScale', '" + Storage.nxtClientSettings_GameRenderScale + "');");
 
 			// Volumes
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_LoginMusicVolume + "\" WHERE KEY=\"VolumeLoginMusic\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InGameMusicVolume + "\" WHERE KEY=\"VolumeMainMusic\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InGameSoundEffectsVolume + "\" WHERE KEY=\"VolumeMainEffects\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume + "\" WHERE KEY=\"VolumeBackgroundEffects\";");
-			stmt.addBatch("UPDATE \"Config\" SET DATA=\"" + Storage.nxtClientSettings_InGameVoiceOverVolume + "\" WHERE KEY=\"VolumeSpeech\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameMusicVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME+"\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameSoundEffectsVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME+"\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME+"\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_InGameVoiceOverVolume + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME+"\";");
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='VolumeLoginMusic';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('VolumeLoginMusic', '" + Storage.nxtClientSettings_LoginMusicVolume + "');");
+
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME+"', '" + Storage.nxtClientSettings_InGameMusicVolume + "');");
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='VolumeMainMusic';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('VolumeMainMusic', '" + Storage.nxtClientSettings_InGameMusicVolume + "');");
+
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME+"', '" + Storage.nxtClientSettings_InGameSoundEffectsVolume + "');");
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='VolumeMainEffects';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('VolumeMainEffects', '" + Storage.nxtClientSettings_InGameSoundEffectsVolume + "');");
+
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME+"', '" + Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume + "');");
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='VolumeBackgroundEffects';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('VolumeBackgroundEffects', '" + Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume + "');");
+
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME+"', '" + Storage.nxtClientSettings_InGameVoiceOverVolume + "');");
+			stmt.addBatch("DELETE FROM 'Config' WHERE KEY='VolumeSpeech';");
+			stmt.addBatch("INSERT INTO 'Config' ('KEY', 'DATA') VALUES ('VolumeSpeech', '" + Storage.nxtClientSettings_InGameVoiceOverVolume + "');");
+
 			if (Storage.nxtClientSettings_GlobalMute) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"\";");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"\";");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE+"', '0');");
 			}
 
-			// Player Info;
+			// Username
 			Legality.CheckSettingsBeforeSave();
 			if (Storage.nxtClientSettings_RememberUsername &&
-					Storage.nxtClientSettings_TemporaryUsername != null &&
-					!Storage.nxtClientSettings_TemporaryUsername.equals("")) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_TemporaryUsername + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"\";");
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"\";");
+				Storage.nxtClientSettings_TemporaryUsername != null &&
+			   !Storage.nxtClientSettings_TemporaryUsername.equals("")) {
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"', '" + Storage.nxtClientSettings_TemporaryUsername + "');");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"', '1');");
 			} else {
-				// Redundancy check, No remember = no set. (it would clear on-load anyways if username field was set)
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"\";");
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"\";");
+				// Redundancy check, don't remember = no username is set. (it would clear on-load even if username field was set)
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"', '');");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"', '0');");
 			}
+			// Clears some base-less paranoia if any for this value
 			Storage.nxtClientSettings_TemporaryUsername = "";
-			/* Clears some base-less paranoia if any for this value */
 
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld1 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld2 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"\";");
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_FavouriteWorld3 + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"\";");
+			// Favourite Worlds
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"', '" + Storage.nxtClientSettings_FavouriteWorld1 + "');");
 
-			// Wallpaper related;
-			stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"" + Storage.nxtClientSettings_LoginWallpaperID + "\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID+"\";");
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"', '" + Storage.nxtClientSettings_FavouriteWorld2 + "');");
+
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"', '" + Storage.nxtClientSettings_FavouriteWorld3 + "');");
+
+			// Wallpapers
+			stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID+"';");
+			stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID+"', '" + Storage.nxtClientSettings_LoginWallpaperID + "');");
+
 			if (Storage.nxtClientSettings_RandomizeLoginWallpaper) {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"1\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"\";");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"', '1');");
 			} else {
-				stmt.addBatch("UPDATE \"vt-varc\" SET DATA=\"0\" WHERE KEY=\""+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"\";");
+				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"';");
+				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER+"', '0');");
 			}
 
-			// Execute/Save the changes.
+			// Execute/Save the changes
 			stmt.executeBatch();
 			System.out.print(" Saved.\n");
 			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Saved updated values to:\n\n"+Cache_settings_location);
 
-		} catch(SQLException e) {
+		} catch(final SQLException e) {
 			e.printStackTrace();
 		}
 	}
