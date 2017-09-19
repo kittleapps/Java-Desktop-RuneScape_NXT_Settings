@@ -1,6 +1,7 @@
 package com.kittleapps.desktop.app.nxtconfiguration;
 
 import java.awt.GraphicsEnvironment;
+import java.io.File;
 
 public class Storage {
 	public static int
@@ -36,6 +37,8 @@ public class Storage {
 		nxtClientSettings_LoginWallpaperID,
 		nxtClientSettings_InterfaceScale,
 		nxtClientSettings_GameRenderScale,
+		splash_x_position,
+		splash_y_position,
 		FrameRate,
 		OS_TYPE
 	;
@@ -59,7 +62,12 @@ public class Storage {
 		CACHE_KEY_VT_VARC_LOADING_SCREENS = "3698",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3 = "4272",
 		CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
-		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042"
+		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
+		
+		NXT_REGISTRY_LOCATION_BASE,
+		Cache_settings_location,
+		configuration_location,
+		launcher_client_position
 	;
 
 	public static boolean
@@ -73,10 +81,16 @@ public class Storage {
 		nxtClientSettings_GlobalMute,
 		nxtClientSettings_RandomizeLoginWallpaper,
 		nxtClientSettings_RememberUsername,
-
+		NXT_INSTALLED,
 		ShowSensitiveInfo = false
 	;
-
+	
+	public static File
+		preferences_config,
+		Settings_db
+	;
+	public static StringBuilder messages;
+	
 	public static String[][] GRAPHICS_OPTIONS = {
 		// Graphics options used for Drop-Down menus in the graphics settings.
 		{

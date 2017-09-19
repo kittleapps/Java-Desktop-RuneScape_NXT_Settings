@@ -174,7 +174,7 @@ public class NXTSettingsGUI extends JFrame {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				final File file = fileChooser.getSelectedFile();
 				if (file.getName().equalsIgnoreCase("Settings.jcache")) {
-					Settings.Cache_settings_location = file.getAbsolutePath();
+					Storage.Cache_settings_location = file.getAbsolutePath();
 				} else {
 					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:\n\n" + file.getAbsolutePath() + " was not the Cache file this program is loking for. Please select 'Settings.jcache'");
 				}
@@ -200,7 +200,7 @@ public class NXTSettingsGUI extends JFrame {
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				final File file = fileChooser.getSelectedFile();
 				if (file.getName().equalsIgnoreCase("preferences.cfg")) {
-					Settings.preferences_config = file;
+					Storage.preferences_config = file;
 				} else {
 					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:\n\n" + file.getAbsolutePath() + " was not the preference file this program is loking for. Please select 'preferences.cfg'");
 				}
@@ -830,7 +830,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClearConsole.addActionListener(e -> {
 			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
+				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
 				stmt.addBatch("DELETE FROM 'console';");
@@ -849,7 +849,7 @@ public class NXTSettingsGUI extends JFrame {
 			Storage.nxtClientSettings_FavouriteWorld1 = 2147000000;
 			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
+				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
 				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1+"';");
@@ -870,7 +870,7 @@ public class NXTSettingsGUI extends JFrame {
 			Storage.nxtClientSettings_FavouriteWorld2 = 2147000000;
 			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
+				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
 				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2+"';");
@@ -891,7 +891,7 @@ public class NXTSettingsGUI extends JFrame {
 			Storage.nxtClientSettings_FavouriteWorld3 = 2147000000;
 			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
+				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt;
 				stmt = conn.createStatement();
 				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3+"';");
@@ -945,9 +945,9 @@ public class NXTSettingsGUI extends JFrame {
 				UsernameInput.setText("");
 			}
 			/* Init */
-			Settings.TestRead();
+			JCache.Read();
 			/* Apply */
-			Settings.TestRead();
+			JCache.Read();
 		});
 		btnRead.setBounds(582, 610, 75, 25);
 		contentPane.add(btnRead);
@@ -955,7 +955,7 @@ public class NXTSettingsGUI extends JFrame {
 		btnWrite = new JButton("Write");
 		btnWrite.setBounds(662, 610, 75, 25);
 		btnWrite.setEnabled(false);
-		btnWrite.addActionListener(e -> Settings.TestWrite());
+		btnWrite.addActionListener(e -> JCache.Write());
 		contentPane.add(btnWrite);
 
 		final JCheckBox AllowWritingCheckbox = new JCheckBox("Allow Writing?");
@@ -982,7 +982,7 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		 /* Currently required to force a read twice, due to an issue with the audio sliders. */
-		Settings.TestRead();
-		Settings.TestRead();
+		JCache.Read();
+		JCache.Read();
 	}
 }

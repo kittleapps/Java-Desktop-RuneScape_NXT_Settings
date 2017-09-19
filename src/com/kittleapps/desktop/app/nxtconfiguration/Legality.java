@@ -164,7 +164,7 @@ public class Legality {
 		 *
 		 * > Apply the values
 		 */
-		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Settings.Cache_settings_location);
+		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
 					while (rs.next()) {
