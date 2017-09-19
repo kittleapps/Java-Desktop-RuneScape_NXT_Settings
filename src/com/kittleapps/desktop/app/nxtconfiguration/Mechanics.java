@@ -1,23 +1,10 @@
 package com.kittleapps.desktop.app.nxtconfiguration;
 
-import static com.sun.jna.platform.win32.WinReg.HKEY_CURRENT_USER;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;
-
-import com.sun.jna.platform.win32.Advapi32Util;
 
 public class Mechanics {
 
