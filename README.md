@@ -18,6 +18,7 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
   * Your username and UID will **NOT** be taken/stolen.
     * Straps on a tin-foil hat to reply: `You can check the source code here if you still don't believe me.`
   * **NO** Pre-compiled versions will be made, due to the above points. (people get paranoia, and point fingers)
+    * Okay.. I made some Pre-compiled versions.. But that was because I got tired of "How do I build this?" questions. (Standard "Use at your own risk." Disclaimer here, despite no risks at all..)
 - - - -
 **Current Features**:
 * All current graphics settings options
