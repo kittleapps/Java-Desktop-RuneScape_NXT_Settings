@@ -65,7 +65,7 @@ public class Storage {
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3 = "4272",
 		CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
 		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
-		
+
 		NXT_REGISTRY_LOCATION_BASE,
 		Cache_settings_location,
 		configuration_location,
@@ -86,7 +86,7 @@ public class Storage {
 		NXT_INSTALLED,
 		ShowSensitiveInfo = false
 	;
-	
+
 	public static File
 		preferences_config,
 		Settings_db

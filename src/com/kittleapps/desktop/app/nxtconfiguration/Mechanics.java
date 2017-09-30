@@ -2,6 +2,7 @@ package com.kittleapps.desktop.app.nxtconfiguration;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;

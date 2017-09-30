@@ -110,7 +110,7 @@ public class JCache {
 				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: Unknown OS Value: "+Storage.OS+
 																	"\n\n"+
 																	"Settings will not be read, Aborting program functions."
-											 );								
+											 );
 				System.exit(0);
 			}
 
@@ -593,7 +593,7 @@ public class JCache {
 		try {
 
 			Legality.CheckSettings();
-			
+
 			// Left Column
 			Write(true,	"RemoveRoof",			Storage.nxtGraphicsSetting_RemoveRoofs);
 			Write(true,	"DrawDistance",			Storage.nxtGraphicsSetting_DrawDistance);
@@ -673,7 +673,7 @@ public class JCache {
 
 			// Usernames
 			Legality.CheckSettingsBeforeSave();
-			
+
 			if (Storage.nxtClientSettings_RememberUsername &&
 				Storage.nxtClientSettings_TemporaryUsername != null &&
 			   !Storage.nxtClientSettings_TemporaryUsername.equals("")) {
@@ -683,7 +683,7 @@ public class JCache {
 				Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME,		"");
 				Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	0);
 			}
-			
+
 			// Clears some base-less paranoia if any for this value
 			Storage.nxtClientSettings_TemporaryUsername = "";
 
@@ -711,15 +711,15 @@ public class JCache {
 			e.printStackTrace();
 		}
 	}
-	public static void Write(boolean isConfigTable, String Key, Object Value){
+	public static void Write(final boolean isConfigTable, final String Key, final Object Value){
 		/*
 		 * > Check if `Storage.conn` or `Storage.stmt` is `null`, and `Storage.Cache_settings_location` isn't `` or `null`.
 		 *  > If `conn` or `stmt` is `null`, initialize. Otherwise continue.
-		 * 
+		 *
 		 * > If `isConfigTable` is `true`, default the `Config` table. Otherwise use the `vt-varc` table.
-		 * 
+		 *
 		 * > Add the batch if `Key` and `Value` aren't `null` or the `Key` is ``.
-		 * 
+		 *
 		 */
 		try {
 			String Table = "";
@@ -739,7 +739,7 @@ public class JCache {
 			Storage.stmt.addBatch("INSERT INTO '"+Table+"' ('KEY', 'DATA')" +
 								  "VALUES ('"+Key+"', '" + Value + "');");
 			}
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
 	}
