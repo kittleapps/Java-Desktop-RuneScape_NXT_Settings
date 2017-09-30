@@ -56,9 +56,16 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
   * The id used will be the first wallpaper shown while randomizing.
 * Clearing the Developer Console log.
   * Currently in the client this is not clear-able, this merely wipes that part of the database clean.
-* Read-Only output of your settings.
-  * This was originally the purpose for this application, but i added the writing stuff afterwards, so this can be redundant but it was for debugging purposes if anything.
-  * This applies the same information as the settings get, and also applies the sensitive information toggle for the client's UID and username fields. 
-  * Due to a weird re-occuring part with `Settings.jcache` at times, some values can use multiples for the username and favourite worlds, so I labeled it as-if it was a history. 
-    * It will always apply the last entry, of course.
- 
+* Populating the Developer Console log with some known commands.
+  * Includes Players, and Jagex Moderator commands.
+* Zezima Button.
+  * I'll let you find out what that does in the Source Code, or while ran.
+    * Hint: It's cosmetic, but a fun reference for some.
+- - - -
+**TO-DO**:
+* Add custom Developer Console history editing.
+  * Hopefully includes editing values, and adding/removing values
+* Add support for changing Compatibility mode
+  * Will include some settings that are similiar for NXT like asking to close while logged in.
+* Re-add support to view your UID.
+* Even more cleanups! (Have to stay clean!)
