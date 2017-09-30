@@ -2,6 +2,8 @@ package com.kittleapps.desktop.app.nxtconfiguration;
 
 import java.awt.GraphicsEnvironment;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.Statement;
 
 public class Storage {
 	public static int
@@ -89,6 +91,8 @@ public class Storage {
 		preferences_config,
 		Settings_db
 	;
+	public static Connection conn;
+	public static Statement stmt;
 	public static StringBuilder messages;
 	public final static String[][] DEVELOPER_CONSOLE_COMMANDS = {
 			{

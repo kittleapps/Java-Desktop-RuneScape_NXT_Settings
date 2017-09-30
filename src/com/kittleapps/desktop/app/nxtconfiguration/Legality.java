@@ -153,8 +153,9 @@ public class Legality {
 
 	public static void CheckAudio(){
 		/*
-		 * > Initialize the Settings.Jcache database
-		 *
+		 * > Check if Storage.conn or Storage.stmt is null, and Storage.Cache_settings_location isn't blank/null.
+		 *  > If conn or stmt is null, initialize. Otherwise continue.
+		 *  
 		 * > Read audio-based values from the vt-varc table
 		 *
 		 * > Check the audio values
@@ -164,53 +165,62 @@ public class Legality {
 		 *
 		 * > Apply the values
 		 */
+		
 		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM \"vt-varc\"")) {
-					while (rs.next()) {
-						if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE)) {
-							Storage.nxtClientSettings_GlobalMute = rs.getString("DATA").equals("1");
-							NXTSettingsGUI.GlobalAudioMuteCheckbox.setSelected(Storage.nxtClientSettings_GlobalMute);
-						}
-						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME)) {
-							Storage.nxtClientSettings_InGameMusicVolume = new Integer(rs.getString("DATA"));
-						}
-						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME)) {
-							Storage.nxtClientSettings_InGameSoundEffectsVolume = new Integer(rs.getString("DATA"));
-							if (Storage.nxtClientSettings_InGameSoundEffectsVolume > 127){
-								NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(true);
-								NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(254);
-							} else {
-								NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(false);
-								NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(127);
-							}
-						}
-						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME)) {
-							Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = new Integer(rs.getString("DATA"));
-							if (Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume > 127){
-								NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(true);
-								NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(254);
-							} else {
-								NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(false);
-								NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(127);
-							}
-						}
-						else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME)) {
-							Storage.nxtClientSettings_InGameVoiceOverVolume = new Integer(rs.getString("DATA"));
-							if (Storage.nxtClientSettings_InGameVoiceOverVolume > 127){
-								NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(true);
-								NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(254);
-							} else {
-								NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(false);
-								NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(127);
-							}
-						}
-					}
-					conn.close();
-					stmt.close();
-					rs.close();
-				} catch(final SQLException e) {
+				ResultSet rs = stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
+			while (rs.next()) {
+				
+				if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE)) {
+					Storage.nxtClientSettings_GlobalMute = rs.getString("DATA").equals("1");
+					NXTSettingsGUI.GlobalAudioMuteCheckbox.setSelected(Storage.nxtClientSettings_GlobalMute);
 				}
+				
+				else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME)) {
+					Storage.nxtClientSettings_InGameMusicVolume = new Integer(rs.getString("DATA"));
+				}
+				
+				else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME)) {
+					Storage.nxtClientSettings_InGameSoundEffectsVolume = new Integer(rs.getString("DATA"));
+					if (Storage.nxtClientSettings_InGameSoundEffectsVolume > 127){
+						NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(true);
+						NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(254);
+					} else {
+						NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(false);
+						NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(127);
+					}
+				}
+				
+				else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME)) {
+					Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = new Integer(rs.getString("DATA"));
+					if (Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume > 127){
+						NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(true);
+						NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(254);
+					} else {
+						NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(false);
+						NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(127);
+					}
+				}
+				
+				else if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME)) {
+					Storage.nxtClientSettings_InGameVoiceOverVolume = new Integer(rs.getString("DATA"));
+					if (Storage.nxtClientSettings_InGameVoiceOverVolume > 127){
+						NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(true);
+						NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(254);
+					} else {
+						NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(false);
+						NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(127);
+					}
+				}
+				
+			}
+			conn.close();
+			stmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		NXTSettingsGUI.LoginMusicSlider.setValue(Storage.nxtClientSettings_LoginMusicVolume);
 		NXTSettingsGUI.InGameMusicSlider.setValue(Storage.nxtClientSettings_InGameMusicVolume);
 		NXTSettingsGUI.InGameSoundEffectsSlider.setValue(Storage.nxtClientSettings_InGameSoundEffectsVolume);

@@ -4,10 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.io.File;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
@@ -176,7 +174,11 @@ public class NXTSettingsGUI extends JFrame {
 				if (file.getName().equalsIgnoreCase("Settings.jcache")) {
 					Storage.Cache_settings_location = file.getAbsolutePath();
 				} else {
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:\n\n" + file.getAbsolutePath() + " was not the Cache file this program is loking for. Please select 'Settings.jcache'");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:" +
+																		"\n\n" +
+																		file.getAbsolutePath() +
+																		" was not the Cache file this program is loking for." +
+																		" Please select 'Settings.jcache'");
 				}
 			} else {}
 		});
@@ -187,9 +189,15 @@ public class NXTSettingsGUI extends JFrame {
 			final FileNameExtensionFilter filter = new FileNameExtensionFilter("NXT Preference Files", "cfg");
 			final JFileChooser fileChooser = new JFileChooser();
 			if (Storage.OS_TYPE == 0) {
-				fileChooser.setCurrentDirectory(new File(System.getenv("ProgramData") + System.getProperty("file.separator") + "Jagex" + System.getProperty("file.separator") + "launcher" + System.getProperty("file.separator")));
+				fileChooser.setCurrentDirectory(new File(System.getenv("ProgramData") +
+														 System.getProperty("file.separator") + "Jagex" +
+														 System.getProperty("file.separator") + "launcher" +
+														 System.getProperty("file.separator")));
 			} else if (Storage.OS_TYPE == 1) {
-				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator") + "Jagex" + System.getProperty("file.separator") + "launcher" + System.getProperty("file.separator")));
+				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") +
+														 System.getProperty("file.separator") + "Jagex" +
+														 System.getProperty("file.separator") + "launcher" +
+														 System.getProperty("file.separator")));
 			}
 			fileChooser.setDialogTitle("Locate 'preferences.cfg'");
 			fileChooser.setApproveButtonText("Load");
@@ -202,7 +210,11 @@ public class NXTSettingsGUI extends JFrame {
 				if (file.getName().equalsIgnoreCase("preferences.cfg")) {
 					Storage.preferences_config = file;
 				} else {
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:\n\n" + file.getAbsolutePath() + " was not the preference file this program is loking for. Please select 'preferences.cfg'");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:"+
+																		"\n\n" +
+																		file.getAbsolutePath() +
+																		" was not the preference file this program is loking for."+
+																		" Please select 'preferences.cfg'");
 				}
 			} else {}
 		});
@@ -825,41 +837,44 @@ public class NXTSettingsGUI extends JFrame {
 		AddColourFlagToUsername.setFont(new Font("Dialog", Font.PLAIN, 11));
 		AddColourFlagToUsername.setBounds(245, 15, 225, 25);
 		SpecialMechanicsTab.add(AddColourFlagToUsername);
-		
+
 		BecomeZezima = new JButton("Become a God, Become Zezima.");
 		BecomeZezima.setEnabled(false);
 		BecomeZezima.setFont(new Font("Dialog", Font.PLAIN, 11));
 		BecomeZezima.addActionListener(e -> {
-			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Statement stmt;
-				stmt = conn.createStatement();
-				String Zezima = "<sprite=203><col=FF3030>Z<col=FF4D72>e<col=FF69B4>z<col=FF69B4>i<col=FF4D72>m<col=FF3030>a<sprite=203>";
-				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"';");
-				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME+"', '"+Zezima+"');");
-				stmt.addBatch("DELETE FROM 'vt-varc' WHERE KEY='"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"';");
-				stmt.addBatch("INSERT INTO 'vt-varc' ('KEY', 'DATA') VALUES ('"+Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME+"', '1');");
-				stmt.executeBatch();
+				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
+				Storage.stmt = Storage.conn.createStatement();
+				final String Zezima = "<sprite=203> " +
+									  "<col=FF3030>Z" +
+									  "<col=FF4D72>e" +
+									  "<col=FF69B4>z" +
+									  "<col=FF69B4>i" +
+									  "<col=FF4D72>m" +
+									  "<col=FF3030>a" +
+									  " <sprite=203>";
+				JCache.Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME, 	Zezima);
+				JCache.Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME, 1);
+				Storage.stmt.executeBatch();
+				Storage.stmt.clearBatch();
 			} catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
 		BecomeZezima.setBounds(475, 15, 225, 25);
 		SpecialMechanicsTab.add(BecomeZezima);
-		
+
 		ClearConsole = new JButton("Clear Developer Console History Log");
 		ClearConsole.setToolTipText(Storage.CLEAR_DEV_CONSOLE_LOGS_TOOLTIP);
 		ClearConsole.setEnabled(false);
 		ClearConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		ClearConsole.addActionListener(e -> {
-			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Statement stmt;
-				stmt = conn.createStatement();
-				stmt.addBatch("DELETE FROM 'console';");
-				stmt.executeBatch();
+				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
+				Storage.stmt = Storage.conn.createStatement();
+				Storage.stmt.addBatch("DELETE FROM 'console';");
+				Storage.stmt.executeBatch();
+				Storage.stmt.clearBatch();
 			} catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -872,16 +887,15 @@ public class NXTSettingsGUI extends JFrame {
 		PlayerConsole.setEnabled(false);
 		PlayerConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		PlayerConsole.addActionListener(e -> {
-			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Statement stmt;
-				stmt = conn.createStatement();
-				stmt.addBatch("DELETE FROM 'console';");
+				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
+				Storage.stmt = Storage.conn.createStatement();
+				Storage.stmt.addBatch("DELETE FROM 'console';");
 				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[0].length; i++){
-					stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[0][i]+"');");
+					Storage.stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') "+
+								  		  "VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[0][i]+"');");
 				}
-				stmt.executeBatch();
+				Storage.stmt.executeBatch();
 			} catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -894,16 +908,15 @@ public class NXTSettingsGUI extends JFrame {
 		JagexConsole.setEnabled(false);
 		JagexConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		JagexConsole.addActionListener(e -> {
-			Connection conn;
 			try {
-				conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Statement stmt;
-				stmt = conn.createStatement();
-				stmt.addBatch("DELETE FROM 'console';");
+				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
+				Storage.stmt = Storage.conn.createStatement();
+				Storage.stmt.addBatch("DELETE FROM 'console';");
 				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[1].length; i++){
-					stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[1][i]+"');");
+					Storage.stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') "+
+								  		  "VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[1][i]+"');");
 				}
-				stmt.executeBatch();
+				Storage.stmt.executeBatch();
 			} catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -960,11 +973,11 @@ public class NXTSettingsGUI extends JFrame {
 				JagexConsole.setEnabled(false);
 			}
 		});
-		
+
 		AllowWritingCheckbox.setBounds(250, 610, 130, 25);
 		AllowWritingCheckbox.setBackground(optionBackgroundColor);
 		contentPane.add(AllowWritingCheckbox);
-		
+
 		ReadSettings = new JButton("Read Settings");
 		ReadSettings.setToolTipText("Read information currently saved in your setting file(s); Writes to Read-Only Information output.");
 		ReadSettings.addActionListener(e -> {
