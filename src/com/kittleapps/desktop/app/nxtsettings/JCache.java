@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
@@ -161,12 +160,11 @@ public class JCache {
 				}
 				try{
 					Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
+					Storage.stmt = Storage.conn.createStatement();
 				} catch(final SQLException e) {
 					System.err.println(e.getMessage());
 				}
-				try(	Statement stmt = Storage.conn.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * FROM Config")) {
-					// Read specific values for the program.
+				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM Config")) {
 					while (rs.next()) {
 						if (rs.getString("KEY").equals("CustomCursors")) {
 							Storage.nxtGraphicsSetting_CustomCursors = rs.getString("DATA").equals("1");
@@ -326,14 +324,15 @@ public class JCache {
 							NXTSettingsGUI.frame.setTitle("NXT Settings (Settings Version: "+rs.getString("DATA")+")");
 						}
 					}
-					stmt.close();
 					rs.close();
 				} catch(final SQLException e) {
 					System.err.println(e.getMessage());
 				}
+
+			/* Grab the Player's UID for a display on the TO-DO list, for now.. do nothing.
+
 				try(	Statement stmt = Storage.conn.createStatement();
 						ResultSet rs = stmt.executeQuery("SELECT * FROM 'player'")) {
-					// Grab the Player's UID for a display on the TO-DO list.
 					while (rs.next()) {
 						if (rs.getString("KEY").equals("uid")) {
 							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
@@ -347,17 +346,15 @@ public class JCache {
 					rs.close();
 				} catch(final SQLException e) {}
 
+			*/
 
 				/*
 				 * > Check every entry in the vt-varc table
 				 *   > If the keys match what we're looking for, apply them.
-				 * > Check audio settings.
-				 *
 				 */
 
 
-				try(	Statement stmt = Storage.conn.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
+				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
 					while (rs.next()) {
 						if (rs.getString("KEY").equals(Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME)) {
 							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
@@ -434,7 +431,6 @@ public class JCache {
 							NXTSettingsGUI.InGameVoiceOverSlider.setValue(new Integer(rs.getString("DATA")));
 							}
 					}
-					stmt.close();
 					rs.close();
 				} catch(final SQLException e) {}
 
@@ -445,17 +441,14 @@ public class JCache {
 				 *
 				 * > Convert the List to a String Array
 				 *
-				 * > TO-DO Make an editable display
-				 *
+				 * > TO-DO: Make an editable display
 				 */
 
-				try(Statement stmt = Storage.conn.createStatement();
-					ResultSet rs = stmt.executeQuery("SELECT * FROM 'console'")) {
+				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'console'")) {
 					while (rs.next()) {
 						Storage.nxtClientSettings_DeveloperConsoleLog.add(rs.getString("DATA"));
 					}
 					Storage.nxtClientSettings_DeveloperConsoleLogs = Storage.nxtClientSettings_DeveloperConsoleLog.toArray(new String[0]);
-					stmt.close();
 					rs.close();
 				} catch(final SQLException e) {}
 			}
@@ -478,7 +471,7 @@ public class JCache {
 		 * > Repeat the last two until finished for all values
 		 *  > Boolean-type entries will be manually 1 <> 0 dependant on their value related to true <> false
 		 *  > Legality checks will take place before username+favourite world settings to prevent invalid values
-		 *  > Temporary username field will be cleared to prevent any paranoia post-saving
+		 *  > Temporary username+UID field will be cleared to prevent any paranoia post-saving
 		 *
 		 * > Execute batches (write to the database)
 		 *
@@ -579,8 +572,9 @@ public class JCache {
 				Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	0);
 			}
 
-			// Clears some base-less paranoia if any for this value
+			// Clears any paranoia, if any, for these values
 			Storage.nxtClientSettings_TemporaryUsername = "";
+			Storage.nxtClientSettings_TemporaryUserID = "";
 
 			// Favourite Worlds
 			Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	Storage.nxtClientSettings_FavouriteWorld1);
