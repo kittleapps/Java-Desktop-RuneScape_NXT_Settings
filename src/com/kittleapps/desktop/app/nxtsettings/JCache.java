@@ -252,14 +252,12 @@ public class JCache {
 						}
 						else if (rs.getString("KEY").equals("MaxForegroundFps")) {
 							Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(rs.getString("DATA"));
-							// Legality check; If under the minimum (5), or over the maximum (300), set to those where needed.
 							if (Storage.nxtGraphicsSetting_MaxForegroundFps < 5){
 								Storage.nxtGraphicsSetting_MaxForegroundFps = 5;
 							} else if (Storage.nxtGraphicsSetting_MaxForegroundFps > 300){
 								Storage.nxtGraphicsSetting_MaxForegroundFps = 300;
 							}
 							NXTSettingsGUI.MaxForegroundFpsInput.setText(""+Storage.nxtGraphicsSetting_MaxForegroundFps);
-							// If the value somehow is null, or empty, set to the default value and update the input.
 							if (NXTSettingsGUI.MaxForegroundFpsInput.getText().equals("") ||
 								NXTSettingsGUI.MaxForegroundFpsInput.getText() == null){
 								NXTSettingsGUI.MaxForegroundFpsInput.setText(""+(Storage.FrameRate + 10));
@@ -268,14 +266,12 @@ public class JCache {
 						}
 						else if (rs.getString("KEY").equals("MaxBackgroundFps")) {
 							Storage.nxtGraphicsSetting_MaxBackgroundFps = new Integer(rs.getString("DATA"));
-							// Legality check; If under the minimum (5), or over the maximum (300), set to those where needed.
 							if (Storage.nxtGraphicsSetting_MaxBackgroundFps < 5){
 								Storage.nxtGraphicsSetting_MaxBackgroundFps = 5;
 							} else if (Storage.nxtGraphicsSetting_MaxBackgroundFps > 300){
 								Storage.nxtGraphicsSetting_MaxBackgroundFps = 300;
 							}
 							NXTSettingsGUI.MaxBackgroundFpsInput.setText(""+Storage.nxtGraphicsSetting_MaxBackgroundFps);
-							// If the value somehow is null, or empty, set to the default value and update the input.
 							if (NXTSettingsGUI.MaxBackgroundFpsInput.getText().equals("") ||
 								NXTSettingsGUI.MaxBackgroundFpsInput.getText() == null){
 								NXTSettingsGUI.MaxBackgroundFpsInput.setText("30");
@@ -285,14 +281,12 @@ public class JCache {
 
 						else if (rs.getString("KEY").equals("GameRenderScale")) {
 							Storage.nxtClientSettings_GameRenderScale = new Integer(rs.getString("DATA"));
-							// Legality check; If under the minimum (33), or over the maximum (200), set to those where needed.
 							if (Storage.nxtClientSettings_GameRenderScale < 33){
 								Storage.nxtClientSettings_GameRenderScale = 33;
 							} else if (Storage.nxtClientSettings_GameRenderScale > 200){
 								Storage.nxtClientSettings_GameRenderScale = 200;
 							}
 							NXTSettingsGUI.GameRenderScaleInput.setText(""+Storage.nxtClientSettings_GameRenderScale);
-							// If the value somehow is null, or empty, set to the default value and update the input.
 							if (NXTSettingsGUI.GameRenderScaleInput.getText().equals("") ||
 								NXTSettingsGUI.GameRenderScaleInput.getText() == null){
 								NXTSettingsGUI.GameRenderScaleInput.setText("100");
@@ -302,14 +296,12 @@ public class JCache {
 
 						else if (rs.getString("KEY").equals("InterfaceScale")) {
 							Storage.nxtClientSettings_InterfaceScale = new Integer(rs.getString("DATA"));
-							// Legality check; If under the minimum (100), or over the maximum (400), set to those where needed.
 							if (Storage.nxtClientSettings_InterfaceScale < 100){
 								Storage.nxtClientSettings_InterfaceScale = 100;
 							} else if (Storage.nxtClientSettings_InterfaceScale > 400){
 								Storage.nxtClientSettings_InterfaceScale = 400;
 							}
 							NXTSettingsGUI.InterfaceScaleInput.setText(""+Storage.nxtClientSettings_InterfaceScale);
-							// If the value somehow is null, or empty, set to the default value and update the input.
 							if (NXTSettingsGUI.InterfaceScaleInput.getText().equals("") ||
 								NXTSettingsGUI.InterfaceScaleInput.getText() == null){
 								NXTSettingsGUI.InterfaceScaleInput.setText("100");
@@ -329,7 +321,7 @@ public class JCache {
 					System.err.println(e.getMessage());
 				}
 
-			/* Grab the Player's UID for a display on the TO-DO list, for now.. do nothing.
+				/* Grab the Player's UID for a display on the TO-DO list, for now.. do nothing.
 
 				try(	Statement stmt = Storage.conn.createStatement();
 						ResultSet rs = stmt.executeQuery("SELECT * FROM 'player'")) {
@@ -346,7 +338,7 @@ public class JCache {
 					rs.close();
 				} catch(final SQLException e) {}
 
-			*/
+			 	*/
 
 				/*
 				 * > Check every entry in the vt-varc table
