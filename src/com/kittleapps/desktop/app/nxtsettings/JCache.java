@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import com.sun.jna.platform.win32.Advapi32Util;
 
 public class JCache {
-	
+
 	private static BufferedReader reader;
 	private static String current_line;
 
@@ -149,8 +149,8 @@ public class JCache {
 																	"Aborting the program's functioning.");
 				System.exit(0);
 			}
-			
-			
+
+
 			Storage.Settings_db = new File(Storage.Cache_settings_location);
 
 			if (Storage.Settings_db.isFile() && Storage.Settings_db.exists()) {
@@ -160,7 +160,7 @@ public class JCache {
 					System.err.println("Could not init JDBC driver - driver not found");
 				}
 				try{
-					Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location); 
+					Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				} catch(final SQLException e) {
 					System.err.println(e.getMessage());
 				}
@@ -333,7 +333,7 @@ public class JCache {
 				}
 				try(	Statement stmt = Storage.conn.createStatement();
 						ResultSet rs = stmt.executeQuery("SELECT * FROM 'player'")) {
-					// Grab the Player's UID for a display on the TO-DO list.				
+					// Grab the Player's UID for a display on the TO-DO list.
 					while (rs.next()) {
 						if (rs.getString("KEY").equals("uid")) {
 							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
@@ -346,16 +346,16 @@ public class JCache {
 					stmt.close();
 					rs.close();
 				} catch(final SQLException e) {}
-				
-				
+
+
 				/*
 				 * > Check every entry in the vt-varc table
 				 *   > If the keys match what we're looking for, apply them.
 				 * > Check audio settings.
-				 * 
+				 *
 				 */
-				
-				
+
+
 				try(	Statement stmt = Storage.conn.createStatement();
 						ResultSet rs = stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
 					while (rs.next()) {
@@ -437,18 +437,18 @@ public class JCache {
 					stmt.close();
 					rs.close();
 				} catch(final SQLException e) {}
-				
+
 				/*
 				 * > Check every entry in the vt-varc table
-				 * 
+				 *
 				 * > Save the entries to a List
-				 * 
+				 *
 				 * > Convert the List to a String Array
-				 * 
+				 *
 				 * > TO-DO Make an editable display
-				 * 
+				 *
 				 */
-				
+
 				try(Statement stmt = Storage.conn.createStatement();
 					ResultSet rs = stmt.executeQuery("SELECT * FROM 'console'")) {
 					while (rs.next()) {

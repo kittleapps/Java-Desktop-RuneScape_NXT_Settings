@@ -92,14 +92,11 @@ public class Storage {
 		ShowSensitiveInfo = false
 	;
 
-	public static File
-		preferences_config,
-		Settings_db
-	;
+   public static File preferences_config, Settings_db;
 	public static Connection conn;
 	public static Statement stmt;
 	public static StringBuilder messages;
-	public static List<String> nxtClientSettings_DeveloperConsoleLog = new ArrayList<String>();
+	public static List<String> nxtClientSettings_DeveloperConsoleLog = new ArrayList<>();
 	public static String[] nxtClientSettings_DeveloperConsoleLogs;
 	public final static String[][] DEVELOPER_CONSOLE_COMMANDS = {
 			{
@@ -401,13 +398,13 @@ public class Storage {
 		OS_TYPE = -1;
 		FrameRate = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getRefreshRate();
 
-		if (Mechanics.isWindows()) {
+		if (isWindows()) {
 			OS_TYPE = 0;
-		} else if (Mechanics.isUnix()) {
+		} else if (isUnix()) {
 			OS_TYPE = 1;
-		} else if (Mechanics.isMac()) {
+		} else if (isMac()) {
 			OS_TYPE = 2;
-		} else if (Mechanics.isSolaris()) {
+		} else if (isSolaris()) {
 			OS_TYPE = 3;
 		} else {
 			OS_TYPE = -1;
@@ -417,5 +414,20 @@ public class Storage {
 		} catch(final ClassNotFoundException eString) {
 			System.err.println("Could not init JDBC driver - driver not found");
 		}
+	}
+	public static boolean isMac() {
+		return (Storage.OS.indexOf("mac") >= 0);
+	}
+
+	public static boolean isSolaris() {
+		return (Storage.OS.indexOf("sunos") >= 0);
+	}
+
+	public static boolean isUnix() {
+		return ((Storage.OS.indexOf("nix") >= 0) || (Storage.OS.indexOf("nux") >= 0) || (Storage.OS.indexOf("aix") > 0));
+	}
+
+	public static boolean isWindows() {
+		return (Storage.OS.indexOf("win") >= 0);
 	}
 }
