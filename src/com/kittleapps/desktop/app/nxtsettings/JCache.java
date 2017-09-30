@@ -1,4 +1,4 @@
-package com.kittleapps.desktop.app.nxtconfiguration;
+package com.kittleapps.desktop.app.nxtsettings;
 
 import static com.sun.jna.platform.win32.WinReg.HKEY_CURRENT_USER;
 

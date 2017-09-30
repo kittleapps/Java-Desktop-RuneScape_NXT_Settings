@@ -1,4 +1,4 @@
-package com.kittleapps.desktop.app.nxtconfiguration;
+package com.kittleapps.desktop.app.nxtsettings;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;

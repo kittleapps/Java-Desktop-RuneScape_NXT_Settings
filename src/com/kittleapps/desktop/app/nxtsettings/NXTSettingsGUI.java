@@ -1,4 +1,4 @@
-package com.kittleapps.desktop.app.nxtconfiguration;
+package com.kittleapps.desktop.app.nxtsettings;
 
 import java.awt.Color;
 import java.awt.EventQueue;
