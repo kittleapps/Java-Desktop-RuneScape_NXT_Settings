@@ -12,7 +12,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -22,11 +21,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -40,7 +37,6 @@ public class NXTSettingsGUI extends JFrame {
 	 *
 	 */
 	private static final long serialVersionUID = -4228920598014351419L;
-	public static JEditorPane VerboseOutputArea;
 	public static HTMLEditorKit VerboseOutputAreaEditor;
 	public static JCheckBox
 		FlickeringEffectsCheckbox,
@@ -323,7 +319,7 @@ public class NXTSettingsGUI extends JFrame {
 		GraphicsSettingsTab.add(VSyncLabel);
 
 		VSyncComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[3]);
-		VSyncComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_VSync = VSyncComboBox.getSelectedIndex() - 1);
+		VSyncComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_VSync = VSyncComboBox.getSelectedIndex()-1);
 		VSyncComboBox.setBounds(165, 15 + (30 * 3), 175, 25);
 		GraphicsSettingsTab.add(VSyncComboBox);
 
@@ -634,6 +630,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld1Label);
 
 		FavouriteWorld1Input = new JFormattedTextField(WorldNumberFormatter);
+		FavouriteWorld1Input.setText("1");
 		FavouriteWorld1Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
 		FavouriteWorld1Input.setBounds(170, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld1Input);
@@ -644,6 +641,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld2Label);
 
 		FavouriteWorld2Input = new JFormattedTextField(WorldNumberFormatter);
+		FavouriteWorld2Input.setText("2");
 		FavouriteWorld2Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
 		FavouriteWorld2Input.setBounds(395, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld2Input);
@@ -654,6 +652,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld3Label);
 
 		FavouriteWorld3Input = new JFormattedTextField(WorldNumberFormatter);
+		FavouriteWorld3Input.setText("3");
 		FavouriteWorld3Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
 		FavouriteWorld3Input.setBounds(620, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld3Input);
@@ -711,7 +710,6 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMusicSlider = new JSlider();
 		InGameMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameMusicVolume = InGameMusicSlider.getValue());
 		InGameMusicSlider.setMaximum(255);
-		InGameMusicSlider.setMajorTickSpacing(51);
 		InGameMusicSlider.setPaintTicks(false);
 		InGameMusicSlider.setBounds(170, 135, 535, 25);
 		InGameMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
@@ -724,7 +722,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		InGameSoundEffectsSlider = new JSlider();
 		InGameSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameSoundEffectsVolume = InGameSoundEffectsSlider.getValue());
-		InGameSoundEffectsSlider.setMaximum(255);
+		InGameSoundEffectsSlider.setMaximum(127);
 		InGameSoundEffectsSlider.setPaintTicks(false);
 		InGameSoundEffectsSlider.setBounds(170, 165, 445, 25);
 		InGameSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
@@ -751,7 +749,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		InGameAmbientSoundEffectsSlider = new JSlider();
 		InGameAmbientSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = InGameAmbientSoundEffectsSlider.getValue());
-		InGameAmbientSoundEffectsSlider.setMaximum(255);
+		InGameAmbientSoundEffectsSlider.setMaximum(127);
 		InGameAmbientSoundEffectsSlider.setPaintTicks(false);
 		InGameAmbientSoundEffectsSlider.setBounds(170, 195, 445, 25);
 		InGameAmbientSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
@@ -778,7 +776,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		InGameVoiceOverSlider = new JSlider();
 		InGameVoiceOverSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameVoiceOverVolume = InGameVoiceOverSlider.getValue());
-		InGameVoiceOverSlider.setMaximum(255);
+		InGameVoiceOverSlider.setMaximum(127);
 		InGameVoiceOverSlider.setPaintTicks(false);
 		InGameVoiceOverSlider.setBounds(170, 225, 445, 25);
 		InGameVoiceOverSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
@@ -923,22 +921,7 @@ public class NXTSettingsGUI extends JFrame {
 		});
 		JagexConsole.setBounds(475, 45, 225, 25);
 		SpecialMechanicsTab.add(JagexConsole);
-
-		final JScrollPane VerboseOutputTab = new JScrollPane();
-		VerboseOutputTab.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		VerboseOutputTab.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		VerboseOutputTab.setBackground(backgroundColour);
-		VerboseOutputTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		tabbedPane.addTab("Read-Only Information", null, VerboseOutputTab, "Read the Verbose information as it occurs.");
-
-		VerboseOutputArea = new JEditorPane();
-		VerboseOutputArea.setContentType("text/html");
-		VerboseOutputArea.setText("<html></html>");
-		VerboseOutputArea.setEditable(false);
-		VerboseOutputArea.setBackground(Color.BLACK);
 		VerboseOutputAreaEditor = new HTMLEditorKit();
-		VerboseOutputArea.setEditorKit(VerboseOutputAreaEditor);
-		VerboseOutputTab.setViewportView(VerboseOutputArea);
 
 
 
@@ -980,16 +963,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		ReadSettings = new JButton("Read Settings");
 		ReadSettings.setToolTipText("Read information currently saved in your setting file(s); Writes to Read-Only Information output.");
-		ReadSettings.addActionListener(e -> {
-			if ((VerboseOutputArea != null) && (VerboseOutputAreaEditor != null)) {
-				VerboseOutputArea.setText("<html></html>");
-				UsernameInput.setText("");
-			}
-			/* Init */
-			JCache.Read();
-			/* Apply */
-			JCache.Read();
-		});
+		ReadSettings.addActionListener(e -> JCache.Read());
 		ReadSettings.setBounds(480, 610, 125, 25);
 		contentPane.add(ReadSettings);
 
@@ -999,10 +973,6 @@ public class NXTSettingsGUI extends JFrame {
 		WriteSettings.addActionListener(e -> JCache.Write());
 		contentPane.add(WriteSettings);
 
-
-
-		 /* Currently required to force a read twice, due to an issue with the audio sliders. */
-		JCache.Read();
 		JCache.Read();
 	}
 }

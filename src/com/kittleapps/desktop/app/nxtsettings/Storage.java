@@ -4,6 +4,8 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Storage {
 	public static int
@@ -47,6 +49,7 @@ public class Storage {
 
 	public static String
 		OS = System.getProperty("os.name").toLowerCase(),
+		nxtClientSettings_TemporaryUserID = "",
 		nxtClientSettings_TemporaryUsername = "",
 
 		// The following values are made just in case the vt-varc keys change numeral values for ease-of-changing.
@@ -83,6 +86,8 @@ public class Storage {
 		nxtClientSettings_GlobalMute,
 		nxtClientSettings_RandomizeLoginWallpaper,
 		nxtClientSettings_RememberUsername,
+		nxtClientSettings_ConfirmQuit,
+		nxtClientSettings_AskToSwitchToCompatibility,
 		NXT_INSTALLED,
 		ShowSensitiveInfo = false
 	;
@@ -94,6 +99,8 @@ public class Storage {
 	public static Connection conn;
 	public static Statement stmt;
 	public static StringBuilder messages;
+	public static List<String> nxtClientSettings_DeveloperConsoleLog = new ArrayList<String>();
+	public static String[] nxtClientSettings_DeveloperConsoleLogs;
 	public final static String[][] DEVELOPER_CONSOLE_COMMANDS = {
 			{
 			/* Player-Enabled Commands */

@@ -1,11 +1,6 @@
 package com.kittleapps.desktop.app.nxtsettings;
 
 import java.io.File;
-import java.io.IOException;
-
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.html.HTMLDocument;
 
 public class Mechanics {
 
@@ -88,28 +83,6 @@ public class Mechanics {
 			value = "Invalid FilterType Used.";
 		}
 		return "\t" + value;
-	}
-
-	public static void SendVerboseMessage(final String msg) {
-		/*
-		 * > Get the String in msg
-		 *
-		 * > Convert to a <html> formatted String
-		 *
-		 * > Initialize a temporary Document
-		 *
-		 * > Append to NXTSettingsGUI.VerboseOutputAreaEditor
-		 */
-		Storage.messages.append("<div class=\"test\"><font color=\"green\">" + msg + "</font></div>\n");
-		final Document doc = NXTSettingsGUI.VerboseOutputArea.getDocument();
-		try {
-			NXTSettingsGUI.VerboseOutputAreaEditor.insertHTML((HTMLDocument) doc, doc.getLength(),
-															"<div class=\"test\"><font color=\"green\">" +
-															 msg.replace("{{nl}}", "<br>").replace("\t", "&ensp;&ensp;&ensp;") +
-															 "</font></div>", 0, 0, null);
-		} catch(BadLocationException | IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public static boolean isMac() {
