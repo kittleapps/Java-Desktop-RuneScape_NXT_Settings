@@ -21,8 +21,6 @@ public class JCache {
 
 	public static void Read() {
 		/*
-		 * This will run Twice initially at the start of the program, to force all values to change properly
-		 *
 		 * > Check which Operating System the user has currently
 		 *  > If failed, tell user their OS is known at the time, Abort the program
 		 *
@@ -245,17 +243,6 @@ public class JCache {
 							Storage.nxtGraphicsSetting_Brightness = new Integer(rs.getString("DATA"));
 							NXTSettingsGUI.BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
 						}
-						/*
-						//TO-DO: Re-Add this when it's official.
-						else if (rs.getString("KEY").equals("DOF")) {
-							Storage.nxtGraphicsSetting_DepthOfField = new Integer(rs.getString("DATA"));
-							NXTSettingsGUI.DepthOfFieldComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DepthOfField);
-						}
-						else if (rs.getString("KEY").equals("HeatHaze")) {
-							Storage.nxtGraphicsSetting_HeatHaze = rs.getString("DATA").equals("1");
-							NXTSettingsGUI.HeatHazeCheckbox.setSelected(Storage.nxtGraphicsSetting_HeatHaze);
-						}
-						*/
 						else if (rs.getString("KEY").equals("MaxForegroundFps")) {
 							Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(rs.getString("DATA"));
 							int ID = (Storage.nxtGraphicsSetting_MaxForegroundFps/5)-1;
@@ -319,31 +306,6 @@ public class JCache {
 				} catch(final SQLException e) {
 					System.err.println(e.getMessage());
 				}
-
-				/* Grab the Player's UID for a display on the TO-DO list, for now.. do nothing.
-
-				try(	Statement stmt = Storage.conn.createStatement();
-						ResultSet rs = stmt.executeQuery("SELECT * FROM 'player'")) {
-					while (rs.next()) {
-						if (rs.getString("KEY").equals("uid")) {
-							if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
-								Storage.nxtClientSettings_TemporaryUserID = rs.getString("DATA");
-							} else {
-								Storage.nxtClientSettings_TemporaryUserID = "";
-							}
-						}
-					}
-					stmt.close();
-					rs.close();
-				} catch(final SQLException e) {}
-
-			 	*/
-
-				/*
-				 * > Check every entry in the vt-varc table
-				 *   > If the keys match what we're looking for, apply them.
-				 */
-
 
 				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
 					while (rs.next()) {
@@ -489,10 +451,6 @@ public class JCache {
 			Write(true,	"LightingQuality",		Storage.nxtGraphicsSetting_LightingQuality);
 			Write(true,	"AmbientOcclusion",		Storage.nxtGraphicsSetting_AmbientOcclusion);
 			Write(true,	"Bloom",				Storage.nxtGraphicsSetting_Bloom);
-			/*
-			//TO-DO: Re-Add this when it's official.
-			Write(true,	"DOF",					Storage.nxtGraphicsSetting_DepthOfField);
-			*/
 			Write(true,	"MaxForegroundFps",		Storage.nxtGraphicsSetting_MaxForegroundFps);
 			Write(true,	"InterfaceScale",		Storage.nxtClientSettings_UIScaling);
 
@@ -534,15 +492,6 @@ public class JCache {
 			} else {
 				Write(true,	"GroundBlending",	0);
 			}
-			/*
-
-			//TO-DO: Re-Add this when it's official.
-			if (Storage.nxtGraphicsSetting_HeatHaze) {
-				Write(true,	"HeatHaze",	1);
-			} else {
-				Write(true,	"HeatHaze",	0);
-			}
-			*/
 
 			Write(true,		"MaxBackgroundFps",											Storage.nxtGraphicsSetting_MaxBackgroundFps);
 			Write(true,		"GameRenderScale",											Storage.nxtClientSettings_GameWorldScaling);

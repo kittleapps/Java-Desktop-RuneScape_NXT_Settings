@@ -7,7 +7,7 @@ public class Legality {
 		 * > Check if Terrain/Ground Blending is disabled
 		 * 	> If its value is disabled, disable Textures
 		 *
-		 * > Check if  Shadows are disabled
+		 * > Check if Shadows are disabled
 		 *  > If its value is disabled, disable Volumetric Lighting
 		 *  > If its value is disabled, disable Shadow Quality
 		 *

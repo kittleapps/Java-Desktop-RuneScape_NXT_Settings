@@ -30,14 +30,12 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.NumberFormatter;
-import javax.swing.text.html.HTMLEditorKit;
 
 public class NXTSettingsGUI extends JFrame {
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = -4228920598014351419L;
-	public static HTMLEditorKit VerboseOutputAreaEditor;
 	public static JCheckBox
 		FlickeringEffectsCheckbox,
 		ShadowsCheckbox,
@@ -99,7 +97,7 @@ public class NXTSettingsGUI extends JFrame {
 		JagexConsole,
 		ReadSettings,
 		WriteSettings;
-
+	private static Color backgroundColour = new Color(45, 45, 45), optionBackgroundColor = new Color (40, 40, 40);
 	public static JFrame frame;
 	public static void main(final String[] args) {
 		if (!Runtime.class.getPackage().getImplementationVersion().startsWith("1.8.") && !Runtime.class.getPackage().getImplementationVersion().startsWith("1.7.")){
@@ -123,10 +121,9 @@ public class NXTSettingsGUI extends JFrame {
 		});
 	}
 
-	public static JPanel contentPane;
+	private static JPanel contentPane;
 
 	public NXTSettingsGUI() {
-		final Color backgroundColour = new Color(45, 45, 45), optionBackgroundColor = new Color (40, 40, 40);
 		frame = this;
 		frame.setVisible(true);
 		frame.setAlwaysOnTop(false);
@@ -139,6 +136,7 @@ public class NXTSettingsGUI extends JFrame {
 		contentPane.setLayout(null);
 		frame.setResizable(false);
 		frame.setTitle("NXT Settings");
+
 		try {
 			// Apply dark theme.
 			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -149,6 +147,7 @@ public class NXTSettingsGUI extends JFrame {
 		final JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 755, 25);
 		contentPane.add(menuBar);
+
 		final JMenu FileMenu = new JMenu("File");
 		menuBar.add(FileMenu);
 
@@ -247,7 +246,6 @@ public class NXTSettingsGUI extends JFrame {
 		final JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBounds(15, 26, 720, 569);
 		contentPane.add(tabbedPane);
-
 
 		final NumberFormat intFormat = NumberFormat.getIntegerInstance();
 
@@ -365,23 +363,6 @@ public class NXTSettingsGUI extends JFrame {
 		AnisotropicFilteringComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_AnisotropicFiltering = AnisotropicFilteringComboBox.getSelectedIndex());
 		AnisotropicFilteringComboBox.setBounds(165, 15 + (30 * 6), 175, 25);
 		GraphicsSettingsTab.add(AnisotropicFilteringComboBox);
-
-
-		/*
-		//TO-DO: Re-Add this when it's official.
-
-		final JLabel DepthOfFieldLabel = new JLabel("Depth of Field");
-		DepthOfFieldLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		DepthOfFieldLabel.setToolTipText(Storage.DOF_TOOLTIP);
-		DepthOfFieldLabel.setBounds(15, 15 + (30 * 10), 150, 25);
-		GraphicsSettingsTab.add(DepthOfFieldLabel);
-
-		DepthOfFieldComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[10]);
-		DepthOfFieldComboBox.setToolTipText(Storage.DOF_TOOLTIP);
-		DepthOfFieldComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_DepthOfField = DepthOfFieldComboBox.getSelectedIndex());
-		DepthOfFieldComboBox.setBounds(165, 15 + (30 * 10), 175, 25);
-		GraphicsSettingsTab.add(DepthOfFieldComboBox);
-		*/
 
 		final JLabel MaxForegroundFpsLabel = new JLabel("Foreground FPS");
 		MaxForegroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -598,20 +579,7 @@ public class NXTSettingsGUI extends JFrame {
 		TerrainBlendingCheckbox.setBounds(505+160-1, 15 + (30 * 11) + 4, 16, 16);
 		GraphicsSettingsTab.add(TerrainBlendingCheckbox);
 
-		/*
-		//TO-DO: Re-Add this when it's official.
 
-		final JLabel HeatHazeLabel = new JLabel("Heat Haze");
-		HeatHazeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		HeatHazeLabel.setToolTipText(Storage.HEATHAZE_TOOLTIP);
-		HeatHazeLabel.setBounds(355, 15 + (30 * 10), 150, 25);
-		GraphicsSettingsTab.add(HeatHazeLabel);
-
-		HeatHazeCheckbox = new JCheckBox();
-		HeatHazeCheckbox.setHorizontalAlignment(SwingConstants.CENTER);
-		HeatHazeCheckbox.setBounds(665, 15 + (30 * 10) + 5, 15, 15);
-		GraphicsSettingsTab.add(HeatHazeCheckbox);
-		*/
 
 
 
@@ -824,12 +792,12 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		final JPanel SpecialMechanicsTab = new JPanel();
-		tabbedPane.addTab("Special Mechanics", null, SpecialMechanicsTab, "Add special mechanics here. (More details inside)");
+		tabbedPane.addTab("Special Mechanics", null, SpecialMechanicsTab, "Use special mechanics here.");
 		SpecialMechanicsTab.setBackground(backgroundColour);
 		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
 
-		AddSpriteFlagToUsername = new JButton("Add <sprite=ID,SUB_ID> to your Username");
+		AddSpriteFlagToUsername = new JButton("Add <sprite=ID,SUB_ID> to your username");
 		AddSpriteFlagToUsername.setToolTipText(Storage.ADD_SPRITE_FLAG_TOOLTIP);
 		AddSpriteFlagToUsername.addActionListener(e -> {
 			if (UsernameInput != null) {
@@ -851,7 +819,7 @@ public class NXTSettingsGUI extends JFrame {
 		AddColourFlagToUsername.setBounds(245, 15, 225, 25);
 		SpecialMechanicsTab.add(AddColourFlagToUsername);
 
-		BecomeZezima = new JButton("Become a God, Become Zezima.");
+		BecomeZezima = new JButton("Become a God! Become Zezima.");
 		BecomeZezima.setEnabled(false);
 		BecomeZezima.setFont(new Font("Dialog", Font.PLAIN, 11));
 		BecomeZezima.addActionListener(e -> {
@@ -870,6 +838,7 @@ public class NXTSettingsGUI extends JFrame {
 				JCache.Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME, 1);
 				Storage.stmt.executeBatch();
 				Storage.stmt.clearBatch();
+				UsernameInput.setText(Zezima);
 			} catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -936,7 +905,6 @@ public class NXTSettingsGUI extends JFrame {
 		});
 		JagexConsole.setBounds(475, 45, 225, 25);
 		SpecialMechanicsTab.add(JagexConsole);
-		VerboseOutputAreaEditor = new HTMLEditorKit();
 
 
 
@@ -949,13 +917,13 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		ShowSensitiveInformation = new JCheckBox("Show Sensitive Information?");
-		ShowSensitiveInformation.setToolTipText("Show information such as: Your Username, UID, etc.");
+		ShowSensitiveInformation.setToolTipText("Show information such as your Username?");
 		ShowSensitiveInformation.setBounds(15, 610, 230, 25);
 		ShowSensitiveInformation.setBackground(optionBackgroundColor);
 		contentPane.add(ShowSensitiveInformation);
 
 		AllowWritingCheckbox = new JCheckBox("Allow Writing?");
-		AllowWritingCheckbox.setToolTipText("Allow writing of all settings when \"Write\" is clicked; Some special mechanic values will be written instantly.");
+		AllowWritingCheckbox.setToolTipText("Allow writing of all settings when \"Write\" is clicked. Some special mechanic values will be written instantly.");
 		AllowWritingCheckbox.addActionListener(e -> {
 			if (AllowWritingCheckbox.isSelected()) {
 				WriteSettings.setEnabled(true);
@@ -977,7 +945,7 @@ public class NXTSettingsGUI extends JFrame {
 		contentPane.add(AllowWritingCheckbox);
 
 		ReadSettings = new JButton("Read Settings");
-		ReadSettings.setToolTipText("Read information currently saved in your setting file(s); Writes to Read-Only Information output.");
+		ReadSettings.setToolTipText("Read information currently saved in your setting file(s).");
 		ReadSettings.addActionListener(e -> JCache.Read());
 		ReadSettings.setBounds(480, 610, 125, 25);
 		contentPane.add(ReadSettings);
