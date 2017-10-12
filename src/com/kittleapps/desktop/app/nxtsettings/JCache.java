@@ -157,6 +157,9 @@ public class JCache {
 					Class.forName("org.sqlite.JDBC");
 				} catch(final ClassNotFoundException eString) {
 					System.err.println("Could not init JDBC driver - driver not found");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Could not init JDBC driver - driver not found"+
+																		"\n\n"+
+																		"Settings can not be read, Aborting the program's functioning.");
 				}
 				try{
 					Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
@@ -440,6 +443,11 @@ public class JCache {
 					rs.close();
 				} catch(final SQLException e) {}
 			}
+		} else {
+			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: NXT is not being read as installed on this system."+
+																"\n\n"+
+																"Settings will not be read, Aborting program functions.");
+			System.exit(0);
 		}
 		Legality.CheckSettings();
 	}

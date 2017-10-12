@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class Storage {
 	public static int
 		nxtGraphicsSetting_AnisotropicFiltering,
@@ -475,6 +477,9 @@ public class Storage {
 			Class.forName("org.sqlite.JDBC");
 		} catch(final ClassNotFoundException eString) {
 			System.err.println("Could not init JDBC driver - driver not found");
+			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Could not init JDBC driver - driver not found"+
+																"\n\n"+
+																"Settings can not be read, Aborting the program's functioning.");
 		}
 	}
 	public static boolean isMac() {
