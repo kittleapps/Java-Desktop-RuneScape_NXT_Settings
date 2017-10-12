@@ -102,7 +102,7 @@ public class NXTSettingsGUI extends JFrame {
 
 	public static JFrame frame;
 	public static void main(final String[] args) {
-		if (Runtime.class.getPackage().getImplementationVersion().startsWith("1.8.") && !Runtime.class.getPackage().getImplementationVersion().startsWith("1.7.")){
+		if (!Runtime.class.getPackage().getImplementationVersion().startsWith("1.8.") && !Runtime.class.getPackage().getImplementationVersion().startsWith("1.7.")){
 			System.out.println("JRE was not Oracle's JRE 7/8 (1.7/1.8); Abort functioning until internal bugs are fixed.");
 			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "<html>This program is tested and stable on Oracle JRE 8 (JRE 1.8)"+
 																"<br><br>"+
