@@ -14,31 +14,17 @@ public class Legality {
 		 * > Check if Anti-Aliasing is disabled
 		 *  > If its value is disabled, disable Anti-Aliasing Quality.
 		 *
-		 * > Check if Maximum Forefround FPS's input is null or empty
+		 * > Check if the Game World Scaling's value is null or empty
 		 *  > If its value is null/empty, set its value to the default, otherwise apply it.
 		 *
-		 * > Check if the Maximum Foreground FPS's values are legal.
-		 *  > If its value is under 5, set to 5
-		 *  > If its value is over 300, set to 300
-		 *
-		 * > Check if  the Maximum Background FPS's value is null or empty
-		 *  > If its value is null/empty, set its value to the default, otherwise apply it.
-		 *
-		 * > Check if the Maximum Background FPS's values are legal.
-		 *  > If its value is under 5, set to 5
-		 *  > If its value is over 300, set to 300
-		 *
-		 * > Check if  the Game Render Scaling's value is null or empty
-		 *  > If its value is null/empty, set its value to the default, otherwise apply it.
-		 *
-		 * > Check if the Game Render Scaling's values are legal.
+		 * > Check if the Game World Scaling's values are legal.
 		 *  > If its value is under 33, set to 33
 		 *  > If its value is over 200, set to 200
 		 *
-		 * > If the MInterface Scaling's value is null or empty
+		 * > If the UI Scaling's value is null or empty
 		 *  > If its value is null/empty, set its value to the default, otherwise apply it.
 		 *
-		 * > Check if the Interface Scaling's values are legal.
+		 * > Check if the UI Scaling's values are legal.
 		 *  > If its value is under 100, set to 100
 		 *  > If its value is over 400, set to 400
 		 *
@@ -75,72 +61,39 @@ public class Legality {
 			NXTSettingsGUI.AntiAliasingQualityComboBox.setEnabled(true);
 		}
 
-		// Max Foreground FPS
 
-		if (NXTSettingsGUI.MaxForegroundFpsInput.getText() == null ||
-			NXTSettingsGUI.MaxForegroundFpsInput.getText().equals("")){
-			NXTSettingsGUI.MaxForegroundFpsInput.setText(""+(Storage.FrameRate + 10));
+		// Game World Scaling
+
+		if (NXTSettingsGUI.GameWorldScalingInput.getText() == null ||
+			NXTSettingsGUI.GameWorldScalingInput.getText().equals("")){
+			NXTSettingsGUI.GameWorldScalingInput.setText("100");
 		} else {
-			Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(NXTSettingsGUI.MaxForegroundFpsInput.getText().trim().replace(",", ""));
+			Storage.nxtClientSettings_GameWorldScaling = new Integer(NXTSettingsGUI.GameWorldScalingInput.getText().trim().replace(",", ""));
 		}
 
-		if (Storage.nxtGraphicsSetting_MaxForegroundFps < 5){
-			Storage.nxtGraphicsSetting_MaxForegroundFps = 5;
-			NXTSettingsGUI.MaxForegroundFpsInput.setText("5");
-		} else if (Storage.nxtGraphicsSetting_MaxForegroundFps > 300){
-			Storage.nxtGraphicsSetting_MaxForegroundFps = 300;
-			NXTSettingsGUI.MaxForegroundFpsInput.setText("300");
+		if (Storage.nxtClientSettings_GameWorldScaling < 33){
+			Storage.nxtClientSettings_GameWorldScaling = 33;
+			NXTSettingsGUI.GameWorldScalingInput.setText("33");
+		} else if (Storage.nxtClientSettings_GameWorldScaling > 200){
+			Storage.nxtClientSettings_GameWorldScaling = 200;
+			NXTSettingsGUI.GameWorldScalingInput.setText("200");
 		}
 
-		// Max Backgound FPS
+		// UI Scaling
 
-		if (NXTSettingsGUI.MaxBackgroundFpsInput.getText() == null ||
-			NXTSettingsGUI.MaxBackgroundFpsInput.getText().equals("")){
-			NXTSettingsGUI.MaxBackgroundFpsInput.setText("30");
-		}  else {
-			Storage.nxtGraphicsSetting_MaxBackgroundFps = new Integer(NXTSettingsGUI.MaxBackgroundFpsInput.getText().trim().replace(",", ""));
-		}
-
-		if (Storage.nxtGraphicsSetting_MaxBackgroundFps < 5){
-			Storage.nxtGraphicsSetting_MaxBackgroundFps = 5;
-			NXTSettingsGUI.MaxBackgroundFpsInput.setText("5");
-		} else if (Storage.nxtGraphicsSetting_MaxBackgroundFps > 300){
-			Storage.nxtGraphicsSetting_MaxBackgroundFps = 300;
-			NXTSettingsGUI.MaxBackgroundFpsInput.setText("300");
-		}
-
-		// Game Render Scaling
-
-		if (NXTSettingsGUI.GameRenderScaleInput.getText() == null ||
-			NXTSettingsGUI.GameRenderScaleInput.getText().equals("")){
-			NXTSettingsGUI.GameRenderScaleInput.setText("100");
+		if (NXTSettingsGUI.UIScalingInput.getText() == null ||
+			NXTSettingsGUI.UIScalingInput.getText().equals("")){
+			NXTSettingsGUI.UIScalingInput.setText("100");
 		} else {
-			Storage.nxtClientSettings_GameRenderScale = new Integer(NXTSettingsGUI.GameRenderScaleInput.getText().trim().replace(",", ""));
+			Storage.nxtClientSettings_UIScaling = new Integer(NXTSettingsGUI.UIScalingInput.getText().trim().replace(",", ""));
 		}
 
-		if (Storage.nxtClientSettings_GameRenderScale < 33){
-			Storage.nxtClientSettings_GameRenderScale = 33;
-			NXTSettingsGUI.GameRenderScaleInput.setText("33");
-		} else if (Storage.nxtClientSettings_GameRenderScale > 200){
-			Storage.nxtClientSettings_GameRenderScale = 200;
-			NXTSettingsGUI.GameRenderScaleInput.setText("200");
-		}
-
-		// Interface Scaling
-
-		if (NXTSettingsGUI.InterfaceScaleInput.getText() == null ||
-			NXTSettingsGUI.InterfaceScaleInput.getText().equals("")){
-			NXTSettingsGUI.InterfaceScaleInput.setText("100");
-		} else {
-			Storage.nxtClientSettings_InterfaceScale = new Integer(NXTSettingsGUI.InterfaceScaleInput.getText().trim().replace(",", ""));
-		}
-
-		if (Storage.nxtClientSettings_InterfaceScale < 100){
-			Storage.nxtClientSettings_InterfaceScale = 100;
-			NXTSettingsGUI.InterfaceScaleInput.setText("100");
-		} else if (Storage.nxtClientSettings_InterfaceScale > 400){
-			Storage.nxtClientSettings_InterfaceScale = 400;
-			NXTSettingsGUI.InterfaceScaleInput.setText("400");
+		if (Storage.nxtClientSettings_UIScaling < 100){
+			Storage.nxtClientSettings_UIScaling = 100;
+			NXTSettingsGUI.UIScalingInput.setText("100");
+		} else if (Storage.nxtClientSettings_UIScaling > 400){
+			Storage.nxtClientSettings_UIScaling = 400;
+			NXTSettingsGUI.UIScalingInput.setText("400");
 		}
 
 	}

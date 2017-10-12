@@ -69,7 +69,9 @@ public class NXTSettingsGUI extends JFrame {
 		DepthOfFieldComboBox,
 		TextureQualityComboBox,
 		AnisotropicFilteringComboBox,
-		VolumetricLightingComboBox;
+		VolumetricLightingComboBox,
+		MaxForegroundFpsComboBox,
+		MaxBackgroundFpsComboBox;
 
 	public static JSlider
 		BrightnessSlider,
@@ -80,10 +82,8 @@ public class NXTSettingsGUI extends JFrame {
 		InGameVoiceOverSlider;
 
 	public static JTextField
-		MaxForegroundFpsInput,
-		MaxBackgroundFpsInput,
-		GameRenderScaleInput,
-		InterfaceScaleInput,
+		GameWorldScalingInput,
+		UIScalingInput,
 		UsernameInput,
 		FavouriteWorld1Input,
 		FavouriteWorld2Input,
@@ -280,7 +280,7 @@ public class NXTSettingsGUI extends JFrame {
 		GraphicsSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		GraphicsSettingsTab.setLayout(null);
 
-		final JLabel RemoveRoofsLabel = new JLabel("Remove Roofs");
+		final JLabel RemoveRoofsLabel = new JLabel("Remove roofs");
 		RemoveRoofsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		RemoveRoofsLabel.setBounds(15 + (30 * 0), 15, 150, 25);
 		GraphicsSettingsTab.add(RemoveRoofsLabel);
@@ -292,7 +292,7 @@ public class NXTSettingsGUI extends JFrame {
 		RemoveRoofsComboBox.setSelectedIndex(1);
 		GraphicsSettingsTab.add(RemoveRoofsComboBox);
 
-		final JLabel DrawDistanceLabel = new JLabel("Draw Distance");
+		final JLabel DrawDistanceLabel = new JLabel("Draw distance");
 		DrawDistanceLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		DrawDistanceLabel.setBounds(15, 15 + (30 * 1), 150, 25);
 		GraphicsSettingsTab.add(DrawDistanceLabel);
@@ -347,7 +347,7 @@ public class NXTSettingsGUI extends JFrame {
 		AntiAliasingQualityComboBox.setBounds(165, 15 + (30 * 5), 175, 25);
 		GraphicsSettingsTab.add(AntiAliasingQualityComboBox);
 
-		final JLabel WaterQualityLabel = new JLabel("Water Quality");
+		final JLabel WaterQualityLabel = new JLabel("Water");
 		WaterQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		WaterQualityLabel.setBounds(15, 15 + (30 * 6), 150, 25);
 		GraphicsSettingsTab.add(WaterQualityLabel);
@@ -357,7 +357,7 @@ public class NXTSettingsGUI extends JFrame {
 		WaterQualityComboBox.setBounds(165, 15 + (30 * 6), 175, 25);
 		GraphicsSettingsTab.add(WaterQualityComboBox);
 
-		final JLabel LightingDetailLabel = new JLabel("Lighting Detail");
+		final JLabel LightingDetailLabel = new JLabel("Lighting detail");
 		LightingDetailLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LightingDetailLabel.setBounds(15, 15 + (30 * 7), 150, 25);
 		GraphicsSettingsTab.add(LightingDetailLabel);
@@ -379,7 +379,7 @@ public class NXTSettingsGUI extends JFrame {
 		AmbientOcclusionComboBox.setToolTipText(Storage.AO_TOOLTIP);
 		GraphicsSettingsTab.add(AmbientOcclusionComboBox);
 
-		final JLabel BloomQualityLabel = new JLabel("Bloom Quality");
+		final JLabel BloomQualityLabel = new JLabel("Bloom");
 		BloomQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		BloomQualityLabel.setBounds(15, 15 + (30 * 9), 150, 25);
 		GraphicsSettingsTab.add(BloomQualityLabel);
@@ -392,6 +392,9 @@ public class NXTSettingsGUI extends JFrame {
 		BloomQualityComboBox.setBounds(165, 15 + (30 * 9), 175, 25);
 		GraphicsSettingsTab.add(BloomQualityComboBox);
 
+		/*
+		//TO-DO: Re-Add this when it's official.
+
 		final JLabel DepthOfFieldLabel = new JLabel("Depth of Field");
 		DepthOfFieldLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		DepthOfFieldLabel.setToolTipText(Storage.DOF_TOOLTIP);
@@ -403,34 +406,32 @@ public class NXTSettingsGUI extends JFrame {
 		DepthOfFieldComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_DepthOfField = DepthOfFieldComboBox.getSelectedIndex());
 		DepthOfFieldComboBox.setBounds(165, 15 + (30 * 10), 175, 25);
 		GraphicsSettingsTab.add(DepthOfFieldComboBox);
-
-		final JLabel MaxForegroundFpsLabel = new JLabel("Maximum Foreground FPS");
+		*/
+		
+		final JLabel MaxForegroundFpsLabel = new JLabel("Foreground FPS");
 		MaxForegroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MaxForegroundFpsLabel.setToolTipText(Storage.MAXFOREGOUNDFPS_TOOLTIP);
 		MaxForegroundFpsLabel.setBounds(15, 15 + (30 * 11), 150, 25);
 		GraphicsSettingsTab.add(MaxForegroundFpsLabel);
 
-		MaxForegroundFpsInput = new JFormattedTextField(WorldNumberFormatter);
-		MaxForegroundFpsInput.setFont(new Font("Dialog", Font.PLAIN, 12));
-		MaxForegroundFpsInput.setHorizontalAlignment(SwingConstants.RIGHT);
-		MaxForegroundFpsInput.setToolTipText(Storage.MAXFOREGOUNDFPS_TOOLTIP);
-		MaxForegroundFpsInput.setText("" + (Storage.FrameRate + 10));
-		MaxForegroundFpsInput.setBounds(165, 15 + (30 * 11), 175, 25);
-		GraphicsSettingsTab.add(MaxForegroundFpsInput);
+		MaxForegroundFpsComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[14]);
+		MaxForegroundFpsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_MaxForegroundFps = ((MaxForegroundFpsComboBox.getSelectedIndex()+1)*5));
+		MaxForegroundFpsComboBox.setBounds(165, 15 + (30 * 11), 175, 25);
+		GraphicsSettingsTab.add(MaxForegroundFpsComboBox);
+		
+		final JLabel UIScalingLabel = new JLabel("UI Scaling");
+		UIScalingLabel.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
+		UIScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		UIScalingLabel.setBounds(15, 15 + (30 * 12), 150, 25);
+		GraphicsSettingsTab.add(UIScalingLabel);
 
-		final JLabel InterfaceScalingLabel = new JLabel("Interface Scale");
-		InterfaceScalingLabel.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
-		InterfaceScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InterfaceScalingLabel.setBounds(15, 15 + (30 * 12), 150, 25);
-		GraphicsSettingsTab.add(InterfaceScalingLabel);
-
-		InterfaceScaleInput = new JFormattedTextField(InterfaceScalingNumberFormatter);
-		InterfaceScaleInput.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
-		InterfaceScaleInput.setText("100");
-		InterfaceScaleInput.setHorizontalAlignment(SwingConstants.RIGHT);
-		InterfaceScaleInput.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InterfaceScaleInput.setBounds(165, 15 + (30 * 12), 175, 25);
-		GraphicsSettingsTab.add(InterfaceScaleInput);
+		UIScalingInput = new JFormattedTextField(InterfaceScalingNumberFormatter);
+		UIScalingInput.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
+		UIScalingInput.setText("100");
+		UIScalingInput.setHorizontalAlignment(SwingConstants.RIGHT);
+		UIScalingInput.setFont(new Font("Dialog", Font.PLAIN, 12));
+		UIScalingInput.setBounds(165, 15 + (30 * 12), 175, 25);
+		GraphicsSettingsTab.add(UIScalingInput);
 
 
 
@@ -453,7 +454,7 @@ public class NXTSettingsGUI extends JFrame {
 		BrightnessSlider.setBackground(optionBackgroundColor);
 		GraphicsSettingsTab.add(BrightnessSlider);
 
-		final JLabel TextureQualityLabel = new JLabel("Texture Quality");
+		final JLabel TextureQualityLabel = new JLabel("Textures");
 		TextureQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TextureQualityLabel.setBounds(355, 15 + (30 * 1), 150, 25);
 		GraphicsSettingsTab.add(TextureQualityLabel);
@@ -485,7 +486,7 @@ public class NXTSettingsGUI extends JFrame {
 		VolumetricLightingComboBox.setBounds(505, 15 + (30 * 3), 175, 25);
 		GraphicsSettingsTab.add(VolumetricLightingComboBox);
 
-		final JLabel FlickeringEffectsLabel = new JLabel("Flickering Effects");
+		final JLabel FlickeringEffectsLabel = new JLabel("Flickering effects");
 		FlickeringEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		FlickeringEffectsLabel.setBounds(355, 15 + (30 * 4), 150, 25);
 		GraphicsSettingsTab.add(FlickeringEffectsLabel);
@@ -510,7 +511,7 @@ public class NXTSettingsGUI extends JFrame {
 		ShadowsCheckbox.setBounds(665, 15 + (30 * 5) + 5, 15, 15);
 		GraphicsSettingsTab.add(ShadowsCheckbox);
 
-		final JLabel CustomCursorsLabel = new JLabel("Custom Cursors");
+		final JLabel CustomCursorsLabel = new JLabel("Custom cursors");
 		CustomCursorsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		CustomCursorsLabel.setBounds(355, 15 + (30 * 6), 150, 25);
 		GraphicsSettingsTab.add(CustomCursorsLabel);
@@ -522,7 +523,7 @@ public class NXTSettingsGUI extends JFrame {
 		CustomCursorsCheckbox.setSelected(true);
 		GraphicsSettingsTab.add(CustomCursorsCheckbox);
 
-		final JLabel LoadingScreensLabel = new JLabel("Loading Screens");
+		final JLabel LoadingScreensLabel = new JLabel("Loading screens");
 		LoadingScreensLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LoadingScreensLabel.setBounds(355, 15 + (30 * 7), 150, 25);
 		GraphicsSettingsTab.add(LoadingScreensLabel);
@@ -534,7 +535,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoadingScreensCheckbox.setSelected(true);
 		GraphicsSettingsTab.add(LoadingScreensCheckbox);
 
-		final JLabel GroundDecorationsLabel = new JLabel("Ground Decorations");
+		final JLabel GroundDecorationsLabel = new JLabel("Ground decoration");
 		GroundDecorationsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		GroundDecorationsLabel.setBounds(355, 15 + (30 * 8), 150, 25);
 		GraphicsSettingsTab.add(GroundDecorationsLabel);
@@ -545,7 +546,7 @@ public class NXTSettingsGUI extends JFrame {
 		GroundDecorationsCheckbox.setBounds(665, 15 + (30 * 8) + 5, 15, 15);
 		GraphicsSettingsTab.add(GroundDecorationsCheckbox);
 
-		final JLabel TerrainBlendingLabel = new JLabel("Terrain Blending");
+		final JLabel TerrainBlendingLabel = new JLabel("Terrain blending");
 		TerrainBlendingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TerrainBlendingLabel.setBounds(355, 15 + (30 * 9), 150, 25);
 		GraphicsSettingsTab.add(TerrainBlendingLabel);
@@ -559,6 +560,9 @@ public class NXTSettingsGUI extends JFrame {
 		TerrainBlendingCheckbox.setBounds(665, 15 + (30 * 9) + 5, 15, 15);
 		GraphicsSettingsTab.add(TerrainBlendingCheckbox);
 
+		/*
+		//TO-DO: Re-Add this when it's official.
+
 		final JLabel HeatHazeLabel = new JLabel("Heat Haze");
 		HeatHazeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		HeatHazeLabel.setToolTipText(Storage.HEATHAZE_TOOLTIP);
@@ -569,34 +573,32 @@ public class NXTSettingsGUI extends JFrame {
 		HeatHazeCheckbox.setHorizontalAlignment(SwingConstants.CENTER);
 		HeatHazeCheckbox.setBounds(665, 15 + (30 * 10) + 5, 15, 15);
 		GraphicsSettingsTab.add(HeatHazeCheckbox);
-
-		final JLabel MaxBackgroundFpsLabel = new JLabel("Maximum Background FPS");
+		*/
+		
+		final JLabel MaxBackgroundFpsLabel = new JLabel("Background FPS");
 		MaxBackgroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MaxBackgroundFpsLabel.setToolTipText(Storage.MAXBACKGOUNDFPS_TOOLTIP);
 		MaxBackgroundFpsLabel.setBounds(355, 15 + (30 * 11), 150, 25);
 		GraphicsSettingsTab.add(MaxBackgroundFpsLabel);
+		
+		MaxBackgroundFpsComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[14]);
+		MaxBackgroundFpsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_MaxBackgroundFps = ((MaxBackgroundFpsComboBox.getSelectedIndex()+1)*5));
+		MaxBackgroundFpsComboBox.setBounds(505, 15 + (30 * 11), 175, 25);
+		GraphicsSettingsTab.add(MaxBackgroundFpsComboBox);
+		
+		final JLabel GameWorldScalingLabel = new JLabel("Game World Scaling");
+		GameWorldScalingLabel.setToolTipText(Storage.GAMESCALING_TOOLTIP);
+		GameWorldScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		GameWorldScalingLabel.setBounds(355, 15 + (30 * 12), 150, 25);
+		GraphicsSettingsTab.add(GameWorldScalingLabel);
 
-		MaxBackgroundFpsInput = new JFormattedTextField(WorldNumberFormatter);
-		MaxBackgroundFpsInput.setFont(new Font("Dialog", Font.PLAIN, 12));
-		MaxBackgroundFpsInput.setHorizontalAlignment(SwingConstants.RIGHT);
-		MaxBackgroundFpsInput.setToolTipText(Storage.MAXBACKGOUNDFPS_TOOLTIP);
-		MaxBackgroundFpsInput.setText("30");
-		MaxBackgroundFpsInput.setBounds(505, 15 + (30 * 11), 175, 25);
-		GraphicsSettingsTab.add(MaxBackgroundFpsInput);
-
-		final JLabel GameScalingLabel = new JLabel("Game Render Scale");
-		GameScalingLabel.setToolTipText(Storage.GAMESCALING_TOOLTIP);
-		GameScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		GameScalingLabel.setBounds(355, 15 + (30 * 12), 150, 25);
-		GraphicsSettingsTab.add(GameScalingLabel);
-
-		GameRenderScaleInput = new JFormattedTextField(GameScalingNumberFormatter);
-		GameRenderScaleInput.setToolTipText(Storage.GAMESCALING_TOOLTIP);
-		GameRenderScaleInput.setText("100");
-		GameRenderScaleInput.setHorizontalAlignment(SwingConstants.RIGHT);
-		GameRenderScaleInput.setFont(new Font("Dialog", Font.PLAIN, 12));
-		GameRenderScaleInput.setBounds(505, 15 + (30 * 12), 175, 25);
-		GraphicsSettingsTab.add(GameRenderScaleInput);
+		GameWorldScalingInput = new JFormattedTextField(GameScalingNumberFormatter);
+		GameWorldScalingInput.setToolTipText(Storage.GAMESCALING_TOOLTIP);
+		GameWorldScalingInput.setText("100");
+		GameWorldScalingInput.setHorizontalAlignment(SwingConstants.RIGHT);
+		GameWorldScalingInput.setFont(new Font("Dialog", Font.PLAIN, 12));
+		GameWorldScalingInput.setBounds(505, 15 + (30 * 12), 175, 25);
+		GraphicsSettingsTab.add(GameWorldScalingInput);
 
 
 

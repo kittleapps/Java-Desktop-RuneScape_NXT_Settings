@@ -242,6 +242,8 @@ public class JCache {
 							Storage.nxtGraphicsSetting_Brightness = new Integer(rs.getString("DATA"));
 							NXTSettingsGUI.BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
 						}
+						/*
+						//TO-DO: Re-Add this when it's official.
 						else if (rs.getString("KEY").equals("DOF")) {
 							Storage.nxtGraphicsSetting_DepthOfField = new Integer(rs.getString("DATA"));
 							NXTSettingsGUI.DepthOfFieldComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DepthOfField);
@@ -250,62 +252,56 @@ public class JCache {
 							Storage.nxtGraphicsSetting_HeatHaze = rs.getString("DATA").equals("1");
 							NXTSettingsGUI.HeatHazeCheckbox.setSelected(Storage.nxtGraphicsSetting_HeatHaze);
 						}
+						*/
 						else if (rs.getString("KEY").equals("MaxForegroundFps")) {
 							Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(rs.getString("DATA"));
-							if (Storage.nxtGraphicsSetting_MaxForegroundFps < 5){
-								Storage.nxtGraphicsSetting_MaxForegroundFps = 5;
-							} else if (Storage.nxtGraphicsSetting_MaxForegroundFps > 300){
-								Storage.nxtGraphicsSetting_MaxForegroundFps = 300;
+							int ID = (Storage.nxtGraphicsSetting_MaxForegroundFps/5)-1;
+							if (ID < 0){
+								ID = 0;
 							}
-							NXTSettingsGUI.MaxForegroundFpsInput.setText(""+Storage.nxtGraphicsSetting_MaxForegroundFps);
-							if (NXTSettingsGUI.MaxForegroundFpsInput.getText().equals("") ||
-								NXTSettingsGUI.MaxForegroundFpsInput.getText() == null){
-								NXTSettingsGUI.MaxForegroundFpsInput.setText(""+(Storage.FrameRate + 10));
-								Storage.nxtGraphicsSetting_MaxForegroundFps = Storage.FrameRate + 10;
+							if (ID > Storage.GRAPHICS_OPTIONS[14].length){
+								ID = Storage.GRAPHICS_OPTIONS[14].length;
 							}
+							NXTSettingsGUI.MaxForegroundFpsComboBox.setSelectedIndex(ID);
 						}
 						else if (rs.getString("KEY").equals("MaxBackgroundFps")) {
 							Storage.nxtGraphicsSetting_MaxBackgroundFps = new Integer(rs.getString("DATA"));
-							if (Storage.nxtGraphicsSetting_MaxBackgroundFps < 5){
-								Storage.nxtGraphicsSetting_MaxBackgroundFps = 5;
-							} else if (Storage.nxtGraphicsSetting_MaxBackgroundFps > 300){
-								Storage.nxtGraphicsSetting_MaxBackgroundFps = 300;
+							int ID = (Storage.nxtGraphicsSetting_MaxBackgroundFps/5)-1;
+							if (ID < 0){
+								ID = 0;
 							}
-							NXTSettingsGUI.MaxBackgroundFpsInput.setText(""+Storage.nxtGraphicsSetting_MaxBackgroundFps);
-							if (NXTSettingsGUI.MaxBackgroundFpsInput.getText().equals("") ||
-								NXTSettingsGUI.MaxBackgroundFpsInput.getText() == null){
-								NXTSettingsGUI.MaxBackgroundFpsInput.setText("30");
-								Storage.nxtGraphicsSetting_MaxBackgroundFps = 30;
+							if (ID > Storage.GRAPHICS_OPTIONS[14].length){
+								ID = Storage.GRAPHICS_OPTIONS[14].length;
 							}
+							NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex(ID);
 						}
-
 						else if (rs.getString("KEY").equals("GameRenderScale")) {
-							Storage.nxtClientSettings_GameRenderScale = new Integer(rs.getString("DATA"));
-							if (Storage.nxtClientSettings_GameRenderScale < 33){
-								Storage.nxtClientSettings_GameRenderScale = 33;
-							} else if (Storage.nxtClientSettings_GameRenderScale > 200){
-								Storage.nxtClientSettings_GameRenderScale = 200;
+							Storage.nxtClientSettings_GameWorldScaling = new Integer(rs.getString("DATA"));
+							if (Storage.nxtClientSettings_GameWorldScaling < 33){
+								Storage.nxtClientSettings_GameWorldScaling = 33;
+							} else if (Storage.nxtClientSettings_GameWorldScaling > 200){
+								Storage.nxtClientSettings_GameWorldScaling = 200;
 							}
-							NXTSettingsGUI.GameRenderScaleInput.setText(""+Storage.nxtClientSettings_GameRenderScale);
-							if (NXTSettingsGUI.GameRenderScaleInput.getText().equals("") ||
-								NXTSettingsGUI.GameRenderScaleInput.getText() == null){
-								NXTSettingsGUI.GameRenderScaleInput.setText("100");
-								Storage.nxtClientSettings_GameRenderScale = 100;
+							NXTSettingsGUI.GameWorldScalingInput.setText(""+Storage.nxtClientSettings_GameWorldScaling);
+							if (NXTSettingsGUI.GameWorldScalingInput.getText().equals("") ||
+								NXTSettingsGUI.GameWorldScalingInput.getText() == null){
+								NXTSettingsGUI.GameWorldScalingInput.setText("100");
+								Storage.nxtClientSettings_GameWorldScaling = 100;
 							}
 						}
 
 						else if (rs.getString("KEY").equals("InterfaceScale")) {
-							Storage.nxtClientSettings_InterfaceScale = new Integer(rs.getString("DATA"));
-							if (Storage.nxtClientSettings_InterfaceScale < 100){
-								Storage.nxtClientSettings_InterfaceScale = 100;
-							} else if (Storage.nxtClientSettings_InterfaceScale > 400){
-								Storage.nxtClientSettings_InterfaceScale = 400;
+							Storage.nxtClientSettings_UIScaling = new Integer(rs.getString("DATA"));
+							if (Storage.nxtClientSettings_UIScaling < 100){
+								Storage.nxtClientSettings_UIScaling = 100;
+							} else if (Storage.nxtClientSettings_UIScaling > 400){
+								Storage.nxtClientSettings_UIScaling = 400;
 							}
-							NXTSettingsGUI.InterfaceScaleInput.setText(""+Storage.nxtClientSettings_InterfaceScale);
-							if (NXTSettingsGUI.InterfaceScaleInput.getText().equals("") ||
-								NXTSettingsGUI.InterfaceScaleInput.getText() == null){
-								NXTSettingsGUI.InterfaceScaleInput.setText("100");
-								Storage.nxtClientSettings_InterfaceScale = 100;
+							NXTSettingsGUI.UIScalingInput.setText(""+Storage.nxtClientSettings_UIScaling);
+							if (NXTSettingsGUI.UIScalingInput.getText().equals("") ||
+								NXTSettingsGUI.UIScalingInput.getText() == null){
+								NXTSettingsGUI.UIScalingInput.setText("100");
+								Storage.nxtClientSettings_UIScaling = 100;
 							}
 						}
 						else if (rs.getString("KEY").equals("VolumeLoginMusic")) {
@@ -485,9 +481,12 @@ public class JCache {
 			Write(true,	"LightingQuality",		Storage.nxtGraphicsSetting_LightingQuality);
 			Write(true,	"AmbientOcclusion",		Storage.nxtGraphicsSetting_AmbientOcclusion);
 			Write(true,	"Bloom",				Storage.nxtGraphicsSetting_Bloom);
+			/*
+			//TO-DO: Re-Add this when it's official.
 			Write(true,	"DOF",					Storage.nxtGraphicsSetting_DepthOfField);
+			*/
 			Write(true,	"MaxForegroundFps",		Storage.nxtGraphicsSetting_MaxForegroundFps);
-			Write(true,	"InterfaceScale",		Storage.nxtClientSettings_InterfaceScale);
+			Write(true,	"InterfaceScale",		Storage.nxtClientSettings_UIScaling);
 
 			// Right Column
 			Write(true,	"Brightness",			Storage.nxtGraphicsSetting_Brightness);
@@ -527,14 +526,18 @@ public class JCache {
 			} else {
 				Write(true,	"GroundBlending",	0);
 			}
+			/*
+			
+			//TO-DO: Re-Add this when it's official.
 			if (Storage.nxtGraphicsSetting_HeatHaze) {
 				Write(true,	"HeatHaze",	1);
 			} else {
 				Write(true,	"HeatHaze",	0);
 			}
+			*/
 
 			Write(true,		"MaxBackgroundFps",											Storage.nxtGraphicsSetting_MaxBackgroundFps);
-			Write(true,		"GameRenderScale",											Storage.nxtClientSettings_GameRenderScale);
+			Write(true,		"GameRenderScale",											Storage.nxtClientSettings_GameWorldScaling);
 			Write(true,		"VolumeLoginMusic",											Storage.nxtClientSettings_LoginMusicVolume);
 			Write(true,		"VolumeMainMusic",											Storage.nxtClientSettings_InGameMusicVolume);
 			Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME,				Storage.nxtClientSettings_InGameMusicVolume);
