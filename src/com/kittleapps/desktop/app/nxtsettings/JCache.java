@@ -527,7 +527,7 @@ public class JCache {
 				Write(true,	"GroundBlending",	0);
 			}
 			/*
-			
+
 			//TO-DO: Re-Add this when it's official.
 			if (Storage.nxtGraphicsSetting_HeatHaze) {
 				Write(true,	"HeatHaze",	1);
