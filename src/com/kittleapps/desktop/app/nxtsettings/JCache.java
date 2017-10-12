@@ -6,9 +6,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -108,15 +113,29 @@ public class JCache {
 																  .replace("true", "On.")
 																  .replace("false", "Off.")
 																  .replace("default", "Automatic.");
-							if (CompatMode.equals("On.")) {
-								Storage.nxtClientSettings_CompatibilityMode = 0;
-							} else if (CompatMode.equals("Off.")) {
-								Storage.nxtClientSettings_CompatibilityMode = 1;
-							} else if (CompatMode.equals("Automatic.")) {
-								Storage.nxtClientSettings_CompatibilityMode = 2;
+							Storage.nxtClientSettings_CompatibilityMode = CompatMode.equalsIgnoreCase("On.");
+						}
+						if (current_line.startsWith("dont_ask_graphics=")) {
+							Storage.nxtClientSettings_AskToSwitchToCompatibility = current_line.trim()
+																								.replace("dont_ask_graphics=", "")
+																								.equals("1");
+						}
+						if (current_line.startsWith("Language=")) {
+							Storage.nxtClientSettings_LanguageSelected = 0;
+							String TempString = current_line.trim().replace("Language=", "");
+							if (TempString.equals("0")){
+								Storage.nxtClientSettings_LanguageSelected = 0;
+							} 
+							else if (TempString.equals("1")){
+								Storage.nxtClientSettings_LanguageSelected = 1;
+							}
+							else if (TempString.equals("2")){
+								Storage.nxtClientSettings_LanguageSelected = 2;
+							}
+							else if (TempString.equals("3")){
+								Storage.nxtClientSettings_LanguageSelected = 3;
 							} else {
-								// Default "Automatic" on-error.
-								Storage.nxtClientSettings_CompatibilityMode = 2;
+								Storage.nxtClientSettings_LanguageSelected = 0;
 							}
 						}
 						if (current_line.startsWith("dont_ask_graphics=")) {
@@ -125,9 +144,9 @@ public class JCache {
 																								.equals("1");
 						}
 						if (current_line.startsWith("confirm_quit=")) {
-							Storage.nxtClientSettings_ConfirmQuit = current_line.trim()
-																				.replace("confirm_quit=", "")
-																				.equals("1");
+							Storage.nxtClientSettings_AskBeforeQuitting = current_line.trim()
+																					  .replace("confirm_quit=", "")
+																					  .equals("1");
 						}
 						if (current_line.startsWith("user_folder=")) {
 							Storage.Cache_settings_location = current_line.trim()
@@ -136,6 +155,15 @@ public class JCache {
 																		  "/RuneScape/Settings.jcache";
 						}
 					}
+					if (Storage.nxtClientSettings_LanguageSelected <= -1 || Storage.nxtClientSettings_LanguageSelected >= 4) {
+						Storage.nxtClientSettings_LanguageSelected = 0;
+						NXTSettingsGUI.LanguageSelectionComboBox.setSelectedIndex(Storage.nxtClientSettings_LanguageSelected);
+					} else {
+						NXTSettingsGUI.LanguageSelectionComboBox.setSelectedIndex(Storage.nxtClientSettings_LanguageSelected);
+					}
+					NXTSettingsGUI.CompatibilityModeCheckBox.setSelected(Storage.nxtClientSettings_CompatibilityMode);
+					NXTSettingsGUI.CompatibilityModeOnErrorCheckBox.setSelected(Storage.nxtClientSettings_AskToSwitchToCompatibility);
+					NXTSettingsGUI.AskBeforeQuittingCheckBox.setSelected(Storage.nxtClientSettings_AskBeforeQuitting);
 					reader.close();
 				} catch(final IOException e) {
 					e.printStackTrace();
@@ -545,9 +573,45 @@ public class JCache {
 			// Execute/Save the changes
 			Storage.stmt.executeBatch();
 			Storage.stmt.clearBatch();
+			
+			Path Preferences = Storage.preferences_config.toPath();
+			List<String> fileContent;
+			try {
+				fileContent = new ArrayList<>(Files.readAllLines(Preferences, StandardCharsets.UTF_8));
+				for (int i = 0; i < fileContent.size(); i++) {
+				    if (fileContent.get(i).startsWith("compatibility=")) {
+				    	String Type = "true";
+				    	if (!Storage.nxtClientSettings_CompatibilityMode){
+				    		Type = "false";
+				    	}
+				        fileContent.set(i, "compatibility="+Type);
+				    }
+				    if (fileContent.get(i).startsWith("dont_ask_graphics=")) {
+				    	String Type = "1";
+				    	if (!Storage.nxtClientSettings_AskToSwitchToCompatibility){
+				    		Type = "0";
+				    	}
+				        fileContent.set(i, "dont_ask_graphics="+Type);
+				    }
+				    if (fileContent.get(i).startsWith("confirm_quit=")) {
+				    	String Type = "1";
+				    	if (!Storage.nxtClientSettings_AskBeforeQuitting){
+				    		Type = "0";
+				    	}
+				        fileContent.set(i, "confirm_quit="+Type);
+				    }
+				    if (fileContent.get(i).startsWith("Language=")) {
+				        fileContent.set(i, "Language="+Storage.nxtClientSettings_LanguageSelected);
+				    }
+				}
+				Files.write(Preferences, fileContent, StandardCharsets.UTF_8);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			System.out.print(" Saved.\n");
-			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Saved updated values to:\n\n"+Storage.Cache_settings_location);
-
+			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Saved updated values.");
+			
 		} catch(final SQLException e) {
 			e.printStackTrace();
 		}

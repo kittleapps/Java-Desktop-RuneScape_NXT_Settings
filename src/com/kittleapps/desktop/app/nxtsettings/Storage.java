@@ -30,7 +30,6 @@ public class Storage {
 		nxtGraphicsSetting_MaxForegroundFps,
 		nxtGraphicsSetting_MaxBackgroundFps,
 
-		nxtClientSettings_CompatibilityMode,
 		nxtClientSettings_FavouriteWorld1,
 		nxtClientSettings_FavouriteWorld2,
 		nxtClientSettings_FavouriteWorld3,
@@ -42,6 +41,7 @@ public class Storage {
 		nxtClientSettings_LoginWallpaperID,
 		nxtClientSettings_UIScaling,
 		nxtClientSettings_GameWorldScaling,
+		nxtClientSettings_LanguageSelected,
 		splash_x_position,
 		splash_y_position,
 		FrameRate,
@@ -77,19 +77,20 @@ public class Storage {
 	;
 
 	public static boolean
-		nxtGraphicsSetting_FlickeringEffects,
-		nxtGraphicsSetting_TerrainBlending,
-		nxtGraphicsSetting_GroundDecor,
+		nxtGraphicsSetting_FlickeringEffects = true,
+		nxtGraphicsSetting_TerrainBlending = true,
+		nxtGraphicsSetting_GroundDecor = true,
 		nxtGraphicsSetting_Shadows,
-		nxtGraphicsSetting_CustomCursors,
-		nxtGraphicsSetting_LoadingScreens,
+		nxtGraphicsSetting_CustomCursors = true,
+		nxtGraphicsSetting_LoadingScreens = true,
 		nxtClientSettings_GlobalMute,
-		nxtClientSettings_RandomizeLoginWallpaper,
-		nxtClientSettings_RememberUsername,
-		nxtClientSettings_ConfirmQuit,
-		nxtClientSettings_AskToSwitchToCompatibility,
+		nxtClientSettings_RandomizeLoginWallpaper = true,
+		nxtClientSettings_RememberUsername = true,
+		nxtClientSettings_CompatibilityMode,
+		nxtClientSettings_AskToSwitchToCompatibility = true,
+		nxtClientSettings_AskBeforeQuitting = true,
 		NXT_INSTALLED,
-		ShowSensitiveInfo = false
+		ShowSensitiveInfo
 	;
 
    public static File preferences_config, Settings_db;
@@ -138,6 +139,12 @@ public class Storage {
 				"~ftfi",
 				"~hideall",
 			}
+	};
+	public final static String[] LANGUAGES = {
+			"English",
+			"Deutsch",
+			"Fran\u00E7ias",
+			"Portugu\u00EAs"
 	};
 	public final static String[][] GRAPHICS_OPTIONS = {
 		// Graphics options used for Drop-Down menus in the graphics settings.
