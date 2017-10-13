@@ -32,9 +32,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.NumberFormatter;
 
 public class NXTSettingsGUI extends JFrame {
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = -4228920598014351419L;
 	public static JCheckBox
 		FlickeringEffectsCheckbox,
@@ -800,14 +797,14 @@ public class NXTSettingsGUI extends JFrame {
 		InGameVoiceOverBoostCheckbox.setBounds(620, 225, 85, 25);
 		InGameVoiceOverBoostCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(InGameVoiceOverBoostCheckbox);
-		
+
 		CompatibilityModeCheckBox = new JCheckBox("Compatibility Mode");
 		CompatibilityModeCheckBox.addActionListener(e -> Storage.nxtClientSettings_CompatibilityMode = CompatibilityModeCheckBox.isSelected());
 		CompatibilityModeCheckBox.setBackground(optionBackgroundColor);
 		CompatibilityModeCheckBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		CompatibilityModeCheckBox.setBounds(15, 255, 150, 25);
 		ClientSettingsTab.add(CompatibilityModeCheckBox);
-		
+
 		CompatibilityModeOnErrorCheckBox = new JCheckBox("Change to Compatibility on error?");
 		CompatibilityModeOnErrorCheckBox.addActionListener(e -> Storage.nxtClientSettings_AskToSwitchToCompatibility = CompatibilityModeOnErrorCheckBox.isSelected());
 		CompatibilityModeOnErrorCheckBox.setBackground(optionBackgroundColor);
@@ -821,25 +818,23 @@ public class NXTSettingsGUI extends JFrame {
 		AskBeforeQuittingCheckBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		AskBeforeQuittingCheckBox.setBounds(395, 255, 155, 25);
 		ClientSettingsTab.add(AskBeforeQuittingCheckBox);
-		
+
 		final JLabel LanguageSelectionLabel = new JLabel("Language");
 		LanguageSelectionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		LanguageSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LanguageSelectionLabel.setBounds(555, 255, 59, 25);
 		LanguageSelectionLabel.setLabelFor(LanguageSelectionComboBox);
 		ClientSettingsTab.add(LanguageSelectionLabel);
-		
+
 		LanguageSelectionComboBox = new JComboBox < Object > (Storage.LANGUAGES);
-		LanguageSelectionComboBox.addItemListener(e -> {
-			Storage.nxtClientSettings_LanguageSelected = LanguageSelectionComboBox.getSelectedIndex();
-			System.out.println(Storage.nxtClientSettings_LanguageSelected);
-		});
+		LanguageSelectionComboBox.addItemListener(e -> Storage.nxtClientSettings_LanguageSelected = LanguageSelectionComboBox.getSelectedIndex());
 		LanguageSelectionComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LanguageSelectionComboBox.setBounds(620, 255, 85, 25);
 		ClientSettingsTab.add(LanguageSelectionComboBox);
 
 
-		
+
+
 		/* Special Mechanics */
 
 
