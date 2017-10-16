@@ -428,6 +428,16 @@ public class Storage {
 					"Checking this will make the slider's maximum goto '254'<br>"+
 					"When the volume's over the default '127' it will allow a boosted volume to occur.<br>"+
 					"This allows for louder sound effects, like mining sounds, to be heard better."+
+			"</html>",
+	GRAPHICS_PRESET_TOOLTIP =
+			"<html>" +
+					"Checking this will unlock the graphics presets."+
+			"</html>",
+	GRAPHICS_PRESET_BUTTON_TOOLTIP =
+			"<html>" +
+					"Note: This will overwrite your current settings.<br>"+
+					"<br>"+
+					"You will be required to change them back manually, or re-read to restore prior to writing."+
 			"</html>"
 	;
 	public static void init() {
