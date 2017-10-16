@@ -284,26 +284,28 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-
-
 		final JPanel GraphicsSettingsTab = new JPanel();
 		tabbedPane.addTab("Graphics Settings", null, GraphicsSettingsTab, "Edit your graphics settings here.");
 		GraphicsSettingsTab.setBackground(backgroundColour);
 		GraphicsSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		GraphicsSettingsTab.setLayout(null);
 
-		final JLabel RemoveRoofsLabel = new JLabel("  Remove roofs");
-		RemoveRoofsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		RemoveRoofsLabel.setBounds(15 + (30 * 0), 15, 150, 25);
-		GraphicsSettingsTab.add(RemoveRoofsLabel);
+		
+		final JLabel BrightnessLabel = new JLabel("  Brightness");
+		BrightnessLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		BrightnessLabel.setBounds(15, 15 + (30 * 0), 150, 25);
+		GraphicsSettingsTab.add(BrightnessLabel);
 
-		RemoveRoofsComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[0]);
-		RemoveRoofsLabel.setLabelFor(RemoveRoofsComboBox);
-		RemoveRoofsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_RemoveRoofs = RemoveRoofsComboBox.getSelectedIndex());
-		RemoveRoofsComboBox.setToolTipText(Storage.REMOVEROOFS_TOOLTIP);
-		RemoveRoofsComboBox.setBounds(165, 15 + (30 * 0), 175, 25);
-		RemoveRoofsComboBox.setSelectedIndex(1);
-		GraphicsSettingsTab.add(RemoveRoofsComboBox);
+		BrightnessSlider = new JSlider();
+		BrightnessLabel.setLabelFor(BrightnessSlider);
+		BrightnessSlider.addChangeListener(e -> Storage.nxtGraphicsSetting_Brightness = BrightnessSlider.getValue());
+		BrightnessSlider.setSnapToTicks(true);
+		BrightnessSlider.setMaximum(4);
+		BrightnessSlider.setPaintTicks(true);
+		BrightnessSlider.setBounds(165, 15 + (30 * 0), 175, 25);
+		BrightnessSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		BrightnessSlider.setBackground(optionBackgroundColor);
+		GraphicsSettingsTab.add(BrightnessSlider);
 
 		final JLabel DrawDistanceLabel = new JLabel("  Draw distance");
 		DrawDistanceLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -436,23 +438,20 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-		final JLabel BrightnessLabel = new JLabel("  Brightness");
-		BrightnessLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		BrightnessLabel.setBounds(355, 15 + (30 * 0), 150, 25);
-		GraphicsSettingsTab.add(BrightnessLabel);
 
-		BrightnessSlider = new JSlider();
-		BrightnessLabel.setLabelFor(BrightnessSlider);
-		BrightnessSlider.addChangeListener(e -> Storage.nxtGraphicsSetting_Brightness = BrightnessSlider.getValue());
-		BrightnessSlider.setSnapToTicks(true);
-		BrightnessSlider.setMaximum(4);
-		BrightnessSlider.setPaintTicks(true);
-		BrightnessSlider.setBounds(505, 15 + (30 * 0), 175, 25);
-		BrightnessSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		BrightnessSlider.setBackground(optionBackgroundColor);
-		GraphicsSettingsTab.add(BrightnessSlider);
+		final JLabel RemoveRoofsLabel = new JLabel("  Remove roofs");
+		RemoveRoofsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		RemoveRoofsLabel.setBounds(355 + (30 * 0), 15, 150, 25);
+		GraphicsSettingsTab.add(RemoveRoofsLabel);
 
-
+		RemoveRoofsComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[0]);
+		RemoveRoofsLabel.setLabelFor(RemoveRoofsComboBox);
+		RemoveRoofsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_RemoveRoofs = RemoveRoofsComboBox.getSelectedIndex());
+		RemoveRoofsComboBox.setToolTipText(Storage.REMOVEROOFS_TOOLTIP);
+		RemoveRoofsComboBox.setBounds(505, 15 + (30 * 0), 175, 25);
+		RemoveRoofsComboBox.setSelectedIndex(1);
+		GraphicsSettingsTab.add(RemoveRoofsComboBox);
+		
 		final JLabel ShadowQualityLabel = new JLabel("  Shadow Quality");
 		ShadowQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		ShadowQualityLabel.setBounds(355, 15 + (30 * 1), 150, 25);
