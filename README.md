@@ -24,10 +24,8 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * All current graphics settings options
   * Includes "None" for the remove roofs option
     * This may cause graphical issues in some areas.
-  * Depth-of-Field is only using placeholder values currently, it's not enabled live at this moment. See more here: https://twitter.com/JagexDark/status/874975145621934080
-    * Same applies to Heat Haze
-  * Maximum Foreground/Background FPS, Game Render/Interface Scaling options are added. They are live, but currently their options are not.
-    * Scaling is currently experimental, and not meant for full use my players. Visual issues may happen.
+  * Game Render and Interface/UI Scaling options are added. They are live, but currently their options are not.
+    * The scaling mechanics are currently experimental, and not meant for full use my players. Visual issues may occur.
 * All audio options
   * Includes boosting the volumes for most audio streams
     * While I personally have not heard any quality-issues, this makes the in-game bars go past their normal limits visually.
@@ -62,11 +60,16 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Zezima Button.
   * I'll let you find out what that does in the Source Code, or while ran.
     * Hint: It's cosmetic, but a fun reference for some.
+* Compatibility Mode toggling
+* Switching to Compatibility Mode on-error (or when your GPU's drivers are outdated) toggling
+* Prompting on-exiting toggling
+* Language setting changing
+* Presets
+  * These follow the same ones in-game, with two joke ones, and the [RuneScape Wiki Guidelines](http://runescape.wikia.com/wiki/RuneScape:Images_and_media_policy#Content)
 - - - -
 **TO-DO**:
 * Add custom Developer Console history editing.
   * Hopefully includes editing values, and adding/removing values
-* Add support for changing Compatibility mode
-  * Will include some settings that are similiar for NXT like asking to close while logged in.
+* Exporting & Importing your settings in Json. (sensitive information excluded)
 * Re-add support to view your UID.
 * Even more cleanups! (Have to stay clean!)
