@@ -2,7 +2,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>NXTAPP_CONFIGURATION</groupId>
   <artifactId>NXTAPP_CONFIGURATION</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -46,4 +45,12 @@
     	<version>4.4.0</version>
 	</dependency>
   </dependencies>
+  <version>1.0-RC4</version>
+  <name>RuneScape NXT Settings</name>
+  <url>https://github.com/kittleapps/Java-Desktop-RuneScape_NXT_Settings/</url>
+  <description>A Java program, which allows editing of Jagex's NXT Client's graphics and client settings externally and offline. (Since the client requires an internet connection to load, which prevents editing some basic settings without one.)</description>
+  <organization>
+  	<name>Kittleapps</name>
+  	<url>https://github.com/kittleapps/</url>
+  </organization>
 </project>
