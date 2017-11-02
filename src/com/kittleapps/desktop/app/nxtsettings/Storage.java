@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 
 public class Storage {
 	public static int
+
+		// NXT Graphics settings options.
 		nxtGraphicsSetting_AnisotropicFiltering,
 		nxtGraphicsSetting_AntiAliasingMode,
 		nxtGraphicsSetting_AntiAliasingQuality,
@@ -30,6 +32,7 @@ public class Storage {
 		nxtGraphicsSetting_MaxForegroundFps,
 		nxtGraphicsSetting_MaxBackgroundFps,
 
+		// NXT Client settings options.
 		nxtClientSettings_FavouriteWorld1,
 		nxtClientSettings_FavouriteWorld2,
 		nxtClientSettings_FavouriteWorld3,
@@ -42,19 +45,28 @@ public class Storage {
 		nxtClientSettings_UIScaling,
 		nxtClientSettings_GameWorldScaling,
 		nxtClientSettings_LanguageSelected,
-		splash_x_position,
-		splash_y_position,
+
+		// In-Program application/storage options.
 		FrameRate,
 		OS_TYPE
 	;
 
 	public static String
-		OS = System.getProperty("os.name").toLowerCase(),
+
+		// NXT User settings storage.
 		nxtClientSettings_TemporaryUserID = "",
 		nxtClientSettings_TemporaryUsername = "",
 
-		// The following values are made just in case the vt-varc keys change numeral values for ease-of-changing.
+		// In-Program application/storage options.
+		OS = System.getProperty("os.name").toLowerCase(),
+		NXT_REGISTRY_LOCATION_BASE,
+		Cache_settings_location,
+		configuration_location
+	;
 
+	public final static String
+
+		// The following values are made just in case the vt-varc keys change numeral values for ease-of-changing.
 		CACHE_KEY_VT_VARC_CUSTOM_CURSORS = "987",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1 = "998",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2 = "999",
@@ -68,29 +80,35 @@ public class Storage {
 		CACHE_KEY_VT_VARC_LOADING_SCREENS = "3698",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3 = "4272",
 		CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
-		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
-
-		NXT_REGISTRY_LOCATION_BASE,
-		Cache_settings_location,
-		configuration_location,
-		launcher_client_position
+		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042"
 	;
 
 	public static boolean
+
+		// NXT Graphics settings options.
 		nxtGraphicsSetting_FlickeringEffects = true,
 		nxtGraphicsSetting_TerrainBlending = true,
 		nxtGraphicsSetting_GroundDecor = true,
 		nxtGraphicsSetting_Shadows,
 		nxtGraphicsSetting_CustomCursors = true,
 		nxtGraphicsSetting_LoadingScreens = true,
+
+		// NXT Client settigns options.
 		nxtClientSettings_GlobalMute,
 		nxtClientSettings_RandomizeLoginWallpaper = true,
 		nxtClientSettings_RememberUsername = true,
 		nxtClientSettings_CompatibilityMode,
 		nxtClientSettings_AskToSwitchToCompatibility = true,
 		nxtClientSettings_AskBeforeQuitting = true,
+
+		// In-Program application/storage options;
 		NXT_INSTALLED,
-		ShowSensitiveInfo
+		ShowSensitiveInfo,
+
+		// In-Program developer options;
+		DEVELOPER_DebugsEnabled,
+		DEVELOPER_ReadOnlyCache,
+		DEVELOPER_AlwaysShowSensitiveInfo
 	;
 
    public static File preferences_config, Settings_db;

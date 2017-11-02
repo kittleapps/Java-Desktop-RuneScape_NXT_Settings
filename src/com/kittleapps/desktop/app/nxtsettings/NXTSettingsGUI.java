@@ -129,7 +129,7 @@ public class NXTSettingsGUI extends JFrame {
 				//Initialize values, and load the program.
 				Storage.init();
 				frame = new NXTSettingsGUI();
-			} catch(final Exception e) {
+			}	catch(final Exception e) {
 				e.printStackTrace();
 			}
 		});
@@ -151,10 +151,10 @@ public class NXTSettingsGUI extends JFrame {
 		frame.setResizable(false);
 		frame.setTitle("NXT Settings");
 
-		try {
+		try	{
 			// Apply dark theme.
 			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-		} catch(ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
+		}	catch(ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
 		}
 
@@ -175,7 +175,7 @@ public class NXTSettingsGUI extends JFrame {
 														 System.getProperty("file.separator") + "RuneScape" +
 														 System.getProperty("file.separator")
 														 ));
-			} else if (Storage.OS_TYPE == 1) {
+			}	else if (Storage.OS_TYPE == 1) {
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") +
 														 System.getProperty("file.separator") + "Jagex" +
 														 System.getProperty("file.separator") + "RuneScape" +
@@ -192,14 +192,14 @@ public class NXTSettingsGUI extends JFrame {
 				final File file = fileChooser.getSelectedFile();
 				if (file.getName().equalsIgnoreCase("Settings.jcache")) {
 					Storage.Cache_settings_location = file.getAbsolutePath();
-				} else {
+				}	else {
 					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:" +
 																		"\n\n" +
 																		file.getAbsolutePath() +
 																		" was not the Cache file this program is loking for." +
 																		" Please select 'Settings.jcache'");
 				}
-			} else {}
+			}	else {}
 		});
 		FileMenu.add(FileMenuSelectCache);
 
@@ -212,7 +212,7 @@ public class NXTSettingsGUI extends JFrame {
 														 System.getProperty("file.separator") + "Jagex" +
 														 System.getProperty("file.separator") + "launcher" +
 														 System.getProperty("file.separator")));
-			} else if (Storage.OS_TYPE == 1) {
+			}	else if (Storage.OS_TYPE == 1) {
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") +
 														 System.getProperty("file.separator") + "Jagex" +
 														 System.getProperty("file.separator") + "launcher" +
@@ -228,24 +228,23 @@ public class NXTSettingsGUI extends JFrame {
 				final File file = fileChooser.getSelectedFile();
 				if (file.getName().equalsIgnoreCase("preferences.cfg")) {
 					Storage.preferences_config = file;
-				} else {
+				}	else {
 					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:"+
 																		"\n\n" +
 																		file.getAbsolutePath() +
 																		" was not the preference file this program is loking for."+
 																		" Please select 'preferences.cfg'");
 				}
-			} else {}
+			}	else {}
 		});
 		FileMenu.add(FileMenuSelectPreferences);
 
 		final JMenuItem FileMenuAlwaysOnTop = new JMenuItem("Toggle Always On Top");
 		FileMenuAlwaysOnTop.addActionListener(e -> {
-			if (frame.isAlwaysOnTop()){
+			if (frame.isAlwaysOnTop()) {
 				frame.setAlwaysOnTop(false);
 				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now disabled.");
-			}
-			else{
+			}	else {
 				frame.setAlwaysOnTop(true);
 				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now enabled.");
 			}
@@ -606,7 +605,7 @@ public class NXTSettingsGUI extends JFrame {
 		MinimumGraphicsPresetButton = new JButton("Minimum");
 		MinimumGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MinimumGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		MinimumGraphicsPresetButton.addActionListener(e ->{
+		MinimumGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_DrawDistance			= 0;
 			Storage.nxtGraphicsSetting_ShadowQuality		= 0;
 			Storage.nxtGraphicsSetting_AntiAliasingMode		= 0;
@@ -644,7 +643,7 @@ public class NXTSettingsGUI extends JFrame {
 		LowGraphicsPresetButton = new JButton("Low");
 		LowGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LowGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		LowGraphicsPresetButton.addActionListener(e ->{
+		LowGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_DrawDistance			= 0;
 			Storage.nxtGraphicsSetting_ShadowQuality		= 0;
 			Storage.nxtGraphicsSetting_AntiAliasingMode		= 0;
@@ -682,7 +681,7 @@ public class NXTSettingsGUI extends JFrame {
 		MediumGraphicsPresetButton = new JButton("Medium");
 		MediumGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MediumGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		MediumGraphicsPresetButton.addActionListener(e ->{
+		MediumGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_DrawDistance			= 1;
 			Storage.nxtGraphicsSetting_ShadowQuality		= 1;
 			Storage.nxtGraphicsSetting_AntiAliasingMode		= 1;
@@ -721,7 +720,7 @@ public class NXTSettingsGUI extends JFrame {
 		HighGraphicsPresetButton = new JButton("High");
 		HighGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		HighGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		HighGraphicsPresetButton.addActionListener(e ->{
+		HighGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_DrawDistance			= 2;
 			Storage.nxtGraphicsSetting_ShadowQuality		= 2;
 			Storage.nxtGraphicsSetting_AntiAliasingMode		= 2;
@@ -759,7 +758,7 @@ public class NXTSettingsGUI extends JFrame {
 		UltraGraphicsPresetButton = new JButton("Ultra");
 		UltraGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		UltraGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		UltraGraphicsPresetButton.addActionListener(e ->{
+		UltraGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_DrawDistance			= 3;
 			Storage.nxtGraphicsSetting_ShadowQuality		= 3;
 			Storage.nxtGraphicsSetting_AntiAliasingMode		= 2;
@@ -797,7 +796,7 @@ public class NXTSettingsGUI extends JFrame {
 		MaxedGraphicsPresetButton = new JButton("\"Maxed\"");
 		MaxedGraphicsPresetButton.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 12));
 		MaxedGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		MaxedGraphicsPresetButton.addActionListener(e ->{
+		MaxedGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_RemoveRoofs			= 0;
 			Storage.nxtGraphicsSetting_DrawDistance 		= 3;
 			Storage.nxtGraphicsSetting_ShadowQuality 		= 3;
@@ -847,7 +846,7 @@ public class NXTSettingsGUI extends JFrame {
 		WikianGraphicsPresetButton = new JButton("Wikian");
 		WikianGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		WikianGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		WikianGraphicsPresetButton.addActionListener(e ->{
+		WikianGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_DrawDistance 		= 3;
 			Storage.nxtGraphicsSetting_ShadowQuality 		= 3;
 			Storage.nxtGraphicsSetting_AntiAliasingMode		= 2;
@@ -894,7 +893,7 @@ public class NXTSettingsGUI extends JFrame {
 		RedditGraphicsPresetButton.setFont(new Font("Dialog", Font.ITALIC, 10));
 		RedditGraphicsPresetButton.setVerticalAlignment(SwingConstants.TOP);
 		RedditGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
-		RedditGraphicsPresetButton.addActionListener(e ->{
+		RedditGraphicsPresetButton.addActionListener(e -> {
 			Storage.nxtGraphicsSetting_Brightness			= 0;
 			Storage.nxtGraphicsSetting_RemoveRoofs			= 1;
 			Storage.nxtGraphicsSetting_DrawDistance			= 0;
@@ -1085,7 +1084,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameSoundEffectsBoostCheckbox.addActionListener(e -> {
 			if (InGameSoundEffectsBoostCheckbox.isSelected()) {
 				InGameSoundEffectsSlider.setMaximum(255);
-			} else {
+			}	else {
 				InGameSoundEffectsSlider.setMaximum(127);
 			}
 		});
@@ -1113,7 +1112,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameAmbientSoundEffectsBoostCheckbox.addActionListener(e -> {
 			if (InGameAmbientSoundEffectsBoostCheckbox.isSelected()) {
 				InGameAmbientSoundEffectsSlider.setMaximum(255);
-			} else {
+			}	else {
 				InGameAmbientSoundEffectsSlider.setMaximum(127);
 			}
 		});
@@ -1141,7 +1140,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameVoiceOverBoostCheckbox.addActionListener(e -> {
 			if (InGameVoiceOverBoostCheckbox.isSelected()) {
 				InGameVoiceOverSlider.setMaximum(255);
-			} else {
+			}	else {
 				InGameVoiceOverSlider.setMaximum(127);
 			}
 		});
@@ -1242,7 +1241,7 @@ public class NXTSettingsGUI extends JFrame {
 				Storage.stmt.executeBatch();
 				Storage.stmt.clearBatch();
 				UsernameInput.setText(Zezima);
-			} catch(final SQLException e1) {
+			}	catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -1260,7 +1259,7 @@ public class NXTSettingsGUI extends JFrame {
 				Storage.stmt.addBatch("DELETE FROM 'console';");
 				Storage.stmt.executeBatch();
 				Storage.stmt.clearBatch();
-			} catch(final SQLException e1) {
+			}	catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -1281,7 +1280,7 @@ public class NXTSettingsGUI extends JFrame {
 								  		  "VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[0][i]+"');");
 				}
 				Storage.stmt.executeBatch();
-			} catch(final SQLException e1) {
+			}	catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -1302,7 +1301,7 @@ public class NXTSettingsGUI extends JFrame {
 								  		  "VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[1][i]+"');");
 				}
 				Storage.stmt.executeBatch();
-			} catch(final SQLException e1) {
+			}	catch(final SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -1321,22 +1320,22 @@ public class NXTSettingsGUI extends JFrame {
 
 		ShowSensitiveInformation = new JCheckBox("Show sensitive information?");
 		ShowSensitiveInformation.setFont(new Font("Dialog", Font.PLAIN, 12));
-		ShowSensitiveInformation.setToolTipText("Show information such as your Username?");
+		ShowSensitiveInformation.setToolTipText("Show information such as your username?");
 		ShowSensitiveInformation.setBounds(15, 610, 185, 25);
 		ShowSensitiveInformation.setBackground(optionBackgroundColor);
 		contentPane.add(ShowSensitiveInformation);
 
-		AllowWritingCheckbox = new JCheckBox("Enable Write Settings?");
+		AllowWritingCheckbox = new JCheckBox("Enable 'Write Settings'?");
 		AllowWritingCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		AllowWritingCheckbox.setToolTipText("Allow writing of all settings when \"Write Settings\" is clicked. Some special mechanic values will be written instantly.");
+		AllowWritingCheckbox.setToolTipText("Allow writing of all settings when 'Write Settings' is clicked. Some special mechanic values will be written instantly.");
 		AllowWritingCheckbox.addActionListener(e -> {
-			if (AllowWritingCheckbox.isSelected()) {
+			if (AllowWritingCheckbox.isSelected() && !Storage.DEVELOPER_ReadOnlyCache) {
 				WriteSettings.setEnabled(true);
 				BecomeZezima.setEnabled(true);
 				ClearConsole.setEnabled(true);
 				PlayerConsole.setEnabled(true);
 				JagexConsole.setEnabled(true);
-			} else {
+			}	else {
 				WriteSettings.setEnabled(false);
 				BecomeZezima.setEnabled(false);
 				ClearConsole.setEnabled(false);
@@ -1345,23 +1344,9 @@ public class NXTSettingsGUI extends JFrame {
 			}
 		});
 
-		AllowWritingCheckbox.setBounds(205, 610, 155, 25);
+		AllowWritingCheckbox.setBounds(205, 610, 160, 25);
 		AllowWritingCheckbox.setBackground(optionBackgroundColor);
 		contentPane.add(AllowWritingCheckbox);
-
-		ReadSettings = new JButton("Read Settings");
-		ReadSettings.setFont(new Font("Dialog", Font.PLAIN, 12));
-		ReadSettings.setToolTipText("Read information currently saved in your setting file(s).");
-		ReadSettings.addActionListener(e -> JCache.Read());
-		ReadSettings.setBounds(510, 610, 110, 25);
-		contentPane.add(ReadSettings);
-
-		WriteSettings = new JButton("Write Settings");
-		WriteSettings.setFont(new Font("Dialog", Font.PLAIN, 12));
-		WriteSettings.addActionListener(e -> JCache.Write());
-		WriteSettings.setBounds(625, 610, 110, 25);
-		WriteSettings.setEnabled(false);
-		contentPane.add(WriteSettings);
 
 		GraphicsPresets = new JCheckBox("Graphics presets?");
 		GraphicsPresets.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -1376,7 +1361,7 @@ public class NXTSettingsGUI extends JFrame {
 				MaxedGraphicsPresetButton.setEnabled(true);
 				WikianGraphicsPresetButton.setEnabled(true);
 				RedditGraphicsPresetButton.setEnabled(true);
-			} else {
+			}	else {
 				MinimumGraphicsPresetButton.setEnabled(false);
 				LowGraphicsPresetButton.setEnabled(false);
 				MediumGraphicsPresetButton.setEnabled(false);
@@ -1387,9 +1372,23 @@ public class NXTSettingsGUI extends JFrame {
 				RedditGraphicsPresetButton.setEnabled(false);
 			}
 		});
-		GraphicsPresets.setBounds(365, 610, 135, 25);
+		GraphicsPresets.setBounds(370, 610, 132, 25);
 		GraphicsPresets.setBackground(optionBackgroundColor);
 		contentPane.add(GraphicsPresets);
+		
+		ReadSettings = new JButton("Read Settings");
+		ReadSettings.setFont(new Font("Dialog", Font.PLAIN, 12));
+		ReadSettings.setToolTipText("Read information currently saved in your setting file(s).");
+		ReadSettings.addActionListener(e -> JCache.Read());
+		ReadSettings.setBounds(510, 610, 110, 25);
+		contentPane.add(ReadSettings);
+
+		WriteSettings = new JButton("Write Settings");
+		WriteSettings.setFont(new Font("Dialog", Font.PLAIN, 12));
+		WriteSettings.addActionListener(e -> JCache.Write());
+		WriteSettings.setBounds(625, 610, 110, 25);
+		WriteSettings.setEnabled(false);
+		contentPane.add(WriteSettings);
 
 		JCache.Read();
 		if (!History.History_Saved){
