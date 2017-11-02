@@ -33,32 +33,39 @@ public class Legality {
 		// Terrain/Ground Blending.
 
 		if (Storage.nxtGraphicsSetting_TerrainBlending == false) {
-			Storage.nxtGraphicsSetting_TextureQuality = 0;
 			NXTSettingsGUI.TextureQualityComboBox.setEnabled(false);
-		} else {
+			Storage.nxtGraphicsSetting_TextureQuality = 0;
+		}
+		else {
 			NXTSettingsGUI.TextureQualityComboBox.setEnabled(true);
+			Storage.nxtGraphicsSetting_TextureQuality = NXTSettingsGUI.TextureQualityComboBox.getSelectedIndex();
 		}
 
 		// Shadows
 
 		if (Storage.nxtGraphicsSetting_Shadows == false) {
-			Storage.nxtGraphicsSetting_VolumetricLighting = 0;
-			Storage.nxtGraphicsSetting_ShadowQuality = 0;
 			NXTSettingsGUI.VolumetricLightingComboBox.setEnabled(false);
+			Storage.nxtGraphicsSetting_VolumetricLighting = 0;
 			NXTSettingsGUI.ShadowQualityComboBox.setEnabled(false);
-		} else {
+			Storage.nxtGraphicsSetting_ShadowQuality = 0;
+		}
+		else {
 			NXTSettingsGUI.VolumetricLightingComboBox.setEnabled(true);
+			Storage.nxtGraphicsSetting_VolumetricLighting = NXTSettingsGUI.VolumetricLightingComboBox.getSelectedIndex();
 			NXTSettingsGUI.ShadowQualityComboBox.setEnabled(true);
+			Storage.nxtGraphicsSetting_ShadowQuality = NXTSettingsGUI.ShadowQualityComboBox.getSelectedIndex();
 		}
 
 
 		// Anti-Aliasing
 
 		if (Storage.nxtGraphicsSetting_AntiAliasingMode == 0) {
-			Storage.nxtGraphicsSetting_AntiAliasingQuality = 0;
 			NXTSettingsGUI.AntiAliasingQualityComboBox.setEnabled(false);
-		} else {
+			Storage.nxtGraphicsSetting_AntiAliasingQuality = 0;
+		}
+		else {
 			NXTSettingsGUI.AntiAliasingQualityComboBox.setEnabled(true);
+			Storage.nxtGraphicsSetting_AntiAliasingQuality = NXTSettingsGUI.AntiAliasingQualityComboBox.getSelectedIndex();
 		}
 
 
@@ -67,16 +74,20 @@ public class Legality {
 		if (NXTSettingsGUI.GameWorldScalingInput.getText() == null ||
 			NXTSettingsGUI.GameWorldScalingInput.getText().equals("")){
 			NXTSettingsGUI.GameWorldScalingInput.setText("100");
-		} else {
+			Storage.nxtClientSettings_GameWorldScaling = 100;
+		}
+		else {
 			Storage.nxtClientSettings_GameWorldScaling = new Integer(NXTSettingsGUI.GameWorldScalingInput.getText().trim().replace(",", ""));
 		}
 
 		if (Storage.nxtClientSettings_GameWorldScaling < 33){
 			Storage.nxtClientSettings_GameWorldScaling = 33;
 			NXTSettingsGUI.GameWorldScalingInput.setText("33");
-		} else if (Storage.nxtClientSettings_GameWorldScaling > 200){
-			Storage.nxtClientSettings_GameWorldScaling = 200;
+			Storage.nxtClientSettings_GameWorldScaling = 33;
+		}
+		else if (Storage.nxtClientSettings_GameWorldScaling > 200){
 			NXTSettingsGUI.GameWorldScalingInput.setText("200");
+			Storage.nxtClientSettings_GameWorldScaling = 200;
 		}
 
 		// UI Scaling
@@ -84,18 +95,20 @@ public class Legality {
 		if (NXTSettingsGUI.UIScalingInput.getText() == null ||
 			NXTSettingsGUI.UIScalingInput.getText().equals("")){
 			NXTSettingsGUI.UIScalingInput.setText("100");
-		} else {
+			Storage.nxtClientSettings_UIScaling = 100;
+		}
+		else {
 			Storage.nxtClientSettings_UIScaling = new Integer(NXTSettingsGUI.UIScalingInput.getText().trim().replace(",", ""));
 		}
 
 		if (Storage.nxtClientSettings_UIScaling < 100){
-			Storage.nxtClientSettings_UIScaling = 100;
 			NXTSettingsGUI.UIScalingInput.setText("100");
-		} else if (Storage.nxtClientSettings_UIScaling > 400){
-			Storage.nxtClientSettings_UIScaling = 400;
-			NXTSettingsGUI.UIScalingInput.setText("400");
+			Storage.nxtClientSettings_UIScaling = 100;
 		}
-
+		else if (Storage.nxtClientSettings_UIScaling > 400){
+			NXTSettingsGUI.UIScalingInput.setText("400");
+			Storage.nxtClientSettings_UIScaling = 400;
+		}
 	}
 
 	public static void CheckSettingsBeforeSave() {
@@ -144,15 +157,19 @@ public class Legality {
 			NXTSettingsGUI.WallpaperIDInput.getText().equals("")){
 			NXTSettingsGUI.WallpaperIDInput.setText("0");
 		}
+		
+		Storage.nxtClientSettings_RememberUsername = NXTSettingsGUI.RememberUsernameCheckbox.isSelected();
 		Storage.nxtClientSettings_FavouriteWorld1 =  new Integer(NXTSettingsGUI.FavouriteWorld1Input.getText().replace(",", ""));
 		Storage.nxtClientSettings_FavouriteWorld2 =  new Integer(NXTSettingsGUI.FavouriteWorld2Input.getText().replace(",", ""));
 		Storage.nxtClientSettings_FavouriteWorld3 =  new Integer(NXTSettingsGUI.FavouriteWorld3Input.getText().replace(",", ""));
 		Storage.nxtClientSettings_LoginWallpaperID = new Integer(NXTSettingsGUI.WallpaperIDInput.getText().replace(",", ""));
+		
 		if (Storage.nxtClientSettings_FavouriteWorld1 <= 0) {
 			Storage.nxtClientSettings_FavouriteWorld2 = -1;
 			Storage.nxtClientSettings_FavouriteWorld3 = -1;
-		} else if (Storage.nxtClientSettings_FavouriteWorld2 <= 0) {
-				   Storage.nxtClientSettings_FavouriteWorld3 = -1;
+		}
+		else if (Storage.nxtClientSettings_FavouriteWorld2 <= 0) {
+			Storage.nxtClientSettings_FavouriteWorld3 = -1;
 		}
 	}
 }

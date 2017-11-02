@@ -1392,5 +1392,8 @@ public class NXTSettingsGUI extends JFrame {
 		contentPane.add(GraphicsPresets);
 
 		JCache.Read();
+		if (!History.History_Saved){
+			History.init();
+		}
 	}
 }

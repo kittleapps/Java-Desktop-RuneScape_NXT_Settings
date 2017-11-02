@@ -456,107 +456,173 @@ public class JCache {
 			Legality.CheckSettings();
 
 			// Left Column
-			Write(true,	"RemoveRoof",			Storage.nxtGraphicsSetting_RemoveRoofs);
-			Write(true,	"DrawDistance",			Storage.nxtGraphicsSetting_DrawDistance);
-			Write(true,	"ShadowQuality",		Storage.nxtGraphicsSetting_ShadowQuality);
-			Write(true,	"VSync",				Storage.nxtGraphicsSetting_VSync);
-			Write(true,	"AntialiasingMode",		Storage.nxtGraphicsSetting_AntiAliasingMode);
-			Write(true,	"AntialiasingQuality",	Storage.nxtGraphicsSetting_AntiAliasingQuality);
-			Write(true,	"Reflections",			Storage.nxtGraphicsSetting_WaterQuality);
-			Write(true,	"LightingQuality",		Storage.nxtGraphicsSetting_LightingQuality);
-			Write(true,	"AmbientOcclusion",		Storage.nxtGraphicsSetting_AmbientOcclusion);
-			Write(true,	"Bloom",				Storage.nxtGraphicsSetting_Bloom);
-			Write(true,	"MaxForegroundFps",		Storage.nxtGraphicsSetting_MaxForegroundFps);
-			Write(true,	"InterfaceScale",		Storage.nxtClientSettings_UIScaling);
+			if (History.nxtGraphicsSetting_RemoveRoofs != Storage.nxtGraphicsSetting_RemoveRoofs){
+				Write(true,	"RemoveRoof",			Storage.nxtGraphicsSetting_RemoveRoofs);
+			}
+			if (History.nxtGraphicsSetting_DrawDistance != Storage.nxtGraphicsSetting_DrawDistance){
+				Write(true,	"DrawDistance",			Storage.nxtGraphicsSetting_DrawDistance);
+			}
+			if (History.nxtGraphicsSetting_ShadowQuality != Storage.nxtGraphicsSetting_ShadowQuality){
+				Write(true,	"ShadowQuality",		Storage.nxtGraphicsSetting_ShadowQuality);
+			}
+			if (History.nxtGraphicsSetting_VSync != Storage.nxtGraphicsSetting_VSync){
+				Write(true,	"VSync",				Storage.nxtGraphicsSetting_VSync);
+			}
+			if (History.nxtGraphicsSetting_AntiAliasingMode != Storage.nxtGraphicsSetting_AntiAliasingMode){
+				Write(true,	"AntialiasingMode",		Storage.nxtGraphicsSetting_AntiAliasingMode);
+			}
+			if (History.nxtGraphicsSetting_AntiAliasingQuality != Storage.nxtGraphicsSetting_AntiAliasingQuality){
+				Write(true,	"AntialiasingQuality",	Storage.nxtGraphicsSetting_AntiAliasingQuality);
+			}
+			if (History.nxtGraphicsSetting_WaterQuality != Storage.nxtGraphicsSetting_WaterQuality){
+				Write(true,	"Reflections",			Storage.nxtGraphicsSetting_WaterQuality);
+			}
+			if (History.nxtGraphicsSetting_LightingQuality != Storage.nxtGraphicsSetting_LightingQuality){
+				Write(true,	"LightingQuality",		Storage.nxtGraphicsSetting_LightingQuality);
+			}
+			if (History.nxtGraphicsSetting_AmbientOcclusion != Storage.nxtGraphicsSetting_AmbientOcclusion){
+				Write(true,	"AmbientOcclusion",		Storage.nxtGraphicsSetting_AmbientOcclusion);
+			}
+			if (History.nxtGraphicsSetting_Bloom != Storage.nxtGraphicsSetting_Bloom){
+				Write(true,	"Bloom",				Storage.nxtGraphicsSetting_Bloom);
+			}
+			if (History.nxtGraphicsSetting_MaxForegroundFps != Storage.nxtGraphicsSetting_MaxForegroundFps){
+				Write(true,	"MaxForegroundFps",		Storage.nxtGraphicsSetting_MaxForegroundFps);
+			}
+			if (History.nxtClientSettings_UIScaling != Storage.nxtClientSettings_UIScaling){
+				Write(true,	"InterfaceScale",		Storage.nxtClientSettings_UIScaling);
+			}
 
 			// Right Column
-			Write(true,	"Brightness",			Storage.nxtGraphicsSetting_Brightness);
-			Write(true,	"Texturing",			Storage.nxtGraphicsSetting_TextureQuality);
-			Write(true,	"AnisotropicFiltering",	Storage.nxtGraphicsSetting_AnisotropicFiltering);
-			Write(true,	"VolumetricLighting",	Storage.nxtGraphicsSetting_VolumetricLighting);
-
-			if (Storage.nxtGraphicsSetting_FlickeringEffects) {
-				Write(true,	"FlickeringEffects", 1);
-			} else {
-				Write(true,	"FlickeringEffects", 0);
+			if (History.nxtGraphicsSetting_Brightness != Storage.nxtGraphicsSetting_Brightness){
+				Write(true,	"Brightness",			Storage.nxtGraphicsSetting_Brightness);
 			}
-			if (Storage.nxtGraphicsSetting_Shadows) {
-				Write(true,	"Shadows", 1);
-			} else {
-				Write(true,	"Shadows", 0);
+			if (History.nxtGraphicsSetting_TextureQuality != Storage.nxtGraphicsSetting_TextureQuality){
+				Write(true,	"Texturing",			Storage.nxtGraphicsSetting_TextureQuality);
 			}
-			if (Storage.nxtGraphicsSetting_CustomCursors) {
-				Write(true,	 "CustomCursors",							1);
-				Write(false, Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS,	1);
-			} else {
-				Write(true,	 "CustomCursors",							0);
-				Write(false, Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS,	0);
+			if (History.nxtGraphicsSetting_AnisotropicFiltering != Storage.nxtGraphicsSetting_AnisotropicFiltering){
+				Write(true,	"AnisotropicFiltering",	Storage.nxtGraphicsSetting_AnisotropicFiltering);
 			}
-			if (Storage.nxtGraphicsSetting_LoadingScreens) {
-				Write(false, Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS,	1);
-			} else {
-				Write(false, Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS,	0);
+			if (History.nxtGraphicsSetting_VolumetricLighting != Storage.nxtGraphicsSetting_VolumetricLighting){
+				Write(true,	"VolumetricLighting",	Storage.nxtGraphicsSetting_VolumetricLighting);
 			}
-			if (Storage.nxtGraphicsSetting_GroundDecor) {
-				Write(true,	"GroundDecor",	1);
-			} else {
-				Write(true,	"GroundDecor",	0);
+			if (History.nxtGraphicsSetting_FlickeringEffects != Storage.nxtGraphicsSetting_FlickeringEffects){
+				if (Storage.nxtGraphicsSetting_FlickeringEffects) {
+					Write(true,	"FlickeringEffects", 1);
+				} else {
+					Write(true,	"FlickeringEffects", 0);
+				}
 			}
-			if (Storage.nxtGraphicsSetting_TerrainBlending) {
-				Write(true,	"GroundBlending",	1);
-			} else {
-				Write(true,	"GroundBlending",	0);
+			if (History.nxtGraphicsSetting_Shadows != Storage.nxtGraphicsSetting_Shadows){
+				if (Storage.nxtGraphicsSetting_Shadows) {
+					Write(true,	"Shadows", 1);
+				} else {
+					Write(true,	"Shadows", 0);
+				}
 			}
-
-			Write(true,		"MaxBackgroundFps",											Storage.nxtGraphicsSetting_MaxBackgroundFps);
-			Write(true,		"GameRenderScale",											Storage.nxtClientSettings_GameWorldScaling);
-			Write(true,		"VolumeLoginMusic",											Storage.nxtClientSettings_LoginMusicVolume);
-			Write(true,		"VolumeMainMusic",											Storage.nxtClientSettings_InGameMusicVolume);
-			Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME,				Storage.nxtClientSettings_InGameMusicVolume);
-			Write(true,		"VolumeMainEffects",										Storage.nxtClientSettings_InGameSoundEffectsVolume);
-			Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME,		Storage.nxtClientSettings_InGameSoundEffectsVolume);
-			Write(true,		"VolumeBackgroundEffects",									Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
-			Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME,	Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
-			Write(true,		"VolumeSpeech", 											Storage.nxtClientSettings_InGameVoiceOverVolume);
-			Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME,		Storage.nxtClientSettings_InGameVoiceOverVolume);
-
-			if (Storage.nxtClientSettings_GlobalMute) {
-				Write(false, Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE,	1);
-			} else {
-				Write(false, Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE,	0);
+			if (History.nxtGraphicsSetting_CustomCursors != Storage.nxtGraphicsSetting_CustomCursors){
+				if (Storage.nxtGraphicsSetting_CustomCursors) {
+					Write(true,	 "CustomCursors",							1);
+					Write(false, Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS,	1);
+				} else {
+					Write(true,	 "CustomCursors",							0);
+					Write(false, Storage.CACHE_KEY_VT_VARC_CUSTOM_CURSORS,	0);
+				}
 			}
-
+			if (History.nxtGraphicsSetting_LoadingScreens != Storage.nxtGraphicsSetting_LoadingScreens){
+				if (Storage.nxtGraphicsSetting_LoadingScreens) {
+					Write(false, Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS,	1);
+				} else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS,	0);
+				}
+			}
+			if (History.nxtGraphicsSetting_GroundDecor != Storage.nxtGraphicsSetting_GroundDecor){
+				if (Storage.nxtGraphicsSetting_GroundDecor) {
+					Write(true,	"GroundDecor",	1);
+				} else {
+					Write(true,	"GroundDecor",	0);
+				}
+			}
+			if (History.nxtGraphicsSetting_TerrainBlending != Storage.nxtGraphicsSetting_TerrainBlending){
+				if (Storage.nxtGraphicsSetting_TerrainBlending) {
+					Write(true,	"GroundBlending",	1);
+				} else {
+					Write(true,	"GroundBlending",	0);
+				}
+			}
+			if (History.nxtGraphicsSetting_MaxBackgroundFps != Storage.nxtGraphicsSetting_MaxBackgroundFps){
+				Write(true,		"MaxBackgroundFps",											Storage.nxtGraphicsSetting_MaxBackgroundFps);
+			}
+			if (History.nxtClientSettings_GameWorldScaling != Storage.nxtClientSettings_GameWorldScaling){
+				Write(true,		"GameRenderScale",											Storage.nxtClientSettings_GameWorldScaling);
+			}
+			if (History.nxtClientSettings_LoginMusicVolume != Storage.nxtClientSettings_LoginMusicVolume){
+				Write(true,		"VolumeLoginMusic",											Storage.nxtClientSettings_LoginMusicVolume);
+			}
+			if (History.nxtClientSettings_InGameMusicVolume != Storage.nxtClientSettings_InGameMusicVolume){
+				Write(true,		"VolumeMainMusic",											Storage.nxtClientSettings_InGameMusicVolume);
+				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME,				Storage.nxtClientSettings_InGameMusicVolume);
+			}
+			if (History.nxtClientSettings_InGameSoundEffectsVolume != Storage.nxtClientSettings_InGameSoundEffectsVolume){
+				Write(true,		"VolumeMainEffects",										Storage.nxtClientSettings_InGameSoundEffectsVolume);
+				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME,		Storage.nxtClientSettings_InGameSoundEffectsVolume);
+			}
+			if (History.nxtClientSettings_InGameAmbientSoundEffectsVolume != Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume){
+				Write(true,		"VolumeBackgroundEffects",									Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
+				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME,	Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
+			}
+			if (History.nxtClientSettings_InGameVoiceOverVolume != Storage.nxtClientSettings_InGameVoiceOverVolume){
+				Write(true,		"VolumeSpeech", 											Storage.nxtClientSettings_InGameVoiceOverVolume);
+				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME,		Storage.nxtClientSettings_InGameVoiceOverVolume);
+			}
+			if (History.nxtClientSettings_GlobalMute != Storage.nxtClientSettings_GlobalMute){
+				if (Storage.nxtClientSettings_GlobalMute) {
+					Write(false, Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE,	1);
+				} else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE,	0);
+				}
+			}
 			// Usernames
 			Legality.CheckSettingsBeforeSave();
 
-			if (Storage.nxtClientSettings_RememberUsername &&
-				Storage.nxtClientSettings_TemporaryUsername != null &&
-			   !Storage.nxtClientSettings_TemporaryUsername.equals("")) {
-				Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME,		Storage.nxtClientSettings_TemporaryUsername);
-				Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	1);
-			} else {
-				Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME,		"");
-				Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	0);
+			if ((History.nxtClientSettings_RememberUsername != Storage.nxtClientSettings_RememberUsername) ||
+				(History.nxtClientSettings_TemporaryUsername != Storage.nxtClientSettings_TemporaryUsername)){
+				if (Storage.nxtClientSettings_RememberUsername &&
+					Storage.nxtClientSettings_TemporaryUsername != null &&
+				   !Storage.nxtClientSettings_TemporaryUsername.equals("")) {
+					Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME,		Storage.nxtClientSettings_TemporaryUsername);
+					Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	1);
+				} else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME,		"");
+					Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	0);
+				}
 			}
-
+			
 			// Clears any paranoia, if any, for these values
 			Storage.nxtClientSettings_TemporaryUsername = "";
 			Storage.nxtClientSettings_TemporaryUserID = "";
 
 			// Favourite Worlds
-			Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	Storage.nxtClientSettings_FavouriteWorld1);
-			Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2,	Storage.nxtClientSettings_FavouriteWorld2);
-			Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3,	Storage.nxtClientSettings_FavouriteWorld3);
-
-			// Wallpapers
-			Write(false, Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID,		Storage.nxtClientSettings_LoginWallpaperID);
-
-			if (Storage.nxtClientSettings_RandomizeLoginWallpaper) {
-				Write(false, Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER,	1);
-			} else {
-				Write(false, Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER,	0);
+			if (History.nxtClientSettings_FavouriteWorld1 != Storage.nxtClientSettings_FavouriteWorld1){
+				Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	Storage.nxtClientSettings_FavouriteWorld1);
 			}
-
+			if (History.nxtClientSettings_FavouriteWorld2 != Storage.nxtClientSettings_FavouriteWorld2){
+				Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2,	Storage.nxtClientSettings_FavouriteWorld2);
+			}
+			if (History.nxtClientSettings_FavouriteWorld3 != Storage.nxtClientSettings_FavouriteWorld3){
+				Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3,	Storage.nxtClientSettings_FavouriteWorld3);
+			}
+			// Wallpapers
+			if (History.nxtClientSettings_LoginWallpaperID != Storage.nxtClientSettings_LoginWallpaperID){
+				Write(false, Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID,		Storage.nxtClientSettings_LoginWallpaperID);
+			}
+			if (History.nxtClientSettings_RandomizeLoginWallpaper != Storage.nxtClientSettings_RandomizeLoginWallpaper){
+				if (Storage.nxtClientSettings_RandomizeLoginWallpaper) {
+					Write(false, Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER,	1);
+				} else {
+					Write(false, Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER,	0);
+				}
+			}
 			// Execute/Save the changes
 			Storage.stmt.executeBatch();
 			Storage.stmt.clearBatch();
@@ -598,7 +664,7 @@ public class JCache {
 
 			System.out.print(" Saved.\n");
 			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Saved updated values.");
-
+			History.init();
 		} catch(final SQLException e) {
 			e.printStackTrace();
 		}
