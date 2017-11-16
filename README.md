@@ -22,16 +22,14 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 - - - -
 **Current Features**:
 * All current graphics settings options
-  * Includes "None" for the remove roofs option
-    * This may cause graphical issues in some areas.
   * Game Render and Interface/UI Scaling options are added. They are live, but currently their options are not.
-    * The scaling mechanics are currently experimental, and not meant for full use my players. Visual issues may occur.
+    * These scaling mechanics are currently experimental, and not meant for full use my players. Visual issues may occur.
 * All audio options
   * Includes boosting the volumes for most audio streams
     * While I personally have not heard any quality-issues, this makes the in-game bars go past their normal limits visually.
-  * Global audio mute toggle is included. (programmatically, this is bugged in the clients s the volumes are read first, then global audio mute when Sound Settings are opened. so this toggle may be redundant)
+  * Global audio mute toggle is included. (programmatically, this is bugged in the clients as the volumes are read first, then global audio mute when Sound Settings are opened. so this toggle may be redundant)
 * Editing your username field
-  * This does NOT save anywhere but in `Settings.jcache` where the settigns are normally stored.
+  * This does NOT save anywhere but in `Settings.jcache` where the settings are normally stored.
   * This allows Jagex-Exclusive code-markups to be used such as:
     * `<br>` for new-lines
     * `<i>` for italic lettering.
@@ -66,10 +64,22 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Language setting changing
 * Presets
   * These follow the same ones in-game, with two joke ones, and the [RuneScape Wiki Guidelines](http://runescape.wikia.com/wiki/RuneScape:Images_and_media_policy#Content)
+* Partial Program function disabling.
+  * This is currently a WIP, and more options will be added later on.
+  * This mechanic will add a new table `Config-External` to `Settings.Jcache`, but is only used for this program.
+  * Some mechanics are not suitable for most people as i add more to this, but they are all 100% optional.
+    * An example of one that may not be suitable is `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`, which would help in speed-updating of values without having to check the `Show sensitive information?` permission, re-read, and save. This may be unwanted because it will make your username visibe on-launch for instance.
+  * Currently the options for this mechanic are:
+    * `TableCreated (yyyy-MM-dd hh:mm:ss)`, Nothing more for this as it's just to let you know when this program originally made the current table. This may be removed at a later time.
+    * `DEVELOPER_DEBUGS_ENABLED`, which allows this mechanic to be used. If this is set to `false` any other mechanics will not be utilized, and will be disabled.
+    * `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`, which was explained a bit above. It allows sensitve information like your username to be read and visible on-start, skipping the `Show sensitive information?` permission to allow faster saving.
+    * `DEVELOPER_READ_ONLY_CACHE`, which as it may seem it prevents the settigns from being written once changed. This will make the program a basic read-only program to view your settings offline, without worrying about it being overwritten.
 - - - -
 **TO-DO**:
 * Add custom Developer Console history editing.
   * Hopefully includes editing values, and adding/removing values
 * Exporting & Importing your settings in Json. (sensitive information excluded)
 * Re-add support to view your UID.
+* More options to disable.
+  * Unknown what else I could have it disable, maybe I'll throw in a few (fun/visual) easter eggs for the Pre-Compiled variants to be suprised with.
 * Even more cleanups! (Have to stay clean!)
