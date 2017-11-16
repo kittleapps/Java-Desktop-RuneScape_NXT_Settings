@@ -297,20 +297,66 @@ public class Storage {
 			"280","285",
 			"290","295",
 			"300"
+		},
+		{
+			/* 15: UI Scaling Settings (Minimum 100; Maximum 400; Increments of 5) */
+			"100%","105%",
+			"110%","115%",
+			"120%","125%",
+			"130%","135%",
+			"140%","145%",
+			"150%","155%",
+			"160%","165%",
+			"170%","175%",
+			"180%","185%",
+			"190%","195%",
+			"200%","205%",
+			"210%","215%",
+			"220%","225%",
+			"230%","235%",
+			"240%","245%",
+			"250%","255%",
+			"260%","265%",
+			"270%","275%",
+			"280%","285%",
+			"290%","295%",
+			"300%","305%",
+			"310%","315%",
+			"320%","325%",
+			"330%","335%",
+			"340%","345%",
+			"350%","355%",
+			"360%","365%",
+			"370%","375%",
+			"380%","385%",
+			"390%","395%",
+			"400%"
+		},
+		{
+			/* 16: Game World Scaling Settings (Minimum 33; Maximum 200; Increments of 5; Indirect Minimum of 35) */
+			"35%","40%",
+			"45%","50%",
+			"55%","60%",
+			"65%","70%",
+			"75%","80%",
+			"85%","90%",
+			"95%","100%",
+			"105%","110%",
+			"115%","120%",
+			"125%","130%",
+			"135%","140%",
+			"145%","150%",
+			"155%","160%",
+			"165%","170%",
+			"175%","180%",
+			"185%","190%",
+			"195%","200%",
 		}
 	};
 
 
 	public final static String
 	// HTML-Based Tooltip storage.
-
-	REMOVEROOFS_TOOLTIP =
-			"<html>" +
-					"Note: \"None\" is not natively an option for NXT.<br>" +
-				"<br>" +
-					"This option may cause graphical issues.<br>" +
-					"Set to another option if you dislike the roofs always being visible." +
-			"</html>",
 	AO_TOOLTIP =
 			"<html>" +
 					"FXAA: Fast approximate anti-aliasing is a<br>" +
@@ -330,20 +376,19 @@ public class Storage {
 			"<html>" +
 					"Manually set the maximum Frames-Per-Second (FPS) while NXT is the focused window.<br>" +
 				"<br>" +
-					"By-default this is +10 of your refresh rate. (Example: 60hz = 70 max FPS)" +
+					"The default value for this entry is +10 of your refresh rate. (Example: 60hz = 70 Foreground FPS)" +
 			"</html>",
 	MAXBACKGOUNDFPS_TOOLTIP =
 			"<html>" +
 					"Manually set the maximum Frames-Per-Second (FPS) while NXT is not the focused window.<br>" +
 				"<br>" +
-					"By-default this is 30. (Half the \"normal\" refresh rate for the common 60hz monitors)" +
+					"The default value for this entry is 30. (Half the \"normal\" refresh rate for monitors which is 60hz)" +
 			"</html>",
 	INTERFACESCALING_TOOLTIP =
 			"<html>" +
 					"Manually set the interface scaling for all interfaces.<br>" +
 				"<br>" +
-					"By-default this is 100.<br>" +
-					"Currently the minimum for this value is 100 (100%), and the maximum 400 (400%).<br>" +
+					"The default value for this option is 100.<br>" +
 				"<br>" +
 					"NOTE: This option is currently experimental, and may cause graphical issues for some.<br>" +
 					"This includes messing up some layouts while using the New Interface System."+
@@ -352,10 +397,9 @@ public class Storage {
 			"<html>" +
 					"Manually set the game render scaling for the 3D world underlay.<br>" +
 				"<br>" +
-					"By-default this is 100.<br>" +
-					"Currently the minimum for this value is 33 (33%), and the maximum 200 (200%).<br>" +
+					"The default value for this entry is 100.<br>" +
 				"<br>" +
-					"This option is currently experimental, and may cause graphical issues for some.<br>" +
+					"NOTE: This option is currently experimental, and may cause graphical issues for some.<br>" +
 					"This includes blurs, and loss of FPS depending on the settings used."+
 			"</html>",
 	DOF_TOOLTIP =
@@ -364,7 +408,7 @@ public class Storage {
 			"</html>",
 	HEATHAZE_TOOLTIP =
 			"<html>"+
-					"This option is not released in the live versions, this is merely a placeholder." +
+					"NOTE: This option is not released in the live versions, this is merely a placeholder." +
 			"</html>",
 	USERNAME_INPUT_TOOLTIP =
 			"<html>"+
@@ -373,20 +417,17 @@ public class Storage {
 				"<br>"+
 					"NOTE: When using sprite+colour flags it will still read is-if you types them here<br>" +
 					"Graphically it may be a login-able name, but it will have invalid characters/login names.<br>"+
-				"<br>"+
 					"Some HTML elements like &lt;br&gt;, &lt;b&gt;, and &lt;i&gt; can be used as well." +
 			"</html>",
 	FAVOURITE_WORLD_INPUT_TOOLTIP =
 			"<html>"+
 					"To clear this slot use the value -1.<br>"+
 					"If Slots 1 or 2 have -1 as their value, any later numbers will be disabled.<br>" +
-				"<br>"+
 					"The removal is currently not a NXT limitation, but it causes graphical issues." +
 			"</html>",
 	GLOBAL_AUDIO_MUTE_TOOLTIP =
 			"<html>"+
 					"Disables the audio streams while logged in the game.<br>" +
-				"<br>"+
 					"Other volume setting's options will remain uneffected." +
 			"</html>",
 	REMEMBER_USERNAME_TOOLTIP =
@@ -406,10 +447,10 @@ public class Storage {
 			"<html>" +
 					"Input your desired wallpaper id.<br>" +
 				"<br>" +
+					"The default value for this entry is 0." +
+				"<br>" +
 					"NOTE: This will apply to the first wallpaper while randomizing.<br>" +
 					"This will also be the static id if randomizing is off.<br>" +
-				"<br>" +
-					"ID: 0 = Default." +
 			"</html>",
 	ADD_SPRITE_FLAG_TOOLTIP =
 			"<html>" +
@@ -438,8 +479,8 @@ public class Storage {
 			"<html>" +
 					"This will populate the Developer Console's command history with all known commands.<br>" +
 				"<br>" +
-					"Note: Using this button will instantly write to your client's settings<br>" +
-					"Note: This list in incomplete, and many commands are not use-able by players."+
+					"Note: Using this button will instantly write to your client's settings.<br>" +
+					"This list in incomplete, and many commands are not use-able by players."+
 			"</html>",
 	BOOSTED_VOLUMES_TOOLTIP =
 			"<html>" +
@@ -454,7 +495,6 @@ public class Storage {
 	GRAPHICS_PRESET_BUTTON_TOOLTIP =
 			"<html>" +
 					"Note: This will overwrite your current settings.<br>"+
-					"<br>"+
 					"You will be required to change them back manually, or re-read to restore prior to writing."+
 			"</html>"
 	;

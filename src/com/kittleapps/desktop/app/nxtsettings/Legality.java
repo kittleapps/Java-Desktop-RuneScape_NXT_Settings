@@ -68,47 +68,6 @@ public class Legality {
 			Storage.nxtGraphicsSetting_AntiAliasingQuality = NXTSettingsGUI.AntiAliasingQualityComboBox.getSelectedIndex();
 		}
 
-
-		// Game World Scaling
-
-		if (NXTSettingsGUI.GameWorldScalingInput.getText() == null ||
-			NXTSettingsGUI.GameWorldScalingInput.getText().equals("")){
-			NXTSettingsGUI.GameWorldScalingInput.setText("100");
-			Storage.nxtClientSettings_GameWorldScaling = 100;
-		}
-		else {
-			Storage.nxtClientSettings_GameWorldScaling = new Integer(NXTSettingsGUI.GameWorldScalingInput.getText().trim().replace(",", ""));
-		}
-
-		if (Storage.nxtClientSettings_GameWorldScaling < 33){
-			Storage.nxtClientSettings_GameWorldScaling = 33;
-			NXTSettingsGUI.GameWorldScalingInput.setText("33");
-			Storage.nxtClientSettings_GameWorldScaling = 33;
-		}
-		else if (Storage.nxtClientSettings_GameWorldScaling > 200){
-			NXTSettingsGUI.GameWorldScalingInput.setText("200");
-			Storage.nxtClientSettings_GameWorldScaling = 200;
-		}
-
-		// UI Scaling
-
-		if (NXTSettingsGUI.UIScalingInput.getText() == null ||
-			NXTSettingsGUI.UIScalingInput.getText().equals("")){
-			NXTSettingsGUI.UIScalingInput.setText("100");
-			Storage.nxtClientSettings_UIScaling = 100;
-		}
-		else {
-			Storage.nxtClientSettings_UIScaling = new Integer(NXTSettingsGUI.UIScalingInput.getText().trim().replace(",", ""));
-		}
-
-		if (Storage.nxtClientSettings_UIScaling < 100){
-			NXTSettingsGUI.UIScalingInput.setText("100");
-			Storage.nxtClientSettings_UIScaling = 100;
-		}
-		else if (Storage.nxtClientSettings_UIScaling > 400){
-			NXTSettingsGUI.UIScalingInput.setText("400");
-			Storage.nxtClientSettings_UIScaling = 400;
-		}
 	}
 
 	public static void CheckSettingsBeforeSave() {

@@ -293,34 +293,28 @@ public class JCache {
 								NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex(BackgroundFpsIndexID);
 								break;
 
-							case "GameRenderScale":
-								Storage.nxtClientSettings_GameWorldScaling = new Integer(rs.getString("DATA"));
-								if (Storage.nxtClientSettings_GameWorldScaling < 33) {
-									Storage.nxtClientSettings_GameWorldScaling = 33;
-								}	else if (Storage.nxtClientSettings_GameWorldScaling > 200) {
-									Storage.nxtClientSettings_GameWorldScaling = 200;
-								}
-								NXTSettingsGUI.GameWorldScalingInput.setText(""+Storage.nxtClientSettings_GameWorldScaling);
-								if (NXTSettingsGUI.GameWorldScalingInput.getText().equals("") ||
-									NXTSettingsGUI.GameWorldScalingInput.getText() == null) {
-									NXTSettingsGUI.GameWorldScalingInput.setText("100");
-									Storage.nxtClientSettings_GameWorldScaling = 100;
-								}
-								break;
-
 							case "InterfaceScale":
 								Storage.nxtClientSettings_UIScaling = new Integer(rs.getString("DATA"));
-								if (Storage.nxtClientSettings_UIScaling < 100) {
-									Storage.nxtClientSettings_UIScaling = 100;
-								}	else if (Storage.nxtClientSettings_UIScaling > 400) {
-									Storage.nxtClientSettings_UIScaling = 400;
+								int UIScalingIndex = ((Storage.nxtClientSettings_UIScaling-100)/5);
+								if (UIScalingIndex < 0){
+									UIScalingIndex = 0;
 								}
-								NXTSettingsGUI.UIScalingInput.setText(""+Storage.nxtClientSettings_UIScaling);
-								if (NXTSettingsGUI.UIScalingInput.getText().equals("") ||
-									NXTSettingsGUI.UIScalingInput.getText() == null) {
-									NXTSettingsGUI.UIScalingInput.setText("100");
-									Storage.nxtClientSettings_UIScaling = 100;
+								if (UIScalingIndex > Storage.GRAPHICS_OPTIONS[15].length){
+									UIScalingIndex = Storage.GRAPHICS_OPTIONS[15].length;
 								}
+								NXTSettingsGUI.UIScalingComboBox.setSelectedIndex(UIScalingIndex);
+								break;
+
+							case "GameRenderScale":
+								Storage.nxtClientSettings_GameWorldScaling = new Integer(rs.getString("DATA"));
+								int GameWorldScalingIndex = ((Storage.nxtClientSettings_GameWorldScaling-35)/5);
+								if (GameWorldScalingIndex < 0){
+									GameWorldScalingIndex = 0;
+								}
+								if (GameWorldScalingIndex > Storage.GRAPHICS_OPTIONS[16].length){
+									GameWorldScalingIndex = Storage.GRAPHICS_OPTIONS[16].length;
+								}
+								NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex(GameWorldScalingIndex);
 								break;
 
 							case "VolumeLoginMusic":

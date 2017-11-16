@@ -71,6 +71,8 @@ public class NXTSettingsGUI extends JFrame {
 		VolumetricLightingComboBox,
 		MaxForegroundFpsComboBox,
 		MaxBackgroundFpsComboBox,
+		UIScalingComboBox,
+		GameWorldScalingComboBox,
 		LanguageSelectionComboBox;
 
 	public static JSlider
@@ -82,8 +84,6 @@ public class NXTSettingsGUI extends JFrame {
 		InGameVoiceOverSlider;
 
 	public static JTextField
-		GameWorldScalingInput,
-		UIScalingInput,
 		UsernameInput,
 		FavouriteWorld1Input,
 		FavouriteWorld2Input,
@@ -404,14 +404,10 @@ public class NXTSettingsGUI extends JFrame {
 		UIScalingLabel.setBounds(15, 15 + (30 * 8), 150, 25);
 		GraphicsSettingsTab.add(UIScalingLabel);
 
-		UIScalingInput = new JFormattedTextField(InterfaceScalingNumberFormatter);
-		UIScalingLabel.setLabelFor(UIScalingInput);
-		UIScalingInput.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
-		UIScalingInput.setText("100");
-		UIScalingInput.setHorizontalAlignment(SwingConstants.RIGHT);
-		UIScalingInput.setFont(new Font("Dialog", Font.PLAIN, 12));
-		UIScalingInput.setBounds(165, 15 + (30 * 8), 175, 25);
-		GraphicsSettingsTab.add(UIScalingInput);
+		UIScalingComboBox = new JComboBox<Object>(Storage.GRAPHICS_OPTIONS[15]);
+		UIScalingComboBox.addItemListener(e -> Storage.nxtClientSettings_UIScaling = ((UIScalingComboBox.getSelectedIndex()*5)+100));
+		UIScalingComboBox.setBounds(165, 255, 175, 25);
+		GraphicsSettingsTab.add(UIScalingComboBox);
 
 		FlickeringEffectsCheckbox = new JCheckBox(String.format("%-85s", "Flickering effects"));
 		FlickeringEffectsCheckbox.setBackground(optionBackgroundColor);
@@ -456,7 +452,6 @@ public class NXTSettingsGUI extends JFrame {
 		RemoveRoofsComboBox = new JComboBox < Object > (Storage.GRAPHICS_OPTIONS[0]);
 		RemoveRoofsLabel.setLabelFor(RemoveRoofsComboBox);
 		RemoveRoofsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_RemoveRoofs = RemoveRoofsComboBox.getSelectedIndex());
-		RemoveRoofsComboBox.setToolTipText(Storage.REMOVEROOFS_TOOLTIP);
 		RemoveRoofsComboBox.setBounds(528, 15 + (30 * 0), 175, 25);
 		RemoveRoofsComboBox.setSelectedIndex(1);
 		GraphicsSettingsTab.add(RemoveRoofsComboBox);
@@ -554,14 +549,11 @@ public class NXTSettingsGUI extends JFrame {
 		GameWorldScalingLabel.setBounds(378, 15 + (30 * 8), 150, 25);
 		GraphicsSettingsTab.add(GameWorldScalingLabel);
 
-		GameWorldScalingInput = new JFormattedTextField(GameScalingNumberFormatter);
-		GameWorldScalingLabel.setLabelFor(GameWorldScalingInput);
-		GameWorldScalingInput.setToolTipText(Storage.GAMESCALING_TOOLTIP);
-		GameWorldScalingInput.setText("100");
-		GameWorldScalingInput.setHorizontalAlignment(SwingConstants.RIGHT);
-		GameWorldScalingInput.setFont(new Font("Dialog", Font.PLAIN, 12));
-		GameWorldScalingInput.setBounds(528, 15 + (30 * 8), 175, 25);
-		GraphicsSettingsTab.add(GameWorldScalingInput);
+
+		GameWorldScalingComboBox = new JComboBox<Object>(Storage.GRAPHICS_OPTIONS[16]);
+		GameWorldScalingComboBox.addItemListener(e -> Storage.nxtClientSettings_GameWorldScaling = ((GameWorldScalingComboBox.getSelectedIndex()*5)+35));
+		GameWorldScalingComboBox.setBounds(528, 255, 175, 25);
+		GraphicsSettingsTab.add(GameWorldScalingComboBox);
 
 		ShadowsCheckbox = new JCheckBox(String.format("%-88s", "Shadows"));
 		ShadowsCheckbox.setBackground(optionBackgroundColor);
@@ -837,7 +829,7 @@ public class NXTSettingsGUI extends JFrame {
 			CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
 			MaxForegroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxForegroundFps/5)-1);
 			MaxBackgroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxBackgroundFps/5)-1);
-			GameWorldScalingInput.setText("200");
+			GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling-35)/5);
 		});
 		MaxedGraphicsPresetButton.setEnabled(false);
 		MaxedGraphicsPresetButton.setBounds(470, 505, 75, 25);
@@ -882,8 +874,8 @@ public class NXTSettingsGUI extends JFrame {
 			TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
 			FlickeringEffectsCheckbox.setSelected(Storage.nxtGraphicsSetting_FlickeringEffects);
 			CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
-			UIScalingInput.setText("100");
-			GameWorldScalingInput.setText("200");
+			UIScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_UIScaling-100)/5);
+			GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling-35)/5);
 		});
 		WikianGraphicsPresetButton.setEnabled(false);
 		WikianGraphicsPresetButton.setBounds(550, 505, 75, 25);
@@ -912,7 +904,7 @@ public class NXTSettingsGUI extends JFrame {
 			Storage.nxtGraphicsSetting_TerrainBlending		= false;
 			Storage.nxtGraphicsSetting_MaxForegroundFps 	= 15;
 			Storage.nxtGraphicsSetting_MaxBackgroundFps 	= 5;
-			Storage.nxtClientSettings_GameWorldScaling  	= 33;
+			Storage.nxtClientSettings_GameWorldScaling  	= 35;
 			// Apply
 			BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
 			RemoveRoofsComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_RemoveRoofs);
@@ -934,7 +926,7 @@ public class NXTSettingsGUI extends JFrame {
 			CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
 			MaxForegroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxForegroundFps/5)-1);
 			MaxBackgroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxBackgroundFps/5)-1);
-			GameWorldScalingInput.setText("33");
+			GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling-35)/5);
 		});
 		RedditGraphicsPresetButton.setEnabled(false);
 		RedditGraphicsPresetButton.setBounds(630, 505, 75, 25);
@@ -1375,7 +1367,7 @@ public class NXTSettingsGUI extends JFrame {
 		GraphicsPresets.setBounds(370, 610, 132, 25);
 		GraphicsPresets.setBackground(optionBackgroundColor);
 		contentPane.add(GraphicsPresets);
-		
+
 		ReadSettings = new JButton("Read Settings");
 		ReadSettings.setFont(new Font("Dialog", Font.PLAIN, 12));
 		ReadSettings.setToolTipText("Read information currently saved in your setting file(s).");
