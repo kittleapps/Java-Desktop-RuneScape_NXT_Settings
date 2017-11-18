@@ -21,14 +21,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.NumberFormatter;
 
 public class NXTSettingsGUI extends JFrame {
@@ -112,7 +116,7 @@ public class NXTSettingsGUI extends JFrame {
 	private static Color backgroundColour = new Color(45, 45, 45), optionBackgroundColor = new Color (40, 40, 40);
 
 	public static JFrame frame;
-
+	public static JTable DeveloperConsoleHistoryTable;
 	public static void main(final String[] args) {
 		if (!Runtime.class.getPackage().getImplementationVersion().startsWith("1.8.") && !Runtime.class.getPackage().getImplementationVersion().startsWith("1.7.")){
 			System.out.println("JRE was not Oracle's JRE 7/8 (1.7/1.8); Abort functioning until internal bugs are fixed.");
@@ -196,7 +200,7 @@ public class NXTSettingsGUI extends JFrame {
 					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:" +
 																		"\n\n" +
 																		file.getAbsolutePath() +
-																		" was not the Cache file this program is loking for." +
+																		" was not the Cache file this program is looking for." +
 																		" Please select 'Settings.jcache'");
 				}
 			}
@@ -232,7 +236,7 @@ public class NXTSettingsGUI extends JFrame {
 					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:"+
 																		"\n\n" +
 																		file.getAbsolutePath() +
-																		" was not the preference file this program is loking for."+
+																		" was not the preference file this program is looking for."+
 																		" Please select 'preferences.cfg'");
 				}
 			}	else {}
@@ -299,7 +303,7 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		final JPanel GraphicsSettingsTab = new JPanel();
-		tabbedPane.addTab("Graphics Settings", null, GraphicsSettingsTab, "Edit your graphics settings here.");
+		tabbedPane.addTab("Graphics Settings", null, GraphicsSettingsTab, null);
 		GraphicsSettingsTab.setBackground(backgroundColour);
 		GraphicsSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		GraphicsSettingsTab.setLayout(null);
@@ -508,7 +512,6 @@ public class NXTSettingsGUI extends JFrame {
 		AmbientOcclusionLabel.setLabelFor(AmbientOcclusionComboBox);
 		AmbientOcclusionComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_AmbientOcclusion = AmbientOcclusionComboBox.getSelectedIndex());
 		AmbientOcclusionComboBox.setBounds(528, 15 + (30 * 4), 175, 25);
-		AmbientOcclusionComboBox.setToolTipText(Storage.AO_TOOLTIP);
 		GraphicsSettingsTab.add(AmbientOcclusionComboBox);
 
 		final JLabel TextureQualityLabel = new JLabel("  Textures");
@@ -949,7 +952,7 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		final JPanel ClientSettingsTab = new JPanel();
-		tabbedPane.addTab("Client Settings", null, ClientSettingsTab, "Edit your client settings here.");
+		tabbedPane.addTab("Client Settings", null, ClientSettingsTab, null);
 		ClientSettingsTab.setBackground(backgroundColour);
 		ClientSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		ClientSettingsTab.setLayout(null);
@@ -1191,7 +1194,7 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		final JPanel SpecialMechanicsTab = new JPanel();
-		tabbedPane.addTab("Special Mechanics", null, SpecialMechanicsTab, "Use special mechanics here.");
+		tabbedPane.addTab("Special Mechanics", null, SpecialMechanicsTab, null);
 		SpecialMechanicsTab.setBackground(backgroundColour);
 		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
@@ -1247,64 +1250,105 @@ public class NXTSettingsGUI extends JFrame {
 
 		ClearConsole = new JButton("Clear Developer Console History Log");
 		ClearConsole.setToolTipText(Storage.CLEAR_DEV_CONSOLE_LOGS_TOOLTIP);
-		ClearConsole.setEnabled(false);
 		ClearConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		ClearConsole.addActionListener(e -> {
-			try {
-				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Storage.stmt = Storage.conn.createStatement();
-				Storage.stmt.addBatch("DELETE FROM 'console';");
-				Storage.stmt.executeBatch();
-				Storage.stmt.clearBatch();
-			}	catch(final SQLException e1) {
-				e1.printStackTrace();
+			if (DeveloperConsoleHistoryTable.isShowing()){
+				DeveloperConsoleHistoryTable.clearSelection();
+			}
+
+			for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+				DeveloperConsoleHistoryTable.setValueAt("", i, 1);
 			}
 		});
-		ClearConsole.setBounds(15, 45, 225, 25);
+		ClearConsole.setBounds(15, 50, 225, 25);
 		SpecialMechanicsTab.add(ClearConsole);
 
 		PlayerConsole = new JButton("Player Developer Console History Log");
 		PlayerConsole.setToolTipText(Storage.POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP);
-		PlayerConsole.setEnabled(false);
 		PlayerConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		PlayerConsole.addActionListener(e -> {
-			try {
-				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Storage.stmt = Storage.conn.createStatement();
-				Storage.stmt.addBatch("DELETE FROM 'console';");
-				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[0].length; i++){
-					Storage.stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') "+
-								  		  "VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[0][i]+"');");
-				}
-				Storage.stmt.executeBatch();
-			}	catch(final SQLException e1) {
-				e1.printStackTrace();
+			if (DeveloperConsoleHistoryTable.isShowing()){
+				DeveloperConsoleHistoryTable.clearSelection();
+			}
+
+			for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+				DeveloperConsoleHistoryTable.setValueAt("", i, 1);
+			}
+
+			for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[0].length; i++){
+				DeveloperConsoleHistoryTable.setValueAt(Storage.DEVELOPER_CONSOLE_COMMANDS[0][i], i, 1);
 			}
 		});
-		PlayerConsole.setBounds(245, 45, 225, 25);
+		PlayerConsole.setBounds(245, 50, 225, 25);
 		SpecialMechanicsTab.add(PlayerConsole);
 
 		JagexConsole = new JButton("Jagex Developer Console History Log");
 		JagexConsole.setToolTipText(Storage.POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP);
-		JagexConsole.setEnabled(false);
 		JagexConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		JagexConsole.addActionListener(e -> {
-			try {
-				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Storage.stmt = Storage.conn.createStatement();
-				Storage.stmt.addBatch("DELETE FROM 'console';");
-				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[1].length; i++){
-					Storage.stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') "+
-								  		  "VALUES ('"+i+"', '"+Storage.DEVELOPER_CONSOLE_COMMANDS[1][i]+"');");
+				if (DeveloperConsoleHistoryTable.isShowing()){
+					DeveloperConsoleHistoryTable.clearSelection();
 				}
-				Storage.stmt.executeBatch();
-			}	catch(final SQLException e1) {
-				e1.printStackTrace();
-			}
+
+				for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+					DeveloperConsoleHistoryTable.setValueAt("", i, 1);
+				}
+
+				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[1].length; i++){
+					DeveloperConsoleHistoryTable.setValueAt(Storage.DEVELOPER_CONSOLE_COMMANDS[1][i], i, 1);
+				}
 		});
-		JagexConsole.setBounds(475, 45, 225, 25);
+		JagexConsole.setBounds(475, 50, 225, 25);
 		SpecialMechanicsTab.add(JagexConsole);
 
+		DeveloperConsoleHistoryTable = new JTable();
+		DeveloperConsoleHistoryTable.setFont(new Font("Dialog", Font.PLAIN, 12));
+		DeveloperConsoleHistoryTable.setModel(new DefaultTableModel(
+			new Object[150][2],
+			new String[] {
+				"ID",
+				"Developer Console History"
+			}
+			){
+			/**
+				 *
+				 */
+				private static final long serialVersionUID = -4520056399939983074L;
+
+			@Override
+			public boolean isCellEditable(final int rowIndex, final int columnIndex) {
+				if (columnIndex == 1){
+					return true;
+				}
+			    return false;
+			}
+		});
+		DeveloperConsoleHistoryTable.getColumnModel().getColumn(0).setMinWidth(30);
+		DeveloperConsoleHistoryTable.getColumnModel().getColumn(0).setMaxWidth(30);
+		DeveloperConsoleHistoryTable.getColumnModel().getColumn(1).setMinWidth(635);
+		DeveloperConsoleHistoryTable.getColumnModel().getColumn(1).setMaxWidth(635);
+		DeveloperConsoleHistoryTable.setRowHeight(20);
+		DeveloperConsoleHistoryTable.setDragEnabled(false);
+		DeveloperConsoleHistoryTable.getTableHeader().setToolTipText(
+				"<html>" +
+				"The ordering of these values are from newest to oldest.<br>" +
+				"<br>" +
+				"This means the first command listed will be the first commands<br>" +
+				"shown when you hit Page-Up key while using the Developer Console.<br>" +
+				"<br>" +
+				"The last "+DeveloperConsoleHistoryTable.getRowCount()+" commands used will be shown in this table."
+				);
+		DeveloperConsoleHistoryTable.getTableHeader().setReorderingAllowed(false);
+		DeveloperConsoleHistoryTable.getTableHeader().setResizingAllowed(false);
+		DeveloperConsoleHistoryTable.setFillsViewportHeight(true);
+		DeveloperConsoleHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		DeveloperConsoleHistoryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        final JScrollPane pane = new JScrollPane(DeveloperConsoleHistoryTable);
+        pane.setBounds(15, 85, 685, 440);
+		SpecialMechanicsTab.add(pane);
+		for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+			DeveloperConsoleHistoryTable.setValueAt(i+1, i, 0);
+		}
 
 
 
@@ -1329,15 +1373,9 @@ public class NXTSettingsGUI extends JFrame {
 			if (AllowWritingCheckbox.isSelected() && !Storage.DEVELOPER_ReadOnlyCache) {
 				WriteSettings.setEnabled(true);
 				BecomeZezima.setEnabled(true);
-				ClearConsole.setEnabled(true);
-				PlayerConsole.setEnabled(true);
-				JagexConsole.setEnabled(true);
 			}	else {
 				WriteSettings.setEnabled(false);
 				BecomeZezima.setEnabled(false);
-				ClearConsole.setEnabled(false);
-				PlayerConsole.setEnabled(false);
-				JagexConsole.setEnabled(false);
 			}
 		});
 
@@ -1376,13 +1414,25 @@ public class NXTSettingsGUI extends JFrame {
 		ReadSettings = new JButton("Read Settings");
 		ReadSettings.setFont(new Font("Dialog", Font.PLAIN, 12));
 		ReadSettings.setToolTipText("Read information currently saved in your setting file(s).");
-		ReadSettings.addActionListener(e -> JCache.Read());
+		ReadSettings.addActionListener(e -> {
+				if (DeveloperConsoleHistoryTable.isShowing()){
+					DeveloperConsoleHistoryTable.clearSelection();
+				}
+				JCache.Read();
+			}
+		);
 		ReadSettings.setBounds(510, 610, 110, 25);
 		contentPane.add(ReadSettings);
 
 		WriteSettings = new JButton("Write Settings");
 		WriteSettings.setFont(new Font("Dialog", Font.PLAIN, 12));
-		WriteSettings.addActionListener(e -> JCache.Write());
+		WriteSettings.addActionListener(e -> {
+				if (DeveloperConsoleHistoryTable.isShowing()){
+					DeveloperConsoleHistoryTable.clearSelection();
+				}
+				JCache.Write();
+			}
+		);
 		WriteSettings.setBounds(625, 610, 110, 25);
 		WriteSettings.setEnabled(false);
 		contentPane.add(WriteSettings);

@@ -167,444 +167,15 @@ public class JCache {
 				try {
 					Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 					Storage.stmt = Storage.conn.createStatement();
-				}	catch(final SQLException e) {
-					System.err.println(e.getMessage());
-				}
-
-				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM Config")) {
-					while (rs.next()) {
-						switch(rs.getString("KEY")) {
-							case "CustomCursors":
-								Storage.nxtGraphicsSetting_CustomCursors = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
-								break;
-
-							case "Shadows":
-								Storage.nxtGraphicsSetting_Shadows = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
-								break;
-
-							case "FlickeringEffects":
-								Storage.nxtGraphicsSetting_FlickeringEffects = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.FlickeringEffectsCheckbox.setSelected(Storage.nxtGraphicsSetting_FlickeringEffects);
-								break;
-
-							case "GroundDecor":
-								Storage.nxtGraphicsSetting_GroundDecor = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
-								break;
-
-							case "GroundBlending":
-								Storage.nxtGraphicsSetting_TerrainBlending = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
-								break;
-
-							case "DrawDistance":
-								Storage.nxtGraphicsSetting_DrawDistance = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
-								break;
-
-							case "ShadowQuality":
-								Storage.nxtGraphicsSetting_ShadowQuality = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
-								break;
-
-							case "LightingQuality":
-								Storage.nxtGraphicsSetting_LightingQuality = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.LightingDetailComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_LightingQuality);
-								break;
-
-							case "AntialiasingQuality":
-								Storage.nxtGraphicsSetting_AntiAliasingQuality = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.AntiAliasingQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingQuality);
-								break;
-
-							case "Reflections":
-								Storage.nxtGraphicsSetting_WaterQuality = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.WaterQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_WaterQuality);
-								break;
-
-							case "VolumetricLighting":
-								Storage.nxtGraphicsSetting_VolumetricLighting = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.VolumetricLightingComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_VolumetricLighting);
-								break;
-
-							case "Bloom":
-								Storage.nxtGraphicsSetting_Bloom = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.BloomQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_Bloom);
-								break;
-
-							case "AmbientOcclusion":
-								Storage.nxtGraphicsSetting_AmbientOcclusion = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.AmbientOcclusionComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AmbientOcclusion);
-								break;
-
-							case "Texturing":
-								Storage.nxtGraphicsSetting_TextureQuality = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.TextureQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_TextureQuality);
-								break;
-
-							case "AntialiasingMode":
-								Storage.nxtGraphicsSetting_AntiAliasingMode = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
-								break;
-
-							case "AnisotropicFiltering":
-								Storage.nxtGraphicsSetting_AnisotropicFiltering = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.AnisotropicFilteringComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AnisotropicFiltering);
-								break;
-
-							case "VSync":
-								Storage.nxtGraphicsSetting_VSync = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.VSyncComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_VSync+1);
-								break;
-
-							case "RemoveRoof":
-								Storage.nxtGraphicsSetting_RemoveRoofs = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.RemoveRoofsComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_RemoveRoofs);
-								break;
-
-							case "Brightness":
-								Storage.nxtGraphicsSetting_Brightness = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
-								break;
-
-							case "MaxForegroundFps":
-								Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(rs.getString("DATA"));
-								int ForegroundFpsIndexID = (Storage.nxtGraphicsSetting_MaxForegroundFps/5)-1;
-								if (ForegroundFpsIndexID < 0){
-									ForegroundFpsIndexID = 0;
-								}
-								if (ForegroundFpsIndexID > Storage.GRAPHICS_OPTIONS[14].length){
-									ForegroundFpsIndexID = Storage.GRAPHICS_OPTIONS[14].length;
-								}
-								NXTSettingsGUI.MaxForegroundFpsComboBox.setSelectedIndex(ForegroundFpsIndexID);
-								break;
-
-							case "MaxBackgroundFps":
-								Storage.nxtGraphicsSetting_MaxBackgroundFps = new Integer(rs.getString("DATA"));
-								int BackgroundFpsIndexID = (Storage.nxtGraphicsSetting_MaxBackgroundFps/5)-1;
-								if (BackgroundFpsIndexID < 0){
-									BackgroundFpsIndexID = 0;
-								}
-								if (BackgroundFpsIndexID > Storage.GRAPHICS_OPTIONS[14].length){
-									BackgroundFpsIndexID = Storage.GRAPHICS_OPTIONS[14].length;
-								}
-								NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex(BackgroundFpsIndexID);
-								break;
-
-							case "InterfaceScale":
-								Storage.nxtClientSettings_UIScaling = new Integer(rs.getString("DATA"));
-								int UIScalingIndex = ((Storage.nxtClientSettings_UIScaling-100)/5);
-								if (UIScalingIndex < 0){
-									UIScalingIndex = 0;
-								}
-								if (UIScalingIndex > Storage.GRAPHICS_OPTIONS[15].length){
-									UIScalingIndex = Storage.GRAPHICS_OPTIONS[15].length;
-								}
-								NXTSettingsGUI.UIScalingComboBox.setSelectedIndex(UIScalingIndex);
-								break;
-
-							case "GameRenderScale":
-								Storage.nxtClientSettings_GameWorldScaling = new Integer(rs.getString("DATA"));
-								int GameWorldScalingIndex = ((Storage.nxtClientSettings_GameWorldScaling-35)/5);
-								if (GameWorldScalingIndex < 0){
-									GameWorldScalingIndex = 0;
-								}
-								if (GameWorldScalingIndex > Storage.GRAPHICS_OPTIONS[16].length){
-									GameWorldScalingIndex = Storage.GRAPHICS_OPTIONS[16].length;
-								}
-								NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex(GameWorldScalingIndex);
-								break;
-
-							case "VolumeLoginMusic":
-								Storage.nxtClientSettings_LoginMusicVolume = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.LoginMusicSlider.setValue(Storage.nxtClientSettings_LoginMusicVolume);
-								break;
-
-							case "Version":
-								NXTSettingsGUI.frame.setTitle("NXT Settings (Settings Version: "+rs.getString("DATA")+")");
-								break;
-
-							case "DOF":
-							case "HeatHaze":
-							case "ResizableResolution":
-							case "CameraOcclusion":
-							case "ConsoleKeyPress":
-							case "WindowMode":
-							case "FullScreenWidth":
-							case "FullScreenHeight":
-							case "AutoSetup":
-							case "DiskCacheSize":
-								break;
-
-						}
-					}
-					rs.close();
-				} catch(final SQLException e) {
-					System.err.println(e.getMessage());
-				}
-
-				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
-					while (rs.next()) {
-						switch(rs.getString("KEY")) {
-							case Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME:
-								if (Storage.DEVELOPER_AlwaysShowSensitiveInfo) {
-									NXTSettingsGUI.UsernameInput.setText(rs.getString("DATA"));
-								}	else if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
-									NXTSettingsGUI.UsernameInput.setText(rs.getString("DATA"));
-								}	else {
-									NXTSettingsGUI.UsernameInput.setText("");
-								}
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1:
-								NXTSettingsGUI.FavouriteWorld1Input.setText(rs.getString("DATA"));
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2:
-								NXTSettingsGUI.FavouriteWorld2Input.setText(rs.getString("DATA"));
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3:
-								NXTSettingsGUI.FavouriteWorld3Input.setText(rs.getString("DATA"));
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS:
-								Storage.nxtGraphicsSetting_LoadingScreens = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.LoadingScreensCheckbox.setSelected(Storage.nxtGraphicsSetting_LoadingScreens);
-								break;
-
-							case Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER:
-								Storage.nxtClientSettings_RandomizeLoginWallpaper = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.RandomizeLoginWallpaperCheckbox.setSelected(Storage.nxtClientSettings_RandomizeLoginWallpaper);
-								break;
-
-							case Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID:
-								Storage.nxtClientSettings_LoginWallpaperID = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.WallpaperIDInput.setText("" + Storage.nxtClientSettings_LoginWallpaperID);
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME:
-								Storage.nxtClientSettings_RememberUsername = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.RememberUsernameCheckbox.setSelected(Storage.nxtClientSettings_RememberUsername);
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE:
-								Storage.nxtClientSettings_GlobalMute = rs.getString("DATA").equals("1");
-								NXTSettingsGUI.GlobalAudioMuteCheckbox.setSelected(Storage.nxtClientSettings_GlobalMute);
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME:
-								Storage.nxtClientSettings_InGameMusicVolume = new Integer(rs.getString("DATA"));
-								NXTSettingsGUI.InGameMusicSlider.setValue(Storage.nxtClientSettings_InGameMusicVolume);
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME:
-								Storage.nxtClientSettings_InGameSoundEffectsVolume = new Integer(rs.getString("DATA"));
-								if (Storage.nxtClientSettings_InGameSoundEffectsVolume > 127) {
-									NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(true);
-									NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(254);
-								}	else {
-									NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(false);
-									NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(127);
-								}
-								NXTSettingsGUI.InGameSoundEffectsSlider.setValue(new Integer(rs.getString("DATA")));
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME:
-								Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = new Integer(rs.getString("DATA"));
-								if (Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume > 127) {
-									NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(true);
-									NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(254);
-								}	else {
-									NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(false);
-									NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(127);
-								}
-								NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setValue(new Integer(rs.getString("DATA")));
-								break;
-
-							case Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME:
-								Storage.nxtClientSettings_InGameVoiceOverVolume = new Integer(rs.getString("DATA"));
-								if (Storage.nxtClientSettings_InGameVoiceOverVolume > 127) {
-									NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(true);
-									NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(254);
-								}	else {
-									NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(false);
-									NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(127);
-								}
-								NXTSettingsGUI.InGameVoiceOverSlider.setValue(new Integer(rs.getString("DATA")));
-								break;
-
-						}
-					}
-					rs.close();
-				} catch(final SQLException e) {}
-
-				/*
-				 * > Check every entry in the console table
-				 *
-				 * > Save the entries to a List
-				 *
-				 * > Convert the List to a String Array
-				 *
-				 * > TO-DO: Make an editable display
-				 */
-
-				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'console'")) {
-					while (rs.next()) {
-						Storage.nxtClientSettings_DeveloperConsoleLog.add(rs.getString("DATA"));
-					}
-					Storage.nxtClientSettings_DeveloperConsoleLogs = Storage.nxtClientSettings_DeveloperConsoleLog.toArray(new String[0]);
-					rs.close();
 				}	catch(final SQLException e) {}
 
+				ReadConfigSettings();
+				ReadVTVarcSettings();
+				ReadDeveloperConsoleHistory();
+				ReadProgramOptions();
 
-				/*
-				 * > Check every entry in the Config-External table
-				 *  > If the table doesn't exist, create it using the default values.
-				 *
-				 * > If some of the options are missing (counter-wise) recreate the table usign the default values.
-				 *
-				 * > Set the In-Program options based on the information that can be avalible.
-				 *
-				 * > TO-DO: Make more options/Easter Eggs.
-				 */
-
-
-				boolean ExternalConfigExists = false;
-				int DeveloperValueCounter = 0;
-				try(ResultSet Count = Storage.stmt.executeQuery("SELECT COUNT(*) FROM 'Config-External'")) {
-					if (Count.next()) {
-						if (Count.getInt(1) != Storage.ProgramDeveloperValues.length) {
-							// There was a value which was invalid. Re-initialize the table.
-							RecreateDeveloperValues();
-						}
-					}
-				} catch (final SQLException e2) {
-					// Table doesn't exist. Create it with default values.
-					if (!ExternalConfigExists) {
-						try {
-							if(Storage.stmt.execute("CREATE TABLE 'Config-External'(KEY STRING PRIMARY KEY UNIQUE,DATA TEXT)")) {
-								ExternalConfigExists = true;
-							}
-							RecreateDeveloperValues();
-						}	catch (final SQLException e4) {}
-					}
-				}
-
-				try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'Config-External'")) {
-					// Table exists
-					while (rs.next()) {
-						ExternalConfigExists = true;
-						switch(rs.getString("KEY")) {
-
-							// Personal In-Application Debuggers;
-							// These values are NOT part of NXT, and ONLY for this program for testing purposes.
-							// ALWAYS make `DEVELOPER_DEBUGS_ENABLED` in the cache before any other debugging settings.
-
-							case "TableCreated (yyyy-MM-dd hh:mm:ss)":
-								DeveloperValueCounter++;
-								break;
-
-							case "DEVELOPER_DEBUGS_ENABLED":
-								DeveloperValueCounter++;
-								if (rs.getString("DATA").equals("1") ||
-									rs.getString("DATA").toLowerCase().equals("t") ||
-									rs.getString("DATA").toLowerCase().equals("true")) {
-									Storage.DEVELOPER_DebugsEnabled = true;
-								}	else {
-									Storage.DEVELOPER_DebugsEnabled = false;
-								}
-								break;
-
-							case "DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO":
-								DeveloperValueCounter++;
-								if (rs.getString("DATA").equals("1") ||
-									rs.getString("DATA").toLowerCase().equals("t") ||
-									rs.getString("DATA").toLowerCase().equals("true")) {
-									if (Storage.DEVELOPER_DebugsEnabled) {
-										Storage.DEVELOPER_AlwaysShowSensitiveInfo = true;
-										NXTSettingsGUI.ShowSensitiveInformation.setSelected(true);
-										NXTSettingsGUI.ShowSensitiveInformation.setEnabled(false);
-										NXTSettingsGUI.ShowSensitiveInformation.setFont(new Font("Dialog", Font.PLAIN, 11));
-										NXTSettingsGUI.ShowSensitiveInformation.setText("<Always show sensitive Info>");
-										NXTSettingsGUI.ShowSensitiveInformation.setToolTipText(
-												"<html>"+
-													"The in-program option 'DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO' was set in the cache.<br><br>"+
-													"This means that the sensitive information in your cache will always be shown.<br>"+
-													"Note: This is a redundant feature, but part of adding in user-disabled features."+
-												"</html>");
-
-									}	else {
-										System.out.println("The in-program option 'DEVELOPER_DEBUGS_ENABLED' was not set in the cache first. As a result 'DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO' will not be set.");
-										Storage.DEVELOPER_AlwaysShowSensitiveInfo = false;
-									}
-								}	else {
-									Storage.DEVELOPER_AlwaysShowSensitiveInfo = false;
-									NXTSettingsGUI.ShowSensitiveInformation.setEnabled(true);
-									NXTSettingsGUI.ShowSensitiveInformation.setFont(new Font("Dialog", Font.PLAIN, 12));
-									NXTSettingsGUI.ShowSensitiveInformation.setText("Show sensitive information?");
-									NXTSettingsGUI.ShowSensitiveInformation.setToolTipText("Show information such as your username?");
-								}
-								break;
-
-							case "DEVELOPER_READ_ONLY_CACHE":
-								DeveloperValueCounter++;
-								if (rs.getString("DATA").equals("1") ||
-									rs.getString("DATA").toLowerCase().equals("t") ||
-									rs.getString("DATA").toLowerCase().equals("true")) {
-									if (Storage.DEVELOPER_DebugsEnabled) {
-										Storage.DEVELOPER_ReadOnlyCache = true;
-										NXTSettingsGUI.WriteSettings.setEnabled(false);
-										NXTSettingsGUI.AllowWritingCheckbox.setEnabled(false);
-										NXTSettingsGUI.AllowWritingCheckbox.setSelected(false);
-										NXTSettingsGUI.AllowWritingCheckbox.setText("<Read-Only Cache>");
-										NXTSettingsGUI.AllowWritingCheckbox.setToolTipText(
-												"<html>"+
-													"The in-program option 'DEVELOPER_READ_ONLY_CACHE' was set in the cache.<br><br>"+
-													"This means that the cache is not allowed to be saved using this program."+
-												"</html>");
-									}	else {
-										System.out.println("The in-program option 'DEVELOPER_DEBUGS_ENABLED' was not set in the cache first. As a result 'DEVELOPER_READ_ONLY_CACHE' will not be set.");
-										Storage.DEVELOPER_ReadOnlyCache = false;
-									}
-								}	else {
-									Storage.DEVELOPER_ReadOnlyCache = false;
-									NXTSettingsGUI.AllowWritingCheckbox.setEnabled(true);
-									NXTSettingsGUI.AllowWritingCheckbox.setText("Enable 'Write Settings'?");
-									NXTSettingsGUI.AllowWritingCheckbox.setToolTipText("Allow writing of all settings when 'Write Settings' is clicked. Some special mechanic values will be written instantly.");
-								}
-							break;
-							
-							case "DEVELOPER_ALWAYS_STAY_ON_TOP":
-								DeveloperValueCounter++;
-								if (rs.getString("DATA").equals("1") ||
-									rs.getString("DATA").toLowerCase().equals("t") ||
-									rs.getString("DATA").toLowerCase().equals("true")) {
-									Storage.DEVELOPER_WindowAlwaysOnTop = true;
-									NXTSettingsGUI.frame.setAlwaysOnTop(true);
-								}	else {
-									Storage.DEVELOPER_WindowAlwaysOnTop = false;
-								}
-								break;
-
-							case "DEVELOPER_ALWAYS_START_ON_TOP":
-								DeveloperValueCounter++;
-								if (rs.getString("DATA").equals("1") ||
-									rs.getString("DATA").toLowerCase().equals("t") ||
-									rs.getString("DATA").toLowerCase().equals("true")) {
-									NXTSettingsGUI.frame.setAlwaysOnTop(true);
-								}
-								break;
-						}
-					}
-					if(DeveloperValueCounter != Storage.ProgramDeveloperValues.length){
-						// There was a value which was invalid. Re-initialize the table.
-						RecreateDeveloperValues();
-					}
-					rs.close();
-				}	catch(final SQLException e) {}
+			} 	else {
+				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: "+Storage.Settings_db.getAbsolutePath()+" was not found, or somehow was not a file.");
 			}
 		}	else {
 			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: NXT is not being read as installed on this system."+
@@ -614,6 +185,458 @@ public class JCache {
 		}
 		Legality.CheckSettings();
 	}
+
+	public static void ReadConfigSettings(){
+		try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM Config")) {
+			while (rs.next()) {
+				switch(rs.getString("KEY")) {
+					case "CustomCursors":
+						Storage.nxtGraphicsSetting_CustomCursors = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
+						break;
+
+					case "Shadows":
+						Storage.nxtGraphicsSetting_Shadows = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
+						break;
+
+					case "FlickeringEffects":
+						Storage.nxtGraphicsSetting_FlickeringEffects = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.FlickeringEffectsCheckbox.setSelected(Storage.nxtGraphicsSetting_FlickeringEffects);
+						break;
+
+					case "GroundDecor":
+						Storage.nxtGraphicsSetting_GroundDecor = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
+						break;
+
+					case "GroundBlending":
+						Storage.nxtGraphicsSetting_TerrainBlending = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
+						break;
+
+					case "DrawDistance":
+						Storage.nxtGraphicsSetting_DrawDistance = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
+						break;
+
+					case "ShadowQuality":
+						Storage.nxtGraphicsSetting_ShadowQuality = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
+						break;
+
+					case "LightingQuality":
+						Storage.nxtGraphicsSetting_LightingQuality = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.LightingDetailComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_LightingQuality);
+						break;
+
+					case "AntialiasingQuality":
+						Storage.nxtGraphicsSetting_AntiAliasingQuality = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.AntiAliasingQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingQuality);
+						break;
+
+					case "Reflections":
+						Storage.nxtGraphicsSetting_WaterQuality = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.WaterQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_WaterQuality);
+						break;
+
+					case "VolumetricLighting":
+						Storage.nxtGraphicsSetting_VolumetricLighting = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.VolumetricLightingComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_VolumetricLighting);
+						break;
+
+					case "Bloom":
+						Storage.nxtGraphicsSetting_Bloom = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.BloomQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_Bloom);
+						break;
+
+					case "AmbientOcclusion":
+						Storage.nxtGraphicsSetting_AmbientOcclusion = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.AmbientOcclusionComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AmbientOcclusion);
+						break;
+
+					case "Texturing":
+						Storage.nxtGraphicsSetting_TextureQuality = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.TextureQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_TextureQuality);
+						break;
+
+					case "AntialiasingMode":
+						Storage.nxtGraphicsSetting_AntiAliasingMode = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
+						break;
+
+					case "AnisotropicFiltering":
+						Storage.nxtGraphicsSetting_AnisotropicFiltering = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.AnisotropicFilteringComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AnisotropicFiltering);
+						break;
+
+					case "VSync":
+						Storage.nxtGraphicsSetting_VSync = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.VSyncComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_VSync+1);
+						break;
+
+					case "RemoveRoof":
+						Storage.nxtGraphicsSetting_RemoveRoofs = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.RemoveRoofsComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_RemoveRoofs);
+						break;
+
+					case "Brightness":
+						Storage.nxtGraphicsSetting_Brightness = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
+						break;
+
+					case "MaxForegroundFps":
+						Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(rs.getString("DATA"));
+						int ForegroundFpsIndexID = (Storage.nxtGraphicsSetting_MaxForegroundFps/5)-1;
+						if (ForegroundFpsIndexID < 0){
+							ForegroundFpsIndexID = 0;
+						}
+						if (ForegroundFpsIndexID > Storage.GRAPHICS_OPTIONS[14].length){
+							ForegroundFpsIndexID = Storage.GRAPHICS_OPTIONS[14].length;
+						}
+						NXTSettingsGUI.MaxForegroundFpsComboBox.setSelectedIndex(ForegroundFpsIndexID);
+						break;
+
+					case "MaxBackgroundFps":
+						Storage.nxtGraphicsSetting_MaxBackgroundFps = new Integer(rs.getString("DATA"));
+						int BackgroundFpsIndexID = (Storage.nxtGraphicsSetting_MaxBackgroundFps/5)-1;
+						if (BackgroundFpsIndexID < 0){
+							BackgroundFpsIndexID = 0;
+						}
+						if (BackgroundFpsIndexID > Storage.GRAPHICS_OPTIONS[14].length){
+							BackgroundFpsIndexID = Storage.GRAPHICS_OPTIONS[14].length;
+						}
+						NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex(BackgroundFpsIndexID);
+						break;
+
+					case "InterfaceScale":
+						Storage.nxtClientSettings_UIScaling = new Integer(rs.getString("DATA"));
+						int UIScalingIndex = ((Storage.nxtClientSettings_UIScaling-100)/5);
+						if (UIScalingIndex < 0){
+							UIScalingIndex = 0;
+						}
+						if (UIScalingIndex > Storage.GRAPHICS_OPTIONS[15].length){
+							UIScalingIndex = Storage.GRAPHICS_OPTIONS[15].length;
+						}
+						NXTSettingsGUI.UIScalingComboBox.setSelectedIndex(UIScalingIndex);
+						break;
+
+					case "GameRenderScale":
+						Storage.nxtClientSettings_GameWorldScaling = new Integer(rs.getString("DATA"));
+						int GameWorldScalingIndex = ((Storage.nxtClientSettings_GameWorldScaling-35)/5);
+						if (GameWorldScalingIndex < 0){
+							GameWorldScalingIndex = 0;
+						}
+						if (GameWorldScalingIndex > Storage.GRAPHICS_OPTIONS[16].length){
+							GameWorldScalingIndex = Storage.GRAPHICS_OPTIONS[16].length;
+						}
+						NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex(GameWorldScalingIndex);
+						break;
+
+					case "VolumeLoginMusic":
+						Storage.nxtClientSettings_LoginMusicVolume = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.LoginMusicSlider.setValue(Storage.nxtClientSettings_LoginMusicVolume);
+						break;
+
+					case "Version":
+						NXTSettingsGUI.frame.setTitle("NXT Settings (Settings Version: "+rs.getString("DATA")+")");
+						break;
+
+					case "DOF":
+					case "HeatHaze":
+					case "ResizableResolution":
+					case "CameraOcclusion":
+					case "ConsoleKeyPress":
+					case "WindowMode":
+					case "FullScreenWidth":
+					case "FullScreenHeight":
+					case "AutoSetup":
+					case "DiskCacheSize":
+						break;
+
+				}
+			}
+			rs.close();
+		} catch(final SQLException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+
+	public static void ReadVTVarcSettings(){
+		try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'vt-varc'")) {
+			while (rs.next()) {
+				switch(rs.getString("KEY")) {
+					case Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME:
+						if (Storage.DEVELOPER_AlwaysShowSensitiveInfo) {
+							NXTSettingsGUI.UsernameInput.setText(rs.getString("DATA"));
+						}	else if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
+							NXTSettingsGUI.UsernameInput.setText(rs.getString("DATA"));
+						}	else {
+							NXTSettingsGUI.UsernameInput.setText("");
+						}
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1:
+						NXTSettingsGUI.FavouriteWorld1Input.setText(rs.getString("DATA"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2:
+						NXTSettingsGUI.FavouriteWorld2Input.setText(rs.getString("DATA"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3:
+						NXTSettingsGUI.FavouriteWorld3Input.setText(rs.getString("DATA"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS:
+						Storage.nxtGraphicsSetting_LoadingScreens = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.LoadingScreensCheckbox.setSelected(Storage.nxtGraphicsSetting_LoadingScreens);
+						break;
+
+					case Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER:
+						Storage.nxtClientSettings_RandomizeLoginWallpaper = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.RandomizeLoginWallpaperCheckbox.setSelected(Storage.nxtClientSettings_RandomizeLoginWallpaper);
+						break;
+
+					case Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID:
+						Storage.nxtClientSettings_LoginWallpaperID = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.WallpaperIDInput.setText("" + Storage.nxtClientSettings_LoginWallpaperID);
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME:
+						Storage.nxtClientSettings_RememberUsername = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.RememberUsernameCheckbox.setSelected(Storage.nxtClientSettings_RememberUsername);
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE:
+						Storage.nxtClientSettings_GlobalMute = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.GlobalAudioMuteCheckbox.setSelected(Storage.nxtClientSettings_GlobalMute);
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME:
+						Storage.nxtClientSettings_InGameMusicVolume = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.InGameMusicSlider.setValue(Storage.nxtClientSettings_InGameMusicVolume);
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME:
+						Storage.nxtClientSettings_InGameSoundEffectsVolume = new Integer(rs.getString("DATA"));
+						if (Storage.nxtClientSettings_InGameSoundEffectsVolume > 127) {
+							NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(true);
+							NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(254);
+						}	else {
+							NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(false);
+							NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(127);
+						}
+						NXTSettingsGUI.InGameSoundEffectsSlider.setValue(new Integer(rs.getString("DATA")));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME:
+						Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = new Integer(rs.getString("DATA"));
+						if (Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume > 127) {
+							NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(true);
+							NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(254);
+						}	else {
+							NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(false);
+							NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(127);
+						}
+						NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setValue(new Integer(rs.getString("DATA")));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME:
+						Storage.nxtClientSettings_InGameVoiceOverVolume = new Integer(rs.getString("DATA"));
+						if (Storage.nxtClientSettings_InGameVoiceOverVolume > 127) {
+							NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(true);
+							NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(254);
+						}	else {
+							NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(false);
+							NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(127);
+						}
+						NXTSettingsGUI.InGameVoiceOverSlider.setValue(new Integer(rs.getString("DATA")));
+						break;
+
+				}
+			}
+			rs.close();
+		} catch(final SQLException e) {}
+
+	}
+
+
+	public static void ReadDeveloperConsoleHistory(){
+		/*
+		 * > Check every entry in the console table
+		 *
+		 * > Clear the displayed list
+		 *
+		 * > Populate the list with all the values.
+		 *
+		 * > Save the values as an array.
+		 *
+		 */
+
+		try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'console'")) {
+			for (int i = 0; i < NXTSettingsGUI.DeveloperConsoleHistoryTable.getRowCount(); i++){
+				NXTSettingsGUI.DeveloperConsoleHistoryTable.setValueAt("", i, 1);
+			}
+			int DeveloperConsoleIndex = 0;
+			while (rs.next()) {
+				Storage.nxtClientSettings_DeveloperConsoleLog.add(rs.getString("DATA"));
+				NXTSettingsGUI.DeveloperConsoleHistoryTable.setValueAt(rs.getString("DATA"), DeveloperConsoleIndex, 1);
+				DeveloperConsoleIndex++;
+			}
+			Storage.nxtClientSettings_DeveloperConsoleLogs = Storage.nxtClientSettings_DeveloperConsoleLog.toArray(new String[0]);
+			rs.close();
+		}	catch(final SQLException e) {}
+	}
+
+	public static void ReadProgramOptions(){
+		/*
+		 * > Check every entry in the Config-External table
+		 *  > If the table doesn't exist, create it using the default values.
+		 *
+		 * > If some of the options are missing (counter-wise) recreate the table usign the default values.
+		 *
+		 * > Set the In-Program options based on the information that can be avalible.
+		 *
+		 * > TO-DO: Make more options/Easter Eggs.
+		 */
+
+
+		boolean ExternalConfigExists = false;
+		int DeveloperValueCounter = 0;
+		try(ResultSet Count = Storage.stmt.executeQuery("SELECT COUNT(*) FROM 'Config-External'")) {
+			if (Count.next()) {
+				if (Count.getInt(1) != Storage.ProgramDeveloperValues.length) {
+					// There was a value which was invalid. Re-initialize the table.
+					RecreateDeveloperValues();
+				}
+			}
+		} catch (final SQLException e2) {
+			// Table doesn't exist. Create it with default values.
+			if (!ExternalConfigExists) {
+				try {
+					if(Storage.stmt.execute("CREATE TABLE 'Config-External'(KEY STRING PRIMARY KEY UNIQUE,DATA TEXT)")) {
+						ExternalConfigExists = true;
+					}
+					RecreateDeveloperValues();
+				}	catch (final SQLException e4) {}
+			}
+		}
+
+		try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'Config-External'")) {
+			// Table exists
+			while (rs.next()) {
+				ExternalConfigExists = true;
+				switch(rs.getString("KEY")) {
+
+					// Personal In-Application Debuggers;
+					// These values are NOT part of NXT, and ONLY for this program for testing purposes.
+					// ALWAYS make `DEVELOPER_DEBUGS_ENABLED` in the cache before any other debugging settings.
+
+					case "TableCreated (yyyy-MM-dd hh:mm:ss)":
+						DeveloperValueCounter++;
+						break;
+
+					case "DEVELOPER_DEBUGS_ENABLED":
+						DeveloperValueCounter++;
+						if (rs.getString("DATA").equals("1") ||
+							rs.getString("DATA").toLowerCase().equals("t") ||
+							rs.getString("DATA").toLowerCase().equals("true")) {
+							Storage.DEVELOPER_DebugsEnabled = true;
+						}	else {
+							Storage.DEVELOPER_DebugsEnabled = false;
+						}
+						break;
+
+					case "DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO":
+						DeveloperValueCounter++;
+						if (rs.getString("DATA").equals("1") ||
+							rs.getString("DATA").toLowerCase().equals("t") ||
+							rs.getString("DATA").toLowerCase().equals("true")) {
+							if (Storage.DEVELOPER_DebugsEnabled) {
+								Storage.DEVELOPER_AlwaysShowSensitiveInfo = true;
+								NXTSettingsGUI.ShowSensitiveInformation.setSelected(true);
+								NXTSettingsGUI.ShowSensitiveInformation.setEnabled(false);
+								NXTSettingsGUI.ShowSensitiveInformation.setFont(new Font("Dialog", Font.PLAIN, 11));
+								NXTSettingsGUI.ShowSensitiveInformation.setText("<Always show sensitive Info>");
+								NXTSettingsGUI.ShowSensitiveInformation.setToolTipText(
+										"<html>"+
+											"The in-program option 'DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO' was set in the cache.<br><br>"+
+											"This means that the sensitive information in your cache will always be shown.<br>"+
+											"Note: This is a redundant feature, but part of adding in user-disabled features."+
+										"</html>");
+
+							}	else {
+								System.out.println("The in-program option 'DEVELOPER_DEBUGS_ENABLED' was not set in the cache first. As a result 'DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO' will not be set.");
+								Storage.DEVELOPER_AlwaysShowSensitiveInfo = false;
+							}
+						}	else {
+							Storage.DEVELOPER_AlwaysShowSensitiveInfo = false;
+							NXTSettingsGUI.ShowSensitiveInformation.setEnabled(true);
+							NXTSettingsGUI.ShowSensitiveInformation.setFont(new Font("Dialog", Font.PLAIN, 12));
+							NXTSettingsGUI.ShowSensitiveInformation.setText("Show sensitive information?");
+							NXTSettingsGUI.ShowSensitiveInformation.setToolTipText("Show information such as your username?");
+						}
+						break;
+
+					case "DEVELOPER_READ_ONLY_CACHE":
+						DeveloperValueCounter++;
+						if (rs.getString("DATA").equals("1") ||
+							rs.getString("DATA").toLowerCase().equals("t") ||
+							rs.getString("DATA").toLowerCase().equals("true")) {
+							if (Storage.DEVELOPER_DebugsEnabled) {
+								Storage.DEVELOPER_ReadOnlyCache = true;
+								NXTSettingsGUI.WriteSettings.setEnabled(false);
+								NXTSettingsGUI.AllowWritingCheckbox.setEnabled(false);
+								NXTSettingsGUI.AllowWritingCheckbox.setSelected(false);
+								NXTSettingsGUI.AllowWritingCheckbox.setText("<Read-Only Cache>");
+								NXTSettingsGUI.AllowWritingCheckbox.setToolTipText(
+										"<html>"+
+											"The in-program option 'DEVELOPER_READ_ONLY_CACHE' was set in the cache.<br><br>"+
+											"This means that the cache is not allowed to be saved using this program."+
+										"</html>");
+							}	else {
+								System.out.println("The in-program option 'DEVELOPER_DEBUGS_ENABLED' was not set in the cache first. As a result 'DEVELOPER_READ_ONLY_CACHE' will not be set.");
+								Storage.DEVELOPER_ReadOnlyCache = false;
+							}
+						}	else {
+							Storage.DEVELOPER_ReadOnlyCache = false;
+							NXTSettingsGUI.AllowWritingCheckbox.setEnabled(true);
+							NXTSettingsGUI.AllowWritingCheckbox.setText("Enable 'Write Settings'?");
+							NXTSettingsGUI.AllowWritingCheckbox.setToolTipText("Allow writing of all settings when 'Write Settings' is clicked. Some special mechanic values will be written instantly.");
+						}
+					break;
+
+					case "DEVELOPER_ALWAYS_STAY_ON_TOP":
+						DeveloperValueCounter++;
+						if (rs.getString("DATA").equals("1") ||
+							rs.getString("DATA").toLowerCase().equals("t") ||
+							rs.getString("DATA").toLowerCase().equals("true")) {
+							Storage.DEVELOPER_WindowAlwaysOnTop = true;
+							NXTSettingsGUI.frame.setAlwaysOnTop(true);
+						}	else {
+							Storage.DEVELOPER_WindowAlwaysOnTop = false;
+						}
+						break;
+
+					case "DEVELOPER_ALWAYS_START_ON_TOP":
+						DeveloperValueCounter++;
+						if (rs.getString("DATA").equals("1") ||
+							rs.getString("DATA").toLowerCase().equals("t") ||
+							rs.getString("DATA").toLowerCase().equals("true")) {
+							NXTSettingsGUI.frame.setAlwaysOnTop(true);
+						}
+						break;
+				}
+			}
+			if(DeveloperValueCounter != Storage.ProgramDeveloperValues.length){
+				// There was a value which was invalid. Re-initialize the table.
+				RecreateDeveloperValues();
+			}
+			rs.close();
+		}	catch(final SQLException e) {}
+	}
+
 	public static void Write() {
 		/*
 		 * > Output where the `Settings.jcache` file will be saved to
@@ -812,9 +835,25 @@ public class JCache {
 				}
 			}
 
+			// Developer Console History Logs
+			Storage.stmt.addBatch("DELETE FROM 'console';");
+			int DeveloperConsoleHistoryIndex = 0;
+			for (int i = 0; i < NXTSettingsGUI.DeveloperConsoleHistoryTable.getRowCount(); i++){
+				if (NXTSettingsGUI.DeveloperConsoleHistoryTable.getValueAt(i, 1) != null){
+					if (!NXTSettingsGUI.DeveloperConsoleHistoryTable.getValueAt(i, 1).toString().trim().equals("")){
+						Storage.stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') "+
+									  		  "VALUES ('"+DeveloperConsoleHistoryIndex+"', '"+NXTSettingsGUI.DeveloperConsoleHistoryTable.getValueAt(i, 1)+"');");
+						DeveloperConsoleHistoryIndex++;
+					}
+				}
+			}
+
 			// Execute/Save the changes
 			Storage.stmt.executeBatch();
 			Storage.stmt.clearBatch();
+
+			//Refresh the Developer Console History table.
+			JCache.ReadDeveloperConsoleHistory();
 
 			final Path Preferences = Storage.preferences_config.toPath();
 			List<String> fileContent;
@@ -858,6 +897,7 @@ public class JCache {
 			e.printStackTrace();
 		}
 	}
+
 	public static void Write(final boolean isConfigTable, final String Key, final Object Value){
 		/*
 		 * > Check if `Storage.conn` or `Storage.stmt` is `null`, and `Storage.Cache_settings_location` isn't `` or `null`.

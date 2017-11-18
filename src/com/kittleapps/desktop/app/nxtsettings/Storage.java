@@ -399,7 +399,7 @@ public class Storage {
 				"<br>" +
 					"The default value for this option is 100.<br>" +
 				"<br>" +
-					"NOTE: This option is currently experimental, and may cause graphical issues for some.<br>" +
+					"Note: This option is currently experimental, and may cause graphical issues for some.<br>" +
 					"This includes messing up some layouts while using the New Interface System."+
 			"</html>",
 	GAMESCALING_TOOLTIP =
@@ -408,7 +408,7 @@ public class Storage {
 				"<br>" +
 					"The default value for this entry is 100.<br>" +
 				"<br>" +
-					"NOTE: This option is currently experimental, and may cause graphical issues for some.<br>" +
+					"Note: This option is currently experimental, and may cause graphical issues for some.<br>" +
 					"This includes blurs, and loss of FPS depending on the settings used."+
 			"</html>",
 	DOF_TOOLTIP =
@@ -417,14 +417,14 @@ public class Storage {
 			"</html>",
 	HEATHAZE_TOOLTIP =
 			"<html>"+
-					"NOTE: This option is not released in the live versions, this is merely a placeholder." +
+					"Note: This option is not released in the live versions, this is merely a placeholder." +
 			"</html>",
 	USERNAME_INPUT_TOOLTIP =
 			"<html>"+
 					"This will be the display username when loading NXT.<br>"+
 					"Currently this field allows Jagex's Colour+Sprite flags to be used.<br>" +
 				"<br>"+
-					"NOTE: When using sprite+colour flags it will still read is-if you types them here<br>" +
+					"Note: When using sprite+colour flags it will still read is-if you types them here<br>" +
 					"Graphically it may be a login-able name, but it will have invalid characters/login names.<br>"+
 					"Some HTML elements like &lt;br&gt;, &lt;b&gt;, and &lt;i&gt; can be used as well." +
 			"</html>",
@@ -449,7 +449,7 @@ public class Storage {
 			"<html>"+
 					"Randomize your login screen's wallpaper.<br>" +
 				"<br>" +
-					"NOTE: The first frame of this will be the id input to the Right<br>" +
+					"Note: The first frame of this will be the id input to the Right<br>" +
 					"If this option is unchecked, that id's wallpaper will be used." +
 			"</html>",
 	WALLPAPER_ID_TOOLTIP =
@@ -458,7 +458,7 @@ public class Storage {
 				"<br>" +
 					"The default value for this entry is 0." +
 				"<br>" +
-					"NOTE: This will apply to the first wallpaper while randomizing.<br>" +
+					"Note: This will apply to the first wallpaper while randomizing.<br>" +
 					"This will also be the static id if randomizing is off.<br>" +
 			"</html>",
 	ADD_SPRITE_FLAG_TOOLTIP =
@@ -474,22 +474,17 @@ public class Storage {
 			"</html>",
 	CLEAR_DEV_CONSOLE_LOGS_TOOLTIP =
 			"<html>" +
-					"This will clear the Developer Console's command history logs.<br>" +
-				"<br>" +
-					"Note: Using this button will instantly write to your client's settings." +
+					"This will clear the Developer Console's command history logs."+
 			"</html>",
 	POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP =
 			"<html>" +
-					"This will populate the Developer Console's command history with player-allowed commands.<br>" +
-				"<br>" +
-					"Note: Using this button will instantly write to your client's settings." +
+					"This will populate the Developer Console's command history with player-allowed commands." +
 			"</html>",
 	POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP =
 			"<html>" +
 					"This will populate the Developer Console's command history with all known commands.<br>" +
 				"<br>" +
-					"Note: Using this button will instantly write to your client's settings.<br>" +
-					"This list in incomplete, and many commands are not use-able by players."+
+					"Note: This list in incomplete, and many commands are not use-able by players."+
 			"</html>",
 	BOOSTED_VOLUMES_TOOLTIP =
 			"<html>" +

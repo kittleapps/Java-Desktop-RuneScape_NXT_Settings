@@ -5,7 +5,7 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 **Beginners Notes**:
 * This program is still experimental, and may cause issues.
 * Not all functions in this program act as-if on the client.
-* Not all of these functions comply to Jagex's ToS (e.g. boosting the volumes/"None" Remove Roofs)
+* Not all of these functions may comply to Jagex's ToS (e.g. boosting the volumes)
 * This program can become obsolete in any NXT update, I will try to update when I feel up-to it/have time.
 * This program does **NOT** Collect user information outside the program. 
   * Meaning, what's read by the program, stays in the program.
@@ -39,10 +39,9 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
   * Buttons to add some of these flags are included.
   * The username will clear if:
     * `Remember username?` in unchecked. (due to how the client works, if this is unchecked, it would clear it anyways making this slightly redundant)
-    * `Show sensitive information?` is unchecked. (due to personal security it will not be read automatically until it's checked)
+    * `Show sensitive information?` is unchecked. due to personal security it will not be read automatically until it's checked or if you enable `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`. See below for more information.
     * The username field is blank on-writing.
 * Favourite world editing
-  * Buttons are included to make it `2,147,000,000` for fun. (redundant)
   * Allows editing up-to 2,147,483,647 for visual purposes.
     * Note any world that is NOT valid will act as-if it's not on your language, or is offline.
     * In addition the the above, while in-game any invalid world will NOT show but will act as-is the slots are taken.
@@ -54,7 +53,10 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Clearing the Developer Console log.
   * Currently in the client this is not clear-able, this merely wipes that part of the database clean.
 * Populating the Developer Console log with some known commands.
-  * Includes Players, and Jagex Moderator commands.
+  * Includes Players, and some Jagex Moderator commands.
+* Developer Console history editing.
+  * Full control of values/entries inside the Developer Console's history up-to 150 commands. (until I see if there's a limit, then set it to that if it's reasonable.)
+  * To delete entries, simply erase their value. If it's only spaces or empty this program will simply not add it back deleting that slot fully.
 * Zezima Button.
   * I'll let you find out what that does in the Source Code, or while ran.
     * Hint: It's cosmetic, but a fun reference for some.
@@ -78,10 +80,9 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * `DEVELOPER_ALWAYS_START_ON_TOP`, which works similar to `DEVELOPER_ALWAYS_STAY_ON_TOP` but allows the use of the toggle.
 - - - -
 **TO-DO**:
-* Add custom Developer Console history editing.
-  * Hopefully includes editing values, and adding/removing values
 * Exporting & Importing your settings in Json. (sensitive information excluded)
 * Re-add support to view your UID.
+* Visually add both of NXT's internal build numbers. (the internal build label used in-development and the [Build number](http://runescape.wikia.com/wiki/Build_number) for the client)
 * More options to disable.
   * Unknown what else I could have it disable, maybe I'll throw in a few (fun/visual) Easter eggs for the Pre-Compiled variants to be surprised with.
 * Even more cleanups! (Have to stay clean!)

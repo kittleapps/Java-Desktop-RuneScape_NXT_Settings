@@ -13,21 +13,7 @@ public class Legality {
 		 *
 		 * > Check if Anti-Aliasing is disabled
 		 *  > If its value is disabled, disable Anti-Aliasing Quality.
-		 *
-		 * > Check if the Game World Scaling's value is null or empty
-		 *  > If its value is null/empty, set its value to the default, otherwise apply it.
-		 *
-		 * > Check if the Game World Scaling's values are legal.
-		 *  > If its value is under 33, set to 33
-		 *  > If its value is over 200, set to 200
-		 *
-		 * > If the UI Scaling's value is null or empty
-		 *  > If its value is null/empty, set its value to the default, otherwise apply it.
-		 *
-		 * > Check if the UI Scaling's values are legal.
-		 *  > If its value is under 100, set to 100
-		 *  > If its value is over 400, set to 400
-		 *
+		 *  
 		 */
 
 		// Terrain/Ground Blending.
