@@ -108,7 +108,8 @@ public class Storage {
 		// In-Program developer options;
 		DEVELOPER_DebugsEnabled,
 		DEVELOPER_ReadOnlyCache,
-		DEVELOPER_AlwaysShowSensitiveInfo
+		DEVELOPER_AlwaysShowSensitiveInfo,
+		DEVELOPER_WindowAlwaysOnTop
 	;
 
    public static File preferences_config, Settings_db;
@@ -117,6 +118,14 @@ public class Storage {
 	public static StringBuilder messages;
 	public static List<String> nxtClientSettings_DeveloperConsoleLog = new ArrayList<>();
 	public static String[] nxtClientSettings_DeveloperConsoleLogs;
+	public static String[] ProgramDeveloperValues = {
+		"TableCreated (yyyy-MM-dd hh:mm:ss)",
+		"DEVELOPER_DEBUGS_ENABLED",
+		"DEVELOPER_READ_ONLY_CACHE",
+		"DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO",
+		"DEVELOPER_ALWAYS_STAY_ON_TOP",
+		"DEVELOPER_ALWAYS_START_ON_TOP"
+	};
 	public final static String[][] DEVELOPER_CONSOLE_COMMANDS = {
 			{
 			/* Player-Enabled Commands */

@@ -6,7 +6,7 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * This program is still experimental, and may cause issues.
 * Not all functions in this program act as-if on the client.
 * Not all of these functions comply to Jagex's ToS (e.g. boosting the volumes/"None" Remove Roofs)
-* This program can become obslete in any NXT update, I will try to update when I feel up-to it/have time.
+* This program can become obsolete in any NXT update, I will try to update when I feel up-to it/have time.
 * This program does **NOT** Collect user information outside the program. 
   * Meaning, what's read by the program, stays in the program.
     * Except what's saved in the `Settings.jcache` if you allowed it to write.
@@ -14,7 +14,7 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * Nothing in the program uses internet anyways..
   * **ANY** of the program's sensitive contents clear once the program is closed.
     * When writing the username saved is cleared automatically.
-    * There's no persistant log/data file being stored. (other then Jagex's `Settings.jcache` of course)
+    * There's no persistent log/data file being stored. (other then Jagex's `Settings.jcache` of course)
   * Your username and UID will **NOT** be taken/stolen.
     * Straps on a tin-foil hat to reply: `You can check the source code here if you still don't believe me.`
   * **NO** Pre-compiled versions will be made, due to the above points. (people get paranoia, and point fingers)
@@ -67,13 +67,15 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Partial Program function disabling.
   * This is currently a WIP, and more options will be added later on.
   * This mechanic will add a new table `Config-External` to `Settings.Jcache`, but is only used for this program.
-  * Some mechanics are not suitable for most people as i add more to this, but they are all 100% optional.
-    * An example of one that may not be suitable is `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`, which would help in speed-updating of values without having to check the `Show sensitive information?` permission, re-read, and save. This may be unwanted because it will make your username visibe on-launch for instance.
+  * Some mechanics are not suitable for most people as I add more to this, but they are all 100% optional.
+    * An example of one that may not be suitable is `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`, which would help in speed-updating of values without having to check the `Show sensitive information?` permission, re-read, and save. This may be unwanted because it will make your username visible on-launch for instance.
   * Currently the options for this mechanic are:
     * `TableCreated (yyyy-MM-dd hh:mm:ss)`, Nothing more for this as it's just to let you know when this program originally made the current table. This may be removed at a later time.
     * `DEVELOPER_DEBUGS_ENABLED`, which allows this mechanic to be used. If this is set to `false` any other mechanics will not be utilized, and will be disabled.
-    * `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`, which was explained a bit above. It allows sensitve information like your username to be read and visible on-start, skipping the `Show sensitive information?` permission to allow faster saving.
-    * `DEVELOPER_READ_ONLY_CACHE`, which as it may seem it prevents the settigns from being written once changed. This will make the program a basic read-only program to view your settings offline, without worrying about it being overwritten.
+    * `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`, which was explained a bit above. It allows sensitive information like your username to be read and visible on-start, skipping the `Show sensitive information?` permission to allow faster saving.
+    * `DEVELOPER_READ_ONLY_CACHE`, which as it may seem it prevents the settings from being written once changed. This will make the program a basic read-only program to view your settings offline, without worrying about it being overwritten.
+    * `DEVELOPER_ALWAYS_STAY_ON_TOP`, which makes the program always stay on top other windows. This option will render the toggle useless.
+    * `DEVELOPER_ALWAYS_START_ON_TOP`, which works similar to `DEVELOPER_ALWAYS_STAY_ON_TOP` but allows the use of the toggle.
 - - - -
 **TO-DO**:
 * Add custom Developer Console history editing.
@@ -81,5 +83,5 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Exporting & Importing your settings in Json. (sensitive information excluded)
 * Re-add support to view your UID.
 * More options to disable.
-  * Unknown what else I could have it disable, maybe I'll throw in a few (fun/visual) easter eggs for the Pre-Compiled variants to be suprised with.
+  * Unknown what else I could have it disable, maybe I'll throw in a few (fun/visual) Easter eggs for the Pre-Compiled variants to be surprised with.
 * Even more cleanups! (Have to stay clean!)

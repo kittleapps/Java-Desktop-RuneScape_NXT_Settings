@@ -473,19 +473,12 @@ public class JCache {
 
 
 				boolean ExternalConfigExists = false;
+				int DeveloperValueCounter = 0;
 				try(ResultSet Count = Storage.stmt.executeQuery("SELECT COUNT(*) FROM 'Config-External'")) {
 					if (Count.next()) {
-						if (Count.getInt(1) != 4) {
-							try {
-								// The Timestamp and All the current options weren't there, so recreate them with their default values.
-								Storage.stmt.addBatch("DELETE FROM 'Config-External';");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('TableCreated (yyyy-MM-dd hh:mm:ss)', '"+ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))+" UTC');");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('DEVELOPER_DEBUGS_ENABLED', 'false');");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO', 'false');");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('DEVELOPER_READ_ONLY_CACHE', 'false');");
-								Storage.stmt.executeBatch();
-								Storage.stmt.clearBatch();
-							}	catch(final SQLException e1) {}
+						if (Count.getInt(1) != Storage.ProgramDeveloperValues.length) {
+							// There was a value which was invalid. Re-initialize the table.
+							RecreateDeveloperValues();
 						}
 					}
 				} catch (final SQLException e2) {
@@ -495,16 +488,7 @@ public class JCache {
 							if(Storage.stmt.execute("CREATE TABLE 'Config-External'(KEY STRING PRIMARY KEY UNIQUE,DATA TEXT)")) {
 								ExternalConfigExists = true;
 							}
-							try {
-								// The Timestamp and All the current options weren't there, so recreate them with their default values.
-								Storage.stmt.addBatch("DELETE FROM 'Config-External';");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('TableCreated (yyyy-MM-dd hh:mm:ss)', '"+ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))+" UTC');");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('DEVELOPER_DEBUGS_ENABLED', 'false');");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO', 'false');");
-								Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('DEVELOPER_READ_ONLY_CACHE', 'false');");
-								Storage.stmt.executeBatch();
-								Storage.stmt.clearBatch();
-							}	catch(final SQLException e3) {}
+							RecreateDeveloperValues();
 						}	catch (final SQLException e4) {}
 					}
 				}
@@ -519,7 +503,12 @@ public class JCache {
 							// These values are NOT part of NXT, and ONLY for this program for testing purposes.
 							// ALWAYS make `DEVELOPER_DEBUGS_ENABLED` in the cache before any other debugging settings.
 
+							case "TableCreated (yyyy-MM-dd hh:mm:ss)":
+								DeveloperValueCounter++;
+								break;
+
 							case "DEVELOPER_DEBUGS_ENABLED":
+								DeveloperValueCounter++;
 								if (rs.getString("DATA").equals("1") ||
 									rs.getString("DATA").toLowerCase().equals("t") ||
 									rs.getString("DATA").toLowerCase().equals("true")) {
@@ -530,6 +519,7 @@ public class JCache {
 								break;
 
 							case "DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO":
+								DeveloperValueCounter++;
 								if (rs.getString("DATA").equals("1") ||
 									rs.getString("DATA").toLowerCase().equals("t") ||
 									rs.getString("DATA").toLowerCase().equals("true")) {
@@ -560,6 +550,7 @@ public class JCache {
 								break;
 
 							case "DEVELOPER_READ_ONLY_CACHE":
+								DeveloperValueCounter++;
 								if (rs.getString("DATA").equals("1") ||
 									rs.getString("DATA").toLowerCase().equals("t") ||
 									rs.getString("DATA").toLowerCase().equals("true")) {
@@ -585,8 +576,32 @@ public class JCache {
 									NXTSettingsGUI.AllowWritingCheckbox.setToolTipText("Allow writing of all settings when 'Write Settings' is clicked. Some special mechanic values will be written instantly.");
 								}
 							break;
+							
+							case "DEVELOPER_ALWAYS_STAY_ON_TOP":
+								DeveloperValueCounter++;
+								if (rs.getString("DATA").equals("1") ||
+									rs.getString("DATA").toLowerCase().equals("t") ||
+									rs.getString("DATA").toLowerCase().equals("true")) {
+									Storage.DEVELOPER_WindowAlwaysOnTop = true;
+									NXTSettingsGUI.frame.setAlwaysOnTop(true);
+								}	else {
+									Storage.DEVELOPER_WindowAlwaysOnTop = false;
+								}
+								break;
 
+							case "DEVELOPER_ALWAYS_START_ON_TOP":
+								DeveloperValueCounter++;
+								if (rs.getString("DATA").equals("1") ||
+									rs.getString("DATA").toLowerCase().equals("t") ||
+									rs.getString("DATA").toLowerCase().equals("true")) {
+									NXTSettingsGUI.frame.setAlwaysOnTop(true);
+								}
+								break;
 						}
+					}
+					if(DeveloperValueCounter != Storage.ProgramDeveloperValues.length){
+						// There was a value which was invalid. Re-initialize the table.
+						RecreateDeveloperValues();
 					}
 					rs.close();
 				}	catch(final SQLException e) {}
@@ -874,5 +889,17 @@ public class JCache {
 		}	catch (final SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	private static void RecreateDeveloperValues(){
+		try {
+			// There was a value which was invalid. Re-initialize the table.
+			Storage.stmt.addBatch("DELETE FROM 'Config-External';");
+			Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('TableCreated (yyyy-MM-dd hh:mm:ss)', '"+ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))+" UTC');");
+			for(int i = 1; i < Storage.ProgramDeveloperValues.length; i++){
+				Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('"+Storage.ProgramDeveloperValues[i]+"', 'false');");
+			}
+			Storage.stmt.executeBatch();
+			Storage.stmt.clearBatch();
+		}	catch(final SQLException e1) {}
 	}
 }

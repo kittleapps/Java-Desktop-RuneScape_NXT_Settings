@@ -199,7 +199,7 @@ public class NXTSettingsGUI extends JFrame {
 																		" was not the Cache file this program is loking for." +
 																		" Please select 'Settings.jcache'");
 				}
-			}	else {}
+			}
 		});
 		FileMenu.add(FileMenuSelectCache);
 
@@ -241,12 +241,17 @@ public class NXTSettingsGUI extends JFrame {
 
 		final JMenuItem FileMenuAlwaysOnTop = new JMenuItem("Toggle Always On Top");
 		FileMenuAlwaysOnTop.addActionListener(e -> {
-			if (frame.isAlwaysOnTop()) {
-				frame.setAlwaysOnTop(false);
-				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now disabled.");
+			if (!Storage.DEVELOPER_WindowAlwaysOnTop){
+				if (frame.isAlwaysOnTop()) {
+					frame.setAlwaysOnTop(false);
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now disabled.");
+				}	else {
+					frame.setAlwaysOnTop(true);
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now enabled.");
+				}
 			}	else {
-				frame.setAlwaysOnTop(true);
-				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now enabled.");
+					frame.setAlwaysOnTop(true);
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The program option 'DEVELOPER_ALWAYS_STAY_ON_TOP' is currently enabled.\n\nYou will not be able to toggle Always on Top at this time.");
 			}
 		});
 		FileMenu.add(FileMenuAlwaysOnTop);
