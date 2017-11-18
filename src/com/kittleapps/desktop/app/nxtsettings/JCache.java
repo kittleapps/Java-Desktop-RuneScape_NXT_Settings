@@ -475,13 +475,15 @@ public class JCache {
 		 */
 
 		try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'console'")) {
-			for (int i = 0; i < NXTSettingsGUI.DeveloperConsoleHistoryTable.getRowCount(); i++){
+			for (int i = 0; i < 100; i++){
 				NXTSettingsGUI.DeveloperConsoleHistoryTable.setValueAt("", i, 1);
 			}
 			int DeveloperConsoleIndex = 0;
 			while (rs.next()) {
 				Storage.nxtClientSettings_DeveloperConsoleLog.add(rs.getString("DATA"));
-				NXTSettingsGUI.DeveloperConsoleHistoryTable.setValueAt(rs.getString("DATA"), DeveloperConsoleIndex, 1);
+				if (DeveloperConsoleIndex < 100){
+					NXTSettingsGUI.DeveloperConsoleHistoryTable.setValueAt(rs.getString("DATA"), DeveloperConsoleIndex, 1);
+				}
 				DeveloperConsoleIndex++;
 			}
 			Storage.nxtClientSettings_DeveloperConsoleLogs = Storage.nxtClientSettings_DeveloperConsoleLog.toArray(new String[0]);
@@ -838,7 +840,7 @@ public class JCache {
 			// Developer Console History Logs
 			Storage.stmt.addBatch("DELETE FROM 'console';");
 			int DeveloperConsoleHistoryIndex = 0;
-			for (int i = 0; i < NXTSettingsGUI.DeveloperConsoleHistoryTable.getRowCount(); i++){
+			for (int i = 0; i < 100; i++){
 				if (NXTSettingsGUI.DeveloperConsoleHistoryTable.getValueAt(i, 1) != null){
 					if (!NXTSettingsGUI.DeveloperConsoleHistoryTable.getValueAt(i, 1).toString().trim().equals("")){
 						Storage.stmt.addBatch("INSERT INTO 'console' ('KEY', 'DATA') "+

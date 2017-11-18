@@ -55,7 +55,8 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Populating the Developer Console log with some known commands.
   * Includes Players, and some Jagex Moderator commands.
 * Developer Console history editing.
-  * Full control of values/entries inside the Developer Console's history up-to 150 commands. (until I see if there's a limit, then set it to that if it's reasonable.)
+  * Full control of values/entries inside the Developer Console's history up-to 100 commands.
+    * Client-Sided limitations with NXT will only display the last 100 commands used on-load. So this is the limit I'll set.
   * To delete entries, simply erase their value. If it's only spaces or empty this program will simply not add it back deleting that slot fully.
 * Zezima Button.
   * I'll let you find out what that does in the Source Code, or while ran.

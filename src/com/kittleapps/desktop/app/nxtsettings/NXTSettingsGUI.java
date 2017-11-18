@@ -141,6 +141,7 @@ public class NXTSettingsGUI extends JFrame {
 
 	private static JPanel contentPane;
 
+	@SuppressWarnings("serial")
 	public NXTSettingsGUI() {
 		frame = this;
 		frame.setVisible(true);
@@ -1256,7 +1257,7 @@ public class NXTSettingsGUI extends JFrame {
 				DeveloperConsoleHistoryTable.clearSelection();
 			}
 
-			for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+			for(int i = 0; i < 100; i++){
 				DeveloperConsoleHistoryTable.setValueAt("", i, 1);
 			}
 		});
@@ -1271,7 +1272,7 @@ public class NXTSettingsGUI extends JFrame {
 				DeveloperConsoleHistoryTable.clearSelection();
 			}
 
-			for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+			for(int i = 0; i < 100; i++){
 				DeveloperConsoleHistoryTable.setValueAt("", i, 1);
 			}
 
@@ -1290,7 +1291,7 @@ public class NXTSettingsGUI extends JFrame {
 					DeveloperConsoleHistoryTable.clearSelection();
 				}
 
-				for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+				for(int i = 0; i < 100; i++){
 					DeveloperConsoleHistoryTable.setValueAt("", i, 1);
 				}
 
@@ -1304,16 +1305,12 @@ public class NXTSettingsGUI extends JFrame {
 		DeveloperConsoleHistoryTable = new JTable();
 		DeveloperConsoleHistoryTable.setFont(new Font("Dialog", Font.PLAIN, 12));
 		DeveloperConsoleHistoryTable.setModel(new DefaultTableModel(
-			new Object[150][2],
+			new Object[100][2],
 			new String[] {
 				"ID",
 				"Developer Console History"
 			}
 			){
-			/**
-				 *
-				 */
-				private static final long serialVersionUID = -4520056399939983074L;
 
 			@Override
 			public boolean isCellEditable(final int rowIndex, final int columnIndex) {
@@ -1336,7 +1333,7 @@ public class NXTSettingsGUI extends JFrame {
 				"This means the first command listed will be the first commands<br>" +
 				"shown when you hit Page-Up key while using the Developer Console.<br>" +
 				"<br>" +
-				"The last "+DeveloperConsoleHistoryTable.getRowCount()+" commands used will be shown in this table."
+				"Due to client limitations only the last 100 commands used will be shown in this table."
 				);
 		DeveloperConsoleHistoryTable.getTableHeader().setReorderingAllowed(false);
 		DeveloperConsoleHistoryTable.getTableHeader().setResizingAllowed(false);
@@ -1346,7 +1343,7 @@ public class NXTSettingsGUI extends JFrame {
         final JScrollPane pane = new JScrollPane(DeveloperConsoleHistoryTable);
         pane.setBounds(15, 85, 685, 440);
 		SpecialMechanicsTab.add(pane);
-		for(int i = 0; i < DeveloperConsoleHistoryTable.getRowCount(); i++){
+		for(int i = 0; i < 100; i++){
 			DeveloperConsoleHistoryTable.setValueAt(i+1, i, 0);
 		}
 
