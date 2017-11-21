@@ -116,7 +116,7 @@ public class Storage {
 	public static Connection conn;
 	public static Statement stmt;
 	public static StringBuilder messages;
-	public static List<String> nxtClientSettings_DeveloperConsoleLog = new ArrayList<>();
+	public static List<String> nxtClientSettings_DeveloperConsoleLog = new ArrayList<>(100);
 	public static String[] nxtClientSettings_DeveloperConsoleLogs;
 	public static String[] ProgramDeveloperValues = {
 		"TableCreated (yyyy-MM-dd hh:mm:ss)",
@@ -150,21 +150,26 @@ public class Storage {
 				"help",
 				"commands",
 				"deletejs5caches",
+				"clientdrop",
+				"fps ",
 				"360camera",
 				"debugcamera",
 				"getclientvarp",
-				"clientdrop",
 				"directlogin ",
 				"setlobby ",
 				"setvar ",
 				"setstat ",
-				"advancestat",
+				"setcamera ",
+				"advancestat ",
+				"~eqme ",
 				"give ",
 				"tele ",
 				"teleto ",
 				"teletome ",
+				"~jmod_tool",
 				"~ftfi",
 				"~hideall",
+				"~test_hitall",
 			}
 	};
 	public final static String[] LANGUAGES = {
