@@ -24,10 +24,10 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * All current graphics settings options
   * Game Render and Interface/UI Scaling options are added. They are live, but currently their options are not.
     * These scaling mechanics are currently experimental, and not meant for full use my players. Visual issues may occur.
-* All audio options
+* Most audio options
   * Includes boosting the volumes for most audio streams
     * While I personally have not heard any quality-issues, this makes the in-game bars go past their normal limits visually.
-  * Global audio mute toggle is included. (programmatically, this is bugged in the clients as the volumes are read first, then global audio mute when Sound Settings are opened. so this toggle may be redundant)
+  * Looping the current Music Track.
 * Editing your username field
   * This does NOT save anywhere but in `Settings.jcache` where the settings are normally stored.
   * This allows Jagex-Exclusive code-markups to be used such as:
@@ -47,6 +47,13 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * In addition the the above, while in-game any invalid world will NOT show but will act as-is the slots are taken.
     * Setting to `-1` is done by-default, `-1` will also be applied to slots 2 and/or 3 depending if 1 and or 2 is set to `-1` to prevent visual glitching/skipping of the worlds. 
     * Any value that is `-1` is read to the client as-if it was never set/removed.
+* World List menu sorting.
+* Keyboard Sensitivity changing
+* Mouse sensitivity changing
+* Mouse-over tooltip toggling
+* Task completed popup toggling
+* In-Game camera Zoom changing. 
+  * This doesn't allow any illegal values, as it will revert to default.
 * Randomizing the wallpaper
   * This includes setting the regular ID for the wallpaper if not randomizing. This ID can change with any update, unfortunately.
   * The id used will be the first wallpaper shown while randomizing.
