@@ -194,102 +194,102 @@ public class JCache {
 				switch(rs.getString("KEY")) {
 					case "CustomCursors":
 						Storage.nxtGraphicsSetting_CustomCursors = rs.getString("DATA").equals("1");
-						NXTSettingsGUI.CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
+						NXTSettingsGUI.CustomCursorsCheckbox.setSelected(rs.getString("DATA").equals("1"));
 						break;
 
 					case "Shadows":
 						Storage.nxtGraphicsSetting_Shadows = rs.getString("DATA").equals("1");
-						NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
+						NXTSettingsGUI.ShadowsCheckbox.setSelected(rs.getString("DATA").equals("1"));
 						break;
 
 					case "FlickeringEffects":
 						Storage.nxtGraphicsSetting_FlickeringEffects = rs.getString("DATA").equals("1");
-						NXTSettingsGUI.FlickeringEffectsCheckbox.setSelected(Storage.nxtGraphicsSetting_FlickeringEffects);
+						NXTSettingsGUI.FlickeringEffectsCheckbox.setSelected(rs.getString("DATA").equals("1"));
 						break;
 
 					case "GroundDecor":
 						Storage.nxtGraphicsSetting_GroundDecor = rs.getString("DATA").equals("1");
-						NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
+						NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(rs.getString("DATA").equals("1"));
 						break;
 
 					case "GroundBlending":
 						Storage.nxtGraphicsSetting_TerrainBlending = rs.getString("DATA").equals("1");
-						NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
+						NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(rs.getString("DATA").equals("1"));
 						break;
 
 					case "DrawDistance":
-						Storage.nxtGraphicsSetting_DrawDistance = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
+						Storage.nxtGraphicsSetting_DrawDistance = rs.getInt("DATA");
+						NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "ShadowQuality":
-						Storage.nxtGraphicsSetting_ShadowQuality = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
+						Storage.nxtGraphicsSetting_ShadowQuality = rs.getInt("DATA");
+						NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "LightingQuality":
-						Storage.nxtGraphicsSetting_LightingQuality = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.LightingDetailComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_LightingQuality);
+						Storage.nxtGraphicsSetting_LightingQuality = rs.getInt("DATA");
+						NXTSettingsGUI.LightingDetailComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "AntialiasingQuality":
-						Storage.nxtGraphicsSetting_AntiAliasingQuality = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.AntiAliasingQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingQuality);
+						Storage.nxtGraphicsSetting_AntiAliasingQuality = rs.getInt("DATA");
+						NXTSettingsGUI.AntiAliasingQualityComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "Reflections":
-						Storage.nxtGraphicsSetting_WaterQuality = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.WaterQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_WaterQuality);
+						Storage.nxtGraphicsSetting_WaterQuality = rs.getInt("DATA");
+						NXTSettingsGUI.WaterQualityComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "VolumetricLighting":
-						Storage.nxtGraphicsSetting_VolumetricLighting = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.VolumetricLightingComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_VolumetricLighting);
+						Storage.nxtGraphicsSetting_VolumetricLighting = rs.getInt("DATA");
+						NXTSettingsGUI.VolumetricLightingComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "Bloom":
-						Storage.nxtGraphicsSetting_Bloom = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.BloomQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_Bloom);
+						Storage.nxtGraphicsSetting_Bloom = rs.getInt("DATA");
+						NXTSettingsGUI.BloomQualityComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "AmbientOcclusion":
-						Storage.nxtGraphicsSetting_AmbientOcclusion = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.AmbientOcclusionComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AmbientOcclusion);
+						Storage.nxtGraphicsSetting_AmbientOcclusion = rs.getInt("DATA");
+						NXTSettingsGUI.AmbientOcclusionComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "Texturing":
-						Storage.nxtGraphicsSetting_TextureQuality = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.TextureQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_TextureQuality);
+						Storage.nxtGraphicsSetting_TextureQuality = rs.getInt("DATA");
+						NXTSettingsGUI.TextureQualityComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "AntialiasingMode":
-						Storage.nxtGraphicsSetting_AntiAliasingMode = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
+						Storage.nxtGraphicsSetting_AntiAliasingMode = rs.getInt("DATA");
+						NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "AnisotropicFiltering":
-						Storage.nxtGraphicsSetting_AnisotropicFiltering = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.AnisotropicFilteringComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AnisotropicFiltering);
+						Storage.nxtGraphicsSetting_AnisotropicFiltering = rs.getInt("DATA");
+						NXTSettingsGUI.AnisotropicFilteringComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "VSync":
-						Storage.nxtGraphicsSetting_VSync = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.VSyncComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_VSync+1);
+						Storage.nxtGraphicsSetting_VSync = rs.getInt("DATA");
+						NXTSettingsGUI.VSyncComboBox.setSelectedIndex((rs.getInt("DATA")+1));
 						break;
 
 					case "RemoveRoof":
-						Storage.nxtGraphicsSetting_RemoveRoofs = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.RemoveRoofsComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_RemoveRoofs);
+						Storage.nxtGraphicsSetting_RemoveRoofs = rs.getInt("DATA");
+						NXTSettingsGUI.RemoveRoofsComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
 					case "Brightness":
-						Storage.nxtGraphicsSetting_Brightness = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
+						Storage.nxtGraphicsSetting_Brightness = rs.getInt("DATA");
+						NXTSettingsGUI.BrightnessSlider.setValue(rs.getInt("DATA"));
 						break;
 
 					case "MaxForegroundFps":
-						Storage.nxtGraphicsSetting_MaxForegroundFps = new Integer(rs.getString("DATA"));
-						int ForegroundFpsIndexID = (Storage.nxtGraphicsSetting_MaxForegroundFps/5)-1;
+						Storage.nxtGraphicsSetting_MaxForegroundFps = rs.getInt("DATA");
+						int ForegroundFpsIndexID = (rs.getInt("DATA")/5)-1;
 						if (ForegroundFpsIndexID < 0){
 							ForegroundFpsIndexID = 0;
 						}
@@ -300,8 +300,8 @@ public class JCache {
 						break;
 
 					case "MaxBackgroundFps":
-						Storage.nxtGraphicsSetting_MaxBackgroundFps = new Integer(rs.getString("DATA"));
-						int BackgroundFpsIndexID = (Storage.nxtGraphicsSetting_MaxBackgroundFps/5)-1;
+						Storage.nxtGraphicsSetting_MaxBackgroundFps = rs.getInt("DATA");
+						int BackgroundFpsIndexID = (rs.getInt("DATA")/5)-1;
 						if (BackgroundFpsIndexID < 0){
 							BackgroundFpsIndexID = 0;
 						}
@@ -312,8 +312,8 @@ public class JCache {
 						break;
 
 					case "InterfaceScale":
-						Storage.nxtClientSettings_UIScaling = new Integer(rs.getString("DATA"));
-						int UIScalingIndex = ((Storage.nxtClientSettings_UIScaling-100)/5);
+						Storage.nxtClientSettings_UIScaling = rs.getInt("DATA");
+						int UIScalingIndex = ((rs.getInt("DATA")-100)/5);
 						if (UIScalingIndex < 0){
 							UIScalingIndex = 0;
 						}
@@ -324,8 +324,8 @@ public class JCache {
 						break;
 
 					case "GameRenderScale":
-						Storage.nxtClientSettings_GameWorldScaling = new Integer(rs.getString("DATA"));
-						int GameWorldScalingIndex = ((Storage.nxtClientSettings_GameWorldScaling-35)/5);
+						Storage.nxtClientSettings_GameWorldScaling = rs.getInt("DATA");
+						int GameWorldScalingIndex = ((rs.getInt("DATA")-35)/5);
 						if (GameWorldScalingIndex < 0){
 							GameWorldScalingIndex = 0;
 						}
@@ -336,13 +336,33 @@ public class JCache {
 						break;
 
 					case "VolumeLoginMusic":
-						Storage.nxtClientSettings_LoginMusicVolume = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.LoginMusicSlider.setValue(Storage.nxtClientSettings_LoginMusicVolume);
+						Storage.nxtClientSettings_LoginMusicVolume = rs.getInt("DATA");
+						NXTSettingsGUI.LoginMusicSlider.setValue(rs.getInt("DATA"));
+						break;
+
+					case "VolumeMainMusic":
+						Storage.nxtClientSettings_InGameMusicVolume = rs.getInt("DATA");
+						NXTSettingsGUI.InGameMusicSlider.setValue(rs.getInt("DATA"));
+						break;
+
+					case "VolumeMainEffects":
+						Storage.nxtClientSettings_InGameSoundEffectsVolume = rs.getInt("DATA");
+						NXTSettingsGUI.InGameSoundEffectsSlider.setValue(rs.getInt("DATA"));
+						break;
+
+					case "VolumeBackgroundEffects":
+						Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = rs.getInt("DATA");
+						NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setValue(rs.getInt("DATA"));
+						break;
+
+					case "VolumeSpeech":
+						Storage.nxtClientSettings_InGameVoiceOverVolume = rs.getInt("DATA");
+						NXTSettingsGUI.InGameVoiceOverSlider.setValue(rs.getInt("DATA"));
 						break;
 
 					case "Version":
-						Storage.nxtClientSettings_SettingsVersion = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.frame.setTitle("NXT's Settings (Graphic Setting's Version: \""+rs.getString("DATA")+"\")");
+						Storage.nxtClientSettings_SettingsVersion = rs.getInt("DATA");
+						NXTSettingsGUI.frame.setTitle("NXT's Settings (Graphic Setting's Version: \""+rs.getInt("DATA")+"\")");
 						break;
 
 					case "DOF":
@@ -402,8 +422,8 @@ public class JCache {
 						break;
 
 					case Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID:
-						Storage.nxtClientSettings_LoginWallpaperID = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.WallpaperIDInput.setText("" + Storage.nxtClientSettings_LoginWallpaperID);
+						Storage.nxtClientSettings_LoginWallpaperID = rs.getInt("DATA");
+						NXTSettingsGUI.WallpaperIDInput.setText(rs.getString("DATA"));
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME:
@@ -411,52 +431,49 @@ public class JCache {
 						NXTSettingsGUI.RememberUsernameCheckbox.setSelected(Storage.nxtClientSettings_RememberUsername);
 						break;
 
-					case Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE:
-						Storage.nxtClientSettings_GlobalMute = rs.getString("DATA").equals("1");
-						NXTSettingsGUI.GlobalAudioMuteCheckbox.setSelected(Storage.nxtClientSettings_GlobalMute);
+					case Storage.CACHE_KEY_VT_VARC_CAMERA_ZOOM:
+						Storage.nxtClientSettings_CameraZoom = rs.getInt("DATA");
+						NXTSettingsGUI.InGameCameraZoomSlider.setValue(rs.getInt("DATA"));
 						break;
 
-					case Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME:
-						Storage.nxtClientSettings_InGameMusicVolume = new Integer(rs.getString("DATA"));
-						NXTSettingsGUI.InGameMusicSlider.setValue(Storage.nxtClientSettings_InGameMusicVolume);
+					case Storage.CACHE_KEY_VT_VARC_KEYBOARD_H_SENSITIVITY:
+						Storage.nxtClientSettings_KeyboardHSensitivity = rs.getInt("DATA");
+						NXTSettingsGUI.InGameKeyboardHSensitivitySlider.setValue(rs.getInt("DATA"));
 						break;
 
-					case Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME:
-						Storage.nxtClientSettings_InGameSoundEffectsVolume = new Integer(rs.getString("DATA"));
-						if (Storage.nxtClientSettings_InGameSoundEffectsVolume > 127) {
-							NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(true);
-							NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(254);
-						}	else {
-							NXTSettingsGUI.InGameSoundEffectsBoostCheckbox.setSelected(false);
-							NXTSettingsGUI.InGameSoundEffectsSlider.setMaximum(127);
-						}
-						NXTSettingsGUI.InGameSoundEffectsSlider.setValue(new Integer(rs.getString("DATA")));
+					case Storage.CACHE_KEY_VT_VARC_KEYBOARD_V_SENSITIVITY:
+						Storage.nxtClientSettings_KeyboardVSensitivity = rs.getInt("DATA");
+						NXTSettingsGUI.InGameKeyboardVSensitivitySlider.setValue(rs.getInt("DATA"));
+						break;
+					case Storage.CACHE_KEY_VT_VARC_MOUSE_H_SENSITIVITY:
+						Storage.nxtClientSettings_MouseHSensitivity = rs.getInt("DATA");
+						NXTSettingsGUI.InGameMouseHSensitivitySlider.setValue(rs.getInt("DATA"));
 						break;
 
-					case Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME:
-						Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = new Integer(rs.getString("DATA"));
-						if (Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume > 127) {
-							NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(true);
-							NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(254);
-						}	else {
-							NXTSettingsGUI.InGameAmbientSoundEffectsBoostCheckbox.setSelected(false);
-							NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setMaximum(127);
-						}
-						NXTSettingsGUI.InGameAmbientSoundEffectsSlider.setValue(new Integer(rs.getString("DATA")));
+					case Storage.CACHE_KEY_VT_VARC_MOUSE_V_SENSITIVITY:
+						Storage.nxtClientSettings_MouseVSensitivity = rs.getInt("DATA");
+						NXTSettingsGUI.InGameMouseVSensitivitySlider.setValue(rs.getInt("DATA"));
 						break;
 
-					case Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME:
-						Storage.nxtClientSettings_InGameVoiceOverVolume = new Integer(rs.getString("DATA"));
-						if (Storage.nxtClientSettings_InGameVoiceOverVolume > 127) {
-							NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(true);
-							NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(254);
-						}	else {
-							NXTSettingsGUI.InGameVoiceOverBoostCheckbox.setSelected(false);
-							NXTSettingsGUI.InGameVoiceOverSlider.setMaximum(127);
-						}
-						NXTSettingsGUI.InGameVoiceOverSlider.setValue(new Integer(rs.getString("DATA")));
+					case Storage.CACHE_KEY_VT_VARC_WORLD_SORTING:
+						Storage.nxtClientSettings_WorldSorting = rs.getInt("DATA");
+						NXTSettingsGUI.InGameWorldSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
 						break;
 
+					case Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS:
+						Storage.nxtClientSettings_MouseOverTooltip = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.InGameMouseOverPopupsCheckbox.setSelected(rs.getString("DATA").equals("1"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP:
+						Storage.nxtClientSettings_TaskCompletedPopup = rs.getString("DATA").equals("0");
+						NXTSettingsGUI.InGameTaskPopupsCheckbox.setSelected(rs.getString("DATA").equals("0"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK:
+						Storage.nxtClientSettings_LoopCurrentTrack = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.LoopCurrentMusicTrackCheckbox.setSelected(rs.getString("DATA").equals("1"));
+						break;
 				}
 			}
 			rs.close();
@@ -770,30 +787,56 @@ public class JCache {
 			if (History.nxtClientSettings_GameWorldScaling != Storage.nxtClientSettings_GameWorldScaling) {
 				Write(true,		"GameRenderScale",											Storage.nxtClientSettings_GameWorldScaling);
 			}
+
+			if (History.nxtClientSettings_CameraZoom != Storage.nxtClientSettings_CameraZoom) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_CAMERA_ZOOM,	Storage.nxtClientSettings_CameraZoom);
+			}
+			if (History.nxtClientSettings_KeyboardHSensitivity != Storage.nxtClientSettings_KeyboardHSensitivity) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_KEYBOARD_H_SENSITIVITY,	Storage.nxtClientSettings_KeyboardHSensitivity);
+			}
+			if (History.nxtClientSettings_KeyboardVSensitivity != Storage.nxtClientSettings_KeyboardVSensitivity) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_KEYBOARD_V_SENSITIVITY,	Storage.nxtClientSettings_KeyboardVSensitivity);
+			}
+			if (History.nxtClientSettings_MouseHSensitivity != Storage.nxtClientSettings_MouseHSensitivity) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_MOUSE_H_SENSITIVITY,	Storage.nxtClientSettings_MouseHSensitivity);
+			}
+			if (History.nxtClientSettings_MouseVSensitivity != Storage.nxtClientSettings_MouseVSensitivity) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_MOUSE_V_SENSITIVITY,	Storage.nxtClientSettings_MouseVSensitivity);
+			}
 			if (History.nxtClientSettings_LoginMusicVolume != Storage.nxtClientSettings_LoginMusicVolume) {
-				Write(true,		"VolumeLoginMusic",											Storage.nxtClientSettings_LoginMusicVolume);
+				Write(true,		"VolumeLoginMusic",	Storage.nxtClientSettings_LoginMusicVolume);
 			}
 			if (History.nxtClientSettings_InGameMusicVolume != Storage.nxtClientSettings_InGameMusicVolume) {
-				Write(true,		"VolumeMainMusic",											Storage.nxtClientSettings_InGameMusicVolume);
-				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME,				Storage.nxtClientSettings_InGameMusicVolume);
+				Write(true,		"VolumeMainMusic",	Storage.nxtClientSettings_InGameMusicVolume);
 			}
 			if (History.nxtClientSettings_InGameSoundEffectsVolume != Storage.nxtClientSettings_InGameSoundEffectsVolume) {
-				Write(true,		"VolumeMainEffects",										Storage.nxtClientSettings_InGameSoundEffectsVolume);
-				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME,		Storage.nxtClientSettings_InGameSoundEffectsVolume);
+				Write(true,		"VolumeMainEffects",	Storage.nxtClientSettings_InGameSoundEffectsVolume);
 			}
 			if (History.nxtClientSettings_InGameAmbientSoundEffectsVolume != Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume) {
-				Write(true,		"VolumeBackgroundEffects",									Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
-				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME,	Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
+				Write(true,		"VolumeBackgroundEffects",	Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume);
 			}
 			if (History.nxtClientSettings_InGameVoiceOverVolume != Storage.nxtClientSettings_InGameVoiceOverVolume) {
-				Write(true,		"VolumeSpeech", 											Storage.nxtClientSettings_InGameVoiceOverVolume);
-				Write(false,	Storage.CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME,		Storage.nxtClientSettings_InGameVoiceOverVolume);
+				Write(true,		"VolumeSpeech",	Storage.nxtClientSettings_InGameVoiceOverVolume);
 			}
-			if (History.nxtClientSettings_GlobalMute != Storage.nxtClientSettings_GlobalMute) {
-				if (Storage.nxtClientSettings_GlobalMute) {
-					Write(false, Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE,	1);
+			if (History.nxtClientSettings_LoopCurrentTrack != Storage.nxtClientSettings_LoopCurrentTrack) {
+				if (Storage.nxtClientSettings_LoopCurrentTrack) {
+					Write(false, Storage.CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK,	1);
 				}	else {
-					Write(false, Storage.CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE,	0);
+					Write(false, Storage.CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK,	0);
+				}
+			}
+			if (History.nxtClientSettings_MouseOverTooltip != Storage.nxtClientSettings_MouseOverTooltip) {
+				if (Storage.nxtClientSettings_MouseOverTooltip) {
+					Write(false, Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS,	1);
+				}	else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS,	0);
+				}
+			}
+			if (History.nxtClientSettings_TaskCompletedPopup != Storage.nxtClientSettings_TaskCompletedPopup) {
+				if (Storage.nxtClientSettings_TaskCompletedPopup) {
+					Write(false, Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP,	0);
+				}	else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP,	1);
 				}
 			}
 

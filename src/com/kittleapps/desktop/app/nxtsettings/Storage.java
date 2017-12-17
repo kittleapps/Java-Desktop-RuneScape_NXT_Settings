@@ -44,6 +44,12 @@ public class Storage {
 		nxtClientSettings_LoginWallpaperID,
 		nxtClientSettings_UIScaling,
 		nxtClientSettings_GameWorldScaling,
+		nxtClientSettings_CameraZoom,
+		nxtClientSettings_KeyboardHSensitivity,
+		nxtClientSettings_KeyboardVSensitivity,
+		nxtClientSettings_MouseHSensitivity,
+		nxtClientSettings_MouseVSensitivity,
+		nxtClientSettings_WorldSorting,
 		nxtClientSettings_LanguageSelected,
 		nxtClientSettings_SettingsVersion,
 
@@ -68,20 +74,27 @@ public class Storage {
 	public final static String
 
 		// The following values are made just in case the vt-varc keys change numeral values for ease-of-changing.
+		CACHE_KEY_VT_VARC_FULLSCREEN_RESOLUTION = "178",
 		CACHE_KEY_VT_VARC_CUSTOM_CURSORS = "987",
+		CACHE_KEY_VT_VARC_SCREEN_SIZING = "994",
+		CACHE_KEY_VT_VARC_WORLD_SORTING = "996",
+		CACHE_KEY_VT_VARC_WORLD_SORTING_HISTORY = "997",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1 = "998",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2 = "999",
-		CACHE_KEY_VT_VARC_GLOBAL_AUDIO_MUTE = "3513",
-		CACHE_KEY_VT_VARC_IN_GAME_MUSIC_VOLUME = "3514",
-		CACHE_KEY_VT_VARC_IN_GAME_SOUND_EFFECTS_VOLUME = "3515",
-		CACHE_KEY_VT_VARC_IN_GAME_AMBIENT_EFFECTS_VOLUME = "3516",
-		CACHE_KEY_VT_VARC_IN_GAME_VOICE_OVER_VOLUME = "3517",
+		CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP = "1429",
+		CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS = "1686",
+		CACHE_KEY_VT_VARC_CAMERA_ZOOM = "1971",
+		CACHE_KEY_VT_VARC_KEYBOARD_H_SENSITIVITY = "2827",
+		CACHE_KEY_VT_VARC_KEYBOARD_V_SENSITIVITY = "2828",
+		CACHE_KEY_VT_VARC_MOUSE_H_SENSITIVITY = "2829",
+		CACHE_KEY_VT_VARC_MOUSE_V_SENSITIVITY = "2830",
 		CACHE_KEY_VT_VARC_REMEMBER_USERNAME = "3681",
 		CACHE_KEY_VT_VARC_SAVED_USERNAME = "3683",
 		CACHE_KEY_VT_VARC_LOADING_SCREENS = "3698",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3 = "4272",
 		CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
-		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042"
+		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
+		CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK = "6348"
 	;
 
 	public static boolean
@@ -95,9 +108,11 @@ public class Storage {
 		nxtGraphicsSetting_LoadingScreens = true,
 
 		// NXT Client settigns options.
-		nxtClientSettings_GlobalMute,
+		nxtClientSettings_LoopCurrentTrack,
 		nxtClientSettings_RandomizeLoginWallpaper = true,
 		nxtClientSettings_RememberUsername = true,
+		nxtClientSettings_MouseOverTooltip = true,
+		nxtClientSettings_TaskCompletedPopup = true,
 		nxtClientSettings_CompatibilityMode,
 		nxtClientSettings_AskToSwitchToCompatibility = true,
 		nxtClientSettings_AskBeforeQuitting = true,
@@ -366,6 +381,21 @@ public class Storage {
 			"175%","180%",
 			"185%","190%",
 			"195%","200%",
+		},
+		{
+			/* 17: World List sorting */
+			"World Number: Least-to-Greatest",
+			"World Number: Greatest-to-Least",
+			"Players Online: Least-to-Greatest",
+			"Players Online: Greatest-to-Least",
+			"Activity/Location: A-to-Z",
+			"Activity/Location: Z-to-A",
+			"Lootshare: Disabled",
+			"Lootshare: Enabled",
+			"Membership: F2P First",
+			"Membership: P2P First",
+			"Ping: Lowest Ping First",
+			"Ping: Highest Ping First"
 		}
 	};
 
