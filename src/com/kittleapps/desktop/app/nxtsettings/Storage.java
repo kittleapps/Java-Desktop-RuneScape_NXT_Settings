@@ -45,6 +45,7 @@ public class Storage {
 		nxtClientSettings_UIScaling,
 		nxtClientSettings_GameWorldScaling,
 		nxtClientSettings_LanguageSelected,
+		nxtClientSettings_SettingsVersion,
 
 		// In-Program application/storage options.
 		FrameRate,

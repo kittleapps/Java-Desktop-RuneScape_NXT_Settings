@@ -173,7 +173,9 @@ public class JCache {
 				ReadVTVarcSettings();
 				ReadDeveloperConsoleHistory();
 				ReadProgramOptions();
-
+				if (Storage.OS_TYPE == 0) {
+					Mechanics.GrabInternalBuildNumber(false);
+				}
 			} 	else {
 				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Error: "+Storage.Settings_db.getAbsolutePath()+" was not found, or somehow was not a file.");
 			}
@@ -339,7 +341,8 @@ public class JCache {
 						break;
 
 					case "Version":
-						NXTSettingsGUI.frame.setTitle("NXT Settings (Settings Version: "+rs.getString("DATA")+")");
+						Storage.nxtClientSettings_SettingsVersion = new Integer(rs.getString("DATA"));
+						NXTSettingsGUI.frame.setTitle("NXT's Settings (Graphic Setting's Version: \""+rs.getString("DATA")+"\")");
 						break;
 
 					case "DOF":

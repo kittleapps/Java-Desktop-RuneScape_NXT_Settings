@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.io.File;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
@@ -95,7 +93,6 @@ public class NXTSettingsGUI extends JFrame {
 		WallpaperIDInput;
 
 	public static JButton
-
 		MinimumGraphicsPresetButton,
 		LowGraphicsPresetButton,
 		MediumGraphicsPresetButton,
@@ -106,7 +103,7 @@ public class NXTSettingsGUI extends JFrame {
 		RedditGraphicsPresetButton,
 		AddSpriteFlagToUsername,
 		AddColourFlagToUsername,
-		BecomeZezima,
+		GrabInternalBuildLabel,
 		ClearConsole,
 		PlayerConsole,
 		JagexConsole,
@@ -154,7 +151,7 @@ public class NXTSettingsGUI extends JFrame {
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		frame.setResizable(false);
-		frame.setTitle("NXT Settings");
+		frame.setTitle("NXT's Settings");
 
 		try	{
 			// Apply dark theme.
@@ -1222,32 +1219,19 @@ public class NXTSettingsGUI extends JFrame {
 		AddColourFlagToUsername.setBounds(245, 15, 225, 25);
 		SpecialMechanicsTab.add(AddColourFlagToUsername);
 
-		BecomeZezima = new JButton("Become a God! Become Zezima.");
-		BecomeZezima.setEnabled(false);
-		BecomeZezima.setFont(new Font("Dialog", Font.PLAIN, 11));
-		BecomeZezima.addActionListener(e -> {
-			try {
-				Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
-				Storage.stmt = Storage.conn.createStatement();
-				final String Zezima = "<sprite=203> " +
-									  "<col=FF3030>Z" +
-									  "<col=FF4D72>e" +
-									  "<col=FF69B4>z" +
-									  "<col=FF69B4>i" +
-									  "<col=FF4D72>m" +
-									  "<col=FF3030>a" +
-									  " <sprite=203>";
-				JCache.Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME, 	Zezima);
-				JCache.Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME, 1);
-				Storage.stmt.executeBatch();
-				Storage.stmt.clearBatch();
-				UsernameInput.setText(Zezima);
-			}	catch(final SQLException e1) {
-				e1.printStackTrace();
+		GrabInternalBuildLabel = new JButton("Grab NXT's Internal Build Label");
+		GrabInternalBuildLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		GrabInternalBuildLabel.addActionListener(e -> {
+			if (Storage.NXT_INSTALLED) {
+				if (Storage.OS_TYPE == 0) {
+					Mechanics.GrabInternalBuildNumber(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "This label is only availible in the Windows NXT client version, unfortunately.", "Sorry.", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
-		BecomeZezima.setBounds(475, 15, 225, 25);
-		SpecialMechanicsTab.add(BecomeZezima);
+		GrabInternalBuildLabel.setBounds(475, 15, 225, 25);
+		SpecialMechanicsTab.add(GrabInternalBuildLabel);
 
 		ClearConsole = new JButton("Clear Developer Console History Log");
 		ClearConsole.setToolTipText(Storage.CLEAR_DEV_CONSOLE_LOGS_TOOLTIP);
@@ -1255,6 +1239,10 @@ public class NXTSettingsGUI extends JFrame {
 		ClearConsole.addActionListener(e -> {
 			if (DeveloperConsoleHistoryTable.isShowing()){
 				DeveloperConsoleHistoryTable.clearSelection();
+			}
+
+			if (DeveloperConsoleHistoryTable.isEditing()){
+				DeveloperConsoleHistoryTable.getCellEditor().cancelCellEditing();
 			}
 
 			for(int i = 0; i < 100; i++){
@@ -1270,6 +1258,10 @@ public class NXTSettingsGUI extends JFrame {
 		PlayerConsole.addActionListener(e -> {
 			if (DeveloperConsoleHistoryTable.isShowing()){
 				DeveloperConsoleHistoryTable.clearSelection();
+			}
+
+			if (DeveloperConsoleHistoryTable.isEditing()){
+				DeveloperConsoleHistoryTable.getCellEditor().cancelCellEditing();
 			}
 
 			for(int i = 0; i < 100; i++){
@@ -1289,6 +1281,10 @@ public class NXTSettingsGUI extends JFrame {
 		JagexConsole.addActionListener(e -> {
 				if (DeveloperConsoleHistoryTable.isShowing()){
 					DeveloperConsoleHistoryTable.clearSelection();
+				}
+
+				if (DeveloperConsoleHistoryTable.isEditing()){
+					DeveloperConsoleHistoryTable.getCellEditor().cancelCellEditing();
 				}
 
 				for(int i = 0; i < 100; i++){
@@ -1369,10 +1365,8 @@ public class NXTSettingsGUI extends JFrame {
 		AllowWritingCheckbox.addActionListener(e -> {
 			if (AllowWritingCheckbox.isSelected() && !Storage.DEVELOPER_ReadOnlyCache) {
 				WriteSettings.setEnabled(true);
-				BecomeZezima.setEnabled(true);
 			}	else {
 				WriteSettings.setEnabled(false);
-				BecomeZezima.setEnabled(false);
 			}
 		});
 

@@ -58,9 +58,11 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
   * Full control of values/entries inside the Developer Console's history up-to 100 commands.
     * Client-Sided limitations with NXT will only display the last 100 commands used on-load. So this is the limit I'll set.
   * To delete entries, simply erase their value. If it's only spaces or empty this program will simply not add it back deleting that slot fully.
-* Zezima Button.
-  * I'll let you find out what that does in the Source Code, or while ran.
-    * Hint: It's cosmetic, but a fun reference for some.
+* Grabs the Internal build number from `rs2client.exe`
+  * Formats to some chat formats that I use personally.
+    * As-is; Or as it is in the client.
+    * Reddit-format; or \`this\` to highlight it slightly in a inline codeblock.
+    * Discord-format; or \`\`\`this\`\`\` for a codeblock on a new line.
 * Compatibility Mode toggling
 * Switching to Compatibility Mode on-error (or when your GPU's drivers are outdated) toggling
 * Prompting on-exiting toggling
@@ -83,7 +85,7 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 **TO-DO**:
 * Exporting & Importing your settings in Json. (sensitive information excluded)
 * Re-add support to view your UID.
-* Visually add both of NXT's internal build numbers. (the internal build label used in-development and the [Build number](http://runescape.wikia.com/wiki/Build_number) for the client)
+* Visually add NXT's [Build number](http://runescape.wikia.com/wiki/Build_number).
 * More options to disable.
   * Unknown what else I could have it disable, maybe I'll throw in a few (fun/visual) Easter eggs for the Pre-Compiled variants to be surprised with.
 * Even more cleanups! (Have to stay clean!)
