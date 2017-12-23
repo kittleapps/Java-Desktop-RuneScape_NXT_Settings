@@ -177,15 +177,17 @@ public class Storage {
 				"setstat ",
 				"setcamera ",
 				"advancestat ",
-				"~eqme ",
-				"give ",
 				"tele ",
 				"teleto ",
 				"teletome ",
+				"addnpc ",
+				"give ",
+				"~eqme ",
 				"~jmod_tool",
 				"~ftfi",
 				"~hideall",
-				"~test_hitall",
+				"~unhideall",
+				"~test_hitall"
 			}
 	};
 	public final static String[] LANGUAGES = {

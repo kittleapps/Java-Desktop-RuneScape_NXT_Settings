@@ -601,8 +601,8 @@ public class NXTSettingsGUI extends JFrame {
 		TerrainBlendingCheckbox.setBounds(378, 15 + (30 * 11), 325, 25);
 		GraphicsSettingsTab.add(TerrainBlendingCheckbox);
 
-		final JLabel GraphicsPresetLabel = new JLabel("Presets: ");
-		GraphicsPresetLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		final JLabel GraphicsPresetLabel = new JLabel("Preset: ");
+		GraphicsPresetLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		GraphicsPresetLabel.setBounds(15, 505, 50, 25);
 		GraphicsSettingsTab.add(GraphicsPresetLabel);
 
@@ -962,7 +962,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.setLayout(null);
 
 		final JLabel UsernameLabel = new JLabel("Username");
-		UsernameLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		UsernameLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		UsernameLabel.setBounds(15, 15, 150, 25);
 		ClientSettingsTab.add(UsernameLabel);
 
@@ -974,7 +974,7 @@ public class NXTSettingsGUI extends JFrame {
 		UsernameInput.setColumns(10);
 
 		final JLabel FavouriteWorld1Label = new JLabel("Favourite world 1");
-		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 12));
+		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld1Label.setBounds(15, 45, 150, 25);
 		ClientSettingsTab.add(FavouriteWorld1Label);
 
@@ -986,7 +986,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld1Input);
 
 		final JLabel FavouriteWorld2Label = new JLabel("Favourite world 2");
-		FavouriteWorld2Label.setFont(new Font("Dialog", Font.PLAIN, 12));
+		FavouriteWorld2Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld2Label.setBounds(260, 45, 130, 25);
 		ClientSettingsTab.add(FavouriteWorld2Label);
 
@@ -998,7 +998,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld2Input);
 
 		final JLabel FavouriteWorld3Label = new JLabel("Favourite world 3");
-		FavouriteWorld3Label.setFont(new Font("Dialog", Font.PLAIN, 12));
+		FavouriteWorld3Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld3Label.setBounds(485, 45, 130, 25);
 		ClientSettingsTab.add(FavouriteWorld3Label);
 
@@ -1012,23 +1012,23 @@ public class NXTSettingsGUI extends JFrame {
 		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop Current Track?");
 		LoopCurrentMusicTrackCheckbox.addActionListener(e -> Storage.nxtClientSettings_LoopCurrentTrack = LoopCurrentMusicTrackCheckbox.isSelected());
 		LoopCurrentMusicTrackCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
-		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		LoopCurrentMusicTrackCheckbox.setBounds(15, 75, 150, 25);
 		LoopCurrentMusicTrackCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(LoopCurrentMusicTrackCheckbox);
 
 		RememberUsernameCheckbox = new JCheckBox("Remember Saved Username?");
-		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
 		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
 		RememberUsernameCheckbox.setBounds(170, 75, 220, 25);
 		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RememberUsernameCheckbox);
 
-		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize Wallpaper? Use ID:");
+		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize Wallpaper? ID:");
 		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
 		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
-		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		RandomizeLoginWallpaperCheckbox.setBounds(395, 75, 220, 25);
 		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
@@ -1045,7 +1045,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		final JLabel LoginMusicLabel = new JLabel("Login Music Volume");
 		LoginMusicLabel.setLabelFor(LoginMusicSlider);
-		LoginMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		LoginMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		LoginMusicLabel.setBounds(15, 105, 150, 25);
 		ClientSettingsTab.add(LoginMusicLabel);
 
@@ -1056,7 +1056,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(LoginMusicSlider);
 
 		final JLabel InGameMusicLabel = new JLabel("Game Music Volume");
-		InGameMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameMusicLabel.setBounds(15, 135, 150, 25);
 		ClientSettingsTab.add(InGameMusicLabel);
 
@@ -1070,7 +1070,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameMusicSlider);
 
 		final JLabel InGameSoundEffectsLabel = new JLabel("Sound Effect Volume");
-		InGameSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameSoundEffectsLabel.setBounds(15, 165, 150, 25);
 		ClientSettingsTab.add(InGameSoundEffectsLabel);
 
@@ -1084,7 +1084,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameSoundEffectsSlider);
 
 		final JLabel InGameAmbientSoundEffectsLabel = new JLabel("Ambient Sound Volume");
-		InGameAmbientSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameAmbientSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameAmbientSoundEffectsLabel.setBounds(15, 195, 150, 25);
 		ClientSettingsTab.add(InGameAmbientSoundEffectsLabel);
 
@@ -1098,7 +1098,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameAmbientSoundEffectsSlider);
 
 		final JLabel InGameVoiceOverLabel = new JLabel("Voice Over Volume");
-		InGameVoiceOverLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameVoiceOverLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameVoiceOverLabel.setBounds(15, 225, 150, 25);
 		ClientSettingsTab.add(InGameVoiceOverLabel);
 
@@ -1112,7 +1112,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameVoiceOverSlider);
 
 		final JLabel InGameCameraZoomLabel = new JLabel("In-Game Camera Zoom");
-		InGameCameraZoomLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameCameraZoomLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameCameraZoomLabel.setBounds(15, 255, 150, 25);
 		ClientSettingsTab.add(InGameCameraZoomLabel);
 
@@ -1126,12 +1126,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameCameraZoomSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ClientSettingsTab.add(InGameCameraZoomSlider);
 
-		final JLabel InGameKeyboardSensitivityLabel = new JLabel("Keyboard Sensitivity  (H | V)");
-		InGameKeyboardSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		final JLabel InGameKeyboardSensitivityLabel = new JLabel("Keyboard Sensitivity");
+		InGameKeyboardSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameKeyboardSensitivityLabel.setBounds(15, 285, 150, 25);
 		ClientSettingsTab.add(InGameKeyboardSensitivityLabel);
 
 		InGameKeyboardHSensitivitySlider = new JSlider();
+		InGameKeyboardHSensitivitySlider.setToolTipText("Keyboard Horizontal Sensitivity");
 		InGameKeyboardHSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_KeyboardHSensitivity = InGameKeyboardHSensitivitySlider.getValue());
 		InGameKeyboardHSensitivitySlider.setMinimum(100);
 		InGameKeyboardHSensitivitySlider.setMaximum(250);
@@ -1141,6 +1142,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameKeyboardHSensitivitySlider);
 
 		InGameKeyboardVSensitivitySlider = new JSlider();
+		InGameKeyboardHSensitivitySlider.setToolTipText("Keyboard Vertical Sensitivity");
 		InGameKeyboardVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_KeyboardVSensitivity = InGameKeyboardVSensitivitySlider.getValue());
 		InGameKeyboardVSensitivitySlider.setMinimum(70);
 		InGameKeyboardVSensitivitySlider.setMaximum(200);
@@ -1149,12 +1151,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameKeyboardVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ClientSettingsTab.add(InGameKeyboardVSensitivitySlider);
 
-		final JLabel InGameMouseSensitivityLabel = new JLabel("Mouse Sensitivity       (H | V)");
-		InGameMouseSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		final JLabel InGameMouseSensitivityLabel = new JLabel("Mouse Sensitivity");
+		InGameMouseSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameMouseSensitivityLabel.setBounds(15, 315, 150, 25);
 		ClientSettingsTab.add(InGameMouseSensitivityLabel);
 
 		InGameMouseHSensitivitySlider = new JSlider();
+		InGameKeyboardHSensitivitySlider.setToolTipText("Mouse Horizontal Sensitivity");
 		InGameMouseHSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseHSensitivity = InGameMouseHSensitivitySlider.getValue());
 		InGameMouseHSensitivitySlider.setMinimum(4);
 		InGameMouseHSensitivitySlider.setMaximum(24);
@@ -1164,6 +1167,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameMouseHSensitivitySlider);
 
 		InGameMouseVSensitivitySlider = new JSlider();
+		InGameKeyboardHSensitivitySlider.setToolTipText("Mouse Vertical Sensitivity");
 		InGameMouseVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseVSensitivity = InGameMouseVSensitivitySlider.getValue());
 		InGameMouseVSensitivitySlider.setMinimum(3);
 		InGameMouseVSensitivitySlider.setMaximum(22);
@@ -1173,8 +1177,8 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameMouseVSensitivitySlider);
 
 
-		JLabel InGameWorldSortingLabel = new JLabel("World List Menu Sorting");
-		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		JLabel InGameWorldSortingLabel = new JLabel("World-List menu sorting");
+		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameWorldSortingLabel.setBounds(15, 345, 150, 25);
 		ClientSettingsTab.add(InGameWorldSortingLabel);
 
@@ -1184,16 +1188,16 @@ public class NXTSettingsGUI extends JFrame {
 		InGameWorldSortingComboBox.setBounds(170, 345, 265, 25);
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
 
-		InGameMouseOverPopupsCheckbox = new JCheckBox("Mouse-Over Tooltips");
+		InGameMouseOverPopupsCheckbox = new JCheckBox("Mouse-over Tooltips");
 		InGameMouseOverPopupsCheckbox.setToolTipText("Toggle the In-Game Hover-Over tooltips.");
-		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameMouseOverPopupsCheckbox.setBackground(new Color(40, 40, 40));
 		InGameMouseOverPopupsCheckbox.setBounds(440, 345, 150, 25);
 		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
 
 		InGameTaskPopupsCheckbox = new JCheckBox("Task Popups");
 		InGameTaskPopupsCheckbox.setToolTipText("Toggle the In-Game Task Completed Popups.");
-		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
 		InGameTaskPopupsCheckbox.setBounds(595, 345, 110, 25);
 		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
@@ -1207,27 +1211,27 @@ public class NXTSettingsGUI extends JFrame {
 		CompatibilityModeCheckBox = new JCheckBox("Compatibility Mode");
 		CompatibilityModeCheckBox.addActionListener(e -> Storage.nxtClientSettings_CompatibilityMode = CompatibilityModeCheckBox.isSelected());
 		CompatibilityModeCheckBox.setBackground(optionBackgroundColor);
-		CompatibilityModeCheckBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		CompatibilityModeCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		CompatibilityModeCheckBox.setBounds(15, 500, 150, 25);
 		ClientSettingsTab.add(CompatibilityModeCheckBox);
 
-		CompatibilityModeOnErrorCheckBox = new JCheckBox("Change to Compatibility on error?");
+		CompatibilityModeOnErrorCheckBox = new JCheckBox("Compatibility switch on error?");
 		CompatibilityModeOnErrorCheckBox.addActionListener(e -> Storage.nxtClientSettings_AskToSwitchToCompatibility = CompatibilityModeOnErrorCheckBox.isSelected());
 		CompatibilityModeOnErrorCheckBox.setBackground(optionBackgroundColor);
-		CompatibilityModeOnErrorCheckBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		CompatibilityModeOnErrorCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		CompatibilityModeOnErrorCheckBox.setBounds(170, 500, 220, 25);
 		ClientSettingsTab.add(CompatibilityModeOnErrorCheckBox);
 
 		AskBeforeQuittingCheckBox = new JCheckBox("Confirm quit on exit?");
 		AskBeforeQuittingCheckBox.addActionListener(e -> Storage.nxtClientSettings_AskBeforeQuitting = AskBeforeQuittingCheckBox.isSelected());
 		AskBeforeQuittingCheckBox.setBackground(optionBackgroundColor);
-		AskBeforeQuittingCheckBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		AskBeforeQuittingCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		AskBeforeQuittingCheckBox.setBounds(395, 500, 155, 25);
 		ClientSettingsTab.add(AskBeforeQuittingCheckBox);
 
 		final JLabel LanguageSelectionLabel = new JLabel("Language");
 		LanguageSelectionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		LanguageSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		LanguageSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		LanguageSelectionLabel.setBounds(555, 500, 60, 25);
 		LanguageSelectionLabel.setLabelFor(LanguageSelectionComboBox);
 		ClientSettingsTab.add(LanguageSelectionLabel);
@@ -1275,7 +1279,7 @@ public class NXTSettingsGUI extends JFrame {
 		AddColourFlagToUsername.setBounds(245, 15, 225, 25);
 		SpecialMechanicsTab.add(AddColourFlagToUsername);
 
-		GrabInternalBuildLabel = new JButton("Grab NXT's Internal Build Label");
+		GrabInternalBuildLabel = new JButton("Grab NXT's internal build label");
 		GrabInternalBuildLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		GrabInternalBuildLabel.addActionListener(e -> {
 			if (Storage.NXT_INSTALLED) {
@@ -1289,7 +1293,7 @@ public class NXTSettingsGUI extends JFrame {
 		GrabInternalBuildLabel.setBounds(475, 15, 225, 25);
 		SpecialMechanicsTab.add(GrabInternalBuildLabel);
 
-		ClearConsole = new JButton("Clear Developer Console History Log");
+		ClearConsole = new JButton("Clear the Developer Console");
 		ClearConsole.setToolTipText(Storage.CLEAR_DEV_CONSOLE_LOGS_TOOLTIP);
 		ClearConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		ClearConsole.addActionListener(e -> {
@@ -1308,7 +1312,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClearConsole.setBounds(15, 50, 225, 25);
 		SpecialMechanicsTab.add(ClearConsole);
 
-		PlayerConsole = new JButton("Player Developer Console History Log");
+		PlayerConsole = new JButton("Populate the Dev-Console (Players)");
 		PlayerConsole.setToolTipText(Storage.POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP);
 		PlayerConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		PlayerConsole.addActionListener(e -> {
@@ -1331,7 +1335,7 @@ public class NXTSettingsGUI extends JFrame {
 		PlayerConsole.setBounds(245, 50, 225, 25);
 		SpecialMechanicsTab.add(PlayerConsole);
 
-		JagexConsole = new JButton("Jagex Developer Console History Log");
+		JagexConsole = new JButton("Populate the Dev-Console (Jagex)");
 		JagexConsole.setToolTipText(Storage.POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP);
 		JagexConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		JagexConsole.addActionListener(e -> {
@@ -1408,14 +1412,14 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-		ShowSensitiveInformation = new JCheckBox("Show sensitive information?");
+		ShowSensitiveInformation = new JCheckBox("Show sensitive info?");
 		ShowSensitiveInformation.setFont(new Font("Dialog", Font.PLAIN, 12));
-		ShowSensitiveInformation.setToolTipText("Show information such as your username?");
+		ShowSensitiveInformation.setToolTipText("Show sensitive information such as your username?");
 		ShowSensitiveInformation.setBounds(15, 610, 185, 25);
 		ShowSensitiveInformation.setBackground(optionBackgroundColor);
 		contentPane.add(ShowSensitiveInformation);
 
-		AllowWritingCheckbox = new JCheckBox("Enable 'Write Settings'?");
+		AllowWritingCheckbox = new JCheckBox("Enable writing?");
 		AllowWritingCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		AllowWritingCheckbox.setToolTipText("Allow writing of all settings when 'Write Settings' is clicked. Some special mechanic values will be written instantly.");
 		AllowWritingCheckbox.addActionListener(e -> {
@@ -1430,7 +1434,7 @@ public class NXTSettingsGUI extends JFrame {
 		AllowWritingCheckbox.setBackground(optionBackgroundColor);
 		contentPane.add(AllowWritingCheckbox);
 
-		GraphicsPresets = new JCheckBox("Graphics presets?");
+		GraphicsPresets = new JCheckBox("Enable presets?");
 		GraphicsPresets.setFont(new Font("Dialog", Font.PLAIN, 12));
 		GraphicsPresets.setToolTipText(Storage.GRAPHICS_PRESET_TOOLTIP);
 		GraphicsPresets.addActionListener(e -> {

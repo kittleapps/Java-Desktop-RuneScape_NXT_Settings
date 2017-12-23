@@ -596,8 +596,8 @@ public class JCache {
 							Storage.DEVELOPER_AlwaysShowSensitiveInfo = false;
 							NXTSettingsGUI.ShowSensitiveInformation.setEnabled(true);
 							NXTSettingsGUI.ShowSensitiveInformation.setFont(new Font("Dialog", Font.PLAIN, 12));
-							NXTSettingsGUI.ShowSensitiveInformation.setText("Show sensitive information?");
-							NXTSettingsGUI.ShowSensitiveInformation.setToolTipText("Show information such as your username?");
+							NXTSettingsGUI.ShowSensitiveInformation.setText("Show sensitive info?");
+							NXTSettingsGUI.ShowSensitiveInformation.setToolTipText("Show sensitive information such as your username?");
 						}
 						break;
 
@@ -624,7 +624,7 @@ public class JCache {
 						}	else {
 							Storage.DEVELOPER_ReadOnlyCache = false;
 							NXTSettingsGUI.AllowWritingCheckbox.setEnabled(true);
-							NXTSettingsGUI.AllowWritingCheckbox.setText("Enable 'Write Settings'?");
+							NXTSettingsGUI.AllowWritingCheckbox.setText("Enable writing?");
 							NXTSettingsGUI.AllowWritingCheckbox.setToolTipText("Allow writing of all settings when 'Write Settings' is clicked. Some special mechanic values will be written instantly.");
 						}
 					break;
