@@ -184,7 +184,7 @@ public class Storage {
 				"give ",
 				"~eqme ",
 				"~jmod_tool",
-				"~ftfi",
+				"~htfi",
 				"~hideall",
 				"~unhideall",
 				"~test_hitall"
