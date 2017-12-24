@@ -1142,7 +1142,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameKeyboardHSensitivitySlider);
 
 		InGameKeyboardVSensitivitySlider = new JSlider();
-		InGameKeyboardHSensitivitySlider.setToolTipText("Keyboard Vertical Sensitivity");
+		InGameKeyboardVSensitivitySlider.setToolTipText("Keyboard Vertical Sensitivity");
 		InGameKeyboardVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_KeyboardVSensitivity = InGameKeyboardVSensitivitySlider.getValue());
 		InGameKeyboardVSensitivitySlider.setMinimum(70);
 		InGameKeyboardVSensitivitySlider.setMaximum(200);
@@ -1157,7 +1157,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameMouseSensitivityLabel);
 
 		InGameMouseHSensitivitySlider = new JSlider();
-		InGameKeyboardHSensitivitySlider.setToolTipText("Mouse Horizontal Sensitivity");
+		InGameMouseHSensitivitySlider.setToolTipText("Mouse Horizontal Sensitivity");
 		InGameMouseHSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseHSensitivity = InGameMouseHSensitivitySlider.getValue());
 		InGameMouseHSensitivitySlider.setMinimum(4);
 		InGameMouseHSensitivitySlider.setMaximum(24);
@@ -1167,7 +1167,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameMouseHSensitivitySlider);
 
 		InGameMouseVSensitivitySlider = new JSlider();
-		InGameKeyboardHSensitivitySlider.setToolTipText("Mouse Vertical Sensitivity");
+		InGameMouseVSensitivitySlider.setToolTipText("Mouse Vertical Sensitivity");
 		InGameMouseVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseVSensitivity = InGameMouseVSensitivitySlider.getValue());
 		InGameMouseVSensitivitySlider.setMinimum(3);
 		InGameMouseVSensitivitySlider.setMaximum(22);
@@ -1257,7 +1257,7 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
 
-		AddSpriteFlagToUsername = new JButton("Add <sprite=ID,SUB_ID> to your username");
+		AddSpriteFlagToUsername = new JButton("Add <sprite> to your username");
 		AddSpriteFlagToUsername.setToolTipText(Storage.ADD_SPRITE_FLAG_TOOLTIP);
 		AddSpriteFlagToUsername.addActionListener(e -> {
 			if (UsernameInput != null) {
@@ -1268,7 +1268,7 @@ public class NXTSettingsGUI extends JFrame {
 		AddSpriteFlagToUsername.setBounds(15, 15, 225, 25);
 		SpecialMechanicsTab.add(AddSpriteFlagToUsername);
 
-		AddColourFlagToUsername = new JButton("Add <col=RRGGBB> to your Username");
+		AddColourFlagToUsername = new JButton("Add <col> to your username");
 		AddColourFlagToUsername.setToolTipText(Storage.ADD_COLOUR_FLAG_TOOLTIP);
 		AddColourFlagToUsername.addActionListener(e ->{
 			if (UsernameInput != null) {
