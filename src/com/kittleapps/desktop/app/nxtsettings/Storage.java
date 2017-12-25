@@ -409,7 +409,7 @@ public class Storage {
 		},
 		{
 			/* 18: Music List sorting */
-			"ALL Music will display.",
+			"ALL music will display.",
 			"UNLOCKED music will display.",
 			"LOCKED music will display.",
 		}
