@@ -474,6 +474,26 @@ public class JCache {
 						Storage.nxtClientSettings_LoopCurrentTrack = rs.getString("DATA").equals("1");
 						NXTSettingsGUI.LoopCurrentMusicTrackCheckbox.setSelected(rs.getString("DATA").equals("1"));
 						break;
+
+					case Storage.CACHE_KEY_VT_VERC_MUSIC_SORTING:
+						Storage.nxtClientSettings_MusicSorting = rs.getInt("DATA");
+						NXTSettingsGUI.InGameMusicSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED:
+						Storage.nxtClientSettings_AbilityBarMinimized = rs.getString("DATA").equals("1");
+						NXTSettingsGUI.MinimizeMainAbilityBarCheckBox.setSelected(rs.getString("DATA").equals("1"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED:
+						Storage.nxtClientSettings_OoOMovementSpeed = rs.getInt("DATA");
+						NXTSettingsGUI.OoOMovementSpeedSlider.setValue(rs.getInt("DATA"));
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_OoO_ROTATION_SPEED:
+						Storage.nxtClientSettings_OoORotationSpeed = rs.getInt("DATA");
+						NXTSettingsGUI.OoORotationSpeedSlider.setValue(rs.getInt("DATA"));
+						break;
 				}
 			}
 			rs.close();
@@ -818,6 +838,23 @@ public class JCache {
 			if (History.nxtClientSettings_InGameVoiceOverVolume != Storage.nxtClientSettings_InGameVoiceOverVolume) {
 				Write(true,		"VolumeSpeech",	Storage.nxtClientSettings_InGameVoiceOverVolume);
 			}
+			if (History.nxtClientSettings_MusicSorting != Storage.nxtClientSettings_MusicSorting) {
+				Write(false, Storage.CACHE_KEY_VT_VERC_MUSIC_SORTING,	Storage.nxtClientSettings_MusicSorting);
+			}
+			if (History.nxtClientSettings_OoOMovementSpeed != Storage.nxtClientSettings_OoOMovementSpeed) {
+				Write(false, Storage.CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED,	Storage.nxtClientSettings_OoOMovementSpeed);
+			}
+			if (History.nxtClientSettings_OoORotationSpeed != Storage.nxtClientSettings_OoORotationSpeed) {
+				Write(false, Storage.CACHE_KEY_VT_VARC_OoO_ROTATION_SPEED,	Storage.nxtClientSettings_OoORotationSpeed);
+			}
+			if (History.nxtClientSettings_AbilityBarMinimized != Storage.nxtClientSettings_AbilityBarMinimized) {
+				if (Storage.nxtClientSettings_AbilityBarMinimized) {
+					Write(false, Storage.CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED,	1);
+				}	else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED,	0);
+				}
+			}
+
 			if (History.nxtClientSettings_LoopCurrentTrack != Storage.nxtClientSettings_LoopCurrentTrack) {
 				if (Storage.nxtClientSettings_LoopCurrentTrack) {
 					Write(false, Storage.CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK,	1);
@@ -834,6 +871,7 @@ public class JCache {
 			}
 			if (History.nxtClientSettings_TaskCompletedPopup != Storage.nxtClientSettings_TaskCompletedPopup) {
 				if (Storage.nxtClientSettings_TaskCompletedPopup) {
+					//Intentionally Swapped.
 					Write(false, Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP,	0);
 				}	else {
 					Write(false, Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP,	1);

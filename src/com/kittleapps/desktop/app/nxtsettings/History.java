@@ -41,6 +41,9 @@ public class History {	public static int
 	nxtClientSettings_MouseHSensitivity,
 	nxtClientSettings_MouseVSensitivity,
 	nxtClientSettings_WorldSorting,
+	nxtClientSettings_MusicSorting,
+	nxtClientSettings_OoOMovementSpeed,
+	nxtClientSettings_OoORotationSpeed,
 	nxtClientSettings_LanguageSelected,
 	nxtClientSettings_SettingsVersion,
 
@@ -62,32 +65,6 @@ public static String
 	configuration_location
 ;
 
-public final static String
-
-	// The following values are made just in case the vt-varc keys change numeral values for ease-of-changing.
-	CACHE_KEY_VT_VARC_FULLSCREEN_RESOLUTION = "178",
-	CACHE_KEY_VT_VARC_CUSTOM_CURSORS = "987",
-	CACHE_KEY_VT_VARC_SCREEN_SIZING = "994",
-	CACHE_KEY_VT_VARC_WORLD_SORTING = "996",
-	CACHE_KEY_VT_VARC_WORLD_SORTING_HISTORY = "997",
-	CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1 = "998",
-	CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2 = "999",
-	CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP = "1429",
-	CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS = "1686",
-	CACHE_KEY_VT_VARC_CAMERA_ZOOM = "1971",
-	CACHE_KEY_VT_VARC_KEYBOARD_H_SENSITIVITY = "2827",
-	CACHE_KEY_VT_VARC_KEYBOARD_V_SENSITIVITY = "2828",
-	CACHE_KEY_VT_VARC_MOUSE_H_SENSITIVITY = "2829",
-	CACHE_KEY_VT_VARC_MOUSE_V_SENSITIVITY = "2830",
-	CACHE_KEY_VT_VARC_REMEMBER_USERNAME = "3681",
-	CACHE_KEY_VT_VARC_SAVED_USERNAME = "3683",
-	CACHE_KEY_VT_VARC_LOADING_SCREENS = "3698",
-	CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3 = "4272",
-	CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
-	CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
-	CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK = "6348"
-;
-
 public static boolean
 
 	// NXT Graphics settings options.
@@ -104,6 +81,7 @@ public static boolean
 	nxtClientSettings_RememberUsername = true,
 	nxtClientSettings_MouseOverTooltip = true,
 	nxtClientSettings_TaskCompletedPopup = true,
+	nxtClientSettings_AbilityBarMinimized,
 	nxtClientSettings_CompatibilityMode,
 	nxtClientSettings_AskToSwitchToCompatibility = true,
 	nxtClientSettings_AskBeforeQuitting = true,
@@ -153,6 +131,9 @@ public static boolean
 		nxtClientSettings_MouseHSensitivity					=	Storage.nxtClientSettings_MouseHSensitivity;
 		nxtClientSettings_MouseVSensitivity					=	Storage.nxtClientSettings_MouseVSensitivity;
 		nxtClientSettings_WorldSorting						=	Storage.nxtClientSettings_WorldSorting;
+		nxtClientSettings_MusicSorting						=	Storage.nxtClientSettings_MusicSorting;
+		nxtClientSettings_OoOMovementSpeed					=	Storage.nxtClientSettings_OoOMovementSpeed;
+		nxtClientSettings_OoORotationSpeed					=	Storage.nxtClientSettings_OoORotationSpeed;
 		nxtClientSettings_LanguageSelected					=	Storage.nxtClientSettings_LanguageSelected;
 
 		// User Settings (Strings)
@@ -173,6 +154,7 @@ public static boolean
 		nxtClientSettings_RememberUsername					=	Storage.nxtClientSettings_RememberUsername;
 		nxtClientSettings_MouseOverTooltip					=	Storage.nxtClientSettings_MouseOverTooltip;
 		nxtClientSettings_TaskCompletedPopup				=	Storage.nxtClientSettings_TaskCompletedPopup;
+		nxtClientSettings_AbilityBarMinimized				=	Storage.nxtClientSettings_AbilityBarMinimized;
 
 		// Initializer boolean
 		History_Saved = true;

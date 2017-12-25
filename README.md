@@ -28,6 +28,7 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
   * Includes boosting the volumes for most audio streams
     * While I personally have not heard any quality-issues, this makes the in-game bars go past their normal limits visually.
   * Looping the current Music Track.
+  * Music List Sorting.
 * Editing your username field
   * This does NOT save anywhere but in `Settings.jcache` where the settings are normally stored.
   * This allows Jagex-Exclusive code-markups to be used such as:
@@ -48,12 +49,14 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * Setting to `-1` is done by-default, `-1` will also be applied to slots 2 and/or 3 depending if 1 and or 2 is set to `-1` to prevent visual glitching/skipping of the worlds. 
     * Any value that is `-1` is read to the client as-if it was never set/removed.
 * World List menu sorting.
-* Keyboard Sensitivity changing
-* Mouse sensitivity changing
-* Mouse-over tooltip toggling
-* Task completed popup toggling
-* In-Game camera Zoom changing. 
+* Keyboard Sensitivity changing.
+* Mouse sensitivity changing.
+* Mouse-over tooltip toggling.
+* Task completed popup toggling.
+* In-Game camera Zoom changing.
   * This doesn't allow any illegal values, as it will revert to default.
+* Orb of Oculus Movement & Rotation Speed changing.
+* Minimized main ability bar toggling.
 * Randomizing the wallpaper
   * This includes setting the regular ID for the wallpaper if not randomizing. This ID can change with any update, unfortunately.
   * The id used will be the first wallpaper shown while randomizing.

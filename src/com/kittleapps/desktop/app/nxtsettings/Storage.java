@@ -50,6 +50,9 @@ public class Storage {
 		nxtClientSettings_MouseHSensitivity,
 		nxtClientSettings_MouseVSensitivity,
 		nxtClientSettings_WorldSorting,
+		nxtClientSettings_MusicSorting,
+		nxtClientSettings_OoOMovementSpeed,
+		nxtClientSettings_OoORotationSpeed,
 		nxtClientSettings_LanguageSelected,
 		nxtClientSettings_SettingsVersion,
 
@@ -84,6 +87,7 @@ public class Storage {
 		CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP = "1429",
 		CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS = "1686",
 		CACHE_KEY_VT_VARC_CAMERA_ZOOM = "1971",
+		CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED = "2058",
 		CACHE_KEY_VT_VARC_KEYBOARD_H_SENSITIVITY = "2827",
 		CACHE_KEY_VT_VARC_KEYBOARD_V_SENSITIVITY = "2828",
 		CACHE_KEY_VT_VARC_MOUSE_H_SENSITIVITY = "2829",
@@ -92,6 +96,9 @@ public class Storage {
 		CACHE_KEY_VT_VARC_SAVED_USERNAME = "3683",
 		CACHE_KEY_VT_VARC_LOADING_SCREENS = "3698",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3 = "4272",
+		CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED = "4667",
+		CACHE_KEY_VT_VARC_OoO_ROTATION_SPEED = "4668",
+		CACHE_KEY_VT_VERC_MUSIC_SORTING = "5917",
 		CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
 		CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
 		CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK = "6348"
@@ -113,6 +120,7 @@ public class Storage {
 		nxtClientSettings_RememberUsername = true,
 		nxtClientSettings_MouseOverTooltip = true,
 		nxtClientSettings_TaskCompletedPopup = true,
+		nxtClientSettings_AbilityBarMinimized,
 		nxtClientSettings_CompatibilityMode,
 		nxtClientSettings_AskToSwitchToCompatibility = true,
 		nxtClientSettings_AskBeforeQuitting = true,
@@ -398,6 +406,12 @@ public class Storage {
 			"Membership: P2P First",
 			"Ping: Lowest Ping First",
 			"Ping: Highest Ping First"
+		},
+		{
+			/* 18: Music List sorting */
+			"ALL Music will display.",
+			"UNLOCKED music will display.",
+			"LOCKED music will display.",
 		}
 	};
 

@@ -49,6 +49,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoopCurrentMusicTrackCheckbox,
 		InGameMouseOverPopupsCheckbox,
 		InGameTaskPopupsCheckbox,
+		MinimizeMainAbilityBarCheckBox,
 		CompatibilityModeCheckBox,
 		CompatibilityModeOnErrorCheckBox,
 		AskBeforeQuittingCheckBox,
@@ -56,7 +57,7 @@ public class NXTSettingsGUI extends JFrame {
 		AllowWritingCheckbox,
 		GraphicsPresets;
 
-	public static JComboBox<?>
+	public static JComboBox<Object>
 		RemoveRoofsComboBox,
 		DrawDistanceComboBox,
 		ShadowQualityComboBox,
@@ -76,6 +77,7 @@ public class NXTSettingsGUI extends JFrame {
 		UIScalingComboBox,
 		GameWorldScalingComboBox,
 		InGameWorldSortingComboBox,
+		InGameMusicSortingComboBox,
 		LanguageSelectionComboBox;
 
 	public static JSlider
@@ -89,7 +91,9 @@ public class NXTSettingsGUI extends JFrame {
 		InGameKeyboardHSensitivitySlider,
 		InGameKeyboardVSensitivitySlider,
 		InGameMouseHSensitivitySlider,
-		InGameMouseVSensitivitySlider;
+		InGameMouseVSensitivitySlider,
+		OoOMovementSpeedSlider,
+		OoORotationSpeedSlider;
 
 	public static JTextField
 		UsernameInput,
@@ -973,7 +977,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(UsernameInput);
 		UsernameInput.setColumns(10);
 
-		final JLabel FavouriteWorld1Label = new JLabel("Favourite world 1");
+		final JLabel FavouriteWorld1Label = new JLabel("Favourite World 1");
 		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld1Label.setBounds(15, 45, 150, 25);
 		ClientSettingsTab.add(FavouriteWorld1Label);
@@ -985,7 +989,7 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld1Input.setBounds(170, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld1Input);
 
-		final JLabel FavouriteWorld2Label = new JLabel("Favourite world 2");
+		final JLabel FavouriteWorld2Label = new JLabel("Favourite World 2");
 		FavouriteWorld2Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld2Label.setBounds(260, 45, 130, 25);
 		ClientSettingsTab.add(FavouriteWorld2Label);
@@ -997,7 +1001,7 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld2Input.setBounds(395, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld2Input);
 
-		final JLabel FavouriteWorld3Label = new JLabel("Favourite world 3");
+		final JLabel FavouriteWorld3Label = new JLabel("Favourite World 3");
 		FavouriteWorld3Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld3Label.setBounds(485, 45, 130, 25);
 		ClientSettingsTab.add(FavouriteWorld3Label);
@@ -1009,13 +1013,12 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld3Input.setBounds(620, 45, 85, 25);
 		ClientSettingsTab.add(FavouriteWorld3Input);
 
-		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop Current Track?");
-		LoopCurrentMusicTrackCheckbox.addActionListener(e -> Storage.nxtClientSettings_LoopCurrentTrack = LoopCurrentMusicTrackCheckbox.isSelected());
-		LoopCurrentMusicTrackCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
-		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		LoopCurrentMusicTrackCheckbox.setBounds(15, 75, 150, 25);
-		LoopCurrentMusicTrackCheckbox.setBackground(optionBackgroundColor);
-		ClientSettingsTab.add(LoopCurrentMusicTrackCheckbox);
+		InGameTaskPopupsCheckbox = new JCheckBox("Show Task Popups?");
+		InGameTaskPopupsCheckbox.setToolTipText("Toggle the In-Game Task Completed Popups.");
+		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
+		InGameTaskPopupsCheckbox.setBounds(15, 75, 150, 25);
+		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
 
 		RememberUsernameCheckbox = new JCheckBox("Remember Saved Username?");
 		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -1177,36 +1180,71 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameMouseVSensitivitySlider);
 
 
-		JLabel InGameWorldSortingLabel = new JLabel("World-List menu sorting");
+		JLabel InGameWorldSortingLabel = new JLabel("World-List Menu Sorting");
 		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameWorldSortingLabel.setBounds(15, 345, 150, 25);
+		InGameWorldSortingLabel.setBounds(15, 375, 150, 25);
 		ClientSettingsTab.add(InGameWorldSortingLabel);
 
-		InGameWorldSortingComboBox = new JComboBox<>(Storage.GRAPHICS_OPTIONS[17]);
-		InGameWorldSortingComboBox.setSelectedIndex(0);
+		InGameWorldSortingComboBox = new JComboBox<Object>(Storage.GRAPHICS_OPTIONS[17]);
 		InGameWorldSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_WorldSorting = InGameWorldSortingComboBox.getSelectedIndex());
-		InGameWorldSortingComboBox.setBounds(170, 345, 265, 25);
+		InGameWorldSortingComboBox.setBounds(170, 375, 265, 25);
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
 
-		InGameMouseOverPopupsCheckbox = new JCheckBox("Mouse-over Tooltips");
+		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
+		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
+		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
+		MinimizeMainAbilityBarCheckBox.setBounds(440, 375, 265, 25);
+		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
+
+		final JLabel InGameMusicSortingLabel = new JLabel("Music Track Sorting");
+		InGameMusicSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameMusicSortingLabel.setBounds(15, 405, 150, 25);
+		ClientSettingsTab.add(InGameMusicSortingLabel);
+		
+		InGameMusicSortingComboBox = new JComboBox<Object>(Storage.GRAPHICS_OPTIONS[18]);
+		InGameWorldSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_MusicSorting = InGameMusicSortingComboBox.getSelectedIndex());
+		InGameMusicSortingComboBox.setBounds(170, 405, 265, 25);
+		ClientSettingsTab.add(InGameMusicSortingComboBox);
+		
+		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop Current Track?");
+		LoopCurrentMusicTrackCheckbox.addActionListener(e -> Storage.nxtClientSettings_LoopCurrentTrack = LoopCurrentMusicTrackCheckbox.isSelected());
+		LoopCurrentMusicTrackCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
+		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		LoopCurrentMusicTrackCheckbox.setBackground(optionBackgroundColor);
+		LoopCurrentMusicTrackCheckbox.setBounds(440, 405, 150, 25);
+		ClientSettingsTab.add(LoopCurrentMusicTrackCheckbox);
+
+		InGameMouseOverPopupsCheckbox = new JCheckBox("Use Tooltips?");
+		InGameMouseOverPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_MouseOverTooltip = InGameMouseOverPopupsCheckbox.isSelected());
 		InGameMouseOverPopupsCheckbox.setToolTipText("Toggle the In-Game Hover-Over tooltips.");
 		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMouseOverPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameMouseOverPopupsCheckbox.setBounds(440, 345, 150, 25);
+		InGameMouseOverPopupsCheckbox.setBackground(optionBackgroundColor);
+		InGameMouseOverPopupsCheckbox.setBounds(595, 405, 110, 25);
 		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
 
-		InGameTaskPopupsCheckbox = new JCheckBox("Task Popups");
-		InGameTaskPopupsCheckbox.setToolTipText("Toggle the In-Game Task Completed Popups.");
-		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameTaskPopupsCheckbox.setBounds(595, 345, 110, 25);
-		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
-
-
-
-
-
-
+		final JLabel OoODisplayJLabel = new JLabel("Orb Of Oculus's Settings");
+		OoODisplayJLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		OoODisplayJLabel.setBounds(15, 345, 150, 25);
+		ClientSettingsTab.add(OoODisplayJLabel);
+		
+		OoOMovementSpeedSlider = new JSlider();
+		OoOMovementSpeedSlider.setToolTipText("The Orb Of Oculus's Movement Speed");
+		OoOMovementSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoOMovementSpeed = OoOMovementSpeedSlider.getValue());
+		OoOMovementSpeedSlider.setPaintTicks(false);
+		OoOMovementSpeedSlider.setMinimum(64);
+		OoOMovementSpeedSlider.setMaximum(511);
+		OoOMovementSpeedSlider.setBounds(170, 345, 265, 25);
+		ClientSettingsTab.add(OoOMovementSpeedSlider);
+		
+		OoORotationSpeedSlider = new JSlider();
+		OoORotationSpeedSlider.setToolTipText("The Orb Of Oculus's Rotation Speed");
+		OoORotationSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoORotationSpeed = OoORotationSpeedSlider.getValue());
+		OoORotationSpeedSlider.setPaintTicks(false);
+		OoORotationSpeedSlider.setMinimum(1);
+		OoORotationSpeedSlider.setMaximum(49);
+		OoORotationSpeedSlider.setBounds(440, 345, 265, 25);
+		ClientSettingsTab.add(OoORotationSpeedSlider);
 
 		CompatibilityModeCheckBox = new JCheckBox("Compatibility Mode");
 		CompatibilityModeCheckBox.addActionListener(e -> Storage.nxtClientSettings_CompatibilityMode = CompatibilityModeCheckBox.isSelected());
@@ -1215,14 +1253,14 @@ public class NXTSettingsGUI extends JFrame {
 		CompatibilityModeCheckBox.setBounds(15, 500, 150, 25);
 		ClientSettingsTab.add(CompatibilityModeCheckBox);
 
-		CompatibilityModeOnErrorCheckBox = new JCheckBox("Compatibility switch on error?");
+		CompatibilityModeOnErrorCheckBox = new JCheckBox("Switch to Compatibility on Error?");
 		CompatibilityModeOnErrorCheckBox.addActionListener(e -> Storage.nxtClientSettings_AskToSwitchToCompatibility = CompatibilityModeOnErrorCheckBox.isSelected());
 		CompatibilityModeOnErrorCheckBox.setBackground(optionBackgroundColor);
 		CompatibilityModeOnErrorCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		CompatibilityModeOnErrorCheckBox.setBounds(170, 500, 220, 25);
 		ClientSettingsTab.add(CompatibilityModeOnErrorCheckBox);
 
-		AskBeforeQuittingCheckBox = new JCheckBox("Confirm quit on exit?");
+		AskBeforeQuittingCheckBox = new JCheckBox("Confirm Quit on Exit?");
 		AskBeforeQuittingCheckBox.addActionListener(e -> Storage.nxtClientSettings_AskBeforeQuitting = AskBeforeQuittingCheckBox.isSelected());
 		AskBeforeQuittingCheckBox.setBackground(optionBackgroundColor);
 		AskBeforeQuittingCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -1236,13 +1274,11 @@ public class NXTSettingsGUI extends JFrame {
 		LanguageSelectionLabel.setLabelFor(LanguageSelectionComboBox);
 		ClientSettingsTab.add(LanguageSelectionLabel);
 
-		LanguageSelectionComboBox = new JComboBox < Object > (Storage.LANGUAGES);
+		LanguageSelectionComboBox = new JComboBox<Object>(Storage.LANGUAGES);
 		LanguageSelectionComboBox.addItemListener(e -> Storage.nxtClientSettings_LanguageSelected = LanguageSelectionComboBox.getSelectedIndex());
 		LanguageSelectionComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LanguageSelectionComboBox.setBounds(620, 500, 85, 25);
 		ClientSettingsTab.add(LanguageSelectionComboBox);
-
-
 
 		/* Special Mechanics */
 
