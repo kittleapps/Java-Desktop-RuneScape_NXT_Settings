@@ -177,93 +177,19 @@ public class NXTSettingsGUI extends JFrame {
 		final JMenu FileMenu = new JMenu("File");
 		menuBar.add(FileMenu);
 
-		final JMenuItem FileMenuSelectCache = new JMenuItem("Manually select cache");
-		FileMenuSelectCache.addActionListener(e -> {
-			final FileNameExtensionFilter filter = new FileNameExtensionFilter("NXT Cache Files", "jcache");
-			final JFileChooser fileChooser = new JFileChooser();
-			if (Storage.OS_TYPE == 0) {
-				fileChooser.setCurrentDirectory(new File(System.getenv("LOCALAPPDATA") +
-														 System.getProperty("file.separator") + "Jagex" +
-														 System.getProperty("file.separator") + "RuneScape" +
-														 System.getProperty("file.separator")
-														 ));
-			}	else if (Storage.OS_TYPE == 1) {
-				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") +
-														 System.getProperty("file.separator") + "Jagex" +
-														 System.getProperty("file.separator") + "RuneScape" +
-														 System.getProperty("file.separator")
-														 ));
-			}
-			fileChooser.setDialogTitle("Locate 'Settings.jcache'");
-			fileChooser.setApproveButtonText("Load");
-			fileChooser.setSelectedFile(new File("Settings.jcache"));
-			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			fileChooser.setFileFilter(filter);
-			final int returnVal = fileChooser.showOpenDialog(NXTSettingsGUI.frame);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				final File file = fileChooser.getSelectedFile();
-				if (file.getName().equalsIgnoreCase("Settings.jcache")) {
-					Storage.Cache_settings_location = file.getAbsolutePath();
-				}	else {
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:" +
-																		"\n\n" +
-																		file.getAbsolutePath() +
-																		" was not the Cache file this program is looking for." +
-																		" Please select 'Settings.jcache'");
-				}
-			}
-		});
-		FileMenu.add(FileMenuSelectCache);
-
-		final JMenuItem FileMenuSelectPreferences = new JMenuItem("Manually select preferences");
-		FileMenuSelectPreferences.addActionListener(e -> {
-			final FileNameExtensionFilter filter = new FileNameExtensionFilter("NXT Preference Files", "cfg");
-			final JFileChooser fileChooser = new JFileChooser();
-			if (Storage.OS_TYPE == 0) {
-				fileChooser.setCurrentDirectory(new File(System.getenv("ProgramData") +
-														 System.getProperty("file.separator") + "Jagex" +
-														 System.getProperty("file.separator") + "launcher" +
-														 System.getProperty("file.separator")));
-			}	else if (Storage.OS_TYPE == 1) {
-				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home") +
-														 System.getProperty("file.separator") + "Jagex" +
-														 System.getProperty("file.separator") + "launcher" +
-														 System.getProperty("file.separator")));
-			}
-			fileChooser.setDialogTitle("Locate 'preferences.cfg'");
-			fileChooser.setApproveButtonText("Load");
-			fileChooser.setSelectedFile(new File("preferences.cfg"));
-			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			fileChooser.setFileFilter(filter);
-			final int returnVal = fileChooser.showOpenDialog(NXTSettingsGUI.frame);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				final File file = fileChooser.getSelectedFile();
-				if (file.getName().equalsIgnoreCase("preferences.cfg")) {
-					Storage.preferences_config = file;
-				}	else {
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The File at:"+
-																		"\n\n" +
-																		file.getAbsolutePath() +
-																		" was not the preference file this program is looking for."+
-																		" Please select 'preferences.cfg'");
-				}
-			}	else {}
-		});
-		FileMenu.add(FileMenuSelectPreferences);
-
-		final JMenuItem FileMenuAlwaysOnTop = new JMenuItem("Toggle Always On Top");
+		final JMenuItem FileMenuAlwaysOnTop = new JMenuItem("Toggle Always-On-Top");
 		FileMenuAlwaysOnTop.addActionListener(e -> {
 			if (!Storage.DEVELOPER_WindowAlwaysOnTop){
 				if (frame.isAlwaysOnTop()) {
 					frame.setAlwaysOnTop(false);
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now disabled.");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always-on-top is now disabled.");
 				}	else {
 					frame.setAlwaysOnTop(true);
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always on top is now enabled.");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always-on-top is now enabled.");
 				}
 			}	else {
 					frame.setAlwaysOnTop(true);
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The program option 'DEVELOPER_ALWAYS_STAY_ON_TOP' is currently enabled.\n\nYou will not be able to toggle Always on Top at this time.");
+					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The program option 'DEVELOPER_ALWAYS_STAY_ON_TOP' is currently enabled.\n\nYou will not be able to toggle Always-on-Top at this time.");
 			}
 		});
 		FileMenu.add(FileMenuAlwaysOnTop);
