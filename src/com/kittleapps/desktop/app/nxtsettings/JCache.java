@@ -293,8 +293,8 @@ public class JCache {
 						if (ForegroundFpsIndexID < 0){
 							ForegroundFpsIndexID = 0;
 						}
-						if (ForegroundFpsIndexID > Storage.GRAPHICS_OPTIONS[14].length){
-							ForegroundFpsIndexID = Storage.GRAPHICS_OPTIONS[14].length;
+						if (ForegroundFpsIndexID > Storage.SETTINGS_OPTIONS[14].length){
+							ForegroundFpsIndexID = Storage.SETTINGS_OPTIONS[14].length;
 						}
 						NXTSettingsGUI.MaxForegroundFpsComboBox.setSelectedIndex(ForegroundFpsIndexID);
 						break;
@@ -305,8 +305,8 @@ public class JCache {
 						if (BackgroundFpsIndexID < 0){
 							BackgroundFpsIndexID = 0;
 						}
-						if (BackgroundFpsIndexID > Storage.GRAPHICS_OPTIONS[14].length){
-							BackgroundFpsIndexID = Storage.GRAPHICS_OPTIONS[14].length;
+						if (BackgroundFpsIndexID > Storage.SETTINGS_OPTIONS[14].length){
+							BackgroundFpsIndexID = Storage.SETTINGS_OPTIONS[14].length;
 						}
 						NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex(BackgroundFpsIndexID);
 						break;
@@ -317,8 +317,8 @@ public class JCache {
 						if (UIScalingIndex < 0){
 							UIScalingIndex = 0;
 						}
-						if (UIScalingIndex > Storage.GRAPHICS_OPTIONS[15].length){
-							UIScalingIndex = Storage.GRAPHICS_OPTIONS[15].length;
+						if (UIScalingIndex > Storage.SETTINGS_OPTIONS[15].length){
+							UIScalingIndex = Storage.SETTINGS_OPTIONS[15].length;
 						}
 						NXTSettingsGUI.UIScalingComboBox.setSelectedIndex(UIScalingIndex);
 						break;
@@ -329,8 +329,8 @@ public class JCache {
 						if (GameWorldScalingIndex < 0){
 							GameWorldScalingIndex = 0;
 						}
-						if (GameWorldScalingIndex > Storage.GRAPHICS_OPTIONS[16].length){
-							GameWorldScalingIndex = Storage.GRAPHICS_OPTIONS[16].length;
+						if (GameWorldScalingIndex > Storage.SETTINGS_OPTIONS[16].length){
+							GameWorldScalingIndex = Storage.SETTINGS_OPTIONS[16].length;
 						}
 						NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex(GameWorldScalingIndex);
 						break;
@@ -392,9 +392,11 @@ public class JCache {
 					case Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME:
 						if (Storage.DEVELOPER_AlwaysShowSensitiveInfo) {
 							NXTSettingsGUI.UsernameInput.setText(rs.getString("DATA"));
-						}	else if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
+						}
+						else if (NXTSettingsGUI.ShowSensitiveInformation.isSelected()) {
 							NXTSettingsGUI.UsernameInput.setText(rs.getString("DATA"));
-						}	else {
+						}
+						else {
 							NXTSettingsGUI.UsernameInput.setText("");
 						}
 						break;
@@ -422,8 +424,18 @@ public class JCache {
 						break;
 
 					case Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID:
-						Storage.nxtClientSettings_LoginWallpaperID = rs.getInt("DATA");
-						NXTSettingsGUI.WallpaperIDInput.setText(rs.getString("DATA"));
+						if (rs.getInt("DATA") > Storage.SETTINGS_OPTIONS[19].length-1){
+							Storage.nxtClientSettings_LoginWallpaperID = Storage.SETTINGS_OPTIONS[18].length-1;
+							NXTSettingsGUI.LoginWallpaperIDComboBox.setSelectedIndex(Storage.SETTINGS_OPTIONS[19].length-1);
+						}
+						else if (rs.getInt("DATA") < 0){
+							Storage.nxtClientSettings_LoginWallpaperID = 0;
+							NXTSettingsGUI.LoginWallpaperIDComboBox.setSelectedIndex(0);
+						}
+						else {
+							Storage.nxtClientSettings_LoginWallpaperID = rs.getInt("DATA");
+							NXTSettingsGUI.LoginWallpaperIDComboBox.setSelectedIndex(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME:
@@ -432,32 +444,93 @@ public class JCache {
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_CAMERA_ZOOM:
-						Storage.nxtClientSettings_CameraZoom = rs.getInt("DATA");
-						NXTSettingsGUI.InGameCameraZoomSlider.setValue(rs.getInt("DATA"));
+
+						if (rs.getInt("DATA") > NXTSettingsGUI.InGameCameraZoomSlider.getMaximum()){
+							Storage.nxtClientSettings_CameraZoom = NXTSettingsGUI.InGameCameraZoomSlider.getMaximum();
+							NXTSettingsGUI.InGameCameraZoomSlider.setValue(NXTSettingsGUI.InGameCameraZoomSlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameCameraZoomSlider.getMinimum()){
+							Storage.nxtClientSettings_CameraZoom = NXTSettingsGUI.InGameCameraZoomSlider.getMinimum();
+							NXTSettingsGUI.InGameCameraZoomSlider.setValue(NXTSettingsGUI.InGameCameraZoomSlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_CameraZoom = rs.getInt("DATA");
+							NXTSettingsGUI.InGameCameraZoomSlider.setValue(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_KEYBOARD_H_SENSITIVITY:
-						Storage.nxtClientSettings_KeyboardHSensitivity = rs.getInt("DATA");
-						NXTSettingsGUI.InGameKeyboardHSensitivitySlider.setValue(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMaximum()){
+							Storage.nxtClientSettings_KeyboardHSensitivity = NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMaximum();
+							NXTSettingsGUI.InGameKeyboardHSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameMouseHSensitivitySlider.getMinimum()){
+							Storage.nxtClientSettings_KeyboardHSensitivity = NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMinimum();
+							NXTSettingsGUI.InGameKeyboardHSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_KeyboardHSensitivity = rs.getInt("DATA");
+							NXTSettingsGUI.InGameKeyboardHSensitivitySlider.setValue(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_KEYBOARD_V_SENSITIVITY:
-						Storage.nxtClientSettings_KeyboardVSensitivity = rs.getInt("DATA");
-						NXTSettingsGUI.InGameKeyboardVSensitivitySlider.setValue(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMaximum()){
+							Storage.nxtClientSettings_KeyboardVSensitivity = NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMaximum();
+							NXTSettingsGUI.InGameKeyboardVSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameMouseHSensitivitySlider.getMinimum()){
+							Storage.nxtClientSettings_KeyboardVSensitivity = NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMinimum();
+							NXTSettingsGUI.InGameKeyboardVSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_KeyboardVSensitivity = rs.getInt("DATA");
+							NXTSettingsGUI.InGameMouseHSensitivitySlider.setValue(rs.getInt("DATA"));
+						}
 						break;
 					case Storage.CACHE_KEY_VT_VARC_MOUSE_H_SENSITIVITY:
-						Storage.nxtClientSettings_MouseHSensitivity = rs.getInt("DATA");
-						NXTSettingsGUI.InGameMouseHSensitivitySlider.setValue(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > NXTSettingsGUI.InGameMouseHSensitivitySlider.getMaximum()){
+							Storage.nxtClientSettings_MouseHSensitivity = NXTSettingsGUI.InGameMouseHSensitivitySlider.getMaximum();
+							NXTSettingsGUI.InGameMouseHSensitivitySlider.setValue(NXTSettingsGUI.InGameMouseHSensitivitySlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameMouseHSensitivitySlider.getMinimum()){
+							Storage.nxtClientSettings_MouseHSensitivity = NXTSettingsGUI.InGameMouseHSensitivitySlider.getMinimum();
+							NXTSettingsGUI.InGameMouseHSensitivitySlider.setValue(NXTSettingsGUI.InGameMouseHSensitivitySlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_MouseHSensitivity = rs.getInt("DATA");
+							NXTSettingsGUI.InGameMouseHSensitivitySlider.setValue(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_MOUSE_V_SENSITIVITY:
-						Storage.nxtClientSettings_MouseVSensitivity = rs.getInt("DATA");
-						NXTSettingsGUI.InGameMouseVSensitivitySlider.setValue(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > NXTSettingsGUI.InGameMouseVSensitivitySlider.getMaximum()){
+							Storage.nxtClientSettings_MouseVSensitivity = NXTSettingsGUI.InGameMouseVSensitivitySlider.getMaximum();
+							NXTSettingsGUI.InGameMouseVSensitivitySlider.setValue(NXTSettingsGUI.InGameMouseVSensitivitySlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameMouseVSensitivitySlider.getMinimum()){
+							Storage.nxtClientSettings_MouseVSensitivity = NXTSettingsGUI.InGameMouseVSensitivitySlider.getMinimum();
+							NXTSettingsGUI.InGameMouseVSensitivitySlider.setValue(NXTSettingsGUI.InGameMouseVSensitivitySlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_MouseVSensitivity = rs.getInt("DATA");
+							NXTSettingsGUI.InGameMouseVSensitivitySlider.setValue(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_WORLD_SORTING:
-						Storage.nxtClientSettings_WorldSorting = rs.getInt("DATA");
-						NXTSettingsGUI.InGameWorldSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > Storage.SETTINGS_OPTIONS[17].length){
+							Storage.nxtClientSettings_WorldSorting = Storage.SETTINGS_OPTIONS[17].length;
+							NXTSettingsGUI.InGameWorldSortingComboBox.setSelectedIndex(Storage.SETTINGS_OPTIONS[17].length);
+						}
+						else if (rs.getInt("DATA") < 0){
+							Storage.nxtClientSettings_WorldSorting = 0;
+							NXTSettingsGUI.InGameWorldSortingComboBox.setSelectedIndex(0);
+						}
+						else {
+							Storage.nxtClientSettings_WorldSorting = rs.getInt("DATA");
+							NXTSettingsGUI.InGameWorldSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS:
@@ -476,8 +549,18 @@ public class JCache {
 						break;
 
 					case Storage.CACHE_KEY_VT_VERC_MUSIC_SORTING:
-						Storage.nxtClientSettings_MusicSorting = rs.getInt("DATA");
-						NXTSettingsGUI.InGameMusicSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > Storage.SETTINGS_OPTIONS[18].length){
+							Storage.nxtClientSettings_MusicSorting = Storage.SETTINGS_OPTIONS[18].length;
+							NXTSettingsGUI.InGameMusicSortingComboBox.setSelectedIndex(Storage.SETTINGS_OPTIONS[18].length);
+						}
+						else if (rs.getInt("DATA") < 0){
+							Storage.nxtClientSettings_MusicSorting = 0;
+							NXTSettingsGUI.InGameMusicSortingComboBox.setSelectedIndex(0);
+						}
+						else {
+							Storage.nxtClientSettings_MusicSorting = rs.getInt("DATA");
+							NXTSettingsGUI.InGameMusicSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED:
@@ -486,13 +569,33 @@ public class JCache {
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED:
-						Storage.nxtClientSettings_OoOMovementSpeed = rs.getInt("DATA");
-						NXTSettingsGUI.OoOMovementSpeedSlider.setValue(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > NXTSettingsGUI.OoOMovementSpeedSlider.getMaximum()){
+							Storage.nxtClientSettings_OoOMovementSpeed = NXTSettingsGUI.OoOMovementSpeedSlider.getMaximum();
+							NXTSettingsGUI.OoOMovementSpeedSlider.setValue(NXTSettingsGUI.OoOMovementSpeedSlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.OoOMovementSpeedSlider.getMinimum()){
+							Storage.nxtClientSettings_OoOMovementSpeed = NXTSettingsGUI.OoOMovementSpeedSlider.getMinimum();
+							NXTSettingsGUI.OoOMovementSpeedSlider.setValue(NXTSettingsGUI.OoOMovementSpeedSlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_OoOMovementSpeed = rs.getInt("DATA");
+							NXTSettingsGUI.OoOMovementSpeedSlider.setValue(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_OoO_ROTATION_SPEED:
-						Storage.nxtClientSettings_OoORotationSpeed = rs.getInt("DATA");
-						NXTSettingsGUI.OoORotationSpeedSlider.setValue(rs.getInt("DATA"));
+						if (rs.getInt("DATA") > NXTSettingsGUI.OoORotationSpeedSlider.getMaximum()){
+							Storage.nxtClientSettings_OoORotationSpeed = NXTSettingsGUI.OoORotationSpeedSlider.getMaximum();
+							NXTSettingsGUI.OoORotationSpeedSlider.setValue(NXTSettingsGUI.OoORotationSpeedSlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.OoORotationSpeedSlider.getMinimum()){
+							Storage.nxtClientSettings_OoORotationSpeed = NXTSettingsGUI.OoORotationSpeedSlider.getMinimum();
+							NXTSettingsGUI.OoORotationSpeedSlider.setValue(NXTSettingsGUI.OoORotationSpeedSlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_OoORotationSpeed = rs.getInt("DATA");
+							NXTSettingsGUI.OoORotationSpeedSlider.setValue(rs.getInt("DATA"));
+						}
 						break;
 				}
 			}

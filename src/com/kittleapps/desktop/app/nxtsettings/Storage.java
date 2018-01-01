@@ -204,7 +204,7 @@ public class Storage {
 			"Fran\u00E7ias",
 			"Portugu\u00EAs"
 	};
-	public final static String[][] GRAPHICS_OPTIONS = {
+	public final static String[][] SETTINGS_OPTIONS = {
 		// Graphics options used for Drop-Down menus in the graphics settings.
 		{
 			/* 0: Remove Roofs */
@@ -394,10 +394,10 @@ public class Storage {
 		},
 		{
 			/* 17: World List sorting */
-			"World Number: Least-to-Greatest",
-			"World Number: Greatest-to-Least",
-			"Players Online: Least-to-Greatest",
-			"Players Online: Greatest-to-Least",
+			"World Number: Least-to-Most",
+			"World Number: Most-to-Least",
+			"Players Online: Least-to-Most",
+			"Players Online: Most-to-Least",
 			"Activity/Location: A-to-Z",
 			"Activity/Location: Z-to-A",
 			"Lootshare: Disabled",
@@ -410,8 +410,34 @@ public class Storage {
 		{
 			/* 18: Music List sorting */
 			"ALL music will display.",
-			"UNLOCKED music will display.",
-			"LOCKED music will display.",
+			"All UNLOCKED music will display.",
+			"All LOCKED music will display.",
+		},
+		{
+			/* 19: Wallpapers */
+			"Default",
+			"Nex: Angel of Death",
+			"15th Year Anniversary",
+			"The Arc: Batch 2",
+			"Prifddinas",
+			"Sliske's Endgame",
+			"Children of Mah",
+			"Heart of Gielinor",
+			"Memorial to Guthix",
+			"Invention",
+			"Mega May",
+			"River of Blood",
+			"Dimension of Disaster",
+			"Summer Special '16",
+			"Back to the Freezer",
+			"Menaphos Gates",
+			"Menaphos Tombs",
+			"Menaphos Thralls",
+			"Menaphos Characters",
+			"Ghost Stries of Gielinor",
+			"Dimension of the Damned",
+			"The G-Nome Project",
+			"Unknown Wallpaper"
 		}
 	};
 
@@ -501,8 +527,8 @@ public class Storage {
 			"<html>"+
 					"Randomize your login screen's wallpaper.<br>" +
 				"<br>" +
-					"Note: The first frame of this will be the id input to the Right<br>" +
-					"If this option is unchecked, that id's wallpaper will be used." +
+					"Note: The first frame of this will be the wallpaper to the left.<br>" +
+					"If this option is unchecked, that wallpaper will be used." +
 			"</html>",
 	WALLPAPER_ID_TOOLTIP =
 			"<html>" +

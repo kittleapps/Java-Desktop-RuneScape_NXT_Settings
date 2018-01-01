@@ -98,16 +98,11 @@ public class Legality {
 			NXTSettingsGUI.FavouriteWorld3Input.getText().equals("")){
 			NXTSettingsGUI.FavouriteWorld3Input.setText("-1");
 		}
-		if (NXTSettingsGUI.WallpaperIDInput.getText() == null ||
-			NXTSettingsGUI.WallpaperIDInput.getText().equals("")){
-			NXTSettingsGUI.WallpaperIDInput.setText("0");
-		}
 
 		Storage.nxtClientSettings_RememberUsername = NXTSettingsGUI.RememberUsernameCheckbox.isSelected();
 		Storage.nxtClientSettings_FavouriteWorld1 =  new Integer(NXTSettingsGUI.FavouriteWorld1Input.getText().replace(",", ""));
 		Storage.nxtClientSettings_FavouriteWorld2 =  new Integer(NXTSettingsGUI.FavouriteWorld2Input.getText().replace(",", ""));
 		Storage.nxtClientSettings_FavouriteWorld3 =  new Integer(NXTSettingsGUI.FavouriteWorld3Input.getText().replace(",", ""));
-		Storage.nxtClientSettings_LoginWallpaperID = new Integer(NXTSettingsGUI.WallpaperIDInput.getText().replace(",", ""));
 
 		if (Storage.nxtClientSettings_FavouriteWorld1 <= 0) {
 			Storage.nxtClientSettings_FavouriteWorld2 = -1;
