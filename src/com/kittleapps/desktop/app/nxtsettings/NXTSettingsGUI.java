@@ -958,11 +958,6 @@ public class NXTSettingsGUI extends JFrame {
 		LoginWallpaperIDComboBox.setBounds(395, 15 + (30 * 2), 220, 25);
 		ClientSettingsTab.add(LoginWallpaperIDComboBox);
 		
-		InGameWorldSortingComboBox = new JComboBox<Object>(Storage.SETTINGS_OPTIONS[17]);
-		InGameWorldSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_WorldSorting = InGameWorldSortingComboBox.getSelectedIndex());
-		InGameWorldSortingComboBox.setBounds(170, 15 + (30 * 11), 265, 25);
-		ClientSettingsTab.add(InGameWorldSortingComboBox);
-		
 		RandomizeLoginWallpaperCheckbox = new JCheckBox("Random?");
 		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
 		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
@@ -972,15 +967,14 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
 		FavouriteWorld2Input.setDocument(new TextLimitor(2));
 
-		LoginMusicSlider = new JSlider();
-		LoginMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_LoginMusicVolume = LoginMusicSlider.getValue());
-
 		final JLabel LoginMusicLabel = new JLabel("Login Music Volume");
 		LoginMusicLabel.setLabelFor(LoginMusicSlider);
 		LoginMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		LoginMusicLabel.setBounds(15, 15 + (30 * 3), 150, 25);
 		ClientSettingsTab.add(LoginMusicLabel);
 
+		LoginMusicSlider = new JSlider();
+		LoginMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_LoginMusicVolume = LoginMusicSlider.getValue());
 		LoginMusicSlider.setMaximum(255);
 		LoginMusicSlider.setPaintTicks(false);
 		LoginMusicSlider.setBounds(170, 15 + (30 * 3), 535, 25);
@@ -1108,7 +1102,6 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ClientSettingsTab.add(InGameMouseVSensitivitySlider);
 
-
 		JLabel InGameWorldSortingLabel = new JLabel("World-List Menu Sorting");
 		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameWorldSortingLabel.setBounds(15, 15 + (30 * 11), 150, 25);
@@ -1132,7 +1125,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameMusicSortingLabel);
 		
 		InGameMusicSortingComboBox = new JComboBox<Object>(Storage.SETTINGS_OPTIONS[18]);
-		InGameWorldSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_MusicSorting = InGameMusicSortingComboBox.getSelectedIndex());
+		InGameMusicSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_MusicSorting = InGameMusicSortingComboBox.getSelectedIndex());
 		InGameMusicSortingComboBox.setBounds(170, 15 + (30 * 12), 265, 25);
 		ClientSettingsTab.add(InGameMusicSortingComboBox);
 		
@@ -1208,6 +1201,11 @@ public class NXTSettingsGUI extends JFrame {
 		LanguageSelectionComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LanguageSelectionComboBox.setBounds(620, 15 + (30 * 16), 85, 25);
 		ClientSettingsTab.add(LanguageSelectionComboBox);
+
+
+
+
+
 
 		/* Special Mechanics */
 

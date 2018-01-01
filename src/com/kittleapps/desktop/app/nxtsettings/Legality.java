@@ -71,11 +71,8 @@ public class Legality {
 		 *
 		 * > Check is the favourite world 3 is null or empty
 		 *  > If null or empty, set to -1. (cleared slot)
-		 *
-		 * > Check is the wallpaper id is null or empty
-		 *  > If null or empty, set to the default value
-		 *
-		 * > Apply the favourite world and wallpaper values
+		 *  
+		 * > Apply the favourite world values
 		 *
 		 * > Check if any favourite worlds are -1 in favourite worlds 1+2
 		 *  > If favourite world 1 is -1, set favourite worlds 2+3 to -1
