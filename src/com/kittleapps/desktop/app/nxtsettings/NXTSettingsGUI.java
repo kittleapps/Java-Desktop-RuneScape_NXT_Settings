@@ -1247,7 +1247,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMusicSortingComboBox.setBounds(170, 15 + (30 * 5), 265, 25);
 		AudioSettingsTab.add(InGameMusicSortingComboBox);
 		
-		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop Currently Playing Music Track?");
+		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop the Currently Playing Music Track?");
 		LoopCurrentMusicTrackCheckbox.addActionListener(e -> Storage.nxtClientSettings_LoopCurrentTrack = LoopCurrentMusicTrackCheckbox.isSelected());
 		LoopCurrentMusicTrackCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
 		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
