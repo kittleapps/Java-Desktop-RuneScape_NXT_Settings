@@ -191,15 +191,43 @@ public class NXTSettingsGUI extends JFrame {
 			}
 		});
 		FileMenu.add(FileMenuAlwaysOnTop);
-
 		final JMenuItem FileMenuExit = new JMenuItem("Exit");
 		FileMenuExit.addActionListener(e -> System.exit(0));
-
 		FileMenu.add(FileMenuExit);
 
 		final JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBounds(15, 26, 720, 569);
 		contentPane.add(tabbedPane);
+
+		final JPanel GraphicsSettingsTab = new JPanel();
+		tabbedPane.addTab("Graphics Settings", null, GraphicsSettingsTab, null);
+		GraphicsSettingsTab.setBackground(backgroundColour);
+		GraphicsSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		GraphicsSettingsTab.setLayout(null);
+
+		final JPanel ClientSettingsTab = new JPanel();
+		tabbedPane.addTab("Client Settings", null, ClientSettingsTab, null);
+		ClientSettingsTab.setBackground(backgroundColour);
+		ClientSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		ClientSettingsTab.setLayout(null);
+		
+		final JPanel ControlSettingsTab = new JPanel();
+		tabbedPane.addTab("Control Settings", null, ControlSettingsTab, null);
+		ControlSettingsTab.setBackground(backgroundColour);
+		ControlSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		ControlSettingsTab.setLayout(null);
+
+		final JPanel AudioSettingsTab = new JPanel();
+		tabbedPane.addTab("Audio Settings", null, AudioSettingsTab, null);
+		AudioSettingsTab.setBackground(backgroundColour);
+		AudioSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		AudioSettingsTab.setLayout(null);
+
+		final JPanel SpecialMechanicsTab = new JPanel();
+		tabbedPane.addTab("Special Mechanics", null, SpecialMechanicsTab, null);
+		SpecialMechanicsTab.setBackground(backgroundColour);
+		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		SpecialMechanicsTab.setLayout(null);
 
 		final NumberFormat intFormat = NumberFormat.getIntegerInstance();
 
@@ -231,15 +259,6 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		/* Graphics Settings */
-
-
-
-		final JPanel GraphicsSettingsTab = new JPanel();
-		tabbedPane.addTab("Graphics Settings", null, GraphicsSettingsTab, null);
-		GraphicsSettingsTab.setBackground(backgroundColour);
-		GraphicsSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		GraphicsSettingsTab.setLayout(null);
-
 
 		final JLabel BrightnessLabel = new JLabel("  Brightness");
 		BrightnessLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -381,7 +400,6 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		// Right Column
-
 
 
 
@@ -882,13 +900,6 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-
-		final JPanel ClientSettingsTab = new JPanel();
-		tabbedPane.addTab("Client Settings", null, ClientSettingsTab, null);
-		ClientSettingsTab.setBackground(backgroundColour);
-		ClientSettingsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		ClientSettingsTab.setLayout(null);
-
 		final JLabel UsernameLabel = new JLabel("Username");
 		UsernameLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		UsernameLabel.setBounds(15, 15 + (30 * 0), 150, 25);
@@ -897,10 +908,18 @@ public class NXTSettingsGUI extends JFrame {
 		UsernameInput = new JTextField();
 		UsernameLabel.setLabelFor(UsernameInput);
 		UsernameInput.setToolTipText(Storage.USERNAME_INPUT_TOOLTIP);
-		UsernameInput.setBounds(170, 15 + (30 * 0), 535, 25);
+		UsernameInput.setBounds(170, 15 + (30 * 0), 310, 25);
 		ClientSettingsTab.add(UsernameInput);
 		UsernameInput.setColumns(10);
 
+		RememberUsernameCheckbox = new JCheckBox("Remember Saved Username?");
+		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
+		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
+		RememberUsernameCheckbox.setBounds(485, 15, 220, 25);
+		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
+		ClientSettingsTab.add(RememberUsernameCheckbox);
+		
 		final JLabel FavouriteWorld1Label = new JLabel("Favourite World 1");
 		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld1Label.setBounds(15, 15 + (30 * 1), 150, 25);
@@ -937,236 +956,62 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld3Input.setBounds(620, 15 + (30 * 1), 85, 25);
 		ClientSettingsTab.add(FavouriteWorld3Input);
 
-		InGameTaskPopupsCheckbox = new JCheckBox("Show Task Popups?");
-		InGameTaskPopupsCheckbox.setToolTipText("Toggle the In-Game Task Completed Popups.");
-		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameTaskPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_TaskCompletedPopup = InGameTaskPopupsCheckbox.isSelected());
-		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameTaskPopupsCheckbox.setBounds(15, 15 + (30 * 2), 150, 25);
-		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
-
-		RememberUsernameCheckbox = new JCheckBox("Remember Saved Username?");
-		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
-		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
-		RememberUsernameCheckbox.setBounds(170, 15 + (30 * 2), 220, 25);
-		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
-		ClientSettingsTab.add(RememberUsernameCheckbox);
-
+		final JLabel WallpaperLabel = new JLabel("Wallpaper Settings");
+		WallpaperLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		WallpaperLabel.setBounds(15, 15 + (30 * 2), 130, 25);
+		ClientSettingsTab.add(WallpaperLabel);
+		
 		LoginWallpaperIDComboBox = new JComboBox<Object>(Storage.SETTINGS_OPTIONS[19]);
 		LoginWallpaperIDComboBox.addItemListener(e -> Storage.nxtClientSettings_LoginWallpaperID = LoginWallpaperIDComboBox.getSelectedIndex());
-		LoginWallpaperIDComboBox.setBounds(395, 15 + (30 * 2), 220, 25);
+		LoginWallpaperIDComboBox.setBounds(170, 15 + (30 * 2), 265, 25);
 		ClientSettingsTab.add(LoginWallpaperIDComboBox);
 		
-		RandomizeLoginWallpaperCheckbox = new JCheckBox("Random?");
+		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize The Wallpaper?");
 		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
 		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
 		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		RandomizeLoginWallpaperCheckbox.setBounds(620, 75, 85, 25);
+		RandomizeLoginWallpaperCheckbox.setBounds(440, 75, 265, 25);
 		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
 		FavouriteWorld2Input.setDocument(new TextLimitor(2));
 
-		final JLabel LoginMusicLabel = new JLabel("Login Music Volume");
-		LoginMusicLabel.setLabelFor(LoginMusicSlider);
-		LoginMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		LoginMusicLabel.setBounds(15, 15 + (30 * 3), 150, 25);
-		ClientSettingsTab.add(LoginMusicLabel);
-
-		LoginMusicSlider = new JSlider();
-		LoginMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_LoginMusicVolume = LoginMusicSlider.getValue());
-		LoginMusicSlider.setMaximum(255);
-		LoginMusicSlider.setPaintTicks(false);
-		LoginMusicSlider.setBounds(170, 15 + (30 * 3), 535, 25);
-		LoginMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(LoginMusicSlider);
-
-		final JLabel InGameMusicLabel = new JLabel("Game Music Volume");
-		InGameMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMusicLabel.setBounds(15, 15 + (30 * 4), 150, 25);
-		ClientSettingsTab.add(InGameMusicLabel);
-
-		InGameMusicSlider = new JSlider();
-		InGameMusicLabel.setLabelFor(InGameMusicSlider);
-		InGameMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameMusicVolume = InGameMusicSlider.getValue());
-		InGameMusicSlider.setMaximum(255);
-		InGameMusicSlider.setPaintTicks(false);
-		InGameMusicSlider.setBounds(170, 15 + (30 * 4), 535, 25);
-		InGameMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameMusicSlider);
-
-		final JLabel InGameSoundEffectsLabel = new JLabel("Sound Effect Volume");
-		InGameSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameSoundEffectsLabel.setBounds(15, 15 + (30 * 5), 150, 25);
-		ClientSettingsTab.add(InGameSoundEffectsLabel);
-
-		InGameSoundEffectsSlider = new JSlider();
-		InGameSoundEffectsLabel.setLabelFor(InGameSoundEffectsSlider);
-		InGameSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameSoundEffectsVolume = InGameSoundEffectsSlider.getValue());
-		InGameSoundEffectsSlider.setMaximum(127);
-		InGameSoundEffectsSlider.setPaintTicks(false);
-		InGameSoundEffectsSlider.setBounds(170, 15 + (30 * 5), 535, 25);
-		InGameSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameSoundEffectsSlider);
-
-		final JLabel InGameAmbientSoundEffectsLabel = new JLabel("Ambient Sound Volume");
-		InGameAmbientSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameAmbientSoundEffectsLabel.setBounds(15, 15 + (30 * 6), 150, 25);
-		ClientSettingsTab.add(InGameAmbientSoundEffectsLabel);
-
-		InGameAmbientSoundEffectsSlider = new JSlider();
-		InGameAmbientSoundEffectsLabel.setLabelFor(InGameAmbientSoundEffectsSlider);
-		InGameAmbientSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = InGameAmbientSoundEffectsSlider.getValue());
-		InGameAmbientSoundEffectsSlider.setMaximum(127);
-		InGameAmbientSoundEffectsSlider.setPaintTicks(false);
-		InGameAmbientSoundEffectsSlider.setBounds(170, 15 + (30 * 6), 535, 25);
-		InGameAmbientSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameAmbientSoundEffectsSlider);
-
-		final JLabel InGameVoiceOverLabel = new JLabel("Voice Over Volume");
-		InGameVoiceOverLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameVoiceOverLabel.setBounds(15, 15 + (30 * 7), 150, 25);
-		ClientSettingsTab.add(InGameVoiceOverLabel);
-
-		InGameVoiceOverSlider = new JSlider();
-		InGameVoiceOverLabel.setLabelFor(InGameVoiceOverSlider);
-		InGameVoiceOverSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameVoiceOverVolume = InGameVoiceOverSlider.getValue());
-		InGameVoiceOverSlider.setMaximum(127);
-		InGameVoiceOverSlider.setPaintTicks(false);
-		InGameVoiceOverSlider.setBounds(170, 15 + (30 * 7), 535, 25);
-		InGameVoiceOverSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameVoiceOverSlider);
-
-		final JLabel InGameCameraZoomLabel = new JLabel("In-Game Camera Zoom");
-		InGameCameraZoomLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameCameraZoomLabel.setBounds(15, 15 + (30 * 8), 150, 25);
-		ClientSettingsTab.add(InGameCameraZoomLabel);
-
-		InGameCameraZoomSlider = new JSlider();
-		InGameCameraZoomLabel.setLabelFor(InGameCameraZoomSlider);
-		InGameCameraZoomSlider.addChangeListener(e -> Storage.nxtClientSettings_CameraZoom = InGameCameraZoomSlider.getValue());
-		InGameCameraZoomSlider.setMinimum(1860);
-		InGameCameraZoomSlider.setMaximum(7600);
-		InGameCameraZoomSlider.setPaintTicks(false);
-		InGameCameraZoomSlider.setBounds(170, 15 + (30 * 8), 535, 25);
-		InGameCameraZoomSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameCameraZoomSlider);
-
-		final JLabel InGameKeyboardSensitivityLabel = new JLabel("Keyboard Sensitivity");
-		InGameKeyboardSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameKeyboardSensitivityLabel.setBounds(15, 15 + (30 * 9), 150, 25);
-		ClientSettingsTab.add(InGameKeyboardSensitivityLabel);
-
-		InGameKeyboardHSensitivitySlider = new JSlider();
-		InGameKeyboardHSensitivitySlider.setToolTipText("Keyboard Horizontal Sensitivity");
-		InGameKeyboardHSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_KeyboardHSensitivity = InGameKeyboardHSensitivitySlider.getValue());
-		InGameKeyboardHSensitivitySlider.setMinimum(100);
-		InGameKeyboardHSensitivitySlider.setMaximum(250);
-		InGameKeyboardHSensitivitySlider.setPaintTicks(false);
-		InGameKeyboardHSensitivitySlider.setBounds(170, 15 + (30 * 9), 265, 25);
-		InGameKeyboardHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameKeyboardHSensitivitySlider);
-
-		InGameKeyboardVSensitivitySlider = new JSlider();
-		InGameKeyboardVSensitivitySlider.setToolTipText("Keyboard Vertical Sensitivity");
-		InGameKeyboardVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_KeyboardVSensitivity = InGameKeyboardVSensitivitySlider.getValue());
-		InGameKeyboardVSensitivitySlider.setMinimum(70);
-		InGameKeyboardVSensitivitySlider.setMaximum(200);
-		InGameKeyboardVSensitivitySlider.setPaintTicks(false);
-		InGameKeyboardVSensitivitySlider.setBounds(440, 15 + (30 * 9), 265, 25);
-		InGameKeyboardVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameKeyboardVSensitivitySlider);
-
-		final JLabel InGameMouseSensitivityLabel = new JLabel("Mouse Sensitivity");
-		InGameMouseSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMouseSensitivityLabel.setBounds(15, 15 + (30 * 10), 150, 25);
-		ClientSettingsTab.add(InGameMouseSensitivityLabel);
-
-		InGameMouseHSensitivitySlider = new JSlider();
-		InGameMouseHSensitivitySlider.setToolTipText("Mouse Horizontal Sensitivity");
-		InGameMouseHSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseHSensitivity = InGameMouseHSensitivitySlider.getValue());
-		InGameMouseHSensitivitySlider.setMinimum(4);
-		InGameMouseHSensitivitySlider.setMaximum(24);
-		InGameMouseHSensitivitySlider.setPaintTicks(false);
-		InGameMouseHSensitivitySlider.setBounds(170, 15 + (30 * 10), 265, 25);
-		InGameMouseHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameMouseHSensitivitySlider);
-
-		InGameMouseVSensitivitySlider = new JSlider();
-		InGameMouseVSensitivitySlider.setToolTipText("Mouse Vertical Sensitivity");
-		InGameMouseVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseVSensitivity = InGameMouseVSensitivitySlider.getValue());
-		InGameMouseVSensitivitySlider.setMinimum(3);
-		InGameMouseVSensitivitySlider.setMaximum(22);
-		InGameMouseVSensitivitySlider.setPaintTicks(false);
-		InGameMouseVSensitivitySlider.setBounds(440, 15 + (30 * 10), 265, 25);
-		InGameMouseVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
-		ClientSettingsTab.add(InGameMouseVSensitivitySlider);
-
 		JLabel InGameWorldSortingLabel = new JLabel("World-List Menu Sorting");
 		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameWorldSortingLabel.setBounds(15, 15 + (30 * 11), 150, 25);
+		InGameWorldSortingLabel.setBounds(15, 15 + (30 * 3), 150, 25);
 		ClientSettingsTab.add(InGameWorldSortingLabel);
 
 		InGameWorldSortingComboBox = new JComboBox<Object>(Storage.SETTINGS_OPTIONS[17]);
 		InGameWorldSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_WorldSorting = InGameWorldSortingComboBox.getSelectedIndex());
-		InGameWorldSortingComboBox.setBounds(170, 15 + (30 * 11), 265, 25);
+		InGameWorldSortingComboBox.setBounds(170, 15 + (30 * 3), 265, 25);
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
 
 		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
 		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
 		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
-		MinimizeMainAbilityBarCheckBox.setBounds(440, 15 + (30 * 11), 265, 25);
+		MinimizeMainAbilityBarCheckBox.setBounds(440, 15 + (30 * 3), 265, 25);
 		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
 
-		final JLabel InGameMusicSortingLabel = new JLabel("Music Track Sorting");
-		InGameMusicSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMusicSortingLabel.setBounds(15, 15 + (30 * 12), 150, 25);
-		ClientSettingsTab.add(InGameMusicSortingLabel);
-		
-		InGameMusicSortingComboBox = new JComboBox<Object>(Storage.SETTINGS_OPTIONS[18]);
-		InGameMusicSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_MusicSorting = InGameMusicSortingComboBox.getSelectedIndex());
-		InGameMusicSortingComboBox.setBounds(170, 15 + (30 * 12), 265, 25);
-		ClientSettingsTab.add(InGameMusicSortingComboBox);
-		
-		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop Current Track?");
-		LoopCurrentMusicTrackCheckbox.addActionListener(e -> Storage.nxtClientSettings_LoopCurrentTrack = LoopCurrentMusicTrackCheckbox.isSelected());
-		LoopCurrentMusicTrackCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
-		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		LoopCurrentMusicTrackCheckbox.setBackground(optionBackgroundColor);
-		LoopCurrentMusicTrackCheckbox.setBounds(440, 15 + (30 * 12), 150, 25);
-		ClientSettingsTab.add(LoopCurrentMusicTrackCheckbox);
+		JLabel MiscTogglesLabel = new JLabel("ToggleScape Toggles");
+		MiscTogglesLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		MiscTogglesLabel.setBounds(15, 15 + (30 * 4), 150, 25);
+		ClientSettingsTab.add(MiscTogglesLabel);
 
-		InGameMouseOverPopupsCheckbox = new JCheckBox("Use Tooltips?");
+		InGameTaskPopupsCheckbox = new JCheckBox("Show Task Completed Popups?");
+		InGameTaskPopupsCheckbox.setToolTipText("Toggle the In-Game Task Completed Popups.");
+		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameTaskPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_TaskCompletedPopup = InGameTaskPopupsCheckbox.isSelected());
+		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
+		InGameTaskPopupsCheckbox.setBounds(170, 135, 265, 25);
+		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
+		
+		InGameMouseOverPopupsCheckbox = new JCheckBox("Show Mouse-Over/Hover-Over Tooltips?");
 		InGameMouseOverPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_MouseOverTooltip = InGameMouseOverPopupsCheckbox.isSelected());
 		InGameMouseOverPopupsCheckbox.setToolTipText("Toggle the In-Game Hover-Over tooltips.");
 		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameMouseOverPopupsCheckbox.setBackground(optionBackgroundColor);
-		InGameMouseOverPopupsCheckbox.setBounds(595, 15 + (30 * 12), 110, 25);
+		InGameMouseOverPopupsCheckbox.setBounds(440, 15 + (30 * 4), 265, 25);
 		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
-
-		final JLabel OoODisplayJLabel = new JLabel("Orb Of Oculus's Settings");
-		OoODisplayJLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		OoODisplayJLabel.setBounds(15, 15 + (30 * 13), 150, 25);
-		ClientSettingsTab.add(OoODisplayJLabel);
-		
-		OoOMovementSpeedSlider = new JSlider();
-		OoOMovementSpeedSlider.setToolTipText("The Orb Of Oculus's Movement Speed");
-		OoOMovementSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoOMovementSpeed = OoOMovementSpeedSlider.getValue());
-		OoOMovementSpeedSlider.setPaintTicks(false);
-		OoOMovementSpeedSlider.setMinimum(64);
-		OoOMovementSpeedSlider.setMaximum(511);
-		OoOMovementSpeedSlider.setBounds(170, 15 + (30 * 13), 265, 25);
-		ClientSettingsTab.add(OoOMovementSpeedSlider);
-		
-		OoORotationSpeedSlider = new JSlider();
-		OoORotationSpeedSlider.setToolTipText("The Orb Of Oculus's Rotation Speed");
-		OoORotationSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoORotationSpeed = OoORotationSpeedSlider.getValue());
-		OoORotationSpeedSlider.setPaintTicks(false);
-		OoORotationSpeedSlider.setMinimum(1);
-		OoORotationSpeedSlider.setMaximum(49);
-		OoORotationSpeedSlider.setBounds(440, 15 + (30 * 13), 265, 25);
-		ClientSettingsTab.add(OoORotationSpeedSlider);
 
 		CompatibilityModeCheckBox = new JCheckBox("Compatibility Mode");
 		CompatibilityModeCheckBox.addActionListener(e -> Storage.nxtClientSettings_CompatibilityMode = CompatibilityModeCheckBox.isSelected());
@@ -1202,9 +1047,216 @@ public class NXTSettingsGUI extends JFrame {
 		LanguageSelectionComboBox.setBounds(620, 15 + (30 * 16), 85, 25);
 		ClientSettingsTab.add(LanguageSelectionComboBox);
 
+		
+		
+		
+		/* Control Settings */
+		
+		
+
+		final JLabel InGameCameraZoomLabel = new JLabel("In-Game Camera Zoom");
+		InGameCameraZoomLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameCameraZoomLabel.setBounds(15, 15 + (30 * 0), 150, 25);
+		ControlSettingsTab.add(InGameCameraZoomLabel);
+
+		InGameCameraZoomSlider = new JSlider();
+		InGameCameraZoomLabel.setLabelFor(InGameCameraZoomSlider);
+		InGameCameraZoomSlider.addChangeListener(e -> Storage.nxtClientSettings_CameraZoom = InGameCameraZoomSlider.getValue());
+		InGameCameraZoomSlider.setMinimum(1860);
+		InGameCameraZoomSlider.setMaximum(7600);
+		InGameCameraZoomSlider.setPaintTicks(false);
+		InGameCameraZoomSlider.setBounds(170, 15 + (30 * 0), 535, 25);
+		InGameCameraZoomSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		ControlSettingsTab.add(InGameCameraZoomSlider);
+
+		final JLabel InGameKeyboardHSensitivityLabel = new JLabel("Keyboard Sensitivity (H)");
+		InGameKeyboardHSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameKeyboardHSensitivityLabel.setBounds(15, 15 + (30 * 1), 150, 25);
+		ControlSettingsTab.add(InGameKeyboardHSensitivityLabel);
+
+		InGameKeyboardHSensitivitySlider = new JSlider();
+		InGameKeyboardHSensitivitySlider.setToolTipText("Keyboard Horizontal Sensitivity");
+		InGameKeyboardHSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_KeyboardHSensitivity = InGameKeyboardHSensitivitySlider.getValue());
+		InGameKeyboardHSensitivitySlider.setMinimum(100);
+		InGameKeyboardHSensitivitySlider.setMaximum(250);
+		InGameKeyboardHSensitivitySlider.setPaintTicks(false);
+		InGameKeyboardHSensitivitySlider.setBounds(170, 15 + (30 * 1), 535, 25);
+		InGameKeyboardHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		ControlSettingsTab.add(InGameKeyboardHSensitivitySlider);
+
+		final JLabel InGameKeyboardVSensitivityLabel = new JLabel("Keyboard Sensitivity (V)");
+		InGameKeyboardVSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameKeyboardVSensitivityLabel.setBounds(15, 15 + (30 * 2), 150, 25);
+		ControlSettingsTab.add(InGameKeyboardVSensitivityLabel);
+
+		InGameKeyboardVSensitivitySlider = new JSlider();
+		InGameKeyboardVSensitivitySlider.setToolTipText("Keyboard Vertical Sensitivity");
+		InGameKeyboardVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_KeyboardVSensitivity = InGameKeyboardVSensitivitySlider.getValue());
+		InGameKeyboardVSensitivitySlider.setMinimum(70);
+		InGameKeyboardVSensitivitySlider.setMaximum(200);
+		InGameKeyboardVSensitivitySlider.setPaintTicks(false);
+		InGameKeyboardVSensitivitySlider.setBounds(170, 15 + (30 * 2), 535, 25);
+		InGameKeyboardVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		ControlSettingsTab.add(InGameKeyboardVSensitivitySlider);
+
+		final JLabel InGameMouseHSensitivityLabel = new JLabel("Mouse Sensitivity (H)");
+		InGameMouseHSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameMouseHSensitivityLabel.setBounds(15, 15 + (30 * 3), 150, 25);
+		ControlSettingsTab.add(InGameMouseHSensitivityLabel);
+
+		InGameMouseHSensitivitySlider = new JSlider();
+		InGameMouseHSensitivitySlider.setToolTipText("The Mouse's Horizontal Sensitivity");
+		InGameMouseHSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseHSensitivity = InGameMouseHSensitivitySlider.getValue());
+		InGameMouseHSensitivitySlider.setMinimum(4);
+		InGameMouseHSensitivitySlider.setMaximum(24);
+		InGameMouseHSensitivitySlider.setPaintTicks(false);
+		InGameMouseHSensitivitySlider.setBounds(170, 15 + (30 * 3), 535, 25);
+		InGameMouseHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		ControlSettingsTab.add(InGameMouseHSensitivitySlider);
 
 
+		final JLabel InGameMouseVSensitivityLabel = new JLabel("Mouse Sensitivity (V)");
+		InGameMouseVSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameMouseVSensitivityLabel.setBounds(15, 15 + (30 * 4), 150, 25);
+		ControlSettingsTab.add(InGameMouseVSensitivityLabel);
+		
+		InGameMouseVSensitivitySlider = new JSlider();
+		InGameMouseVSensitivitySlider.setToolTipText("The Mouse's Vertical Sensitivity");
+		InGameMouseVSensitivitySlider.addChangeListener(e -> Storage.nxtClientSettings_MouseVSensitivity = InGameMouseVSensitivitySlider.getValue());
+		InGameMouseVSensitivitySlider.setMinimum(3);
+		InGameMouseVSensitivitySlider.setMaximum(22);
+		InGameMouseVSensitivitySlider.setPaintTicks(false);
+		InGameMouseVSensitivitySlider.setBounds(170, 15 + (30 * 4), 535, 25);
+		InGameMouseVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		ControlSettingsTab.add(InGameMouseVSensitivitySlider);
 
+		final JLabel OoORotationMovementLabel = new JLabel("OoO's Movement Speed");
+		OoORotationMovementLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		OoORotationMovementLabel.setBounds(15, 15 + (30 * 5), 150, 25);
+		ControlSettingsTab.add(OoORotationMovementLabel);
+		
+		OoOMovementSpeedSlider = new JSlider();
+		OoOMovementSpeedSlider.setToolTipText("The Orb Of Oculus's Movement Speed");
+		OoOMovementSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoOMovementSpeed = OoOMovementSpeedSlider.getValue());
+		OoOMovementSpeedSlider.setPaintTicks(false);
+		OoOMovementSpeedSlider.setMinimum(64);
+		OoOMovementSpeedSlider.setMaximum(511);
+		OoOMovementSpeedSlider.setBounds(170, 15 + (30 * 5), 535, 25);
+		ControlSettingsTab.add(OoOMovementSpeedSlider);
+		
+		final JLabel OoORotationSpeedLabel = new JLabel("OoO's Rotation Speed");
+		OoORotationSpeedLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		OoORotationSpeedLabel.setBounds(15, 15 + (30 * 6), 150, 25);
+		ControlSettingsTab.add(OoORotationSpeedLabel);
+		
+		OoORotationSpeedSlider = new JSlider();
+		OoORotationSpeedSlider.setToolTipText("The Orb Of Oculus's Rotation Speed");
+		OoORotationSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoORotationSpeed = OoORotationSpeedSlider.getValue());
+		OoORotationSpeedSlider.setPaintTicks(false);
+		OoORotationSpeedSlider.setMinimum(1);
+		OoORotationSpeedSlider.setMaximum(49);
+		OoORotationSpeedSlider.setBounds(170, 15 + (30 * 6), 535, 25);
+		ControlSettingsTab.add(OoORotationSpeedSlider);
+		
+		
+		
+		
+		/* Audio Settings */
+		
+		
+		
+		
+
+		final JLabel LoginMusicLabel = new JLabel("Login Music Volume");
+		LoginMusicLabel.setLabelFor(LoginMusicSlider);
+		LoginMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		LoginMusicLabel.setBounds(15, 15 + (30 * 0), 150, 25);
+		AudioSettingsTab.add(LoginMusicLabel);
+
+		LoginMusicSlider = new JSlider();
+		LoginMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_LoginMusicVolume = LoginMusicSlider.getValue());
+		LoginMusicSlider.setMaximum(255);
+		LoginMusicSlider.setPaintTicks(false);
+		LoginMusicSlider.setBounds(170, 15 + (30 * 0), 535, 25);
+		LoginMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		AudioSettingsTab.add(LoginMusicSlider);
+
+		final JLabel InGameMusicLabel = new JLabel("Game Music Volume");
+		InGameMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameMusicLabel.setBounds(15, 15 + (30 * 1), 150, 25);
+		AudioSettingsTab.add(InGameMusicLabel);
+
+		InGameMusicSlider = new JSlider();
+		InGameMusicLabel.setLabelFor(InGameMusicSlider);
+		InGameMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameMusicVolume = InGameMusicSlider.getValue());
+		InGameMusicSlider.setMaximum(255);
+		InGameMusicSlider.setPaintTicks(false);
+		InGameMusicSlider.setBounds(170, 15 + (30 * 1), 535, 25);
+		InGameMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		AudioSettingsTab.add(InGameMusicSlider);
+
+		final JLabel InGameSoundEffectsLabel = new JLabel("Sound Effect Volume");
+		InGameSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameSoundEffectsLabel.setBounds(15, 15 + (30 * 2), 150, 25);
+		AudioSettingsTab.add(InGameSoundEffectsLabel);
+
+		InGameSoundEffectsSlider = new JSlider();
+		InGameSoundEffectsLabel.setLabelFor(InGameSoundEffectsSlider);
+		InGameSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameSoundEffectsVolume = InGameSoundEffectsSlider.getValue());
+		InGameSoundEffectsSlider.setMaximum(127);
+		InGameSoundEffectsSlider.setPaintTicks(false);
+		InGameSoundEffectsSlider.setBounds(170, 15 + (30 * 2), 535, 25);
+		InGameSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		AudioSettingsTab.add(InGameSoundEffectsSlider);
+
+		final JLabel InGameAmbientSoundEffectsLabel = new JLabel("Ambient Sound Volume");
+		InGameAmbientSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameAmbientSoundEffectsLabel.setBounds(15, 15 + (30 * 3), 150, 25);
+		AudioSettingsTab.add(InGameAmbientSoundEffectsLabel);
+
+		InGameAmbientSoundEffectsSlider = new JSlider();
+		InGameAmbientSoundEffectsLabel.setLabelFor(InGameAmbientSoundEffectsSlider);
+		InGameAmbientSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = InGameAmbientSoundEffectsSlider.getValue());
+		InGameAmbientSoundEffectsSlider.setMaximum(127);
+		InGameAmbientSoundEffectsSlider.setPaintTicks(false);
+		InGameAmbientSoundEffectsSlider.setBounds(170, 15 + (30 * 3), 535, 25);
+		InGameAmbientSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		AudioSettingsTab.add(InGameAmbientSoundEffectsSlider);
+
+		final JLabel InGameVoiceOverLabel = new JLabel("Voice Over Volume");
+		InGameVoiceOverLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameVoiceOverLabel.setBounds(15, 15 + (30 * 4), 150, 25);
+		AudioSettingsTab.add(InGameVoiceOverLabel);
+
+		InGameVoiceOverSlider = new JSlider();
+		InGameVoiceOverLabel.setLabelFor(InGameVoiceOverSlider);
+		InGameVoiceOverSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameVoiceOverVolume = InGameVoiceOverSlider.getValue());
+		InGameVoiceOverSlider.setMaximum(127);
+		InGameVoiceOverSlider.setPaintTicks(false);
+		InGameVoiceOverSlider.setBounds(170, 15 + (30 * 4), 535, 25);
+		InGameVoiceOverSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		AudioSettingsTab.add(InGameVoiceOverSlider);
+
+		final JLabel InGameMusicSortingLabel = new JLabel("Music Track Sorting");
+		InGameMusicSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		InGameMusicSortingLabel.setBounds(15, 15 + (30 * 5), 150, 25);
+		AudioSettingsTab.add(InGameMusicSortingLabel);
+		
+		InGameMusicSortingComboBox = new JComboBox<Object>(Storage.SETTINGS_OPTIONS[18]);
+		InGameMusicSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_MusicSorting = InGameMusicSortingComboBox.getSelectedIndex());
+		InGameMusicSortingComboBox.setBounds(170, 15 + (30 * 5), 265, 25);
+		AudioSettingsTab.add(InGameMusicSortingComboBox);
+		
+		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop Currently Playing Music Track?");
+		LoopCurrentMusicTrackCheckbox.addActionListener(e -> Storage.nxtClientSettings_LoopCurrentTrack = LoopCurrentMusicTrackCheckbox.isSelected());
+		LoopCurrentMusicTrackCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
+		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		LoopCurrentMusicTrackCheckbox.setBackground(optionBackgroundColor);
+		LoopCurrentMusicTrackCheckbox.setBounds(440, 165, 265, 25);
+		AudioSettingsTab.add(LoopCurrentMusicTrackCheckbox);
+		
+		
+		
 
 
 		/* Special Mechanics */
@@ -1213,12 +1265,6 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-
-		final JPanel SpecialMechanicsTab = new JPanel();
-		tabbedPane.addTab("Special Mechanics", null, SpecialMechanicsTab, null);
-		SpecialMechanicsTab.setBackground(backgroundColour);
-		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		SpecialMechanicsTab.setLayout(null);
 
 		AddSpriteFlagToUsername = new JButton("Add <sprite> to your username");
 		AddSpriteFlagToUsername.setToolTipText(Storage.ADD_SPRITE_FLAG_TOOLTIP);
