@@ -69,7 +69,7 @@ public class JCache {
 				Storage.configuration_location = Advapi32Util.registryGetStringValue(HKEY_CURRENT_USER, Storage.NXT_REGISTRY_LOCATION_BASE, "splash")
 															 .replace("splash6.gif", "preferences.cfg")
 															 .replace("\\", "/");
-			}	else if (OS_TYPE >= 1 && OS_TYPE <= 3) {
+			}	else if ((OS_TYPE >= 1) && (OS_TYPE <= 3)) {
 				Storage.configuration_location = new File(System.getProperty("user.home").replace("\\", "/") +
 														 "/Jagex/launcher/preferences.cfg").getAbsolutePath();
 			}	else {
@@ -132,7 +132,7 @@ public class JCache {
 					}
 				}
 
-				if (Storage.nxtClientSettings_LanguageSelected <= -1 || Storage.nxtClientSettings_LanguageSelected >= 4) {
+				if ((Storage.nxtClientSettings_LanguageSelected <= -1) || (Storage.nxtClientSettings_LanguageSelected >= 4)) {
 					Storage.nxtClientSettings_LanguageSelected = 0;
 					NXTSettingsGUI.LanguageSelectionComboBox.setSelectedIndex(Storage.nxtClientSettings_LanguageSelected);
 				}	else {
@@ -171,6 +171,7 @@ public class JCache {
 
 				ReadConfigSettings();
 				ReadVTVarcSettings();
+				Mechanics.DeselectDevConsole();
 				ReadDeveloperConsoleHistory();
 				ReadProgramOptions();
 				if (Storage.OS_TYPE == 0) {
@@ -424,7 +425,7 @@ public class JCache {
 						break;
 
 					case Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID:
-						if (rs.getInt("DATA") > Storage.SETTINGS_OPTIONS[19].length-1){
+						if (rs.getInt("DATA") > (Storage.SETTINGS_OPTIONS[19].length-1)){
 							Storage.nxtClientSettings_LoginWallpaperID = Storage.SETTINGS_OPTIONS[19].length-1;
 							NXTSettingsGUI.LoginWallpaperIDComboBox.setSelectedIndex(Storage.SETTINGS_OPTIONS[19].length-1);
 						}
@@ -800,6 +801,7 @@ public class JCache {
 		try {
 
 			Legality.CheckSettings();
+			Mechanics.DeselectDevConsole();
 
 			// Left Column
 			if (History.nxtGraphicsSetting_RemoveRoofs != Storage.nxtGraphicsSetting_RemoveRoofs) {
@@ -982,7 +984,7 @@ public class JCache {
 			if ((History.nxtClientSettings_RememberUsername != Storage.nxtClientSettings_RememberUsername) ||
 				(History.nxtClientSettings_TemporaryUsername != Storage.nxtClientSettings_TemporaryUsername)) {
 				if (Storage.nxtClientSettings_RememberUsername &&
-					Storage.nxtClientSettings_TemporaryUsername != null &&
+					(Storage.nxtClientSettings_TemporaryUsername != null) &&
 				   !Storage.nxtClientSettings_TemporaryUsername.equals("")) {
 					Write(false, Storage.CACHE_KEY_VT_VARC_SAVED_USERNAME,		Storage.nxtClientSettings_TemporaryUsername);
 					Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	1);
@@ -1094,8 +1096,8 @@ public class JCache {
 		 */
 		try {
 			String Table = "";
-			if ((Storage.conn == null || Storage.stmt == null) &&
-				(Storage.Cache_settings_location != null && !Storage.Cache_settings_location.trim().equals(""))) {
+			if (((Storage.conn == null) || (Storage.stmt == null)) &&
+				((Storage.Cache_settings_location != null) && !Storage.Cache_settings_location.trim().equals(""))) {
 				 Storage.conn = DriverManager.getConnection("jdbc:sqlite:" + Storage.Cache_settings_location);
 				 Storage.stmt = Storage.conn.createStatement();
 			}
@@ -1104,7 +1106,7 @@ public class JCache {
 			}	else {
 				Table = "vt-varc";
 			}
-			if (!Table.equals("") && Key != null && !Key.equals("") && Value != null) {
+			if (!Table.equals("") && (Key != null) && !Key.equals("") && (Value != null)) {
 			Storage.stmt.addBatch("DELETE FROM '"+Table+"' "+
 						  		  "WHERE KEY='"+Key+"';");
 			Storage.stmt.addBatch("INSERT INTO '"+Table+"' ('KEY', 'DATA')" +

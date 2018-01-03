@@ -13,7 +13,7 @@ public class Legality {
 		 *
 		 * > Check if Anti-Aliasing is disabled
 		 *  > If its value is disabled, disable Anti-Aliasing Quality.
-		 *  
+		 *
 		 */
 
 		// Terrain/Ground Blending.
@@ -71,7 +71,7 @@ public class Legality {
 		 *
 		 * > Check is the favourite world 3 is null or empty
 		 *  > If null or empty, set to -1. (cleared slot)
-		 *  
+		 *
 		 * > Apply the favourite world values
 		 *
 		 * > Check if any favourite worlds are -1 in favourite worlds 1+2
@@ -79,19 +79,19 @@ public class Legality {
 		 *  > If favourtie world 2 is -1. set favorutie world 3 to -1
 		 */
 		Storage.nxtClientSettings_TemporaryUsername = NXTSettingsGUI.UsernameInput.getText();
-		if (NXTSettingsGUI.UsernameInput.getText() != null &&
+		if ((NXTSettingsGUI.UsernameInput.getText() != null) &&
 		   !NXTSettingsGUI.UsernameInput.getText().equals("")){
 			NXTSettingsGUI.RememberUsernameCheckbox.setSelected(true);
 		}
-		if (NXTSettingsGUI.FavouriteWorld1Input.getText() == null ||
+		if ((NXTSettingsGUI.FavouriteWorld1Input.getText() == null) ||
 			NXTSettingsGUI.FavouriteWorld1Input.getText().equals("")){
 			NXTSettingsGUI.FavouriteWorld1Input.setText("-1");
 		}
-		if (NXTSettingsGUI.FavouriteWorld2Input.getText() == null ||
+		if ((NXTSettingsGUI.FavouriteWorld2Input.getText() == null) ||
 			NXTSettingsGUI.FavouriteWorld2Input.getText().equals("")){
 			NXTSettingsGUI.FavouriteWorld2Input.setText("-1");
 		}
-		if (NXTSettingsGUI.FavouriteWorld3Input.getText() == null ||
+		if ((NXTSettingsGUI.FavouriteWorld3Input.getText() == null) ||
 			NXTSettingsGUI.FavouriteWorld3Input.getText().equals("")){
 			NXTSettingsGUI.FavouriteWorld3Input.setText("-1");
 		}
