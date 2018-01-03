@@ -973,7 +973,6 @@ public class NXTSettingsGUI extends JFrame {
 		RandomizeLoginWallpaperCheckbox.setBounds(440, 75, 265, 25);
 		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
-		FavouriteWorld2Input.setDocument(new TextLimitor(2));
 
 		JLabel InGameWorldSortingLabel = new JLabel("World-List Menu Sorting");
 		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
