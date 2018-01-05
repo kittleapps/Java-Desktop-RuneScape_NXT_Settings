@@ -51,6 +51,7 @@ public class Storage {
 		nxtClientSettings_MouseVSensitivity,
 		nxtClientSettings_WorldSorting,
 		nxtClientSettings_MusicSorting,
+		nxtClientSettings_EmoteSorting,
 		nxtClientSettings_OoOMovementSpeed,
 		nxtClientSettings_OoORotationSpeed,
 		nxtClientSettings_LanguageSelected,
@@ -88,6 +89,7 @@ public class Storage {
 		CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS = "1686",
 		CACHE_KEY_VT_VARC_CAMERA_ZOOM = "1971",
 		CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED = "2058",
+		CACHE_KEY_VT_VARC_EMOTE_SORTING = "2768",
 		CACHE_KEY_VT_VARC_KEYBOARD_H_SENSITIVITY = "2827",
 		CACHE_KEY_VT_VARC_KEYBOARD_V_SENSITIVITY = "2828",
 		CACHE_KEY_VT_VARC_MOUSE_H_SENSITIVITY = "2829",
@@ -438,6 +440,25 @@ public class Storage {
 			"Dimension of the Damned",
 			"The G-Nome Project",
 			"Unknown Wallpaper"
+		},
+		{
+			/* 20: Emotes */
+			"All",
+			"All (Unlocked)",
+			"Greetings",
+			"Conversation",
+			"Dance",
+			"Feelings",
+			"Mime",
+			"Zombie",
+			"Holiday",
+			"Achievements",
+			"Weather",
+			"Treasure Trail",
+			"Loyalty",
+			"Clan Stage",
+			"Clan Audience",
+			"Store Emotes"
 		}
 	};
 

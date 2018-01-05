@@ -545,6 +545,17 @@ public class JCache {
 						}
 						break;
 
+					case Storage.CACHE_KEY_VT_VARC_EMOTE_SORTING:
+						if (rs.getInt("DATA") > NXTSettingsGUI.InGameEmoteSortingComboBox.getItemCount()){
+							Storage.nxtClientSettings_EmoteSorting = NXTSettingsGUI.InGameEmoteSortingComboBox.getItemCount();
+							NXTSettingsGUI.InGameEmoteSortingComboBox.setSelectedIndex(NXTSettingsGUI.InGameEmoteSortingComboBox.getItemCount());
+						}
+						else {
+							Storage.nxtClientSettings_EmoteSorting = rs.getInt("DATA");
+							NXTSettingsGUI.InGameEmoteSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
+						}
+						break;
+
 					case Storage.CACHE_KEY_VT_VERC_MUSIC_SORTING:
 						if (rs.getInt("DATA") >= NXTSettingsGUI.InGameMusicSortingComboBox.getItemCount()){
 							Storage.nxtClientSettings_MusicSorting = NXTSettingsGUI.InGameMusicSortingComboBox.getItemCount();
@@ -940,6 +951,9 @@ public class JCache {
 			}
 			if (History.nxtClientSettings_WorldSorting != Storage.nxtClientSettings_WorldSorting) {
 				Write(false, Storage.CACHE_KEY_VT_VARC_WORLD_SORTING,	Storage.nxtClientSettings_WorldSorting);
+			}
+			if (History.nxtClientSettings_EmoteSorting != Storage.nxtClientSettings_EmoteSorting) {
+				Write(false, Storage.CACHE_KEY_VT_VARC_EMOTE_SORTING,	Storage.nxtClientSettings_EmoteSorting);
 			}
 			if (History.nxtClientSettings_OoOMovementSpeed != Storage.nxtClientSettings_OoOMovementSpeed) {
 				Write(false, Storage.CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED,	Storage.nxtClientSettings_OoOMovementSpeed);

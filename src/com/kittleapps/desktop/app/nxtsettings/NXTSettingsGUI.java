@@ -76,6 +76,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoginWallpaperIDComboBox,
 		InGameWorldSortingComboBox,
 		InGameMusicSortingComboBox,
+		InGameEmoteSortingComboBox,
 		LanguageSelectionComboBox;
 
 	public static JSlider
@@ -641,6 +642,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld1Input);
 
 		final JLabel FavouriteWorld2Label = new JLabel("Favourite World 2");
+		FavouriteWorld2Label.setHorizontalAlignment(SwingConstants.CENTER);
 		FavouriteWorld2Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld2Label.setBounds(260, 15 + (30 * 1), 130, 25);
 		ClientSettingsTab.add(FavouriteWorld2Label);
@@ -653,6 +655,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(FavouriteWorld2Input);
 
 		final JLabel FavouriteWorld3Label = new JLabel("Favourite World 3");
+		FavouriteWorld3Label.setHorizontalAlignment(SwingConstants.CENTER);
 		FavouriteWorld3Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld3Label.setBounds(485, 15 + (30 * 1), 130, 25);
 		ClientSettingsTab.add(FavouriteWorld3Label);
@@ -692,12 +695,18 @@ public class NXTSettingsGUI extends JFrame {
 		InGameWorldSortingComboBox.setBounds(170, 15 + (30 * 3), 265, 25);
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
 
-		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
-		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
-		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
-		MinimizeMainAbilityBarCheckBox.setBounds(440, 15 + (30 * 3), 265, 25);
-		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
+
+		final JLabel EmoteSelectionLabel = new JLabel("Emote List Sorting");
+		EmoteSelectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		EmoteSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		EmoteSelectionLabel.setBounds(440, 15 + (30 * 3), 130, 25);
+		EmoteSelectionLabel.setLabelFor(LanguageSelectionComboBox);
+		ClientSettingsTab.add(EmoteSelectionLabel);
+		
+		InGameEmoteSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[20]);
+		InGameEmoteSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_EmoteSorting = InGameEmoteSortingComboBox.getSelectedIndex());
+		InGameEmoteSortingComboBox.setBounds(575, 15 + (30 * 3), 130, 25);
+		ClientSettingsTab.add(InGameEmoteSortingComboBox);
 
 		final JLabel MiscTogglesLabel = new JLabel("ToggleScape Toggles");
 		MiscTogglesLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -719,6 +728,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseOverPopupsCheckbox.setBackground(optionBackgroundColor);
 		InGameMouseOverPopupsCheckbox.setBounds(440, 15 + (30 * 4), 265, 25);
 		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
+
+		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
+		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
+		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
+		MinimizeMainAbilityBarCheckBox.setBounds(440, 15 + (30 * 5), 265, 25);
+		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
 
 		CompatibilityModeCheckBox = new JCheckBox("Compatibility Mode");
 		CompatibilityModeCheckBox.addActionListener(e -> Storage.nxtClientSettings_CompatibilityMode = CompatibilityModeCheckBox.isSelected());

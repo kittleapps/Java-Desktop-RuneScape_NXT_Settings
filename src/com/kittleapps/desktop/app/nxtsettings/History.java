@@ -1,7 +1,8 @@
 package com.kittleapps.desktop.app.nxtsettings;
 
 
-public class History {	public static int
+public class History {
+	public static int
 
 	// NXT Graphics settings options.
 	nxtGraphicsSetting_AnisotropicFiltering,
@@ -42,6 +43,7 @@ public class History {	public static int
 	nxtClientSettings_MouseVSensitivity,
 	nxtClientSettings_WorldSorting,
 	nxtClientSettings_MusicSorting,
+	nxtClientSettings_EmoteSorting,
 	nxtClientSettings_OoOMovementSpeed,
 	nxtClientSettings_OoORotationSpeed,
 	nxtClientSettings_LanguageSelected,
