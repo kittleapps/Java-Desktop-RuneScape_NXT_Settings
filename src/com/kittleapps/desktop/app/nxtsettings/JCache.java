@@ -403,15 +403,33 @@ public class JCache {
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1:
-							NXTSettingsGUI.FavouriteWorld1Input.setText(rs.getString("DATA"));
+						if (rs.getInt("DATA") <= 0){
+							NXTSettingsGUI.FavouriteWorld1ComboBox.setSelectedIndex(0);
+						} else if (rs.getInt("DATA") >= 255){
+							NXTSettingsGUI.FavouriteWorld1ComboBox.setSelectedIndex(255);
+						} else{
+							NXTSettingsGUI.FavouriteWorld1ComboBox.setSelectedIndex(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2:
-							NXTSettingsGUI.FavouriteWorld2Input.setText(rs.getString("DATA"));
+						if (rs.getInt("DATA") <= 0){
+							NXTSettingsGUI.FavouriteWorld2ComboBox.setSelectedIndex(0);
+						} else if (rs.getInt("DATA") >= 255){
+							NXTSettingsGUI.FavouriteWorld2ComboBox.setSelectedIndex(255);
+						} else{
+							NXTSettingsGUI.FavouriteWorld2ComboBox.setSelectedIndex(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3:
-							NXTSettingsGUI.FavouriteWorld3Input.setText(rs.getString("DATA"));
+						if (rs.getInt("DATA") <= 0){
+							NXTSettingsGUI.FavouriteWorld3ComboBox.setSelectedIndex(0);
+						} else if (rs.getInt("DATA") >= 255){
+							NXTSettingsGUI.FavouriteWorld3ComboBox.setSelectedIndex(255);
+						} else{
+							NXTSettingsGUI.FavouriteWorld3ComboBox.setSelectedIndex(rs.getInt("DATA"));
+						}
 						break;
 
 					case Storage.CACHE_KEY_VT_VARC_LOADING_SCREENS:
@@ -1014,13 +1032,25 @@ public class JCache {
 
 			// Favourite Worlds
 			if (History.nxtClientSettings_FavouriteWorld1 != Storage.nxtClientSettings_FavouriteWorld1) {
-				Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	Storage.nxtClientSettings_FavouriteWorld1);
+				if (Storage.nxtClientSettings_FavouriteWorld1 <= 0){
+					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	-1);	
+				} else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	Storage.nxtClientSettings_FavouriteWorld1);
+				}
 			}
 			if (History.nxtClientSettings_FavouriteWorld2 != Storage.nxtClientSettings_FavouriteWorld2) {
-				Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2,	Storage.nxtClientSettings_FavouriteWorld2);
+				if (Storage.nxtClientSettings_FavouriteWorld1 <= 0){
+					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2,	-1);	
+				} else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_2,	Storage.nxtClientSettings_FavouriteWorld2);
+				}
 			}
 			if (History.nxtClientSettings_FavouriteWorld3 != Storage.nxtClientSettings_FavouriteWorld3) {
-				Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3,	Storage.nxtClientSettings_FavouriteWorld3);
+				if (Storage.nxtClientSettings_FavouriteWorld1 <= 0){
+					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3,	-1);	
+				} else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3,	Storage.nxtClientSettings_FavouriteWorld3);
+				}
 			}
 
 			// Wallpapers

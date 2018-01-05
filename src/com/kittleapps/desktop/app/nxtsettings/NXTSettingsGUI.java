@@ -3,13 +3,11 @@ package com.kittleapps.desktop.app.nxtsettings;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -28,7 +26,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.NumberFormatter;
 
 public class NXTSettingsGUI extends JFrame {
 	private static final long serialVersionUID = -4228920598014351419L;
@@ -75,6 +72,9 @@ public class NXTSettingsGUI extends JFrame {
 		GameWorldScalingComboBox,
 		LoginWallpaperIDComboBox,
 		InGameWorldSortingComboBox,
+		FavouriteWorld1ComboBox,
+		FavouriteWorld2ComboBox,
+		FavouriteWorld3ComboBox,
 		InGameMusicSortingComboBox,
 		InGameEmoteSortingComboBox,
 		LanguageSelectionComboBox;
@@ -95,10 +95,7 @@ public class NXTSettingsGUI extends JFrame {
 		OoORotationSpeedSlider;
 
 	public static JTextField
-		UsernameInput,
-		FavouriteWorld1Input,
-		FavouriteWorld2Input,
-		FavouriteWorld3Input;
+		UsernameInput;
 
 	public static JButton
 		MinimumGraphicsPresetButton,
@@ -228,18 +225,6 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.setBackground(backgroundColour);
 		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
-
-		final NumberFormat intFormat = NumberFormat.getIntegerInstance();
-
-		final NumberFormatter WorldNumberFormatter = new NumberFormatter(intFormat);
-		WorldNumberFormatter.setValueClass(Integer.class);
-		WorldNumberFormatter.setAllowsInvalid(false);
-		WorldNumberFormatter.setMinimum(-1);
-		WorldNumberFormatter.setMaximum(Integer.MAX_VALUE);
-
-
-
-
 
 
 
@@ -634,12 +619,16 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld1Label.setBounds(15, 15 + (30 * 1), 150, 25);
 		ClientSettingsTab.add(FavouriteWorld1Label);
 
-		FavouriteWorld1Input = new JFormattedTextField(WorldNumberFormatter);
-		FavouriteWorld1Label.setLabelFor(FavouriteWorld1Input);
-		FavouriteWorld1Input.setText("1");
-		FavouriteWorld1Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
-		FavouriteWorld1Input.setBounds(170, 15 + (30 * 1), 85, 25);
-		ClientSettingsTab.add(FavouriteWorld1Input);
+		Object[] WORLDS = new Object[256];
+		for (int i = 1; i < WORLDS.length; i++){
+			WORLDS[i] = i;
+		}
+		WORLDS[0] = "None";
+		
+		FavouriteWorld1ComboBox = new JComboBox<>(WORLDS);
+		FavouriteWorld1ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld1 = (FavouriteWorld1ComboBox.getSelectedIndex()));
+		FavouriteWorld1ComboBox.setBounds(170, 15 + (30 * 1), 85, 25);
+		ClientSettingsTab.add(FavouriteWorld1ComboBox);
 
 		final JLabel FavouriteWorld2Label = new JLabel("Favourite World 2");
 		FavouriteWorld2Label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -647,12 +636,10 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld2Label.setBounds(260, 15 + (30 * 1), 130, 25);
 		ClientSettingsTab.add(FavouriteWorld2Label);
 
-		FavouriteWorld2Input = new JFormattedTextField(WorldNumberFormatter);
-		FavouriteWorld2Label.setLabelFor(FavouriteWorld2Input);
-		FavouriteWorld2Input.setText("2");
-		FavouriteWorld2Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
-		FavouriteWorld2Input.setBounds(395, 15 + (30 * 1), 85, 25);
-		ClientSettingsTab.add(FavouriteWorld2Input);
+		FavouriteWorld2ComboBox = new JComboBox<>(WORLDS);
+		FavouriteWorld2ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld2 = (FavouriteWorld2ComboBox.getSelectedIndex()));
+		FavouriteWorld2ComboBox.setBounds(395, 15 + (30 * 1), 85, 25);
+		ClientSettingsTab.add(FavouriteWorld2ComboBox);
 
 		final JLabel FavouriteWorld3Label = new JLabel("Favourite World 3");
 		FavouriteWorld3Label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -660,12 +647,10 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld3Label.setBounds(485, 15 + (30 * 1), 130, 25);
 		ClientSettingsTab.add(FavouriteWorld3Label);
 
-		FavouriteWorld3Input = new JFormattedTextField(WorldNumberFormatter);
-		FavouriteWorld3Label.setLabelFor(FavouriteWorld3Input);
-		FavouriteWorld3Input.setText("3");
-		FavouriteWorld3Input.setToolTipText(Storage.FAVOURITE_WORLD_INPUT_TOOLTIP);
-		FavouriteWorld3Input.setBounds(620, 15 + (30 * 1), 85, 25);
-		ClientSettingsTab.add(FavouriteWorld3Input);
+		FavouriteWorld3ComboBox = new JComboBox<>(WORLDS);
+		FavouriteWorld3ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld3 = (FavouriteWorld3ComboBox.getSelectedIndex()));
+		FavouriteWorld3ComboBox.setBounds(620, 15 + (30 * 1), 85, 25);
+		ClientSettingsTab.add(FavouriteWorld3ComboBox);
 
 		final JLabel WallpaperLabel = new JLabel("Wallpaper Settings");
 		WallpaperLabel.setFont(new Font("Dialog", Font.PLAIN, 11));

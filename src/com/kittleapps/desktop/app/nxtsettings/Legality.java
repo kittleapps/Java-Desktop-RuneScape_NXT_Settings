@@ -83,30 +83,17 @@ public class Legality {
 		   !NXTSettingsGUI.UsernameInput.getText().equals("")){
 			NXTSettingsGUI.RememberUsernameCheckbox.setSelected(true);
 		}
-		if ((NXTSettingsGUI.FavouriteWorld1Input.getText() == null) ||
-			NXTSettingsGUI.FavouriteWorld1Input.getText().equals("")){
-			NXTSettingsGUI.FavouriteWorld1Input.setText("-1");
-		}
-		if ((NXTSettingsGUI.FavouriteWorld2Input.getText() == null) ||
-			NXTSettingsGUI.FavouriteWorld2Input.getText().equals("")){
-			NXTSettingsGUI.FavouriteWorld2Input.setText("-1");
-		}
-		if ((NXTSettingsGUI.FavouriteWorld3Input.getText() == null) ||
-			NXTSettingsGUI.FavouriteWorld3Input.getText().equals("")){
-			NXTSettingsGUI.FavouriteWorld3Input.setText("-1");
-		}
-
 		Storage.nxtClientSettings_RememberUsername = NXTSettingsGUI.RememberUsernameCheckbox.isSelected();
-		Storage.nxtClientSettings_FavouriteWorld1 =  new Integer(NXTSettingsGUI.FavouriteWorld1Input.getText().replace(",", ""));
-		Storage.nxtClientSettings_FavouriteWorld2 =  new Integer(NXTSettingsGUI.FavouriteWorld2Input.getText().replace(",", ""));
-		Storage.nxtClientSettings_FavouriteWorld3 =  new Integer(NXTSettingsGUI.FavouriteWorld3Input.getText().replace(",", ""));
 
 		if (Storage.nxtClientSettings_FavouriteWorld1 <= 0) {
 			Storage.nxtClientSettings_FavouriteWorld2 = -1;
 			Storage.nxtClientSettings_FavouriteWorld3 = -1;
+			NXTSettingsGUI.FavouriteWorld2ComboBox.setSelectedItem(0);
+			NXTSettingsGUI.FavouriteWorld3ComboBox.setSelectedItem(0);
 		}
 		else if (Storage.nxtClientSettings_FavouriteWorld2 <= 0) {
 			Storage.nxtClientSettings_FavouriteWorld3 = -1;
+			NXTSettingsGUI.FavouriteWorld3ComboBox.setSelectedItem(0);
 		}
 	}
 }
