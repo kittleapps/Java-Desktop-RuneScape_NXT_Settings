@@ -246,7 +246,7 @@ public class NXTSettingsGUI extends JFrame {
 		BrightnessSlider.setBackground(optionBackgroundColor);
 		GraphicsSettingsTab.add(BrightnessSlider);
 
-		final JLabel DrawDistanceLabel = new JLabel("  Draw distance");
+		final JLabel DrawDistanceLabel = new JLabel("  Draw Distance");
 		DrawDistanceLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		DrawDistanceLabel.setBounds(15, 15 + (30 * 1), 150, 25);
 		GraphicsSettingsTab.add(DrawDistanceLabel);
@@ -268,7 +268,7 @@ public class NXTSettingsGUI extends JFrame {
 		VSyncComboBox.setBounds(165, 15 + (30 * 2), 175, 25);
 		GraphicsSettingsTab.add(VSyncComboBox);
 
-		final JLabel AntiAliasingQualityLabel = new JLabel("  Anti-aliasing Quality");
+		final JLabel AntiAliasingQualityLabel = new JLabel("  Anti-Aliasing Quality");
 		AntiAliasingQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		AntiAliasingQualityLabel.setBounds(15, 15 + (30 * 3), 150, 25);
 		GraphicsSettingsTab.add(AntiAliasingQualityLabel);
@@ -280,7 +280,7 @@ public class NXTSettingsGUI extends JFrame {
 		AntiAliasingQualityComboBox.setBounds(165, 15 + (30 * 3), 175, 25);
 		GraphicsSettingsTab.add(AntiAliasingQualityComboBox);
 
-		final JLabel LightingDetailLabel = new JLabel("  Lighting detail");
+		final JLabel LightingDetailLabel = new JLabel("  Lighting Quality");
 		LightingDetailLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LightingDetailLabel.setBounds(15, 15 + (30 * 4), 150, 25);
 		GraphicsSettingsTab.add(LightingDetailLabel);
@@ -291,7 +291,7 @@ public class NXTSettingsGUI extends JFrame {
 		LightingDetailComboBox.setBounds(165, 15 + (30 * 4), 175, 25);
 		GraphicsSettingsTab.add(LightingDetailComboBox);
 
-		final JLabel BloomQualityLabel = new JLabel("  Bloom");
+		final JLabel BloomQualityLabel = new JLabel("  Bloom Quality");
 		BloomQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		BloomQualityLabel.setBounds(15, 15 + (30 * 5), 150, 25);
 		GraphicsSettingsTab.add(BloomQualityLabel);
@@ -316,7 +316,7 @@ public class NXTSettingsGUI extends JFrame {
 		AnisotropicFilteringComboBox.setBounds(165, 15 + (30 * 6), 175, 25);
 		GraphicsSettingsTab.add(AnisotropicFilteringComboBox);
 
-		final JLabel MaxForegroundFpsLabel = new JLabel("  Foreground FPS");
+		final JLabel MaxForegroundFpsLabel = new JLabel("  Foreground FPS Cap");
 		MaxForegroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MaxForegroundFpsLabel.setToolTipText(Storage.MAXFOREGOUNDFPS_TOOLTIP);
 		MaxForegroundFpsLabel.setBounds(15, 15 + (30 * 7), 150, 25);
@@ -328,7 +328,7 @@ public class NXTSettingsGUI extends JFrame {
 		MaxForegroundFpsComboBox.setBounds(165, 15 + (30 * 7), 175, 25);
 		GraphicsSettingsTab.add(MaxForegroundFpsComboBox);
 
-		final JLabel UIScalingLabel = new JLabel("  UI Scaling");
+		final JLabel UIScalingLabel = new JLabel("  Interface Scaling");
 		UIScalingLabel.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
 		UIScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		UIScalingLabel.setBounds(15, 15 + (30 * 8), 150, 25);
@@ -339,7 +339,7 @@ public class NXTSettingsGUI extends JFrame {
 		UIScalingComboBox.setBounds(165, 15 + (30 * 8), 175, 25);
 		GraphicsSettingsTab.add(UIScalingComboBox);
 
-		FlickeringEffectsCheckbox = new JCheckBox(String.format("%-85s", "Flickering effects"));
+		FlickeringEffectsCheckbox = new JCheckBox(String.format("%-85s", "Flickering Effects"));
 		FlickeringEffectsCheckbox.setBackground(optionBackgroundColor);
 		FlickeringEffectsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		FlickeringEffectsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_FlickeringEffects = FlickeringEffectsCheckbox.isSelected());
@@ -358,7 +358,7 @@ public class NXTSettingsGUI extends JFrame {
 		CustomCursorsCheckbox.setSelected(true);
 		GraphicsSettingsTab.add(CustomCursorsCheckbox);
 
-		GroundDecorationsCheckbox = new JCheckBox(String.format("%-81s", "Ground decoration"));
+		GroundDecorationsCheckbox = new JCheckBox(String.format("%-81s", "Ground Decorations"));
 		GroundDecorationsCheckbox.setBackground(optionBackgroundColor);
 		GroundDecorationsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		GroundDecorationsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_GroundDecor = GroundDecorationsCheckbox.isSelected());
@@ -373,7 +373,7 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-		final JLabel RemoveRoofsLabel = new JLabel("  Remove roofs");
+		final JLabel RemoveRoofsLabel = new JLabel("  Remove Roofs");
 		RemoveRoofsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		RemoveRoofsLabel.setBounds(378 + (30 * 0), 15, 150, 25);
 		GraphicsSettingsTab.add(RemoveRoofsLabel);
@@ -397,7 +397,7 @@ public class NXTSettingsGUI extends JFrame {
 		ShadowQualityComboBox.setBounds(528, 15 + (30 * 1), 175, 25);
 		GraphicsSettingsTab.add(ShadowQualityComboBox);
 
-		final JLabel AntiAliasingModeLabel = new JLabel("  Anti-aliasing Mode");
+		final JLabel AntiAliasingModeLabel = new JLabel("  Anti-Aliasing Mode");
 		AntiAliasingModeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		AntiAliasingModeLabel.setBounds(378, 15 + (30 * 2), 150, 25);
 		GraphicsSettingsTab.add(AntiAliasingModeLabel);
@@ -411,7 +411,7 @@ public class NXTSettingsGUI extends JFrame {
 		AntiAliasingModeComboBox.setBounds(528, 15 + (30 * 2), 175, 25);
 		GraphicsSettingsTab.add(AntiAliasingModeComboBox);
 
-		final JLabel WaterQualityLabel = new JLabel("  Water");
+		final JLabel WaterQualityLabel = new JLabel("  Water Quality");
 		WaterQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		WaterQualityLabel.setBounds(378, 15 + (30 * 3), 150, 25);
 		GraphicsSettingsTab.add(WaterQualityLabel);
@@ -434,7 +434,7 @@ public class NXTSettingsGUI extends JFrame {
 		AmbientOcclusionComboBox.setBounds(528, 15 + (30 * 4), 175, 25);
 		GraphicsSettingsTab.add(AmbientOcclusionComboBox);
 
-		final JLabel TextureQualityLabel = new JLabel("  Textures");
+		final JLabel TextureQualityLabel = new JLabel("  Texture Quality");
 		TextureQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TextureQualityLabel.setBounds(378, 15 + (30 * 5), 150, 25);
 		GraphicsSettingsTab.add(TextureQualityLabel);
@@ -459,7 +459,7 @@ public class NXTSettingsGUI extends JFrame {
 		GraphicsSettingsTab.add(VolumetricLightingComboBox);
 
 
-		final JLabel MaxBackgroundFpsLabel = new JLabel("  Background FPS");
+		final JLabel MaxBackgroundFpsLabel = new JLabel("  Background FPS Cap");
 		MaxBackgroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MaxBackgroundFpsLabel.setToolTipText(Storage.MAXBACKGOUNDFPS_TOOLTIP);
 		MaxBackgroundFpsLabel.setBounds(378, 15 + (30 * 7), 150, 25);
@@ -495,7 +495,7 @@ public class NXTSettingsGUI extends JFrame {
 		ShadowsCheckbox.setBounds(378, 15 + (30 * 9), 325, 25);
 		GraphicsSettingsTab.add(ShadowsCheckbox);
 
-		LoadingScreensCheckbox = new JCheckBox(String.format("%-82s", "Loading screens"));
+		LoadingScreensCheckbox = new JCheckBox(String.format("%-82s", "Loading Screens"));
 		LoadingScreensCheckbox.setBackground(optionBackgroundColor);
 		LoadingScreensCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		LoadingScreensCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_LoadingScreens = LoadingScreensCheckbox.isSelected());
@@ -505,7 +505,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoadingScreensCheckbox.setSelected(true);
 		GraphicsSettingsTab.add(LoadingScreensCheckbox);
 
-		TerrainBlendingCheckbox = new JCheckBox(String.format("%-84s", "Terrain blending"));
+		TerrainBlendingCheckbox = new JCheckBox(String.format("%-84s", "Terrain Blending"));
 		TerrainBlendingCheckbox.setBackground(optionBackgroundColor);
 		TerrainBlendingCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		TerrainBlendingCheckbox.addActionListener(e -> {
@@ -519,7 +519,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		final JLabel GraphicsPresetLabel = new JLabel("Preset: ");
 		GraphicsPresetLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		GraphicsPresetLabel.setBounds(15, 505, 50, 25);
+		GraphicsPresetLabel.setBounds(15, (int) (15 + (30 * 16.25)), 50, 25);
 		GraphicsSettingsTab.add(GraphicsPresetLabel);
 
 		MinimumGraphicsPresetButton = new JButton("Minimum");
@@ -527,7 +527,7 @@ public class NXTSettingsGUI extends JFrame {
 		MinimumGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		MinimumGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Min"));
 		MinimumGraphicsPresetButton.setEnabled(false);
-		MinimumGraphicsPresetButton.setBounds(70, 505, 75, 25);
+		MinimumGraphicsPresetButton.setBounds(70, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(MinimumGraphicsPresetButton);
 
 		LowGraphicsPresetButton = new JButton("Low");
@@ -535,7 +535,7 @@ public class NXTSettingsGUI extends JFrame {
 		LowGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		LowGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Low"));
 		LowGraphicsPresetButton.setEnabled(false);
-		LowGraphicsPresetButton.setBounds(150, 505, 75, 25);
+		LowGraphicsPresetButton.setBounds(150, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(LowGraphicsPresetButton);
 
 		MediumGraphicsPresetButton = new JButton("Medium");
@@ -544,7 +544,7 @@ public class NXTSettingsGUI extends JFrame {
 		MediumGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Med"));
 		MediumGraphicsPresetButton.setEnabled(false);
 		MediumGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
-		MediumGraphicsPresetButton.setBounds(230, 505, 75, 25);
+		MediumGraphicsPresetButton.setBounds(230, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(MediumGraphicsPresetButton);
 
 		HighGraphicsPresetButton = new JButton("High");
@@ -552,7 +552,7 @@ public class NXTSettingsGUI extends JFrame {
 		HighGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		HighGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("High"));
 		HighGraphicsPresetButton.setEnabled(false);
-		HighGraphicsPresetButton.setBounds(310, 505, 75, 25);
+		HighGraphicsPresetButton.setBounds(310, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(HighGraphicsPresetButton);
 
 		UltraGraphicsPresetButton = new JButton("Ultra");
@@ -560,7 +560,7 @@ public class NXTSettingsGUI extends JFrame {
 		UltraGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		UltraGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Ultra"));
 		UltraGraphicsPresetButton.setEnabled(false);
-		UltraGraphicsPresetButton.setBounds(390, 505, 75, 25);
+		UltraGraphicsPresetButton.setBounds(390, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(UltraGraphicsPresetButton);
 
 		MaxedGraphicsPresetButton = new JButton("\"Maxed\"");
@@ -568,7 +568,7 @@ public class NXTSettingsGUI extends JFrame {
 		MaxedGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		MaxedGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("MAXED"));
 		MaxedGraphicsPresetButton.setEnabled(false);
-		MaxedGraphicsPresetButton.setBounds(470, 505, 75, 25);
+		MaxedGraphicsPresetButton.setBounds(470, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(MaxedGraphicsPresetButton);
 
 		WikianGraphicsPresetButton = new JButton("Wikian");
@@ -576,7 +576,7 @@ public class NXTSettingsGUI extends JFrame {
 		WikianGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		WikianGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("wikian"));
 		WikianGraphicsPresetButton.setEnabled(false);
-		WikianGraphicsPresetButton.setBounds(550, 505, 75, 25);
+		WikianGraphicsPresetButton.setBounds(550, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(WikianGraphicsPresetButton);
 
 		RedditGraphicsPresetButton = new JButton("Reddit");
@@ -585,7 +585,7 @@ public class NXTSettingsGUI extends JFrame {
 		RedditGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		RedditGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("/r/runescape"));
 		RedditGraphicsPresetButton.setEnabled(false);
-		RedditGraphicsPresetButton.setBounds(630, 505, 75, 25);
+		RedditGraphicsPresetButton.setBounds(630, (int) (15 + (30 * 16.25)), 75, 25);
 		GraphicsSettingsTab.add(RedditGraphicsPresetButton);
 
 
@@ -610,7 +610,7 @@ public class NXTSettingsGUI extends JFrame {
 		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
 		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
-		RememberUsernameCheckbox.setBounds(485, 15, 220, 25);
+		RememberUsernameCheckbox.setBounds(485, 15 + (30 * 0), 220, 25);
 		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RememberUsernameCheckbox);
 
@@ -666,7 +666,7 @@ public class NXTSettingsGUI extends JFrame {
 		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
 		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
 		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		RandomizeLoginWallpaperCheckbox.setBounds(440, 75, 265, 25);
+		RandomizeLoginWallpaperCheckbox.setBounds(440, 15 + (30 * 2), 265, 25);
 		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
 
@@ -681,7 +681,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
 
 
-		final JLabel EmoteSelectionLabel = new JLabel("Emote List Sorting");
+		final JLabel EmoteSelectionLabel = new JLabel("Emote-List Sorting");
 		EmoteSelectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		EmoteSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		EmoteSelectionLabel.setBounds(440, 15 + (30 * 3), 130, 25);
@@ -703,7 +703,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameTaskPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_TaskCompletedPopup = InGameTaskPopupsCheckbox.isSelected());
 		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameTaskPopupsCheckbox.setBounds(170, 135, 265, 25);
+		InGameTaskPopupsCheckbox.setBounds(170, 15 + (30 * 4), 265, 25);
 		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
 
 		InGameMouseOverPopupsCheckbox = new JCheckBox("Show Mouse-Over/Hover-Over Tooltips?");
@@ -720,6 +720,8 @@ public class NXTSettingsGUI extends JFrame {
 		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
 		MinimizeMainAbilityBarCheckBox.setBounds(440, 15 + (30 * 5), 265, 25);
 		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
+
+		/* Separate */
 
 		CompatibilityModeCheckBox = new JCheckBox("Compatibility Mode");
 		CompatibilityModeCheckBox.addActionListener(e -> Storage.nxtClientSettings_CompatibilityMode = CompatibilityModeCheckBox.isSelected());

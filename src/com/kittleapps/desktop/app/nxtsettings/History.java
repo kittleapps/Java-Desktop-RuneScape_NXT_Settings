@@ -134,6 +134,7 @@ public static boolean
 		nxtClientSettings_MouseVSensitivity					=	Storage.nxtClientSettings_MouseVSensitivity;
 		nxtClientSettings_WorldSorting						=	Storage.nxtClientSettings_WorldSorting;
 		nxtClientSettings_MusicSorting						=	Storage.nxtClientSettings_MusicSorting;
+		nxtClientSettings_EmoteSorting						=	Storage.nxtClientSettings_EmoteSorting;
 		nxtClientSettings_OoOMovementSpeed					=	Storage.nxtClientSettings_OoOMovementSpeed;
 		nxtClientSettings_OoORotationSpeed					=	Storage.nxtClientSettings_OoORotationSpeed;
 		nxtClientSettings_LanguageSelected					=	Storage.nxtClientSettings_LanguageSelected;
