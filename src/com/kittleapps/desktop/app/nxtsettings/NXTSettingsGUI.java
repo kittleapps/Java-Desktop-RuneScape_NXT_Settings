@@ -132,7 +132,6 @@ public class NXTSettingsGUI extends JFrame {
 		}
 		EventQueue.invokeLater(() -> {
 			try {
-				//Initialize values, and load the program.
 				Storage.init();
 				frame = new NXTSettingsGUI();
 			}	catch(final Exception e) {
@@ -229,6 +228,8 @@ public class NXTSettingsGUI extends JFrame {
 
 
 		/* Graphics Settings */
+
+
 
 		final JLabel BrightnessLabel = new JLabel("  Brightness");
 		BrightnessLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -367,12 +368,6 @@ public class NXTSettingsGUI extends JFrame {
 		GroundDecorationsCheckbox.setBounds(15, 15 + (30 * 11), 325, 25);
 		GraphicsSettingsTab.add(GroundDecorationsCheckbox);
 
-
-
-		// Right Column
-
-
-
 		final JLabel RemoveRoofsLabel = new JLabel("  Remove Roofs");
 		RemoveRoofsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		RemoveRoofsLabel.setBounds(378 + (30 * 0), 15, 150, 25);
@@ -458,7 +453,6 @@ public class NXTSettingsGUI extends JFrame {
 		VolumetricLightingComboBox.setBounds(528, 15 + (30 * 6), 175, 25);
 		GraphicsSettingsTab.add(VolumetricLightingComboBox);
 
-
 		final JLabel MaxBackgroundFpsLabel = new JLabel("  Background FPS Cap");
 		MaxBackgroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MaxBackgroundFpsLabel.setToolTipText(Storage.MAXBACKGOUNDFPS_TOOLTIP);
@@ -476,7 +470,6 @@ public class NXTSettingsGUI extends JFrame {
 		GameWorldScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		GameWorldScalingLabel.setBounds(378, 15 + (30 * 8), 150, 25);
 		GraphicsSettingsTab.add(GameWorldScalingLabel);
-
 
 		GameWorldScalingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[16]);
 		GameWorldScalingComboBox.addItemListener(e -> Storage.nxtClientSettings_GameWorldScaling = ((GameWorldScalingComboBox.getSelectedIndex()*5)+35));
@@ -1120,10 +1113,7 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-
 		/* Bottom Pane */
-
-
 
 
 

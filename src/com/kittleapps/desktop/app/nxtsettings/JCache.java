@@ -34,7 +34,7 @@ public class JCache {
 		 *  > If failed, Abort the program as they don't have NXT installed to begin with
 		 *
 		 * > Get the Configuration file's path
-		 *  > If failed, tell user the configuration at {$Storage.configuration_location} is non-existant. Abort the program
+		 *  > If failed, tell user the configuration at {$Storage.configuration_location} is non-existent. Abort the program
 		 *
 		 * > Get the splash screen+launcher positions
 		 *  > Set+Output the values
@@ -45,7 +45,7 @@ public class JCache {
 		 * > Start the Sqlite3 drivers
 		 *
 		 * > Start reading Settings.jcache
-		 *  > Add to a StringBuilder for a seperate function
+		 *  > Add to a StringBuilder for a separate function
 		 *  > Output the values, Parsed where needed
 		 *
 		 * > Read the StringBuilder values
@@ -374,8 +374,7 @@ public class JCache {
 					case "WindowMode":
 					case "FullScreenWidth":
 					case "FullScreenHeight":
-					case "AutoSetup":
-					case "DiskCacheSize":
+						// These do nothing for the program currently, but I want them to one day.
 						break;
 
 				}
@@ -661,9 +660,9 @@ public class JCache {
 		 * > Check every entry in the Config-External table
 		 *  > If the table doesn't exist, create it using the default values.
 		 *
-		 * > If some of the options are missing (counter-wise) recreate the table usign the default values.
+		 * > If some of the options are missing (counter-wise) recreate the table using the default values.
 		 *
-		 * > Set the In-Program options based on the information that can be avalible.
+		 * > Set the In-Program options based on the information that can be available.
 		 *
 		 * > TO-DO: Make more options/Easter Eggs.
 		 */
@@ -691,7 +690,6 @@ public class JCache {
 		}
 
 		try(ResultSet rs = Storage.stmt.executeQuery("SELECT * FROM 'Config-External'")) {
-			// Table exists
 			while (rs.next()) {
 				ExternalConfigExists = true;
 				switch(rs.getString("KEY")) {
@@ -818,7 +816,7 @@ public class JCache {
 		 * > Start adding batches to insert updated entries
 		 *
 		 * > Repeat the last two until finished for all values
-		 *  > Boolean-type entries will be manually 1 <> 0 dependant on their value related to true <> false
+		 *  > Boolean-type entries will be manually 1 <> 0 dependent on their value related to true <> false
 		 *  > Legality checks will take place before username+favourite world settings to prevent invalid values
 		 *  > Temporary username+UID field will be cleared to prevent any paranoia post-saving
 		 *
@@ -832,7 +830,6 @@ public class JCache {
 			Legality.CheckSettings();
 			Mechanics.DeselectDevConsole();
 
-			// Left Column
 			if (History.nxtGraphicsSetting_RemoveRoofs != Storage.nxtGraphicsSetting_RemoveRoofs) {
 				Write(true,	"RemoveRoof",			Storage.nxtGraphicsSetting_RemoveRoofs);
 			}
@@ -869,8 +866,6 @@ public class JCache {
 			if (History.nxtClientSettings_UIScaling != Storage.nxtClientSettings_UIScaling) {
 				Write(true,	"InterfaceScale",		Storage.nxtClientSettings_UIScaling);
 			}
-
-			// Right Column
 			if (History.nxtGraphicsSetting_Brightness != Storage.nxtGraphicsSetting_Brightness) {
 				Write(true,	"Brightness",			Storage.nxtGraphicsSetting_Brightness);
 			}
@@ -1010,7 +1005,6 @@ public class JCache {
 				}
 			}
 
-			// Usernames
 			Legality.CheckSettingsBeforeSave();
 
 			if ((History.nxtClientSettings_RememberUsername != Storage.nxtClientSettings_RememberUsername) ||
@@ -1025,12 +1019,9 @@ public class JCache {
 					Write(false, Storage.CACHE_KEY_VT_VARC_REMEMBER_USERNAME,	0);
 				}
 			}
-
-			// Clears any paranoia, if any, for these values
 			Storage.nxtClientSettings_TemporaryUsername = "";
 			Storage.nxtClientSettings_TemporaryUserID = "";
 
-			// Favourite Worlds
 			if (History.nxtClientSettings_FavouriteWorld1 != Storage.nxtClientSettings_FavouriteWorld1) {
 				if (Storage.nxtClientSettings_FavouriteWorld1 <= 0){
 					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	-1);	
@@ -1053,7 +1044,6 @@ public class JCache {
 				}
 			}
 
-			// Wallpapers
 			if (History.nxtClientSettings_LoginWallpaperID != Storage.nxtClientSettings_LoginWallpaperID) {
 				Write(false, Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID,		Storage.nxtClientSettings_LoginWallpaperID);
 			}
@@ -1065,7 +1055,6 @@ public class JCache {
 				}
 			}
 
-			// Developer Console History Logs
 			Storage.stmt.addBatch("DELETE FROM 'console';");
 			int DeveloperConsoleHistoryIndex = 0;
 			for (int i = 0; i < 100; i++){
@@ -1078,11 +1067,9 @@ public class JCache {
 				}
 			}
 
-			// Execute/Save the changes
 			Storage.stmt.executeBatch();
 			Storage.stmt.clearBatch();
 
-			//Refresh the Developer Console History table.
 			JCache.ReadDeveloperConsoleHistory();
 
 			final Path Preferences = Storage.preferences_config.toPath();
@@ -1162,7 +1149,6 @@ public class JCache {
 	}
 	private static void RecreateDeveloperValues(){
 		try {
-			// There was a value which was invalid. Re-initialize the table.
 			Storage.stmt.addBatch("DELETE FROM 'Config-External';");
 			Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('TableCreated (yyyy-MM-dd hh:mm:ss)', '"+ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))+" UTC');");
 			for(int i = 1; i < Storage.ProgramDeveloperValues.length; i++){

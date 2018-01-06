@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 
 public class Storage {
 	public static int
-
-		// NXT Graphics settings options.
 		nxtGraphicsSetting_AnisotropicFiltering,
 		nxtGraphicsSetting_AntiAliasingMode,
 		nxtGraphicsSetting_AntiAliasingQuality,
@@ -32,7 +30,6 @@ public class Storage {
 		nxtGraphicsSetting_MaxForegroundFps,
 		nxtGraphicsSetting_MaxBackgroundFps,
 
-		// NXT Client settings options.
 		nxtClientSettings_FavouriteWorld1,
 		nxtClientSettings_FavouriteWorld2,
 		nxtClientSettings_FavouriteWorld3,
@@ -57,18 +54,14 @@ public class Storage {
 		nxtClientSettings_LanguageSelected,
 		nxtClientSettings_SettingsVersion,
 
-		// In-Program application/storage options.
 		FrameRate,
 		OS_TYPE
 	;
 
 	public static String
-
-		// NXT User settings storage.
 		nxtClientSettings_TemporaryUserID = "",
 		nxtClientSettings_TemporaryUsername = "",
 
-		// In-Program application/storage options.
 		OS = System.getProperty("os.name").toLowerCase(),
 		NXT_REGISTRY_LOCATION_BASE,
 		Cache_settings_location,
@@ -76,8 +69,6 @@ public class Storage {
 	;
 
 	public final static String
-
-		// The following values are made just in case the vt-varc keys change numeral values for ease-of-changing.
 		CACHE_KEY_VT_VARC_FULLSCREEN_RESOLUTION = "178",
 		CACHE_KEY_VT_VARC_CUSTOM_CURSORS = "987",
 		CACHE_KEY_VT_VARC_SCREEN_SIZING = "994",
@@ -107,8 +98,6 @@ public class Storage {
 	;
 
 	public static boolean
-
-		// NXT Graphics settings options.
 		nxtGraphicsSetting_FlickeringEffects = true,
 		nxtGraphicsSetting_TerrainBlending = true,
 		nxtGraphicsSetting_GroundDecor = true,
@@ -116,7 +105,6 @@ public class Storage {
 		nxtGraphicsSetting_CustomCursors = true,
 		nxtGraphicsSetting_LoadingScreens = true,
 
-		// NXT Client settigns options.
 		nxtClientSettings_LoopCurrentTrack,
 		nxtClientSettings_RandomizeLoginWallpaper = true,
 		nxtClientSettings_RememberUsername = true,
@@ -127,11 +115,9 @@ public class Storage {
 		nxtClientSettings_AskToSwitchToCompatibility = true,
 		nxtClientSettings_AskBeforeQuitting = true,
 
-		// In-Program application/storage options;
 		NXT_INSTALLED,
 		ShowSensitiveInfo,
 
-		// In-Program developer options;
 		DEVELOPER_DebugsEnabled,
 		DEVELOPER_ReadOnlyCache,
 		DEVELOPER_AlwaysShowSensitiveInfo,

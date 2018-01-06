@@ -31,7 +31,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_GroundDecor = false;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
-			// Apply
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
 			NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
@@ -64,7 +63,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
-			// Apply
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
 			NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
@@ -99,7 +97,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
-			// Apply
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
 			NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
@@ -132,7 +129,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
-			// Apply
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
 			NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
@@ -165,7 +161,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
-			// Apply
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
 			NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
@@ -205,7 +200,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_MaxForegroundFps = 300;
 			Storage.nxtGraphicsSetting_MaxBackgroundFps = 300;
 			Storage.nxtClientSettings_GameWorldScaling = 200;
-			// Apply
 			NXTSettingsGUI.RemoveRoofsComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_RemoveRoofs);
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
@@ -251,7 +245,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_MaxBackgroundFps = 45;
 			Storage.nxtClientSettings_UIScaling = 100;
 			Storage.nxtClientSettings_GameWorldScaling = 200;
-			// Apply
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
 			NXTSettingsGUI.AntiAliasingModeComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_AntiAliasingMode);
@@ -298,7 +291,6 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_MaxForegroundFps = 15;
 			Storage.nxtGraphicsSetting_MaxBackgroundFps = 5;
 			Storage.nxtClientSettings_GameWorldScaling = 35;
-			// Apply
 			NXTSettingsGUI.BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
 			NXTSettingsGUI.RemoveRoofsComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_RemoveRoofs);
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
@@ -351,17 +343,13 @@ public class Mechanics {
 	}
 
 	public static void GrabInternalBuildNumber(boolean CopyToClipboard) {
-		// Location will always be with the preferences file, so let's just
-		// change the path.
 		final String Path = Storage.configuration_location.replace("preferences.cfg", "rs2client.exe");
 		final File file = new File(Path);
 
-		// Initializers for the file and clipboard manager.
 		FileInputStream in = null;
 		final Toolkit toolkit = Toolkit.getDefaultToolkit();
 		final Clipboard clipboard = toolkit.getSystemClipboard();
 
-		// Check if the file exists.
 		if (!file.exists()) {
 			System.out.println(file.getAbsolutePath() + " does not exist. Abort!");
 			JOptionPane.showMessageDialog(null, file.getAbsolutePath() + " does not exist.", "Error.",
@@ -377,14 +365,12 @@ public class Mechanics {
 		}
 
 		try {
-			// Read the file in bytes; Convert to a string.
 			in = new FileInputStream(file);
 			final byte fileBytes[] = new byte[(int) file.length()];
 			in.read(fileBytes);
 			final String fileContents = new String(fileBytes);
 			in.close();
 
-			// Locate the build label.
 			final int offset = fileContents.indexOf("NXT-BUIL");
 			final int end = fileContents.indexOf("\\build\\nxt\\bin\\rs2client\\FINAL\\rs2client.pdb");
 			String output = "Invalid";
@@ -396,8 +382,6 @@ public class Mechanics {
 					+ Storage.nxtClientSettings_SettingsVersion + "\"; Internal Build Label: \"" + output + "\")");
 
 			if (CopyToClipboard) {
-				// Ask to format the output prior to being sent to the
-				// clipboard; Format it in the selected manor.
 				final Object[] DialogueOptions = { "As-is", "Reddit-format", "Discord-format", "Cancel" };
 				final int n = JOptionPane.showOptionDialog(null,
 						"Would you like to format the output? If so, which way?", "Format it?",
@@ -413,7 +397,6 @@ public class Mechanics {
 				}
 
 				if ((n >= 0) && (n < 3)) {
-					// Add the output to the keyboard.
 					final StringSelection strSel = new StringSelection(output);
 					clipboard.setContents(strSel, null);
 					JOptionPane.showMessageDialog(null, "Copied NXT's build label to the clipboard.", "Done.",

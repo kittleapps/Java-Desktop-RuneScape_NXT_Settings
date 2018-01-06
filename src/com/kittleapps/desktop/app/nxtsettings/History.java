@@ -3,8 +3,6 @@ package com.kittleapps.desktop.app.nxtsettings;
 
 public class History {
 	public static int
-
-	// NXT Graphics settings options.
 	nxtGraphicsSetting_AnisotropicFiltering,
 	nxtGraphicsSetting_AntiAliasingMode,
 	nxtGraphicsSetting_AntiAliasingQuality,
@@ -23,8 +21,6 @@ public class History {
 	nxtGraphicsSetting_RemoveRoofs,
 	nxtGraphicsSetting_MaxForegroundFps,
 	nxtGraphicsSetting_MaxBackgroundFps,
-
-	// NXT Client settings options.
 	nxtClientSettings_FavouriteWorld1,
 	nxtClientSettings_FavouriteWorld2,
 	nxtClientSettings_FavouriteWorld3,
@@ -48,19 +44,13 @@ public class History {
 	nxtClientSettings_OoORotationSpeed,
 	nxtClientSettings_LanguageSelected,
 	nxtClientSettings_SettingsVersion,
-
-	// In-Program application/storage options.
 	FrameRate,
 	OS_TYPE
 ;
 
 public static String
-
-	// NXT User settings storage.
 	nxtClientSettings_TemporaryUserID = "",
 	nxtClientSettings_TemporaryUsername = "",
-
-	// In-Program application/storage options.
 	OS = System.getProperty("os.name").toLowerCase(),
 	NXT_REGISTRY_LOCATION_BASE,
 	Cache_settings_location,
@@ -68,8 +58,6 @@ public static String
 ;
 
 public static boolean
-
-	// NXT Graphics settings options.
 	nxtGraphicsSetting_FlickeringEffects = true,
 	nxtGraphicsSetting_TerrainBlending = true,
 	nxtGraphicsSetting_GroundDecor = true,
@@ -77,7 +65,6 @@ public static boolean
 	nxtGraphicsSetting_CustomCursors = true,
 	nxtGraphicsSetting_LoadingScreens = true,
 
-	// NXT Client settigns options.
 	nxtClientSettings_LoopCurrentTrack,
 	nxtClientSettings_RandomizeLoginWallpaper = true,
 	nxtClientSettings_RememberUsername = true,
@@ -88,7 +75,6 @@ public static boolean
 	nxtClientSettings_AskToSwitchToCompatibility = true,
 	nxtClientSettings_AskBeforeQuitting = true,
 
-	// In-Program application/storage options;
 	History_Saved
 ;
 
