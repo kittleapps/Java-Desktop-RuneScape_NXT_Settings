@@ -335,7 +335,21 @@ public class Mechanics {
 			break;
 		}
 	}
-
+	public static void CheckSizing(){
+		if (Storage.nxtGraphicsSetting_ScreenSizingMode != -1 && Storage.nxtGraphicsSetting_ResizableResolution != -1){
+			if (Storage.nxtGraphicsSetting_ScreenSizingMode <= 2){
+				if (Storage.nxtGraphicsSetting_ResizableResolution == 2){
+					NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(0);
+				} else {
+					NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(1);
+				}
+			} else if (Storage.nxtGraphicsSetting_ScreenSizingMode == 3){
+				NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(2);	
+			} else {
+				NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(1);
+			}
+		}
+	}
 	public static void DeselectDevConsole() {
 		if (NXTSettingsGUI.DeveloperConsoleHistoryTable.isShowing()) {
 			NXTSettingsGUI.DeveloperConsoleHistoryTable.clearSelection();

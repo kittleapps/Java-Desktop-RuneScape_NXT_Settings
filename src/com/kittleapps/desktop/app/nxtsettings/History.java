@@ -21,6 +21,9 @@ public class History {
 	nxtGraphicsSetting_RemoveRoofs,
 	nxtGraphicsSetting_MaxForegroundFps,
 	nxtGraphicsSetting_MaxBackgroundFps,
+	nxtGraphicsSetting_DepthOfField,
+	nxtGraphicsSetting_ScreenSizingMode,
+	nxtGraphicsSetting_ResizableResolution,
 	nxtClientSettings_FavouriteWorld1,
 	nxtClientSettings_FavouriteWorld2,
 	nxtClientSettings_FavouriteWorld3,
@@ -40,6 +43,7 @@ public class History {
 	nxtClientSettings_WorldSorting,
 	nxtClientSettings_MusicSorting,
 	nxtClientSettings_EmoteSorting,
+	nxtClientSettings_WorldMapOverlays,
 	nxtClientSettings_OoOMovementSpeed,
 	nxtClientSettings_OoORotationSpeed,
 	nxtClientSettings_LanguageSelected,
@@ -100,6 +104,9 @@ public static boolean
 		nxtGraphicsSetting_RemoveRoofs						=	Storage.nxtGraphicsSetting_RemoveRoofs;
 		nxtGraphicsSetting_MaxForegroundFps					=	Storage.nxtGraphicsSetting_MaxForegroundFps;
 		nxtGraphicsSetting_MaxBackgroundFps					=	Storage.nxtGraphicsSetting_MaxBackgroundFps;
+		nxtGraphicsSetting_DepthOfField						=	Storage.nxtGraphicsSetting_DepthOfField;
+		nxtGraphicsSetting_ScreenSizingMode					=	Storage.nxtGraphicsSetting_ScreenSizingMode;
+		nxtGraphicsSetting_ResizableResolution				=	Storage.nxtGraphicsSetting_ResizableResolution;
 
 		// Client Settings (ints)
 		nxtClientSettings_FavouriteWorld1					=	Storage.nxtClientSettings_FavouriteWorld1;
@@ -121,6 +128,7 @@ public static boolean
 		nxtClientSettings_WorldSorting						=	Storage.nxtClientSettings_WorldSorting;
 		nxtClientSettings_MusicSorting						=	Storage.nxtClientSettings_MusicSorting;
 		nxtClientSettings_EmoteSorting						=	Storage.nxtClientSettings_EmoteSorting;
+		nxtClientSettings_WorldMapOverlays					=	Storage.nxtClientSettings_WorldMapOverlays;
 		nxtClientSettings_OoOMovementSpeed					=	Storage.nxtClientSettings_OoOMovementSpeed;
 		nxtClientSettings_OoORotationSpeed					=	Storage.nxtClientSettings_OoORotationSpeed;
 		nxtClientSettings_LanguageSelected					=	Storage.nxtClientSettings_LanguageSelected;

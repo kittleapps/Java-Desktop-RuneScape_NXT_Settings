@@ -66,9 +66,7 @@ public class JCache {
 		}
 		if (Storage.NXT_INSTALLED) {
 			if (OS_TYPE == 0) {
-				Storage.configuration_location = Advapi32Util.registryGetStringValue(HKEY_CURRENT_USER, Storage.NXT_REGISTRY_LOCATION_BASE, "splash")
-															 .replace("splash6.gif", "preferences.cfg")
-															 .replace("\\", "/");
+				Storage.configuration_location = "C:/ProgramData/Jagex/launcher/preferences.cfg";
 			}	else if ((OS_TYPE >= 1) && (OS_TYPE <= 3)) {
 				Storage.configuration_location = new File(System.getProperty("user.home").replace("\\", "/") +
 														 "/Jagex/launcher/preferences.cfg").getAbsolutePath();
@@ -366,20 +364,28 @@ public class JCache {
 						NXTSettingsGUI.frame.setTitle("NXT's Settings (Graphic Setting's Version: \""+rs.getInt("DATA")+"\")");
 						break;
 
-					case "DOF":
-					case "HeatHaze":
 					case "ResizableResolution":
-					case "CameraOcclusion":
-					case "ConsoleKeyPress":
+						Storage.nxtGraphicsSetting_ResizableResolution = rs.getInt("DATA");
+						break;
+
 					case "WindowMode":
+						Storage.nxtGraphicsSetting_ScreenSizingMode = rs.getInt("DATA");
+						break;
+
+					case "DOF":
+						Storage.nxtGraphicsSetting_DepthOfField = rs.getInt("DATA");
+						NXTSettingsGUI.DepthOfFieldComboBox.setSelectedIndex(rs.getInt("DATA"));
+						break;
+
+					case "HeatHaze":
 					case "FullScreenWidth":
 					case "FullScreenHeight":
 						// These do nothing for the program currently, but I want them to one day.
 						break;
-
 				}
 			}
 			rs.close();
+			Mechanics.CheckSizing();
 		} catch(final SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -441,6 +447,11 @@ public class JCache {
 							NXTSettingsGUI.RandomizeLoginWallpaperCheckbox.setSelected(Storage.nxtClientSettings_RandomizeLoginWallpaper);
 						break;
 
+					case Storage.CACHE_KEY_VT_VARC_WORLD_MAP_OVERLAYS:
+							Storage.nxtClientSettings_WorldMapOverlays = rs.getInt("DATA");
+							NXTSettingsGUI.WorldMapOverlayComboBox.setSelectedIndex(rs.getInt("DATA"));
+						break;
+
 					case Storage.CACHE_KEY_VT_VERC_WALLPAPER_ID:
 						if (rs.getInt("DATA") > (Storage.SETTINGS_OPTIONS[19].length-1)){
 							Storage.nxtClientSettings_LoginWallpaperID = Storage.SETTINGS_OPTIONS[19].length-1;
@@ -481,7 +492,7 @@ public class JCache {
 							Storage.nxtClientSettings_KeyboardHSensitivity = NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMaximum();
 							NXTSettingsGUI.InGameKeyboardHSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMaximum());
 						}
-						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameMouseHSensitivitySlider.getMinimum()){
+						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMinimum()){
 							Storage.nxtClientSettings_KeyboardHSensitivity = NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMinimum();
 							NXTSettingsGUI.InGameKeyboardHSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardHSensitivitySlider.getMinimum());
 						}
@@ -496,13 +507,13 @@ public class JCache {
 							Storage.nxtClientSettings_KeyboardVSensitivity = NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMaximum();
 							NXTSettingsGUI.InGameKeyboardVSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMaximum());
 						}
-						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameMouseHSensitivitySlider.getMinimum()){
+						else if (rs.getInt("DATA") < NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMinimum()){
 							Storage.nxtClientSettings_KeyboardVSensitivity = NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMinimum();
 							NXTSettingsGUI.InGameKeyboardVSensitivitySlider.setValue(NXTSettingsGUI.InGameKeyboardVSensitivitySlider.getMinimum());
 						}
 						else {
 							Storage.nxtClientSettings_KeyboardVSensitivity = rs.getInt("DATA");
-							NXTSettingsGUI.InGameMouseHSensitivitySlider.setValue(rs.getInt("DATA"));
+							NXTSettingsGUI.InGameKeyboardVSensitivitySlider.setValue(rs.getInt("DATA"));
 						}
 						break;
 
@@ -702,6 +713,15 @@ public class JCache {
 						DeveloperValueCounter++;
 						break;
 
+					case "DEVELOPER_LAST_GRAPHICS_VERSION_SAVED":
+						DeveloperValueCounter++;
+						Storage.nxtClientSettings_SettingsVersionHistory = rs.getInt("DATA");
+						if (Storage.nxtClientSettings_SettingsVersionHistory < Storage.nxtClientSettings_SettingsVersion){
+							JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "NXT's Graphics Settings have been updated since you last ran this program.\n\nIf you're Sudo Bash, Please update me. Thanks!");
+							Storage.nxtClientSettings_SettingsVersionHistory = Storage.nxtClientSettings_SettingsVersion;
+						}
+						break;
+
 					case "DEVELOPER_DEBUGS_ENABLED":
 						DeveloperValueCounter++;
 						if (rs.getString("DATA").equals("1") ||
@@ -878,6 +898,23 @@ public class JCache {
 			if (History.nxtGraphicsSetting_VolumetricLighting != Storage.nxtGraphicsSetting_VolumetricLighting) {
 				Write(true,	"VolumetricLighting",	Storage.nxtGraphicsSetting_VolumetricLighting);
 			}
+			if (History.nxtGraphicsSetting_DepthOfField != Storage.nxtGraphicsSetting_DepthOfField) {
+				Write(true,	"DOF",	Storage.nxtGraphicsSetting_DepthOfField);
+			}
+			if ((History.nxtGraphicsSetting_ScreenSizingMode != Storage.nxtGraphicsSetting_ScreenSizingMode) ||
+				(History.nxtGraphicsSetting_ResizableResolution != Storage.nxtGraphicsSetting_ResizableResolution)) {
+				if (NXTSettingsGUI.ScreenSizingModeComboBox.getSelectedIndex() == 0){
+					Write(true,	"WindowMode",	2);
+					Write(true,	"ResizableResolution",	2);
+				} else if (NXTSettingsGUI.ScreenSizingModeComboBox.getSelectedIndex() == 1){
+					Write(true,	"WindowMode",	2);
+					Write(true,	"ResizableResolution",	0);
+				} else {
+					Write(true,	"WindowMode",	3);
+					Write(true,	"ResizableResolution",	0);
+				}
+				
+			}
 			if (History.nxtGraphicsSetting_FlickeringEffects != Storage.nxtGraphicsSetting_FlickeringEffects) {
 				if (Storage.nxtGraphicsSetting_FlickeringEffects) {
 					Write(true,	"FlickeringEffects", 1);
@@ -967,6 +1004,16 @@ public class JCache {
 			}
 			if (History.nxtClientSettings_EmoteSorting != Storage.nxtClientSettings_EmoteSorting) {
 				Write(false, Storage.CACHE_KEY_VT_VARC_EMOTE_SORTING,	Storage.nxtClientSettings_EmoteSorting);
+			}
+			if (History.nxtClientSettings_WorldMapOverlays != Storage.nxtClientSettings_WorldMapOverlays) {
+				Write(false, Storage.CACHE_KEY_VT_VARC_WORLD_MAP_OVERLAYS,	Storage.nxtClientSettings_WorldMapOverlays);
+			}
+			if (NXTSettingsGUI.ShowAllWorldMapIconsCheckbox.isSelected()) {
+				Write(false, "3928",	-1);
+				Write(false, "3929",	-1);
+				Write(false, "3930",	-1);
+				Write(false, "3931",	-1);
+				Write(false, "3932",	-1);
 			}
 			if (History.nxtClientSettings_OoOMovementSpeed != Storage.nxtClientSettings_OoOMovementSpeed) {
 				Write(false, Storage.CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED,	Storage.nxtClientSettings_OoOMovementSpeed);
@@ -1151,9 +1198,10 @@ public class JCache {
 		try {
 			Storage.stmt.addBatch("DELETE FROM 'Config-External';");
 			Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('TableCreated (yyyy-MM-dd hh:mm:ss)', '"+ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"))+" UTC');");
-			for(int i = 1; i < Storage.ProgramDeveloperValues.length; i++){
+			for(int i = 1; i < Storage.ProgramDeveloperValues.length-1; i++){
 				Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('"+Storage.ProgramDeveloperValues[i]+"', 'false');");
 			}
+			Storage.stmt.addBatch("INSERT INTO 'Config-External' ('KEY', 'DATA') VALUES ('DEVELOPER_LAST_GRAPHICS_VERSION_SAVED', '"+Storage.nxtClientSettings_SettingsVersion+"');");
 			Storage.stmt.executeBatch();
 			Storage.stmt.clearBatch();
 		}	catch(final SQLException e1) {}

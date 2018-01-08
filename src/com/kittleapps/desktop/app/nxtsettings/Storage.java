@@ -29,6 +29,9 @@ public class Storage {
 		nxtGraphicsSetting_RemoveRoofs,
 		nxtGraphicsSetting_MaxForegroundFps,
 		nxtGraphicsSetting_MaxBackgroundFps,
+		nxtGraphicsSetting_DepthOfField,
+		nxtGraphicsSetting_ScreenSizingMode,
+		nxtGraphicsSetting_ResizableResolution,
 
 		nxtClientSettings_FavouriteWorld1,
 		nxtClientSettings_FavouriteWorld2,
@@ -49,10 +52,12 @@ public class Storage {
 		nxtClientSettings_WorldSorting,
 		nxtClientSettings_MusicSorting,
 		nxtClientSettings_EmoteSorting,
+		nxtClientSettings_WorldMapOverlays,
 		nxtClientSettings_OoOMovementSpeed,
 		nxtClientSettings_OoORotationSpeed,
 		nxtClientSettings_LanguageSelected,
 		nxtClientSettings_SettingsVersion,
+		nxtClientSettings_SettingsVersionHistory,
 
 		FrameRate,
 		OS_TYPE
@@ -88,6 +93,7 @@ public class Storage {
 		CACHE_KEY_VT_VARC_REMEMBER_USERNAME = "3681",
 		CACHE_KEY_VT_VARC_SAVED_USERNAME = "3683",
 		CACHE_KEY_VT_VARC_LOADING_SCREENS = "3698",
+		CACHE_KEY_VT_VARC_WORLD_MAP_OVERLAYS = "3935",
 		CACHE_KEY_VT_VARC_FAVOURITE_WORLD_3 = "4272",
 		CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED = "4667",
 		CACHE_KEY_VT_VARC_OoO_ROTATION_SPEED = "4668",
@@ -136,7 +142,8 @@ public class Storage {
 		"DEVELOPER_READ_ONLY_CACHE",
 		"DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO",
 		"DEVELOPER_ALWAYS_STAY_ON_TOP",
-		"DEVELOPER_ALWAYS_START_ON_TOP"
+		"DEVELOPER_ALWAYS_START_ON_TOP",
+		"DEVELOPER_LAST_GRAPHICS_VERSION_SAVED" // Always keep this one at the bottom.
 	};
 	public final static String[][] DEVELOPER_CONSOLE_COMMANDS = {
 			{
@@ -266,9 +273,9 @@ public class Storage {
 		},
 		{
 			/* 10: Depth of Field (Placeholders) */
-			"Off (Placeholder)",
-			"Near-Focus (Placeholder)",
-			"Far-Focus (Placeholder)",
+			"Off",
+			"Near-Focus Blur",
+			"Far-Focus Blur",
 		},
 		{
 			/* 11: Texture Quality */
@@ -428,7 +435,7 @@ public class Storage {
 			"Unknown Wallpaper"
 		},
 		{
-			/* 20: Emotes */
+			/* 20: Emote Sorting */
 			"All",
 			"All (Unlocked)",
 			"Greetings",
@@ -445,6 +452,19 @@ public class Storage {
 			"Clan Stage",
 			"Clan Audience",
 			"Store Emotes"
+		},
+		{
+			/* 21: Screen Sizing Mode */
+			"Fixed",
+			"Resizable",
+			"FullScreen"
+		},
+		{
+			/* 22: World Map Overlays */
+			"Key & Overview Overlays",
+			"Key-only Overlay",
+			"Overview-only Overlay",
+			"No Overlays"
 		}
 	};
 

@@ -21,12 +21,11 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * Okay.. I made some Pre-compiled versions.. But that was because I got tired of "How do I build this?" questions. (Standard "Use at your own risk." Disclaimer here, despite no risks at all..)
 - - - -
 **Current Features**:
-* All current graphics settings options
+* All current graphics settings options.
+  * Depth of Field is currently just a placeholder.
   * Game Render and Interface/UI Scaling options are added. They are live, but currently their options are not.
     * These scaling mechanics are currently experimental, and not meant for full use my players. Visual issues may occur.
 * Most audio options
-  * Includes boosting the volumes for most audio streams
-    * While I personally have not heard any quality-issues, this makes the in-game bars go past their normal limits visually.
   * Looping the current Music Track.
   * Music List Sorting.
 * Editing your username field
@@ -39,23 +38,20 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
     * `<col=RRGGBB>` for colouring the text.
   * Buttons to add some of these flags are included.
   * The username will clear if:
-    * `Remember username?` in unchecked. (due to how the client works, if this is unchecked, it would clear it anyways making this slightly redundant)
+    * `Remember username?` is unchecked. (due to how the client works, if this is unchecked, it would clear it anyways making this slightly redundant)
     * `Show sensitive information?` is unchecked. due to personal security it will not be read automatically until it's checked or if you enable `DEVELOPER_ALWAYS_SHOW_SENSITIVE_INFO`. See below for more information.
     * The username field is blank on-writing.
-* Favourite world editing
-  * Allows editing up-to 2,147,483,647 for visual purposes.
-    * Note any world that is NOT valid will act as-if it's not on your language, or is offline.
-    * In addition the the above, while in-game any invalid world will NOT show but will act as-is the slots are taken.
-    * Setting to `-1` is done by-default, `-1` will also be applied to slots 2 and/or 3 depending if 1 and or 2 is set to `-1` to prevent visual glitching/skipping of the worlds. 
-    * Any value that is `-1` is read to the client as-if it was never set/removed.
+* Favourite world editing.
 * World List menu sorting.
 * Keyboard Sensitivity changing.
 * Mouse sensitivity changing.
+* World Map Overlay toggling.
+* World Map Icon resetting. (to all shown)
 * Mouse-over tooltip toggling.
 * Task completed popup toggling.
 * In-Game camera Zoom changing.
   * This doesn't allow any illegal values, as it will revert to default.
-* Orb of Oculus Movement & Rotation Speed changing.
+* Orb of Oculus/Freecam's Movement & Rotation Speed changing.
 * Minimized main ability bar toggling.
 * Randomizing the wallpaper
   * This includes setting the regular ID for the wallpaper if not randomizing. This ID can change with any update, unfortunately.

@@ -43,6 +43,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoopCurrentMusicTrackCheckbox,
 		InGameMouseOverPopupsCheckbox,
 		InGameTaskPopupsCheckbox,
+		ShowAllWorldMapIconsCheckbox,
 		MinimizeMainAbilityBarCheckBox,
 		CompatibilityModeCheckBox,
 		CompatibilityModeOnErrorCheckBox,
@@ -68,6 +69,7 @@ public class NXTSettingsGUI extends JFrame {
 		VolumetricLightingComboBox,
 		MaxForegroundFpsComboBox,
 		MaxBackgroundFpsComboBox,
+		ScreenSizingModeComboBox,
 		UIScalingComboBox,
 		GameWorldScalingComboBox,
 		LoginWallpaperIDComboBox,
@@ -77,6 +79,7 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld3ComboBox,
 		InGameMusicSortingComboBox,
 		InGameEmoteSortingComboBox,
+		WorldMapOverlayComboBox,
 		LanguageSelectionComboBox;
 
 	public static JSlider
@@ -227,13 +230,13 @@ public class NXTSettingsGUI extends JFrame {
 
 
 
-		/* Graphics Settings */
+		/* Left Graphics Settings */
 
 
 
 		final JLabel BrightnessLabel = new JLabel("  Brightness");
 		BrightnessLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		BrightnessLabel.setBounds(15, 15 + (30 * 0), 150, 25);
+		BrightnessLabel.setBounds(15, GetRow(0), 150, 25);
 		GraphicsSettingsTab.add(BrightnessLabel);
 
 		BrightnessSlider = new JSlider();
@@ -242,59 +245,59 @@ public class NXTSettingsGUI extends JFrame {
 		BrightnessSlider.setSnapToTicks(true);
 		BrightnessSlider.setMaximum(4);
 		BrightnessSlider.setPaintTicks(true);
-		BrightnessSlider.setBounds(165, 15 + (30 * 0), 175, 25);
+		BrightnessSlider.setBounds(165, GetRow(0), 175, 25);
 		BrightnessSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		BrightnessSlider.setBackground(optionBackgroundColor);
 		GraphicsSettingsTab.add(BrightnessSlider);
 
 		final JLabel DrawDistanceLabel = new JLabel("  Draw Distance");
 		DrawDistanceLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		DrawDistanceLabel.setBounds(15, 15 + (30 * 1), 150, 25);
+		DrawDistanceLabel.setBounds(15, GetRow(1), 150, 25);
 		GraphicsSettingsTab.add(DrawDistanceLabel);
 
 		DrawDistanceComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[1]);
 		DrawDistanceLabel.setLabelFor(DrawDistanceComboBox);
 		DrawDistanceComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_DrawDistance = DrawDistanceComboBox.getSelectedIndex());
-		DrawDistanceComboBox.setBounds(165, 15 + (30 * 1), 175, 25);
+		DrawDistanceComboBox.setBounds(165, GetRow(1), 175, 25);
 		GraphicsSettingsTab.add(DrawDistanceComboBox);
 
 		final JLabel VSyncLabel = new JLabel("  VSync");
 		VSyncLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		VSyncLabel.setBounds(15, 15 + (30 * 2), 150, 25);
+		VSyncLabel.setBounds(15, GetRow(2), 150, 25);
 		GraphicsSettingsTab.add(VSyncLabel);
 
 		VSyncComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[3]);
 		VSyncLabel.setLabelFor(VSyncComboBox);
 		VSyncComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_VSync = VSyncComboBox.getSelectedIndex()-1);
-		VSyncComboBox.setBounds(165, 15 + (30 * 2), 175, 25);
+		VSyncComboBox.setBounds(165, GetRow(2), 175, 25);
 		GraphicsSettingsTab.add(VSyncComboBox);
 
 		final JLabel AntiAliasingQualityLabel = new JLabel("  Anti-Aliasing Quality");
 		AntiAliasingQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		AntiAliasingQualityLabel.setBounds(15, 15 + (30 * 3), 150, 25);
+		AntiAliasingQualityLabel.setBounds(15, GetRow(3), 150, 25);
 		GraphicsSettingsTab.add(AntiAliasingQualityLabel);
 
 		AntiAliasingQualityComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[5]);
 		AntiAliasingQualityLabel.setLabelFor(AntiAliasingQualityComboBox);
 		AntiAliasingQualityComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_AntiAliasingQuality = AntiAliasingQualityComboBox.getSelectedIndex());
 		AntiAliasingQualityComboBox.setEnabled(false);
-		AntiAliasingQualityComboBox.setBounds(165, 15 + (30 * 3), 175, 25);
+		AntiAliasingQualityComboBox.setBounds(165, GetRow(3), 175, 25);
 		GraphicsSettingsTab.add(AntiAliasingQualityComboBox);
 
 		final JLabel LightingDetailLabel = new JLabel("  Lighting Quality");
 		LightingDetailLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		LightingDetailLabel.setBounds(15, 15 + (30 * 4), 150, 25);
+		LightingDetailLabel.setBounds(15, GetRow(4), 150, 25);
 		GraphicsSettingsTab.add(LightingDetailLabel);
 
 		LightingDetailComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[7]);
 		LightingDetailLabel.setLabelFor(LightingDetailComboBox);
 		LightingDetailComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_LightingQuality = LightingDetailComboBox.getSelectedIndex());
-		LightingDetailComboBox.setBounds(165, 15 + (30 * 4), 175, 25);
+		LightingDetailComboBox.setBounds(165, GetRow(4), 175, 25);
 		GraphicsSettingsTab.add(LightingDetailComboBox);
 
 		final JLabel BloomQualityLabel = new JLabel("  Bloom Quality");
 		BloomQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		BloomQualityLabel.setBounds(15, 15 + (30 * 5), 150, 25);
+		BloomQualityLabel.setBounds(15, GetRow(5), 150, 25);
 		GraphicsSettingsTab.add(BloomQualityLabel);
 
 		BloomQualityComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[9]);
@@ -303,42 +306,53 @@ public class NXTSettingsGUI extends JFrame {
 			Storage.nxtGraphicsSetting_Bloom = BloomQualityComboBox.getSelectedIndex();
 			Legality.CheckSettings();
 		});
-		BloomQualityComboBox.setBounds(165, 15 + (30 * 5), 175, 25);
+		BloomQualityComboBox.setBounds(165, GetRow(5), 175, 25);
 		GraphicsSettingsTab.add(BloomQualityComboBox);
 
 		final JLabel AnisotropicFilteringLabel = new JLabel("  Anisotropic Filtering");
 		AnisotropicFilteringLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		AnisotropicFilteringLabel.setBounds(15, 15 + (30 * 6), 150, 25);
+		AnisotropicFilteringLabel.setBounds(15, GetRow(6), 150, 25);
 		GraphicsSettingsTab.add(AnisotropicFilteringLabel);
 
 		AnisotropicFilteringComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[12]);
 		AnisotropicFilteringLabel.setLabelFor(AnisotropicFilteringComboBox);
 		AnisotropicFilteringComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_AnisotropicFiltering = AnisotropicFilteringComboBox.getSelectedIndex());
-		AnisotropicFilteringComboBox.setBounds(165, 15 + (30 * 6), 175, 25);
+		AnisotropicFilteringComboBox.setBounds(165, GetRow(6), 175, 25);
 		GraphicsSettingsTab.add(AnisotropicFilteringComboBox);
 
 		final JLabel MaxForegroundFpsLabel = new JLabel("  Foreground FPS Cap");
 		MaxForegroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MaxForegroundFpsLabel.setToolTipText(Storage.MAXFOREGOUNDFPS_TOOLTIP);
-		MaxForegroundFpsLabel.setBounds(15, 15 + (30 * 7), 150, 25);
+		MaxForegroundFpsLabel.setBounds(15, GetRow(7), 150, 25);
 		GraphicsSettingsTab.add(MaxForegroundFpsLabel);
 
 		MaxForegroundFpsComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[14]);
 		MaxForegroundFpsLabel.setLabelFor(MaxForegroundFpsComboBox);
 		MaxForegroundFpsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_MaxForegroundFps = ((MaxForegroundFpsComboBox.getSelectedIndex()+1)*5));
-		MaxForegroundFpsComboBox.setBounds(165, 15 + (30 * 7), 175, 25);
+		MaxForegroundFpsComboBox.setBounds(165, GetRow(7), 175, 25);
 		GraphicsSettingsTab.add(MaxForegroundFpsComboBox);
 
 		final JLabel UIScalingLabel = new JLabel("  Interface Scaling");
 		UIScalingLabel.setToolTipText(Storage.INTERFACESCALING_TOOLTIP);
 		UIScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		UIScalingLabel.setBounds(15, 15 + (30 * 8), 150, 25);
+		UIScalingLabel.setBounds(15, GetRow(8), 150, 25);
 		GraphicsSettingsTab.add(UIScalingLabel);
 
 		UIScalingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[15]);
 		UIScalingComboBox.addItemListener(e -> Storage.nxtClientSettings_UIScaling = ((UIScalingComboBox.getSelectedIndex()*5)+100));
-		UIScalingComboBox.setBounds(165, 15 + (30 * 8), 175, 25);
+		UIScalingComboBox.setBounds(165, GetRow(8), 175, 25);
 		GraphicsSettingsTab.add(UIScalingComboBox);
+
+		final JLabel DepthOfFieldLabel = new JLabel("  Depth of Field");
+		DepthOfFieldLabel.setToolTipText(Storage.DOF_TOOLTIP);
+		DepthOfFieldLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		DepthOfFieldLabel.setBounds(15, GetRow(9), 150, 25);
+		GraphicsSettingsTab.add(DepthOfFieldLabel);
+		
+		DepthOfFieldComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[10]);
+		DepthOfFieldComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_DepthOfField = ((DepthOfFieldComboBox.getSelectedIndex()*5)+35));
+		DepthOfFieldComboBox.setBounds(165, GetRow(9), 175, 25);
+		GraphicsSettingsTab.add(DepthOfFieldComboBox);
 
 		FlickeringEffectsCheckbox = new JCheckBox(String.format("%-85s", "Flickering Effects"));
 		FlickeringEffectsCheckbox.setBackground(optionBackgroundColor);
@@ -346,7 +360,7 @@ public class NXTSettingsGUI extends JFrame {
 		FlickeringEffectsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_FlickeringEffects = FlickeringEffectsCheckbox.isSelected());
 		FlickeringEffectsCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
 		FlickeringEffectsCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
-		FlickeringEffectsCheckbox.setBounds(15, 15 + (30 * 9), 325, 25);
+		FlickeringEffectsCheckbox.setBounds(15, GetRow(10), 325, 25);
 		GraphicsSettingsTab.add(FlickeringEffectsCheckbox);
 
 		CustomCursorsCheckbox = new JCheckBox(String.format("%-81s", "Custom Cursors"));
@@ -355,7 +369,7 @@ public class NXTSettingsGUI extends JFrame {
 		CustomCursorsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_CustomCursors = CustomCursorsCheckbox.isSelected());
 		CustomCursorsCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
 		CustomCursorsCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
-		CustomCursorsCheckbox.setBounds(15, 15 + (30 * 10), 325, 25);
+		CustomCursorsCheckbox.setBounds(15, GetRow(11), 325, 25);
 		CustomCursorsCheckbox.setSelected(true);
 		GraphicsSettingsTab.add(CustomCursorsCheckbox);
 
@@ -365,36 +379,42 @@ public class NXTSettingsGUI extends JFrame {
 		GroundDecorationsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_GroundDecor = GroundDecorationsCheckbox.isSelected());
 		GroundDecorationsCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
 		GroundDecorationsCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
-		GroundDecorationsCheckbox.setBounds(15, 15 + (30 * 11), 325, 25);
+		GroundDecorationsCheckbox.setBounds(15, GetRow(12), 325, 25);
 		GraphicsSettingsTab.add(GroundDecorationsCheckbox);
+
+
+
+		/* Right-Column Graphics Settings */
+
+
 
 		final JLabel RemoveRoofsLabel = new JLabel("  Remove Roofs");
 		RemoveRoofsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		RemoveRoofsLabel.setBounds(378 + (30 * 0), 15, 150, 25);
+		RemoveRoofsLabel.setBounds(378, 15, 150, 25);
 		GraphicsSettingsTab.add(RemoveRoofsLabel);
 
 		RemoveRoofsComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[0]);
 		RemoveRoofsLabel.setLabelFor(RemoveRoofsComboBox);
 		RemoveRoofsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_RemoveRoofs = RemoveRoofsComboBox.getSelectedIndex());
-		RemoveRoofsComboBox.setBounds(528, 15 + (30 * 0), 175, 25);
+		RemoveRoofsComboBox.setBounds(528, GetRow(0), 175, 25);
 		RemoveRoofsComboBox.setSelectedIndex(1);
 		GraphicsSettingsTab.add(RemoveRoofsComboBox);
 
 		final JLabel ShadowQualityLabel = new JLabel("  Shadow Quality");
 		ShadowQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		ShadowQualityLabel.setBounds(378, 15 + (30 * 1), 150, 25);
+		ShadowQualityLabel.setBounds(378, GetRow(1), 150, 25);
 		GraphicsSettingsTab.add(ShadowQualityLabel);
 
 		ShadowQualityComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[2]);
 		ShadowQualityLabel.setLabelFor(ShadowQualityComboBox);
 		ShadowQualityComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_ShadowQuality = ShadowQualityComboBox.getSelectedIndex());
 		ShadowQualityComboBox.setEnabled(false);
-		ShadowQualityComboBox.setBounds(528, 15 + (30 * 1), 175, 25);
+		ShadowQualityComboBox.setBounds(528, GetRow(1), 175, 25);
 		GraphicsSettingsTab.add(ShadowQualityComboBox);
 
 		final JLabel AntiAliasingModeLabel = new JLabel("  Anti-Aliasing Mode");
 		AntiAliasingModeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		AntiAliasingModeLabel.setBounds(378, 15 + (30 * 2), 150, 25);
+		AntiAliasingModeLabel.setBounds(378, GetRow(2), 150, 25);
 		GraphicsSettingsTab.add(AntiAliasingModeLabel);
 
 		AntiAliasingModeComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[4]);
@@ -403,78 +423,88 @@ public class NXTSettingsGUI extends JFrame {
 			Storage.nxtGraphicsSetting_AntiAliasingMode = AntiAliasingModeComboBox.getSelectedIndex();
 			Legality.CheckSettings();
 		});
-		AntiAliasingModeComboBox.setBounds(528, 15 + (30 * 2), 175, 25);
+		AntiAliasingModeComboBox.setBounds(528, GetRow(2), 175, 25);
 		GraphicsSettingsTab.add(AntiAliasingModeComboBox);
 
 		final JLabel WaterQualityLabel = new JLabel("  Water Quality");
 		WaterQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		WaterQualityLabel.setBounds(378, 15 + (30 * 3), 150, 25);
+		WaterQualityLabel.setBounds(378, GetRow(3), 150, 25);
 		GraphicsSettingsTab.add(WaterQualityLabel);
 
 		WaterQualityComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[6]);
 		WaterQualityLabel.setLabelFor(WaterQualityComboBox);
 		WaterQualityComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_WaterQuality = WaterQualityComboBox.getSelectedIndex());
-		WaterQualityComboBox.setBounds(528, 15 + (30 * 3), 175, 25);
+		WaterQualityComboBox.setBounds(528, GetRow(3), 175, 25);
 		GraphicsSettingsTab.add(WaterQualityComboBox);
 
 		final JLabel AmbientOcclusionLabel = new JLabel("  Ambient Occlusion");
 		AmbientOcclusionLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		AmbientOcclusionLabel.setToolTipText(Storage.AO_TOOLTIP);
-		AmbientOcclusionLabel.setBounds(378, 15 + (30 * 4), 150, 25);
+		AmbientOcclusionLabel.setBounds(378, GetRow(4), 150, 25);
 		GraphicsSettingsTab.add(AmbientOcclusionLabel);
 
 		AmbientOcclusionComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[8]);
 		AmbientOcclusionLabel.setLabelFor(AmbientOcclusionComboBox);
 		AmbientOcclusionComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_AmbientOcclusion = AmbientOcclusionComboBox.getSelectedIndex());
-		AmbientOcclusionComboBox.setBounds(528, 15 + (30 * 4), 175, 25);
+		AmbientOcclusionComboBox.setBounds(528, GetRow(4), 175, 25);
 		GraphicsSettingsTab.add(AmbientOcclusionComboBox);
 
 		final JLabel TextureQualityLabel = new JLabel("  Texture Quality");
 		TextureQualityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		TextureQualityLabel.setBounds(378, 15 + (30 * 5), 150, 25);
+		TextureQualityLabel.setBounds(378, GetRow(5), 150, 25);
 		GraphicsSettingsTab.add(TextureQualityLabel);
 
 		TextureQualityComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[11]);
 		TextureQualityLabel.setLabelFor(TextureQualityComboBox);
 		TextureQualityComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_TextureQuality = TextureQualityComboBox.getSelectedIndex());
 		TextureQualityComboBox.setEnabled(false);
-		TextureQualityComboBox.setBounds(528, 15 + (30 * 5), 175, 25);
+		TextureQualityComboBox.setBounds(528, GetRow(5), 175, 25);
 		GraphicsSettingsTab.add(TextureQualityComboBox);
 
 		final JLabel VolumetricLightingLabel = new JLabel("  Volumetric Lighting");
 		VolumetricLightingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		VolumetricLightingLabel.setBounds(378, 15 + (30 * 6), 150, 25);
+		VolumetricLightingLabel.setBounds(378, GetRow(6), 150, 25);
 		GraphicsSettingsTab.add(VolumetricLightingLabel);
 
 		VolumetricLightingComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[13]);
 		VolumetricLightingLabel.setLabelFor(VolumetricLightingComboBox);
 		VolumetricLightingComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_VolumetricLighting = VolumetricLightingComboBox.getSelectedIndex());
 		VolumetricLightingComboBox.setEnabled(false);
-		VolumetricLightingComboBox.setBounds(528, 15 + (30 * 6), 175, 25);
+		VolumetricLightingComboBox.setBounds(528, GetRow(6), 175, 25);
 		GraphicsSettingsTab.add(VolumetricLightingComboBox);
 
 		final JLabel MaxBackgroundFpsLabel = new JLabel("  Background FPS Cap");
 		MaxBackgroundFpsLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		MaxBackgroundFpsLabel.setToolTipText(Storage.MAXBACKGOUNDFPS_TOOLTIP);
-		MaxBackgroundFpsLabel.setBounds(378, 15 + (30 * 7), 150, 25);
+		MaxBackgroundFpsLabel.setBounds(378, GetRow(7), 150, 25);
 		GraphicsSettingsTab.add(MaxBackgroundFpsLabel);
 
 		MaxBackgroundFpsComboBox = new JComboBox < > (Storage.SETTINGS_OPTIONS[14]);
 		MaxBackgroundFpsLabel.setLabelFor(MaxBackgroundFpsComboBox);
 		MaxBackgroundFpsComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_MaxBackgroundFps = ((MaxBackgroundFpsComboBox.getSelectedIndex()+1)*5));
-		MaxBackgroundFpsComboBox.setBounds(528, 15 + (30 * 7), 175, 25);
+		MaxBackgroundFpsComboBox.setBounds(528, GetRow(7), 175, 25);
 		GraphicsSettingsTab.add(MaxBackgroundFpsComboBox);
 
 		final JLabel GameWorldScalingLabel = new JLabel("  Game World Scaling");
 		GameWorldScalingLabel.setToolTipText(Storage.GAMESCALING_TOOLTIP);
 		GameWorldScalingLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		GameWorldScalingLabel.setBounds(378, 15 + (30 * 8), 150, 25);
+		GameWorldScalingLabel.setBounds(378, GetRow(8), 150, 25);
 		GraphicsSettingsTab.add(GameWorldScalingLabel);
 
 		GameWorldScalingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[16]);
 		GameWorldScalingComboBox.addItemListener(e -> Storage.nxtClientSettings_GameWorldScaling = ((GameWorldScalingComboBox.getSelectedIndex()*5)+35));
-		GameWorldScalingComboBox.setBounds(528, 15 + (30 * 8), 175, 25);
+		GameWorldScalingComboBox.setBounds(528, GetRow(8), 175, 25);
 		GraphicsSettingsTab.add(GameWorldScalingComboBox);
+
+		final JLabel ScreensizingModeLabel = new JLabel("  Screen Sizing Mode");
+		ScreensizingModeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
+		ScreensizingModeLabel.setBounds(378, GetRow(9), 150, 25);
+		GraphicsSettingsTab.add(ScreensizingModeLabel);
+		
+		ScreenSizingModeComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[21]);
+		ScreenSizingModeComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_ScreenSizingMode = ((ScreenSizingModeComboBox.getSelectedIndex()*5)+35));
+		ScreenSizingModeComboBox.setBounds(528, GetRow(9), 175, 25);
+		GraphicsSettingsTab.add(ScreenSizingModeComboBox);
 
 		ShadowsCheckbox = new JCheckBox(String.format("%-88s", "Shadows"));
 		ShadowsCheckbox.setBackground(optionBackgroundColor);
@@ -485,7 +515,7 @@ public class NXTSettingsGUI extends JFrame {
 		});
 		ShadowsCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
 		ShadowsCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
-		ShadowsCheckbox.setBounds(378, 15 + (30 * 9), 325, 25);
+		ShadowsCheckbox.setBounds(378, GetRow(10), 325, 25);
 		GraphicsSettingsTab.add(ShadowsCheckbox);
 
 		LoadingScreensCheckbox = new JCheckBox(String.format("%-82s", "Loading Screens"));
@@ -494,7 +524,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoadingScreensCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_LoadingScreens = LoadingScreensCheckbox.isSelected());
 		LoadingScreensCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
 		LoadingScreensCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
-		LoadingScreensCheckbox.setBounds(378, 15 + (30 * 10), 325, 25);
+		LoadingScreensCheckbox.setBounds(378, GetRow(11), 325, 25);
 		LoadingScreensCheckbox.setSelected(true);
 		GraphicsSettingsTab.add(LoadingScreensCheckbox);
 
@@ -507,12 +537,18 @@ public class NXTSettingsGUI extends JFrame {
 		});
 		TerrainBlendingCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
 		TerrainBlendingCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
-		TerrainBlendingCheckbox.setBounds(378, 15 + (30 * 11), 325, 25);
+		TerrainBlendingCheckbox.setBounds(378, GetRow(12), 325, 25);
 		GraphicsSettingsTab.add(TerrainBlendingCheckbox);
+
+
+
+		/* Preset Settings */
+
+
 
 		final JLabel GraphicsPresetLabel = new JLabel("Preset: ");
 		GraphicsPresetLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		GraphicsPresetLabel.setBounds(15, (int) (15 + (30 * 16.25)), 50, 25);
+		GraphicsPresetLabel.setBounds(15, GetRow(16), 50, 25);
 		GraphicsSettingsTab.add(GraphicsPresetLabel);
 
 		MinimumGraphicsPresetButton = new JButton("Minimum");
@@ -520,7 +556,7 @@ public class NXTSettingsGUI extends JFrame {
 		MinimumGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		MinimumGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Min"));
 		MinimumGraphicsPresetButton.setEnabled(false);
-		MinimumGraphicsPresetButton.setBounds(70, (int) (15 + (30 * 16.25)), 75, 25);
+		MinimumGraphicsPresetButton.setBounds(70, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(MinimumGraphicsPresetButton);
 
 		LowGraphicsPresetButton = new JButton("Low");
@@ -528,7 +564,7 @@ public class NXTSettingsGUI extends JFrame {
 		LowGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		LowGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Low"));
 		LowGraphicsPresetButton.setEnabled(false);
-		LowGraphicsPresetButton.setBounds(150, (int) (15 + (30 * 16.25)), 75, 25);
+		LowGraphicsPresetButton.setBounds(150, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(LowGraphicsPresetButton);
 
 		MediumGraphicsPresetButton = new JButton("Medium");
@@ -537,7 +573,7 @@ public class NXTSettingsGUI extends JFrame {
 		MediumGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Med"));
 		MediumGraphicsPresetButton.setEnabled(false);
 		MediumGraphicsPresetButton.setFont(new Font("Dialog", Font.PLAIN, 12));
-		MediumGraphicsPresetButton.setBounds(230, (int) (15 + (30 * 16.25)), 75, 25);
+		MediumGraphicsPresetButton.setBounds(230, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(MediumGraphicsPresetButton);
 
 		HighGraphicsPresetButton = new JButton("High");
@@ -545,7 +581,7 @@ public class NXTSettingsGUI extends JFrame {
 		HighGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		HighGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("High"));
 		HighGraphicsPresetButton.setEnabled(false);
-		HighGraphicsPresetButton.setBounds(310, (int) (15 + (30 * 16.25)), 75, 25);
+		HighGraphicsPresetButton.setBounds(310, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(HighGraphicsPresetButton);
 
 		UltraGraphicsPresetButton = new JButton("Ultra");
@@ -553,7 +589,7 @@ public class NXTSettingsGUI extends JFrame {
 		UltraGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		UltraGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("Ultra"));
 		UltraGraphicsPresetButton.setEnabled(false);
-		UltraGraphicsPresetButton.setBounds(390, (int) (15 + (30 * 16.25)), 75, 25);
+		UltraGraphicsPresetButton.setBounds(390, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(UltraGraphicsPresetButton);
 
 		MaxedGraphicsPresetButton = new JButton("\"Maxed\"");
@@ -561,7 +597,7 @@ public class NXTSettingsGUI extends JFrame {
 		MaxedGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		MaxedGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("MAXED"));
 		MaxedGraphicsPresetButton.setEnabled(false);
-		MaxedGraphicsPresetButton.setBounds(470, (int) (15 + (30 * 16.25)), 75, 25);
+		MaxedGraphicsPresetButton.setBounds(470, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(MaxedGraphicsPresetButton);
 
 		WikianGraphicsPresetButton = new JButton("Wikian");
@@ -569,7 +605,7 @@ public class NXTSettingsGUI extends JFrame {
 		WikianGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		WikianGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("wikian"));
 		WikianGraphicsPresetButton.setEnabled(false);
-		WikianGraphicsPresetButton.setBounds(550, (int) (15 + (30 * 16.25)), 75, 25);
+		WikianGraphicsPresetButton.setBounds(550, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(WikianGraphicsPresetButton);
 
 		RedditGraphicsPresetButton = new JButton("Reddit");
@@ -578,7 +614,7 @@ public class NXTSettingsGUI extends JFrame {
 		RedditGraphicsPresetButton.setToolTipText(Storage.GRAPHICS_PRESET_BUTTON_TOOLTIP);
 		RedditGraphicsPresetButton.addActionListener(e -> Mechanics.SetGraphicsPreset("/r/runescape"));
 		RedditGraphicsPresetButton.setEnabled(false);
-		RedditGraphicsPresetButton.setBounds(630, (int) (15 + (30 * 16.25)), 75, 25);
+		RedditGraphicsPresetButton.setBounds(630, GetRow(16), 75, 25);
 		GraphicsSettingsTab.add(RedditGraphicsPresetButton);
 
 
@@ -589,13 +625,13 @@ public class NXTSettingsGUI extends JFrame {
 
 		final JLabel UsernameLabel = new JLabel("Username");
 		UsernameLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		UsernameLabel.setBounds(15, 15 + (30 * 0), 150, 25);
+		UsernameLabel.setBounds(15, GetRow(0), 150, 25);
 		ClientSettingsTab.add(UsernameLabel);
 
 		UsernameInput = new JTextField();
 		UsernameLabel.setLabelFor(UsernameInput);
 		UsernameInput.setToolTipText(Storage.USERNAME_INPUT_TOOLTIP);
-		UsernameInput.setBounds(170, 15 + (30 * 0), 310, 25);
+		UsernameInput.setBounds(170, GetRow(0), 310, 25);
 		ClientSettingsTab.add(UsernameInput);
 		UsernameInput.setColumns(10);
 
@@ -603,92 +639,109 @@ public class NXTSettingsGUI extends JFrame {
 		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
 		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
-		RememberUsernameCheckbox.setBounds(485, 15 + (30 * 0), 220, 25);
+		RememberUsernameCheckbox.setBounds(485, GetRow(0), 220, 25);
 		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RememberUsernameCheckbox);
-
-		final JLabel FavouriteWorld1Label = new JLabel("Favourite World 1");
-		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld1Label.setBounds(15, 15 + (30 * 1), 150, 25);
-		ClientSettingsTab.add(FavouriteWorld1Label);
 
 		Object[] WORLDS = new Object[256];
 		for (int i = 1; i < WORLDS.length; i++){
 			WORLDS[i] = i;
 		}
 		WORLDS[0] = "None";
+
+		final JLabel FavouriteWorld1Label = new JLabel("Favourite World 1");
+		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 11));
+		FavouriteWorld1Label.setBounds(15, GetRow(1), 150, 25);
+		ClientSettingsTab.add(FavouriteWorld1Label);
 		
 		FavouriteWorld1ComboBox = new JComboBox<>(WORLDS);
 		FavouriteWorld1ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld1 = (FavouriteWorld1ComboBox.getSelectedIndex()));
-		FavouriteWorld1ComboBox.setBounds(170, 15 + (30 * 1), 85, 25);
+		FavouriteWorld1ComboBox.setBounds(170, GetRow(1), 85, 25);
 		ClientSettingsTab.add(FavouriteWorld1ComboBox);
 
 		final JLabel FavouriteWorld2Label = new JLabel("Favourite World 2");
 		FavouriteWorld2Label.setHorizontalAlignment(SwingConstants.CENTER);
 		FavouriteWorld2Label.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld2Label.setBounds(260, 15 + (30 * 1), 130, 25);
+		FavouriteWorld2Label.setBounds(260, GetRow(1), 130, 25);
 		ClientSettingsTab.add(FavouriteWorld2Label);
 
 		FavouriteWorld2ComboBox = new JComboBox<>(WORLDS);
 		FavouriteWorld2ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld2 = (FavouriteWorld2ComboBox.getSelectedIndex()));
-		FavouriteWorld2ComboBox.setBounds(395, 15 + (30 * 1), 85, 25);
+		FavouriteWorld2ComboBox.setBounds(395, GetRow(1), 85, 25);
 		ClientSettingsTab.add(FavouriteWorld2ComboBox);
 
 		final JLabel FavouriteWorld3Label = new JLabel("Favourite World 3");
 		FavouriteWorld3Label.setHorizontalAlignment(SwingConstants.CENTER);
 		FavouriteWorld3Label.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld3Label.setBounds(485, 15 + (30 * 1), 130, 25);
+		FavouriteWorld3Label.setBounds(485, GetRow(1), 130, 25);
 		ClientSettingsTab.add(FavouriteWorld3Label);
 
 		FavouriteWorld3ComboBox = new JComboBox<>(WORLDS);
 		FavouriteWorld3ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld3 = (FavouriteWorld3ComboBox.getSelectedIndex()));
-		FavouriteWorld3ComboBox.setBounds(620, 15 + (30 * 1), 85, 25);
+		FavouriteWorld3ComboBox.setBounds(620, GetRow(1), 85, 25);
 		ClientSettingsTab.add(FavouriteWorld3ComboBox);
 
 		final JLabel WallpaperLabel = new JLabel("Wallpaper Settings");
 		WallpaperLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		WallpaperLabel.setBounds(15, 15 + (30 * 2), 130, 25);
+		WallpaperLabel.setBounds(15, GetRow(2), 130, 25);
 		ClientSettingsTab.add(WallpaperLabel);
 
 		LoginWallpaperIDComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[19]);
 		LoginWallpaperIDComboBox.addItemListener(e -> Storage.nxtClientSettings_LoginWallpaperID = LoginWallpaperIDComboBox.getSelectedIndex());
-		LoginWallpaperIDComboBox.setBounds(170, 15 + (30 * 2), 265, 25);
+		LoginWallpaperIDComboBox.setBounds(170, GetRow(2), 265, 25);
 		ClientSettingsTab.add(LoginWallpaperIDComboBox);
 
 		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize The Wallpaper?");
 		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
 		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
 		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		RandomizeLoginWallpaperCheckbox.setBounds(440, 15 + (30 * 2), 265, 25);
+		RandomizeLoginWallpaperCheckbox.setBounds(440, GetRow(2), 265, 25);
 		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
 
 		final JLabel InGameWorldSortingLabel = new JLabel("World-List Menu Sorting");
 		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameWorldSortingLabel.setBounds(15, 15 + (30 * 3), 150, 25);
+		InGameWorldSortingLabel.setBounds(15, GetRow(3), 150, 25);
 		ClientSettingsTab.add(InGameWorldSortingLabel);
 
 		InGameWorldSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[17]);
 		InGameWorldSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_WorldSorting = InGameWorldSortingComboBox.getSelectedIndex());
-		InGameWorldSortingComboBox.setBounds(170, 15 + (30 * 3), 265, 25);
+		InGameWorldSortingComboBox.setBounds(170, GetRow(3), 265, 25);
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
-
 
 		final JLabel EmoteSelectionLabel = new JLabel("Emote-List Sorting");
 		EmoteSelectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		EmoteSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		EmoteSelectionLabel.setBounds(440, 15 + (30 * 3), 130, 25);
+		EmoteSelectionLabel.setBounds(440, GetRow(3), 130, 25);
 		EmoteSelectionLabel.setLabelFor(LanguageSelectionComboBox);
 		ClientSettingsTab.add(EmoteSelectionLabel);
 		
 		InGameEmoteSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[20]);
 		InGameEmoteSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_EmoteSorting = InGameEmoteSortingComboBox.getSelectedIndex());
-		InGameEmoteSortingComboBox.setBounds(575, 15 + (30 * 3), 130, 25);
+		InGameEmoteSortingComboBox.setBounds(575, GetRow(3), 130, 25);
 		ClientSettingsTab.add(InGameEmoteSortingComboBox);
+
+		final JLabel WorldMapSettingsLabel = new JLabel("World Map Settings");
+		WorldMapSettingsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		WorldMapSettingsLabel.setBounds(15, GetRow(4), 150, 25);
+		ClientSettingsTab.add(WorldMapSettingsLabel);
+
+		WorldMapOverlayComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[22]);
+		WorldMapOverlayComboBox.addItemListener(e -> Storage.nxtClientSettings_WorldMapOverlays = WorldMapOverlayComboBox.getSelectedIndex());
+		WorldMapOverlayComboBox.setBounds(170, GetRow(4), 265, 25);
+		ClientSettingsTab.add(WorldMapOverlayComboBox);
+
+		ShowAllWorldMapIconsCheckbox = new JCheckBox("Show All World Map Icons?");
+		ShowAllWorldMapIconsCheckbox.setToolTipText("Check this to enable all World Map Icons.");
+		ShowAllWorldMapIconsCheckbox.setSelected(false);
+		ShowAllWorldMapIconsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		ShowAllWorldMapIconsCheckbox.setBackground(new Color(40, 40, 40));
+		ShowAllWorldMapIconsCheckbox.setBounds(440, GetRow(4), 265, 25);
+		ClientSettingsTab.add(ShowAllWorldMapIconsCheckbox);
 
 		final JLabel MiscTogglesLabel = new JLabel("ToggleScape Toggles");
 		MiscTogglesLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		MiscTogglesLabel.setBounds(15, 15 + (30 * 4), 150, 25);
+		MiscTogglesLabel.setBounds(15, GetRow(5), 150, 25);
 		ClientSettingsTab.add(MiscTogglesLabel);
 
 		InGameTaskPopupsCheckbox = new JCheckBox("Show Task Completed Popups?");
@@ -696,7 +749,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameTaskPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_TaskCompletedPopup = InGameTaskPopupsCheckbox.isSelected());
 		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameTaskPopupsCheckbox.setBounds(170, 15 + (30 * 4), 265, 25);
+		InGameTaskPopupsCheckbox.setBounds(170, GetRow(5), 265, 25);
 		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
 
 		InGameMouseOverPopupsCheckbox = new JCheckBox("Show Mouse-Over/Hover-Over Tooltips?");
@@ -704,14 +757,14 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseOverPopupsCheckbox.setToolTipText("Toggle the In-Game Hover-Over tooltips.");
 		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameMouseOverPopupsCheckbox.setBackground(optionBackgroundColor);
-		InGameMouseOverPopupsCheckbox.setBounds(440, 15 + (30 * 4), 265, 25);
+		InGameMouseOverPopupsCheckbox.setBounds(440, GetRow(5), 265, 25);
 		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
 
 		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
 		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
 		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
-		MinimizeMainAbilityBarCheckBox.setBounds(440, 15 + (30 * 5), 265, 25);
+		MinimizeMainAbilityBarCheckBox.setBounds(440, GetRow(6), 265, 25);
 		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
 
 		/* Separate */
@@ -720,34 +773,34 @@ public class NXTSettingsGUI extends JFrame {
 		CompatibilityModeCheckBox.addActionListener(e -> Storage.nxtClientSettings_CompatibilityMode = CompatibilityModeCheckBox.isSelected());
 		CompatibilityModeCheckBox.setBackground(optionBackgroundColor);
 		CompatibilityModeCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		CompatibilityModeCheckBox.setBounds(15, 15 + (30 * 16), 150, 25);
+		CompatibilityModeCheckBox.setBounds(15, GetRow(16), 150, 25);
 		ClientSettingsTab.add(CompatibilityModeCheckBox);
 
 		CompatibilityModeOnErrorCheckBox = new JCheckBox("Switch to Compatibility on Error?");
 		CompatibilityModeOnErrorCheckBox.addActionListener(e -> Storage.nxtClientSettings_AskToSwitchToCompatibility = CompatibilityModeOnErrorCheckBox.isSelected());
 		CompatibilityModeOnErrorCheckBox.setBackground(optionBackgroundColor);
 		CompatibilityModeOnErrorCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		CompatibilityModeOnErrorCheckBox.setBounds(170, 15 + (30 * 16), 220, 25);
+		CompatibilityModeOnErrorCheckBox.setBounds(170, GetRow(16), 220, 25);
 		ClientSettingsTab.add(CompatibilityModeOnErrorCheckBox);
 
 		AskBeforeQuittingCheckBox = new JCheckBox("Confirm Quit on Exit?");
 		AskBeforeQuittingCheckBox.addActionListener(e -> Storage.nxtClientSettings_AskBeforeQuitting = AskBeforeQuittingCheckBox.isSelected());
 		AskBeforeQuittingCheckBox.setBackground(optionBackgroundColor);
 		AskBeforeQuittingCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		AskBeforeQuittingCheckBox.setBounds(395, 15 + (30 * 16), 155, 25);
+		AskBeforeQuittingCheckBox.setBounds(395, GetRow(16), 155, 25);
 		ClientSettingsTab.add(AskBeforeQuittingCheckBox);
 
 		final JLabel LanguageSelectionLabel = new JLabel("Language");
 		LanguageSelectionLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		LanguageSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		LanguageSelectionLabel.setBounds(555, 15 + (30 * 16), 60, 25);
+		LanguageSelectionLabel.setBounds(555, GetRow(16), 60, 25);
 		LanguageSelectionLabel.setLabelFor(LanguageSelectionComboBox);
 		ClientSettingsTab.add(LanguageSelectionLabel);
 
 		LanguageSelectionComboBox = new JComboBox<>(Storage.LANGUAGES);
 		LanguageSelectionComboBox.addItemListener(e -> Storage.nxtClientSettings_LanguageSelected = LanguageSelectionComboBox.getSelectedIndex());
 		LanguageSelectionComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		LanguageSelectionComboBox.setBounds(620, 15 + (30 * 16), 85, 25);
+		LanguageSelectionComboBox.setBounds(620, GetRow(16), 85, 25);
 		ClientSettingsTab.add(LanguageSelectionComboBox);
 
 
@@ -758,7 +811,7 @@ public class NXTSettingsGUI extends JFrame {
 
 		final JLabel InGameCameraZoomLabel = new JLabel("In-Game Camera Zoom");
 		InGameCameraZoomLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameCameraZoomLabel.setBounds(15, 15 + (30 * 0), 150, 25);
+		InGameCameraZoomLabel.setBounds(15, GetRow(0), 150, 25);
 		ControlSettingsTab.add(InGameCameraZoomLabel);
 
 		InGameCameraZoomSlider = new JSlider();
@@ -767,13 +820,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameCameraZoomSlider.setMinimum(1860);
 		InGameCameraZoomSlider.setMaximum(7600);
 		InGameCameraZoomSlider.setPaintTicks(false);
-		InGameCameraZoomSlider.setBounds(170, 15 + (30 * 0), 535, 25);
+		InGameCameraZoomSlider.setBounds(170, GetRow(0), 535, 25);
 		InGameCameraZoomSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ControlSettingsTab.add(InGameCameraZoomSlider);
 
 		final JLabel InGameKeyboardHSensitivityLabel = new JLabel("Keyboard Sensitivity (H)");
 		InGameKeyboardHSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameKeyboardHSensitivityLabel.setBounds(15, 15 + (30 * 1), 150, 25);
+		InGameKeyboardHSensitivityLabel.setBounds(15, GetRow(1), 150, 25);
 		ControlSettingsTab.add(InGameKeyboardHSensitivityLabel);
 
 		InGameKeyboardHSensitivitySlider = new JSlider();
@@ -782,13 +835,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameKeyboardHSensitivitySlider.setMinimum(100);
 		InGameKeyboardHSensitivitySlider.setMaximum(250);
 		InGameKeyboardHSensitivitySlider.setPaintTicks(false);
-		InGameKeyboardHSensitivitySlider.setBounds(170, 15 + (30 * 1), 535, 25);
+		InGameKeyboardHSensitivitySlider.setBounds(170, GetRow(1), 535, 25);
 		InGameKeyboardHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ControlSettingsTab.add(InGameKeyboardHSensitivitySlider);
 
 		final JLabel InGameKeyboardVSensitivityLabel = new JLabel("Keyboard Sensitivity (V)");
 		InGameKeyboardVSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameKeyboardVSensitivityLabel.setBounds(15, 15 + (30 * 2), 150, 25);
+		InGameKeyboardVSensitivityLabel.setBounds(15, GetRow(2), 150, 25);
 		ControlSettingsTab.add(InGameKeyboardVSensitivityLabel);
 
 		InGameKeyboardVSensitivitySlider = new JSlider();
@@ -797,13 +850,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameKeyboardVSensitivitySlider.setMinimum(70);
 		InGameKeyboardVSensitivitySlider.setMaximum(200);
 		InGameKeyboardVSensitivitySlider.setPaintTicks(false);
-		InGameKeyboardVSensitivitySlider.setBounds(170, 15 + (30 * 2), 535, 25);
+		InGameKeyboardVSensitivitySlider.setBounds(170, GetRow(2), 535, 25);
 		InGameKeyboardVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ControlSettingsTab.add(InGameKeyboardVSensitivitySlider);
 
 		final JLabel InGameMouseHSensitivityLabel = new JLabel("Mouse Sensitivity (H)");
 		InGameMouseHSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMouseHSensitivityLabel.setBounds(15, 15 + (30 * 3), 150, 25);
+		InGameMouseHSensitivityLabel.setBounds(15, GetRow(3), 150, 25);
 		ControlSettingsTab.add(InGameMouseHSensitivityLabel);
 
 		InGameMouseHSensitivitySlider = new JSlider();
@@ -812,14 +865,14 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseHSensitivitySlider.setMinimum(4);
 		InGameMouseHSensitivitySlider.setMaximum(24);
 		InGameMouseHSensitivitySlider.setPaintTicks(false);
-		InGameMouseHSensitivitySlider.setBounds(170, 15 + (30 * 3), 535, 25);
+		InGameMouseHSensitivitySlider.setBounds(170, GetRow(3), 535, 25);
 		InGameMouseHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ControlSettingsTab.add(InGameMouseHSensitivitySlider);
 
 
 		final JLabel InGameMouseVSensitivityLabel = new JLabel("Mouse Sensitivity (V)");
 		InGameMouseVSensitivityLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMouseVSensitivityLabel.setBounds(15, 15 + (30 * 4), 150, 25);
+		InGameMouseVSensitivityLabel.setBounds(15, GetRow(4), 150, 25);
 		ControlSettingsTab.add(InGameMouseVSensitivityLabel);
 
 		InGameMouseVSensitivitySlider = new JSlider();
@@ -828,36 +881,36 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseVSensitivitySlider.setMinimum(3);
 		InGameMouseVSensitivitySlider.setMaximum(22);
 		InGameMouseVSensitivitySlider.setPaintTicks(false);
-		InGameMouseVSensitivitySlider.setBounds(170, 15 + (30 * 4), 535, 25);
+		InGameMouseVSensitivitySlider.setBounds(170, GetRow(4), 535, 25);
 		InGameMouseVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		ControlSettingsTab.add(InGameMouseVSensitivitySlider);
 
-		final JLabel OoORotationMovementLabel = new JLabel("OoO's Movement Speed");
+		final JLabel OoORotationMovementLabel = new JLabel("Freecam Move Speed");
 		OoORotationMovementLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		OoORotationMovementLabel.setBounds(15, 15 + (30 * 5), 150, 25);
+		OoORotationMovementLabel.setBounds(15, GetRow(5), 150, 25);
 		ControlSettingsTab.add(OoORotationMovementLabel);
 
 		OoOMovementSpeedSlider = new JSlider();
-		OoOMovementSpeedSlider.setToolTipText("The Orb Of Oculus's Movement Speed");
+		OoOMovementSpeedSlider.setToolTipText("The Orb Of Oculus/Freecam's Movement Speed");
 		OoOMovementSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoOMovementSpeed = OoOMovementSpeedSlider.getValue());
 		OoOMovementSpeedSlider.setPaintTicks(false);
 		OoOMovementSpeedSlider.setMinimum(64);
 		OoOMovementSpeedSlider.setMaximum(511);
-		OoOMovementSpeedSlider.setBounds(170, 15 + (30 * 5), 535, 25);
+		OoOMovementSpeedSlider.setBounds(170, GetRow(5), 535, 25);
 		ControlSettingsTab.add(OoOMovementSpeedSlider);
 
-		final JLabel OoORotationSpeedLabel = new JLabel("OoO's Rotation Speed");
+		final JLabel OoORotationSpeedLabel = new JLabel("Freecam Rotation Speed");
 		OoORotationSpeedLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		OoORotationSpeedLabel.setBounds(15, 15 + (30 * 6), 150, 25);
+		OoORotationSpeedLabel.setBounds(15, GetRow(6), 150, 25);
 		ControlSettingsTab.add(OoORotationSpeedLabel);
 
 		OoORotationSpeedSlider = new JSlider();
-		OoORotationSpeedSlider.setToolTipText("The Orb Of Oculus's Rotation Speed");
+		OoORotationSpeedSlider.setToolTipText("The Orb Of Oculus/Freecam's Rotation Speed");
 		OoORotationSpeedSlider.addChangeListener(e -> Storage.nxtClientSettings_OoORotationSpeed = OoORotationSpeedSlider.getValue());
 		OoORotationSpeedSlider.setPaintTicks(false);
 		OoORotationSpeedSlider.setMinimum(1);
 		OoORotationSpeedSlider.setMaximum(49);
-		OoORotationSpeedSlider.setBounds(170, 15 + (30 * 6), 535, 25);
+		OoORotationSpeedSlider.setBounds(170, GetRow(6), 535, 25);
 		ControlSettingsTab.add(OoORotationSpeedSlider);
 
 
@@ -869,20 +922,20 @@ public class NXTSettingsGUI extends JFrame {
 		final JLabel LoginMusicLabel = new JLabel("Login Music Volume");
 		LoginMusicLabel.setLabelFor(LoginMusicSlider);
 		LoginMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		LoginMusicLabel.setBounds(15, 15 + (30 * 0), 150, 25);
+		LoginMusicLabel.setBounds(15, GetRow(0), 150, 25);
 		AudioSettingsTab.add(LoginMusicLabel);
 
 		LoginMusicSlider = new JSlider();
 		LoginMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_LoginMusicVolume = LoginMusicSlider.getValue());
 		LoginMusicSlider.setMaximum(255);
 		LoginMusicSlider.setPaintTicks(false);
-		LoginMusicSlider.setBounds(170, 15 + (30 * 0), 535, 25);
+		LoginMusicSlider.setBounds(170, GetRow(0), 535, 25);
 		LoginMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		AudioSettingsTab.add(LoginMusicSlider);
 
 		final JLabel InGameMusicLabel = new JLabel("Game Music Volume");
 		InGameMusicLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMusicLabel.setBounds(15, 15 + (30 * 1), 150, 25);
+		InGameMusicLabel.setBounds(15, GetRow(1), 150, 25);
 		AudioSettingsTab.add(InGameMusicLabel);
 
 		InGameMusicSlider = new JSlider();
@@ -890,13 +943,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMusicSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameMusicVolume = InGameMusicSlider.getValue());
 		InGameMusicSlider.setMaximum(255);
 		InGameMusicSlider.setPaintTicks(false);
-		InGameMusicSlider.setBounds(170, 15 + (30 * 1), 535, 25);
+		InGameMusicSlider.setBounds(170, GetRow(1), 535, 25);
 		InGameMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		AudioSettingsTab.add(InGameMusicSlider);
 
 		final JLabel InGameSoundEffectsLabel = new JLabel("Sound Effect Volume");
 		InGameSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameSoundEffectsLabel.setBounds(15, 15 + (30 * 2), 150, 25);
+		InGameSoundEffectsLabel.setBounds(15, GetRow(2), 150, 25);
 		AudioSettingsTab.add(InGameSoundEffectsLabel);
 
 		InGameSoundEffectsSlider = new JSlider();
@@ -904,13 +957,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameSoundEffectsVolume = InGameSoundEffectsSlider.getValue());
 		InGameSoundEffectsSlider.setMaximum(127);
 		InGameSoundEffectsSlider.setPaintTicks(false);
-		InGameSoundEffectsSlider.setBounds(170, 15 + (30 * 2), 535, 25);
+		InGameSoundEffectsSlider.setBounds(170, GetRow(2), 535, 25);
 		InGameSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		AudioSettingsTab.add(InGameSoundEffectsSlider);
 
 		final JLabel InGameAmbientSoundEffectsLabel = new JLabel("Ambient Sound Volume");
 		InGameAmbientSoundEffectsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameAmbientSoundEffectsLabel.setBounds(15, 15 + (30 * 3), 150, 25);
+		InGameAmbientSoundEffectsLabel.setBounds(15, GetRow(3), 150, 25);
 		AudioSettingsTab.add(InGameAmbientSoundEffectsLabel);
 
 		InGameAmbientSoundEffectsSlider = new JSlider();
@@ -918,13 +971,13 @@ public class NXTSettingsGUI extends JFrame {
 		InGameAmbientSoundEffectsSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameAmbientSoundEffectsVolume = InGameAmbientSoundEffectsSlider.getValue());
 		InGameAmbientSoundEffectsSlider.setMaximum(127);
 		InGameAmbientSoundEffectsSlider.setPaintTicks(false);
-		InGameAmbientSoundEffectsSlider.setBounds(170, 15 + (30 * 3), 535, 25);
+		InGameAmbientSoundEffectsSlider.setBounds(170, GetRow(3), 535, 25);
 		InGameAmbientSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		AudioSettingsTab.add(InGameAmbientSoundEffectsSlider);
 
 		final JLabel InGameVoiceOverLabel = new JLabel("Voice Over Volume");
 		InGameVoiceOverLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameVoiceOverLabel.setBounds(15, 15 + (30 * 4), 150, 25);
+		InGameVoiceOverLabel.setBounds(15, GetRow(4), 150, 25);
 		AudioSettingsTab.add(InGameVoiceOverLabel);
 
 		InGameVoiceOverSlider = new JSlider();
@@ -932,18 +985,18 @@ public class NXTSettingsGUI extends JFrame {
 		InGameVoiceOverSlider.addChangeListener(e -> Storage.nxtClientSettings_InGameVoiceOverVolume = InGameVoiceOverSlider.getValue());
 		InGameVoiceOverSlider.setMaximum(127);
 		InGameVoiceOverSlider.setPaintTicks(false);
-		InGameVoiceOverSlider.setBounds(170, 15 + (30 * 4), 535, 25);
+		InGameVoiceOverSlider.setBounds(170, GetRow(4), 535, 25);
 		InGameVoiceOverSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
 		AudioSettingsTab.add(InGameVoiceOverSlider);
 
 		final JLabel InGameMusicSortingLabel = new JLabel("Music Track Sorting");
 		InGameMusicSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMusicSortingLabel.setBounds(15, 15 + (30 * 5), 150, 25);
+		InGameMusicSortingLabel.setBounds(15, GetRow(5), 150, 25);
 		AudioSettingsTab.add(InGameMusicSortingLabel);
 
 		InGameMusicSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[18]);
 		InGameMusicSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_MusicSorting = InGameMusicSortingComboBox.getSelectedIndex());
-		InGameMusicSortingComboBox.setBounds(170, 15 + (30 * 5), 265, 25);
+		InGameMusicSortingComboBox.setBounds(170, GetRow(5), 265, 25);
 		AudioSettingsTab.add(InGameMusicSortingComboBox);
 
 		LoopCurrentMusicTrackCheckbox = new JCheckBox("Loop the Currently Playing Music Track?");
@@ -951,7 +1004,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoopCurrentMusicTrackCheckbox.setToolTipText(Storage.GLOBAL_AUDIO_MUTE_TOOLTIP);
 		LoopCurrentMusicTrackCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		LoopCurrentMusicTrackCheckbox.setBackground(optionBackgroundColor);
-		LoopCurrentMusicTrackCheckbox.setBounds(440, 165, 265, 25);
+		LoopCurrentMusicTrackCheckbox.setBounds(440, GetRow(5), 265, 25);
 		AudioSettingsTab.add(LoopCurrentMusicTrackCheckbox);
 
 
@@ -1171,5 +1224,9 @@ public class NXTSettingsGUI extends JFrame {
 		if (!History.History_Saved){
 			History.init();
 		}
+	}
+	private static int GetRow(int Row){
+		int Value = (15 + (30 * Row));
+		return Value;
 	}
 }
