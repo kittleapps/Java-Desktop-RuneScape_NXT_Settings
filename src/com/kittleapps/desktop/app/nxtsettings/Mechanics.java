@@ -391,7 +391,7 @@ public class Mechanics {
 			if ((offset > 0) && (end > offset)) {
 				output = fileContents.substring(offset, end);
 			}
-			System.out.println("NXT Build: " + output);
+			//System.out.println("NXT Build: " + output);
 			NXTSettingsGUI.frame.setTitle("NXT's Settings (Graphic Setting's Version: \""
 					+ Storage.nxtClientSettings_SettingsVersion + "\"; Internal Build Label: \"" + output + "\")");
 

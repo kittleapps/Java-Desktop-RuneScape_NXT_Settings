@@ -547,6 +547,66 @@ public class JCache {
 						}
 						break;
 
+					case Storage.CACHE_KEY_VT_VARC_FRIENDS_LIST_DIVIDER:
+						if (rs.getInt("DATA") > NXTSettingsGUI.FriendsListDividerSlider.getMaximum()){
+							Storage.nxtClientSettings_FriendsListDivider = NXTSettingsGUI.FriendsListDividerSlider.getMaximum();
+							NXTSettingsGUI.FriendsListDividerSlider.setValue(NXTSettingsGUI.FriendsListDividerSlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.FriendsListDividerSlider.getMinimum()){
+							Storage.nxtClientSettings_FriendsListDivider = NXTSettingsGUI.FriendsListDividerSlider.getMinimum();
+							NXTSettingsGUI.FriendsListDividerSlider.setValue(NXTSettingsGUI.FriendsListDividerSlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_FriendsListDivider = rs.getInt("DATA");
+							NXTSettingsGUI.FriendsListDividerSlider.setValue(rs.getInt("DATA"));
+						}
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_FRIENDS_CHAT_LIST_DIVIDER:
+						if (rs.getInt("DATA") > NXTSettingsGUI.FriendsChatListDividerSlider.getMaximum()){
+							Storage.nxtClientSettings_FriendsChatListDivider = NXTSettingsGUI.FriendsChatListDividerSlider.getMaximum();
+							NXTSettingsGUI.FriendsChatListDividerSlider.setValue(NXTSettingsGUI.FriendsChatListDividerSlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.FriendsListDividerSlider.getMinimum()){
+							Storage.nxtClientSettings_FriendsChatListDivider = NXTSettingsGUI.FriendsChatListDividerSlider.getMinimum();
+							NXTSettingsGUI.FriendsChatListDividerSlider.setValue(NXTSettingsGUI.FriendsChatListDividerSlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_FriendsChatListDivider = rs.getInt("DATA");
+							NXTSettingsGUI.FriendsChatListDividerSlider.setValue(rs.getInt("DATA"));
+						}
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_CLAN_CHAT_LIST_DIVIDER:
+						if (rs.getInt("DATA") > NXTSettingsGUI.ClanChatListDividerSlider.getMaximum()){
+							Storage.nxtClientSettings_ClanChatListDivider = NXTSettingsGUI.ClanChatListDividerSlider.getMaximum();
+							NXTSettingsGUI.ClanChatListDividerSlider.setValue(NXTSettingsGUI.ClanChatListDividerSlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.FriendsListDividerSlider.getMinimum()){
+							Storage.nxtClientSettings_ClanChatListDivider = NXTSettingsGUI.ClanChatListDividerSlider.getMinimum();
+							NXTSettingsGUI.ClanChatListDividerSlider.setValue(NXTSettingsGUI.ClanChatListDividerSlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_ClanChatListDivider = rs.getInt("DATA");
+							NXTSettingsGUI.ClanChatListDividerSlider.setValue(rs.getInt("DATA"));
+						}
+						break;
+
+					case Storage.CACHE_KEY_VT_VARC_GUEST_CLAN_CHAT_LIST_DIVIDER:
+						if (rs.getInt("DATA") > NXTSettingsGUI.GuestClanChatListDividerSlider.getMaximum()){
+							Storage.nxtClientSettings_GuestClanChatListDivider = NXTSettingsGUI.GuestClanChatListDividerSlider.getMaximum();
+							NXTSettingsGUI.GuestClanChatListDividerSlider.setValue(NXTSettingsGUI.GuestClanChatListDividerSlider.getMaximum());
+						}
+						else if (rs.getInt("DATA") < NXTSettingsGUI.FriendsListDividerSlider.getMinimum()){
+							Storage.nxtClientSettings_GuestClanChatListDivider = NXTSettingsGUI.GuestClanChatListDividerSlider.getMinimum();
+							NXTSettingsGUI.GuestClanChatListDividerSlider.setValue(NXTSettingsGUI.GuestClanChatListDividerSlider.getMinimum());
+						}
+						else {
+							Storage.nxtClientSettings_GuestClanChatListDivider = rs.getInt("DATA");
+							NXTSettingsGUI.GuestClanChatListDividerSlider.setValue(rs.getInt("DATA"));
+						}
+						break;
+
 					case Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS:
 							Storage.nxtClientSettings_MouseOverTooltip = rs.getString("DATA").equals("1");
 							NXTSettingsGUI.InGameMouseOverPopupsCheckbox.setSelected(rs.getString("DATA").equals("1"));
@@ -980,6 +1040,18 @@ public class JCache {
 			}
 			if (History.nxtClientSettings_MouseVSensitivity != Storage.nxtClientSettings_MouseVSensitivity) {
 				Write(false,		Storage.CACHE_KEY_VT_VARC_MOUSE_V_SENSITIVITY,	Storage.nxtClientSettings_MouseVSensitivity);
+			}
+			if (History.nxtClientSettings_FriendsListDivider != Storage.nxtClientSettings_FriendsListDivider) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_FRIENDS_LIST_DIVIDER,	Storage.nxtClientSettings_FriendsListDivider);
+			}
+			if (History.nxtClientSettings_FriendsChatListDivider != Storage.nxtClientSettings_FriendsChatListDivider) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_FRIENDS_CHAT_LIST_DIVIDER,	Storage.nxtClientSettings_FriendsChatListDivider);
+			}
+			if (History.nxtClientSettings_ClanChatListDivider != Storage.nxtClientSettings_ClanChatListDivider) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_CLAN_CHAT_LIST_DIVIDER,	Storage.nxtClientSettings_ClanChatListDivider);
+			}
+			if (History.nxtClientSettings_GuestClanChatListDivider != Storage.nxtClientSettings_GuestClanChatListDivider) {
+				Write(false,		Storage.CACHE_KEY_VT_VARC_GUEST_CLAN_CHAT_LIST_DIVIDER,	Storage.nxtClientSettings_GuestClanChatListDivider);
 			}
 			if (History.nxtClientSettings_LoginMusicVolume != Storage.nxtClientSettings_LoginMusicVolume) {
 				Write(true,		"VolumeLoginMusic",	Storage.nxtClientSettings_LoginMusicVolume);

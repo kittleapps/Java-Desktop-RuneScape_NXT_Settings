@@ -46,6 +46,10 @@ public class History {
 	nxtClientSettings_WorldMapOverlays,
 	nxtClientSettings_OoOMovementSpeed,
 	nxtClientSettings_OoORotationSpeed,
+	nxtClientSettings_FriendsListDivider,
+	nxtClientSettings_FriendsChatListDivider,
+	nxtClientSettings_ClanChatListDivider,
+	nxtClientSettings_GuestClanChatListDivider,
 	nxtClientSettings_LanguageSelected,
 	nxtClientSettings_SettingsVersion,
 	FrameRate,
@@ -131,6 +135,10 @@ public static boolean
 		nxtClientSettings_WorldMapOverlays					=	Storage.nxtClientSettings_WorldMapOverlays;
 		nxtClientSettings_OoOMovementSpeed					=	Storage.nxtClientSettings_OoOMovementSpeed;
 		nxtClientSettings_OoORotationSpeed					=	Storage.nxtClientSettings_OoORotationSpeed;
+		nxtClientSettings_FriendsListDivider				=	Storage.nxtClientSettings_FriendsListDivider;
+		nxtClientSettings_FriendsChatListDivider			=	Storage.nxtClientSettings_FriendsChatListDivider;
+		nxtClientSettings_ClanChatListDivider				=	Storage.nxtClientSettings_ClanChatListDivider;
+		nxtClientSettings_GuestClanChatListDivider			=	Storage.nxtClientSettings_GuestClanChatListDivider;
 		nxtClientSettings_LanguageSelected					=	Storage.nxtClientSettings_LanguageSelected;
 
 		// User Settings (Strings)

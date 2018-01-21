@@ -95,7 +95,11 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseHSensitivitySlider,
 		InGameMouseVSensitivitySlider,
 		OoOMovementSpeedSlider,
-		OoORotationSpeedSlider;
+		OoORotationSpeedSlider,
+		FriendsListDividerSlider,
+		FriendsChatListDividerSlider,
+		ClanChatListDividerSlider,
+		GuestClanChatListDividerSlider;
 
 	public static JTextField
 		UsernameInput;
@@ -373,7 +377,7 @@ public class NXTSettingsGUI extends JFrame {
 		CustomCursorsCheckbox.setSelected(true);
 		GraphicsSettingsTab.add(CustomCursorsCheckbox);
 
-		GroundDecorationsCheckbox = new JCheckBox(String.format("%-81s", "Ground Decorations"));
+		GroundDecorationsCheckbox = new JCheckBox(String.format("%-79s", "Ground Decorations"));
 		GroundDecorationsCheckbox.setBackground(optionBackgroundColor);
 		GroundDecorationsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		GroundDecorationsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_GroundDecor = GroundDecorationsCheckbox.isSelected());
@@ -912,6 +916,58 @@ public class NXTSettingsGUI extends JFrame {
 		OoORotationSpeedSlider.setMaximum(49);
 		OoORotationSpeedSlider.setBounds(170, GetRow(6), 535, 25);
 		ControlSettingsTab.add(OoORotationSpeedSlider);
+
+		final JLabel FriendsListDividerLabel = new JLabel("Friends List Divider");
+		FriendsListDividerLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		FriendsListDividerLabel.setBounds(15, GetRow(7), 150, 25);
+		ControlSettingsTab.add(FriendsListDividerLabel);
+
+		FriendsListDividerSlider = new JSlider();
+		FriendsListDividerSlider.addChangeListener(e -> Storage.nxtClientSettings_FriendsListDivider = FriendsListDividerSlider.getValue());
+		FriendsListDividerSlider.setPaintTicks(false);
+		FriendsListDividerSlider.setMinimum(0);
+		FriendsListDividerSlider.setMaximum(350);
+		FriendsListDividerSlider.setBounds(170, GetRow(7), 535, 25);
+		ControlSettingsTab.add(FriendsListDividerSlider);
+
+		final JLabel FriendsChatListDividerLabel = new JLabel("Friends Chat Divider");
+		FriendsChatListDividerLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		FriendsChatListDividerLabel.setBounds(15, GetRow(8), 150, 25);
+		ControlSettingsTab.add(FriendsChatListDividerLabel);
+
+		FriendsChatListDividerSlider = new JSlider();
+		FriendsChatListDividerSlider.addChangeListener(e -> Storage.nxtClientSettings_FriendsChatListDivider = FriendsChatListDividerSlider.getValue());
+		FriendsChatListDividerSlider.setPaintTicks(false);
+		FriendsChatListDividerSlider.setMinimum(0);
+		FriendsChatListDividerSlider.setMaximum(350);
+		FriendsChatListDividerSlider.setBounds(170, GetRow(8), 535, 25);
+		ControlSettingsTab.add(FriendsChatListDividerSlider);
+
+		final JLabel ClanChatListDividerLabel = new JLabel("Clan Chat Divider");
+		ClanChatListDividerLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		ClanChatListDividerLabel.setBounds(15, GetRow(9), 150, 25);
+		ControlSettingsTab.add(ClanChatListDividerLabel);
+
+		ClanChatListDividerSlider = new JSlider();
+		ClanChatListDividerSlider.addChangeListener(e -> Storage.nxtClientSettings_ClanChatListDivider = ClanChatListDividerSlider.getValue());
+		ClanChatListDividerSlider.setPaintTicks(false);
+		ClanChatListDividerSlider.setMinimum(0);
+		ClanChatListDividerSlider.setMaximum(350);
+		ClanChatListDividerSlider.setBounds(170, GetRow(9), 535, 25);
+		ControlSettingsTab.add(ClanChatListDividerSlider);
+
+		final JLabel GuestClanChatListDividerLabel = new JLabel("Guest Clan Chat Divider");
+		GuestClanChatListDividerLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		GuestClanChatListDividerLabel.setBounds(15, GetRow(10), 150, 25);
+		ControlSettingsTab.add(GuestClanChatListDividerLabel);
+
+		GuestClanChatListDividerSlider = new JSlider();
+		GuestClanChatListDividerSlider.addChangeListener(e -> Storage.nxtClientSettings_GuestClanChatListDivider = GuestClanChatListDividerSlider.getValue());
+		GuestClanChatListDividerSlider.setPaintTicks(false);
+		GuestClanChatListDividerSlider.setMinimum(0);
+		GuestClanChatListDividerSlider.setMaximum(350);
+		GuestClanChatListDividerSlider.setBounds(170, GetRow(10), 535, 25);
+		ControlSettingsTab.add(GuestClanChatListDividerSlider);
 
 
 
