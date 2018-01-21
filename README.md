@@ -1,6 +1,6 @@
 # Java-Desktop-RuneScape_NXT_Settings
 **Basic Description**:
-Manually and Externally edits various NXT-Client settings offline. (no need to load the client)
+Manually and Externally edits various NXT-Client settings offline. (Removing the need to load up the client)
 - - - -
 **Beginners Notes**:
 * This program is still experimental, and may cause issues.
@@ -45,9 +45,10 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * World List menu sorting.
 * Keyboard Sensitivity changing.
 * Mouse sensitivity changing.
+* Friends, Friends Chat, Clan Chat, and Guest Clan Chat's player list divider changing.
 * World Map Overlay toggling.
 * World Map Icon resetting. (to all shown)
-* Mouse-over tooltip toggling.
+* Mouse-over/Hover-over tooltip toggling.
 * Task completed popup toggling.
 * In-Game camera Zoom changing.
   * This doesn't allow any illegal values, as it will revert to default.
@@ -67,7 +68,7 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Grabs the Internal build number from `rs2client.exe`
   * Formats to some chat formats that I use personally.
     * As-is; Or as it is in the client.
-    * Reddit-format; or \`this\` to highlight it slightly in a inline codeblock.
+    * Reddit-format; or \`this\` to highlight it slightly in a in-line codeblock.
     * Discord-format; or \`\`\`this\`\`\` for a codeblock on a new line.
 * Compatibility Mode toggling
 * Switching to Compatibility Mode on-error (or when your GPU's drivers are outdated) toggling
@@ -92,6 +93,4 @@ Manually and Externally edits various NXT-Client settings offline. (no need to l
 * Exporting & Importing your settings in Json. (sensitive information excluded)
 * Re-add support to view your UID.
 * Visually add NXT's [Build number](http://runescape.wikia.com/wiki/Build_number).
-* More options to disable.
-  * Unknown what else I could have it disable, maybe I'll throw in a few (fun/visual) Easter eggs for the Pre-Compiled variants to be surprised with.
 * Even more cleanups! (Have to stay clean!)
