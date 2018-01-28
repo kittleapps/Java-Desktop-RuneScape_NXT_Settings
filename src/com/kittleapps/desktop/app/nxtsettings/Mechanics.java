@@ -335,6 +335,18 @@ public class Mechanics {
 			break;
 		}
 	}
+
+	public static void CheckWorldMapIcons(){
+		for (Object[] Icon : Storage.WorldMapIcons) {
+				Storage.WorldMapIconStorage[(int)Icon[0]] = Storage.WorldMapIconStorage[(int)Icon[0]] = -1;
+		}
+		for (Object[] Icon : Storage.WorldMapIcons) {
+			if (! (boolean) Icon[1]) {
+				Storage.WorldMapIconStorage[(int)Icon[0]] = Storage.WorldMapIconStorage[(int)Icon[0]] += ((int)Icon[3]+1);
+			}
+		}
+	}
+
 	public static void CheckSizing(){
 		if (Storage.nxtGraphicsSetting_ScreenSizingMode != -1 && Storage.nxtGraphicsSetting_ResizableResolution != -1){
 			if (Storage.nxtGraphicsSetting_ScreenSizingMode <= 2){

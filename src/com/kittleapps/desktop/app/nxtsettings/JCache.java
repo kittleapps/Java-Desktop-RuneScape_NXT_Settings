@@ -1080,13 +1080,14 @@ public class JCache {
 			if (History.nxtClientSettings_WorldMapOverlays != Storage.nxtClientSettings_WorldMapOverlays) {
 				Write(false, Storage.CACHE_KEY_VT_VARC_WORLD_MAP_OVERLAYS,	Storage.nxtClientSettings_WorldMapOverlays);
 			}
-			if (NXTSettingsGUI.ShowAllWorldMapIconsCheckbox.isSelected()) {
-				Write(false, "3928",	-1);
-				Write(false, "3929",	-1);
-				Write(false, "3930",	-1);
-				Write(false, "3931",	-1);
-				Write(false, "3932",	-1);
-			}
+			
+			Mechanics.CheckWorldMapIcons();
+			Write(false, "3928",	Storage.WorldMapIconStorage[0]);
+			Write(false, "3929",	Storage.WorldMapIconStorage[1]);
+			Write(false, "3930",	Storage.WorldMapIconStorage[2]);
+			Write(false, "3931",	Storage.WorldMapIconStorage[3]);
+			Write(false, "3932",	Storage.WorldMapIconStorage[4]);
+
 			if (History.nxtClientSettings_OoOMovementSpeed != Storage.nxtClientSettings_OoOMovementSpeed) {
 				Write(false, Storage.CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED,	Storage.nxtClientSettings_OoOMovementSpeed);
 			}

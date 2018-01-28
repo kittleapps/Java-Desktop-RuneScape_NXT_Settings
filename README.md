@@ -47,7 +47,8 @@ Manually and Externally edits various NXT-Client settings offline. (Removing the
 * Mouse sensitivity changing.
 * Friends, Friends Chat, Clan Chat, and Guest Clan Chat's player list divider changing.
 * World Map Overlay toggling.
-* World Map Icon resetting. (to all shown)
+* World Map Icon Editing.
+  * This defaults to all icons shown unless you specify otherwise.
 * Mouse-over/Hover-over tooltip toggling.
 * Task completed popup toggling.
 * In-Game camera Zoom changing.
