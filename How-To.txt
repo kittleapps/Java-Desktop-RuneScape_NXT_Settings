@@ -1,0 +1,71 @@
+How-To Install/Run premade copies:
+
+* Install Oracle's Java JRE 8 (1.8.#) from: https://java.com/en/download/manual.jsp
+* Download "NXTSettingsGUI.jar" from: https://github.com/kittleapps/Java-Desktop-RuneScape_NXT_Settings/releases/latest
+* When downloaded make sure:
+  * NXT is installed from: https://www.runescape.com/download
+  * NXT has been ran at least once.
+  * NXT has completed the graphics Auto Setup at least once.
+* Double-Click "NXTSettingsGUI.jar" and it should run.
+  * Alternatively you can use a terminal/command prompt of your choice and use the command:
+    * `javaw (path to NXTSettingsGUI.jar here)`
+  * You can make a shortcut with the alternative method to pin this program to your start menu and taskbar on windows.
+
+
+How-To Compile+Run (Eclipse):
+
+* Make sure:
+  * NXT is installed from: https://www.runescape.com/download
+  * NXT has been ran at least once.
+  * NXT has completed the graphics Auto Setup at least once.
+* Download Oracle's Java JDK 8 (1.8) Here: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+  * This should install the JRE, otherwise download JRE 8 (1.8) from: https://java.com/en/download/manual.jsp
+* Download `Eclipse IDE for Java Developers` from: https://www.eclipse.org/downloads/eclipse-packages/
+  * Extract the `.zip` eclipse folder to any path you prefer to enter into, as this isn't an installer.
+  * Copy and Paste a shortcut of `eclipse.exe` to your desktop for easy access.
+* Load Eclipse
+  * You may be asked to create a default workplace. For most people the default options should be suffice.
+* When loaded you should be welcomed with a screen with a `Checkout projects from Git` option.
+* Select the `Clone URL` Option when it asked for the repository source.
+  * Click `Next >`
+* In the `URL` field under `Location` enter: https://github.com/kittleapps/Java-Desktop-RuneScape_NXT_Settings.git
+  * Click `Next >`
+  * Click `Next >`
+  * Click `Finish`
+* The screen should now change to the `java perspective`, this means you're ready to start.
+* Open the file `NXTSettingsGUI.java` in the Package Explorer in the project `Java-Desktop-RuneScape_NXT_Settings`.
+* Click Run.
+  * Alternatively, use the default keybind `CTRL`+`F11`
+* Assuming NXT Has been Installed, Ran, and Auto Setup was completed at least once..
+  This program should read all your current settings and allow writing of new ones.
+
+
+
+How-To Edit these settings manually:
+
+* Make sure:
+  * NXT is installed from: https://www.runescape.com/download
+  * NXT has been ran at least once.
+  * NXT has completed the graphics Auto Setup at least once.
+* Download and install a SQLite Editor like: http://sqlitebrowser.org/
+* Open: `C:/ProgramData/Jagex/launcher/preferences.cfg` with your preferred Text-Editor.
+  * `~/Jagex/launcher/preferences.cfg` for Linux users. (idk for Mac)
+* Goto the path located with the line: `user_folder=` in your preferred file browser.
+* Right-Click `Settings.Jcache` and open it with your SQLite 3 Editor.
+* Assuming you used the Editor i mentioned, go in the `Browse Data` tab.
+* Under the Table `Config` will be your basic settings in label-format.
+  * These are only written to when the client is closed.
+* Under the Table `console` is your Developer Console history.
+  * These are limited to 100 values, normally.
+* Under the table `player` is your last logged in Character's UID for the client to use.
+  * These values are the same per-account, last i noticed.
+* Under the Table `vt-varc` is a big list of settings for the client.
+  * This includes, but not limtied to:
+    * Your Username
+	* Saved favourite worlds
+	* World map settings
+	* Emote+Music Sorting preferences
+	* Wallpaper settings
+	* and more.
+* When you finish editing the values you want, Write Changes.
+* Upon the next NXT Reload, these settings will apply.
