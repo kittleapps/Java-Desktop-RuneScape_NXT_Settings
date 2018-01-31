@@ -3,9 +3,11 @@ package com.kittleapps.desktop.app.nxtsettings;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -28,6 +30,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Cursor;
 
 public class NXTSettingsGUI extends JFrame {
 	private static final long serialVersionUID = -4228920598014351419L;
@@ -235,7 +238,18 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
 
-
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		System.out.println(""+classloader.getResource("Default_cursor.png").getPath());
+		Image DefaultCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Default_cursor.png")),
+			  HResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(horizontal)_cursor.png")),
+			  VResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(vertical)_cursor.png"));
+		Cursor DefaultCursor = Cursor.getDefaultCursor(), HResizeCursor = Cursor.getDefaultCursor(), VResizeCursor = Cursor.getDefaultCursor();
+		final Point DefaultCursorHotspot = new Point(0, 0);
+		final Point ResizeCursorHotspot = new Point(15, 15);
+		DefaultCursor = Toolkit.getDefaultToolkit().createCustomCursor(DefaultCursorImg, DefaultCursorHotspot, "DefaultCursor");
+		HResizeCursor = Toolkit.getDefaultToolkit().createCustomCursor(HResizeCursorImg, ResizeCursorHotspot, "HResizeCursor");
+		VResizeCursor = Toolkit.getDefaultToolkit().createCustomCursor(VResizeCursorImg, ResizeCursorHotspot, "VResizeCursor");
+		this.setCursor(DefaultCursor);
 
 		/* Left Graphics Settings */
 
@@ -253,7 +267,7 @@ public class NXTSettingsGUI extends JFrame {
 		BrightnessSlider.setMaximum(4);
 		BrightnessSlider.setPaintTicks(true);
 		BrightnessSlider.setBounds(165, GetRow(0), 175, 25);
-		BrightnessSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		BrightnessSlider.setCursor(HResizeCursor);
 		BrightnessSlider.setBackground(optionBackgroundColor);
 		GraphicsSettingsTab.add(BrightnessSlider);
 
@@ -859,7 +873,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameCameraZoomSlider.setMaximum(7600);
 		InGameCameraZoomSlider.setPaintTicks(false);
 		InGameCameraZoomSlider.setBounds(170, GetRow(0), 535, 25);
-		InGameCameraZoomSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameCameraZoomSlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(InGameCameraZoomSlider);
 
 		final JLabel InGameKeyboardHSensitivityLabel = new JLabel("Keyboard Sensitivity (H)");
@@ -874,7 +888,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameKeyboardHSensitivitySlider.setMaximum(250);
 		InGameKeyboardHSensitivitySlider.setPaintTicks(false);
 		InGameKeyboardHSensitivitySlider.setBounds(170, GetRow(1), 535, 25);
-		InGameKeyboardHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameKeyboardHSensitivitySlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(InGameKeyboardHSensitivitySlider);
 
 		final JLabel InGameKeyboardVSensitivityLabel = new JLabel("Keyboard Sensitivity (V)");
@@ -889,7 +903,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameKeyboardVSensitivitySlider.setMaximum(200);
 		InGameKeyboardVSensitivitySlider.setPaintTicks(false);
 		InGameKeyboardVSensitivitySlider.setBounds(170, GetRow(2), 535, 25);
-		InGameKeyboardVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameKeyboardVSensitivitySlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(InGameKeyboardVSensitivitySlider);
 
 		final JLabel InGameMouseHSensitivityLabel = new JLabel("Mouse Sensitivity (H)");
@@ -904,7 +918,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseHSensitivitySlider.setMaximum(24);
 		InGameMouseHSensitivitySlider.setPaintTicks(false);
 		InGameMouseHSensitivitySlider.setBounds(170, GetRow(3), 535, 25);
-		InGameMouseHSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameMouseHSensitivitySlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(InGameMouseHSensitivitySlider);
 
 
@@ -920,7 +934,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseVSensitivitySlider.setMaximum(22);
 		InGameMouseVSensitivitySlider.setPaintTicks(false);
 		InGameMouseVSensitivitySlider.setBounds(170, GetRow(4), 535, 25);
-		InGameMouseVSensitivitySlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameMouseVSensitivitySlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(InGameMouseVSensitivitySlider);
 
 		final JLabel OoORotationMovementLabel = new JLabel("Freecam Move Speed");
@@ -935,6 +949,7 @@ public class NXTSettingsGUI extends JFrame {
 		OoOMovementSpeedSlider.setMinimum(64);
 		OoOMovementSpeedSlider.setMaximum(511);
 		OoOMovementSpeedSlider.setBounds(170, GetRow(5), 535, 25);
+		OoOMovementSpeedSlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(OoOMovementSpeedSlider);
 
 		final JLabel OoORotationSpeedLabel = new JLabel("Freecam Rotation Speed");
@@ -949,6 +964,7 @@ public class NXTSettingsGUI extends JFrame {
 		OoORotationSpeedSlider.setMinimum(1);
 		OoORotationSpeedSlider.setMaximum(49);
 		OoORotationSpeedSlider.setBounds(170, GetRow(6), 535, 25);
+		OoORotationSpeedSlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(OoORotationSpeedSlider);
 
 		final JLabel FriendsListDividerLabel = new JLabel("Friends List Divider");
@@ -962,6 +978,7 @@ public class NXTSettingsGUI extends JFrame {
 		FriendsListDividerSlider.setMinimum(0);
 		FriendsListDividerSlider.setMaximum(350);
 		FriendsListDividerSlider.setBounds(170, GetRow(7), 535, 25);
+		FriendsListDividerSlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(FriendsListDividerSlider);
 
 		final JLabel FriendsChatListDividerLabel = new JLabel("Friends Chat Divider");
@@ -975,6 +992,7 @@ public class NXTSettingsGUI extends JFrame {
 		FriendsChatListDividerSlider.setMinimum(0);
 		FriendsChatListDividerSlider.setMaximum(350);
 		FriendsChatListDividerSlider.setBounds(170, GetRow(8), 535, 25);
+		FriendsChatListDividerSlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(FriendsChatListDividerSlider);
 
 		final JLabel ClanChatListDividerLabel = new JLabel("Clan Chat Divider");
@@ -988,6 +1006,7 @@ public class NXTSettingsGUI extends JFrame {
 		ClanChatListDividerSlider.setMinimum(0);
 		ClanChatListDividerSlider.setMaximum(350);
 		ClanChatListDividerSlider.setBounds(170, GetRow(9), 535, 25);
+		ClanChatListDividerSlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(ClanChatListDividerSlider);
 
 		final JLabel GuestClanChatListDividerLabel = new JLabel("Guest Clan Chat Divider");
@@ -1001,6 +1020,7 @@ public class NXTSettingsGUI extends JFrame {
 		GuestClanChatListDividerSlider.setMinimum(0);
 		GuestClanChatListDividerSlider.setMaximum(350);
 		GuestClanChatListDividerSlider.setBounds(170, GetRow(10), 535, 25);
+		GuestClanChatListDividerSlider.setCursor(HResizeCursor);
 		ControlSettingsTab.add(GuestClanChatListDividerSlider);
 
 
@@ -1020,7 +1040,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoginMusicSlider.setMaximum(255);
 		LoginMusicSlider.setPaintTicks(false);
 		LoginMusicSlider.setBounds(170, GetRow(0), 535, 25);
-		LoginMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		LoginMusicSlider.setCursor(HResizeCursor);
 		AudioSettingsTab.add(LoginMusicSlider);
 
 		final JLabel InGameMusicLabel = new JLabel("Game Music Volume");
@@ -1034,7 +1054,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMusicSlider.setMaximum(255);
 		InGameMusicSlider.setPaintTicks(false);
 		InGameMusicSlider.setBounds(170, GetRow(1), 535, 25);
-		InGameMusicSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameMusicSlider.setCursor(HResizeCursor);
 		AudioSettingsTab.add(InGameMusicSlider);
 
 		final JLabel InGameSoundEffectsLabel = new JLabel("Sound Effect Volume");
@@ -1048,7 +1068,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameSoundEffectsSlider.setMaximum(127);
 		InGameSoundEffectsSlider.setPaintTicks(false);
 		InGameSoundEffectsSlider.setBounds(170, GetRow(2), 535, 25);
-		InGameSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameSoundEffectsSlider.setCursor(HResizeCursor);
 		AudioSettingsTab.add(InGameSoundEffectsSlider);
 
 		final JLabel InGameAmbientSoundEffectsLabel = new JLabel("Ambient Sound Volume");
@@ -1062,7 +1082,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameAmbientSoundEffectsSlider.setMaximum(127);
 		InGameAmbientSoundEffectsSlider.setPaintTicks(false);
 		InGameAmbientSoundEffectsSlider.setBounds(170, GetRow(3), 535, 25);
-		InGameAmbientSoundEffectsSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameAmbientSoundEffectsSlider.setCursor(HResizeCursor);
 		AudioSettingsTab.add(InGameAmbientSoundEffectsSlider);
 
 		final JLabel InGameVoiceOverLabel = new JLabel("Voice Over Volume");
@@ -1076,7 +1096,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameVoiceOverSlider.setMaximum(127);
 		InGameVoiceOverSlider.setPaintTicks(false);
 		InGameVoiceOverSlider.setBounds(170, GetRow(4), 535, 25);
-		InGameVoiceOverSlider.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.MOVE_CURSOR));
+		InGameVoiceOverSlider.setCursor(HResizeCursor);
 		AudioSettingsTab.add(InGameVoiceOverSlider);
 
 		final JLabel InGameMusicSortingLabel = new JLabel("Music Track Sorting");
@@ -1249,6 +1269,7 @@ public class NXTSettingsGUI extends JFrame {
 		DeveloperConsoleHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		DeveloperConsoleHistoryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         final JScrollPane pane = new JScrollPane(DeveloperConsoleHistoryTable);
+        pane.getVerticalScrollBar().setCursor(VResizeCursor);
         pane.setBounds(15, 85, 685, 440);
 		SpecialMechanicsTab.add(pane);
 		for(int i = 0; i < 100; i++){
