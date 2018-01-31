@@ -7,7 +7,7 @@ Manually and Externally edits various NXT-Client settings offline. (Removing the
 
 **How-To Install/Use/Compile this program**:
 
-See [Here](https://github.com/kittleapps/Java-Desktop-RuneScape_NXT_Settings/blob/master/Hot-To.txt) for general installation, running, and compiling instructions.
+See [Here](https://raw.githubusercontent.com/kittleapps/Java-Desktop-RuneScape_NXT_Settings/master/How-To.txt) for general installation, running, and compiling instructions.
 
 - - - -
 
