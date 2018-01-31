@@ -1,26 +1,33 @@
 # Java-Desktop-RuneScape_NXT_Settings
 **Basic Description**:
+
 Manually and Externally edits various NXT-Client settings offline. (Removing the need to load up the client)
+
 - - - -
+
+**How-To Install/Use/Compile this program**:
+
+See [Here](https://github.com/kittleapps/Java-Desktop-RuneScape_NXT_Settings/blob/master/Hot-To.txt) for general installation, running, and compiling instructions.
+
+- - - -
+
 **Beginners Notes**:
 * This program is still experimental, and may cause issues.
 * Not all functions in this program act as-if on the client.
-* Not all of these functions may comply to Jagex's ToS (e.g. boosting the volumes)
+* Not all of these functions may comply to Jagex's ToS (e.g. Enabling Hidden settings)
 * This program can become obsolete in any NXT update, I will try to update when I feel up-to it/have time.
 * This program does **NOT** Collect user information outside the program. 
   * Meaning, what's read by the program, stays in the program.
     * Except what's saved in the `Settings.jcache` if you allowed it to write.
   * Nothing is sent outside the program, and can be ran purely offline.
-    * Nothing in the program uses internet anyways..
   * **ANY** of the program's sensitive contents clear once the program is closed.
     * When writing the username saved is cleared automatically.
     * There's no persistent log/data file being stored. (other then Jagex's `Settings.jcache` of course)
   * Your username and UID will **NOT** be taken/stolen.
-    * Straps on a tin-foil hat to reply: `You can check the source code here if you still don't believe me.`
-  * **NO** Pre-compiled versions will be made, due to the above points. (people get paranoia, and point fingers)
-    * Okay.. I made some Pre-compiled versions.. But that was because I got tired of "How do I build this?" questions. (Standard "Use at your own risk." Disclaimer here, despite no risks at all..)
 - - - -
+
 **Current Features**:
+
 * All current graphics settings options.
   * Depth of Field is currently just a placeholder.
   * Game Render and Interface/UI Scaling options are added. They are live, but currently their options are not.
@@ -89,9 +96,3 @@ Manually and Externally edits various NXT-Client settings offline. (Removing the
     * `DEVELOPER_READ_ONLY_CACHE`, which as it may seem it prevents the settings from being written once changed. This will make the program a basic read-only program to view your settings offline, without worrying about it being overwritten.
     * `DEVELOPER_ALWAYS_STAY_ON_TOP`, which makes the program always stay on top other windows. This option will render the toggle useless.
     * `DEVELOPER_ALWAYS_START_ON_TOP`, which works similar to `DEVELOPER_ALWAYS_STAY_ON_TOP` but allows the use of the toggle.
-- - - -
-**TO-DO**:
-* Exporting & Importing your settings in Json. (sensitive information excluded)
-* Re-add support to view your UID.
-* Visually add NXT's [Build number](http://runescape.wikia.com/wiki/Build_number).
-* Even more cleanups! (Have to stay clean!)
