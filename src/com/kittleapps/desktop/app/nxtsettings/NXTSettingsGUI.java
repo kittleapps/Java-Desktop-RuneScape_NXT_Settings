@@ -1,13 +1,13 @@
 package com.kittleapps.desktop.app.nxtsettings;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -30,102 +30,101 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Cursor;
 
 public class NXTSettingsGUI extends JFrame {
 	private static final long serialVersionUID = -4228920598014351419L;
 	public static JCheckBox
-		FlickeringEffectsCheckbox,
-		ShadowsCheckbox,
-		CustomCursorsCheckbox,
-		LoadingScreensCheckbox,
-		GroundDecorationsCheckbox,
-		TerrainBlendingCheckbox,
-		HeatHazeCheckbox,
-		RememberUsernameCheckbox,
-		RandomizeLoginWallpaperCheckbox,
-		HoverOverTextCheckbox,
-		LoopCurrentMusicTrackCheckbox,
-		InGameMouseOverPopupsCheckbox,
-		InGameTaskPopupsCheckbox,
-		MinimizeMainAbilityBarCheckBox,
-		CompatibilityModeCheckBox,
-		CompatibilityModeOnErrorCheckBox,
-		AskBeforeQuittingCheckBox,
-		ShowSensitiveInformation,
-		AllowWritingCheckbox,
-		GraphicsPresets;
+	FlickeringEffectsCheckbox,
+	ShadowsCheckbox,
+	CustomCursorsCheckbox,
+	LoadingScreensCheckbox,
+	GroundDecorationsCheckbox,
+	TerrainBlendingCheckbox,
+	HeatHazeCheckbox,
+	RememberUsernameCheckbox,
+	RandomizeLoginWallpaperCheckbox,
+	HoverOverTextCheckbox,
+	LoopCurrentMusicTrackCheckbox,
+	InGameMouseOverPopupsCheckbox,
+	InGameTaskPopupsCheckbox,
+	MinimizeMainAbilityBarCheckBox,
+	CompatibilityModeCheckBox,
+	CompatibilityModeOnErrorCheckBox,
+	AskBeforeQuittingCheckBox,
+	ShowSensitiveInformation,
+	AllowWritingCheckbox,
+	GraphicsPresets;
 
 	public static JComboBox<Object>
-		RemoveRoofsComboBox,
-		DrawDistanceComboBox,
-		ShadowQualityComboBox,
-		VSyncComboBox,
-		AntiAliasingModeComboBox,
-		AntiAliasingQualityComboBox,
-		WaterQualityComboBox,
-		LightingDetailComboBox,
-		AmbientOcclusionComboBox,
-		BloomQualityComboBox,
-		DepthOfFieldComboBox,
-		TextureQualityComboBox,
-		AnisotropicFilteringComboBox,
-		VolumetricLightingComboBox,
-		MaxForegroundFpsComboBox,
-		MaxBackgroundFpsComboBox,
-		ScreenSizingModeComboBox,
-		UIScalingComboBox,
-		GameWorldScalingComboBox,
-		LoginWallpaperIDComboBox,
-		InGameWorldSortingComboBox,
-		FavouriteWorld1ComboBox,
-		FavouriteWorld2ComboBox,
-		FavouriteWorld3ComboBox,
-		InGameMusicSortingComboBox,
-		InGameEmoteSortingComboBox,
-		WorldMapOverlayComboBox,
-		LanguageSelectionComboBox;
+	RemoveRoofsComboBox,
+	DrawDistanceComboBox,
+	ShadowQualityComboBox,
+	VSyncComboBox,
+	AntiAliasingModeComboBox,
+	AntiAliasingQualityComboBox,
+	WaterQualityComboBox,
+	LightingDetailComboBox,
+	AmbientOcclusionComboBox,
+	BloomQualityComboBox,
+	DepthOfFieldComboBox,
+	TextureQualityComboBox,
+	AnisotropicFilteringComboBox,
+	VolumetricLightingComboBox,
+	MaxForegroundFpsComboBox,
+	MaxBackgroundFpsComboBox,
+	ScreenSizingModeComboBox,
+	UIScalingComboBox,
+	GameWorldScalingComboBox,
+	LoginWallpaperIDComboBox,
+	InGameWorldSortingComboBox,
+	FavouriteWorld1ComboBox,
+	FavouriteWorld2ComboBox,
+	FavouriteWorld3ComboBox,
+	InGameMusicSortingComboBox,
+	InGameEmoteSortingComboBox,
+	WorldMapOverlayComboBox,
+	LanguageSelectionComboBox;
 
 	public static JSlider
-		BrightnessSlider,
-		LoginMusicSlider,
-		InGameMusicSlider,
-		InGameSoundEffectsSlider,
-		InGameAmbientSoundEffectsSlider,
-		InGameVoiceOverSlider,
-		InGameCameraZoomSlider,
-		InGameKeyboardHSensitivitySlider,
-		InGameKeyboardVSensitivitySlider,
-		InGameMouseHSensitivitySlider,
-		InGameMouseVSensitivitySlider,
-		OoOMovementSpeedSlider,
-		OoORotationSpeedSlider,
-		FriendsListDividerSlider,
-		FriendsChatListDividerSlider,
-		ClanChatListDividerSlider,
-		GuestClanChatListDividerSlider;
+	BrightnessSlider,
+	LoginMusicSlider,
+	InGameMusicSlider,
+	InGameSoundEffectsSlider,
+	InGameAmbientSoundEffectsSlider,
+	InGameVoiceOverSlider,
+	InGameCameraZoomSlider,
+	InGameKeyboardHSensitivitySlider,
+	InGameKeyboardVSensitivitySlider,
+	InGameMouseHSensitivitySlider,
+	InGameMouseVSensitivitySlider,
+	OoOMovementSpeedSlider,
+	OoORotationSpeedSlider,
+	FriendsListDividerSlider,
+	FriendsChatListDividerSlider,
+	ClanChatListDividerSlider,
+	GuestClanChatListDividerSlider;
 
 	public static JTextField
-		UsernameInput;
+	UsernameInput;
 
 	public static JButton
-		MinimumGraphicsPresetButton,
-		LowGraphicsPresetButton,
-		MediumGraphicsPresetButton,
-		HighGraphicsPresetButton,
-		UltraGraphicsPresetButton,
-		MaxedGraphicsPresetButton,
-		WikianGraphicsPresetButton,
-		RedditGraphicsPresetButton,
-		WorldMapIconSelectionButton,
-		AddSpriteFlagToUsername,
-		AddColourFlagToUsername,
-		GrabInternalBuildLabel,
-		ClearConsole,
-		PlayerConsole,
-		JagexConsole,
-		ReadSettings,
-		WriteSettings;
+	MinimumGraphicsPresetButton,
+	LowGraphicsPresetButton,
+	MediumGraphicsPresetButton,
+	HighGraphicsPresetButton,
+	UltraGraphicsPresetButton,
+	MaxedGraphicsPresetButton,
+	WikianGraphicsPresetButton,
+	RedditGraphicsPresetButton,
+	WorldMapIconSelectionButton,
+	AddSpriteFlagToUsername,
+	AddColourFlagToUsername,
+	GrabInternalBuildLabel,
+	ClearConsole,
+	PlayerConsole,
+	JagexConsole,
+	ReadSettings,
+	WriteSettings;
 
 	private static Color backgroundColour = new Color(45, 45, 45), optionBackgroundColor = new Color (40, 40, 40);
 
@@ -135,11 +134,11 @@ public class NXTSettingsGUI extends JFrame {
 		if (!Runtime.class.getPackage().getImplementationVersion().startsWith("1.8.") && !Runtime.class.getPackage().getImplementationVersion().startsWith("1.7.")){
 			System.out.println("JRE was not Oracle's JRE 7/8 (1.7/1.8); Abort functioning until internal bugs are fixed.");
 			JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "<html>This program is tested and stable on Oracle JRE 8 (JRE 1.8)"+
-																"<br><br>"+
-																"Please use that version for the time being until I fix some issues on JRE 9 (JRE 1.9)<br>"+
-																"This version currently isn't compatible with OpenJRE variants."+
-																"<br><br>"+
-																"Thank you. -Sudo Bash =)");
+					"<br><br>"+
+					"Please use that version for the time being until I fix some issues on JRE 9 (JRE 1.9)<br>"+
+					"This version currently isn't compatible with OpenJRE variants."+
+					"<br><br>"+
+					"Thank you. -Sudo Bash =)");
 			System.exit(0);
 		}
 		EventQueue.invokeLater(() -> {
@@ -194,9 +193,9 @@ public class NXTSettingsGUI extends JFrame {
 					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "Always-on-top is now enabled.");
 				}
 			}	else {
-					frame.setAlwaysOnTop(true);
-					JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The program option 'DEVELOPER_ALWAYS_STAY_ON_TOP' is currently enabled.\n\n" +
-																		"You will not be able to toggle Always-on-Top at this time.");
+				frame.setAlwaysOnTop(true);
+				JOptionPane.showMessageDialog(NXTSettingsGUI.frame, "The program option 'DEVELOPER_ALWAYS_STAY_ON_TOP' is currently enabled.\n\n" +
+						"You will not be able to toggle Always-on-Top at this time.");
 			}
 		});
 		FileMenu.add(FileMenuAlwaysOnTop);
@@ -238,11 +237,11 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		SpecialMechanicsTab.setLayout(null);
 
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		System.out.println(""+classloader.getResource("Default_cursor.png").getPath());
-		Image DefaultCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Default_cursor.png")),
-			  HResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(horizontal)_cursor.png")),
-			  VResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(vertical)_cursor.png"));
+		final Image DefaultCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Default_cursor.png")),
+				HResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(horizontal)_cursor.png")),
+				VResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(vertical)_cursor.png"));
 		Cursor DefaultCursor = Cursor.getDefaultCursor(), HResizeCursor = Cursor.getDefaultCursor(), VResizeCursor = Cursor.getDefaultCursor();
 		final Point DefaultCursorHotspot = new Point(0, 0);
 		final Point ResizeCursorHotspot = new Point(15, 15);
@@ -377,7 +376,7 @@ public class NXTSettingsGUI extends JFrame {
 		DepthOfFieldLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		DepthOfFieldLabel.setBounds(15, GetRow(9), 150, 25);
 		GraphicsSettingsTab.add(DepthOfFieldLabel);
-		
+
 		DepthOfFieldComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[10]);
 		DepthOfFieldComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		DepthOfFieldComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_DepthOfField = ((DepthOfFieldComboBox.getSelectedIndex()*5)+35));
@@ -539,7 +538,7 @@ public class NXTSettingsGUI extends JFrame {
 		ScreensizingModeLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		ScreensizingModeLabel.setBounds(378, GetRow(9), 150, 25);
 		GraphicsSettingsTab.add(ScreensizingModeLabel);
-		
+
 		ScreenSizingModeComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[21]);
 		ScreenSizingModeComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		ScreenSizingModeComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_ScreenSizingMode = ((ScreenSizingModeComboBox.getSelectedIndex()*5)+35));
@@ -684,7 +683,7 @@ public class NXTSettingsGUI extends JFrame {
 		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RememberUsernameCheckbox);
 
-		Object[] WORLDS = new Object[256];
+		final Object[] WORLDS = new Object[256];
 		for (int i = 1; i < WORLDS.length; i++){
 			WORLDS[i] = i;
 		}
@@ -694,7 +693,7 @@ public class NXTSettingsGUI extends JFrame {
 		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 11));
 		FavouriteWorld1Label.setBounds(15, GetRow(1), 150, 25);
 		ClientSettingsTab.add(FavouriteWorld1Label);
-		
+
 		FavouriteWorld1ComboBox = new JComboBox<>(WORLDS);
 		FavouriteWorld1ComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		FavouriteWorld1ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld1 = (FavouriteWorld1ComboBox.getSelectedIndex()));
@@ -761,7 +760,7 @@ public class NXTSettingsGUI extends JFrame {
 		EmoteSelectionLabel.setBounds(440, GetRow(3), 130, 25);
 		EmoteSelectionLabel.setLabelFor(LanguageSelectionComboBox);
 		ClientSettingsTab.add(EmoteSelectionLabel);
-		
+
 		InGameEmoteSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[20]);
 		InGameEmoteSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		InGameEmoteSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_EmoteSorting = InGameEmoteSortingComboBox.getSelectedIndex());
@@ -783,12 +782,7 @@ public class NXTSettingsGUI extends JFrame {
 		WorldMapIconSelectionButton.setToolTipText("Load up the GUI to manually select from multiple World Map icons to display on the screen.");
 		WorldMapIconSelectionButton.setFont(new Font("Dialog", Font.PLAIN, 11));
 		WorldMapIconSelectionButton.setBounds(440, GetRow(4), 265, 25);
-		WorldMapIconSelectionButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				new NXTWorldMapSelectionGUI();
-			}
-		});
+		WorldMapIconSelectionButton.addActionListener(arg0 -> new NXTWorldMapSelectionGUI());
 		ClientSettingsTab.add(WorldMapIconSelectionButton);
 
 		final JLabel MiscTogglesLabel = new JLabel("ToggleScape Toggles");
@@ -1206,21 +1200,21 @@ public class NXTSettingsGUI extends JFrame {
 		JagexConsole.setToolTipText(Storage.POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP);
 		JagexConsole.setFont(new Font("Dialog", Font.PLAIN, 11));
 		JagexConsole.addActionListener(e -> {
-				if (DeveloperConsoleHistoryTable.isShowing()){
-					DeveloperConsoleHistoryTable.clearSelection();
-				}
+			if (DeveloperConsoleHistoryTable.isShowing()){
+				DeveloperConsoleHistoryTable.clearSelection();
+			}
 
-				if (DeveloperConsoleHistoryTable.isEditing()){
-					DeveloperConsoleHistoryTable.getCellEditor().cancelCellEditing();
-				}
+			if (DeveloperConsoleHistoryTable.isEditing()){
+				DeveloperConsoleHistoryTable.getCellEditor().cancelCellEditing();
+			}
 
-				for(int i = 0; i < 100; i++){
-					DeveloperConsoleHistoryTable.setValueAt("", i, 1);
-				}
+			for(int i = 0; i < 100; i++){
+				DeveloperConsoleHistoryTable.setValueAt("", i, 1);
+			}
 
-				for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[1].length; i++){
-					DeveloperConsoleHistoryTable.setValueAt(Storage.DEVELOPER_CONSOLE_COMMANDS[1][i], i, 1);
-				}
+			for (int i = 0; i < Storage.DEVELOPER_CONSOLE_COMMANDS[1].length; i++){
+				DeveloperConsoleHistoryTable.setValueAt(Storage.DEVELOPER_CONSOLE_COMMANDS[1][i], i, 1);
+			}
 		});
 		JagexConsole.setBounds(475, 50, 225, 25);
 		SpecialMechanicsTab.add(JagexConsole);
@@ -1228,24 +1222,24 @@ public class NXTSettingsGUI extends JFrame {
 		DeveloperConsoleHistoryTable = new JTable();
 		DeveloperConsoleHistoryTable.setFont(new Font("Dialog", Font.PLAIN, 12));
 		DeveloperConsoleHistoryTable.setModel(new DefaultTableModel(
-			new Object[100][2],
-			new String[] {
-				"ID",
-				"Developer Console History"
-			}
-			){
+				new Object[100][2],
+				new String[] {
+						"ID",
+						"Developer Console History"
+				}
+				){
 
 			/**
-				 *
-				 */
-				private static final long serialVersionUID = -4520056399939983074L;
+			 *
+			 */
+			private static final long serialVersionUID = -4520056399939983074L;
 
 			@Override
 			public boolean isCellEditable(final int rowIndex, final int columnIndex) {
 				if (columnIndex == 1){
 					return true;
 				}
-			    return false;
+				return false;
 			}
 		});
 		DeveloperConsoleHistoryTable.getColumnModel().getColumn(0).setMinWidth(30);
@@ -1256,21 +1250,21 @@ public class NXTSettingsGUI extends JFrame {
 		DeveloperConsoleHistoryTable.setDragEnabled(false);
 		DeveloperConsoleHistoryTable.getTableHeader().setToolTipText(
 				"<html>" +
-				"The ordering of these values are from newest to oldest.<br>" +
-				"<br>" +
-				"This means the first command listed will be the first commands<br>" +
-				"shown when you hit Page-Up key while using the Developer Console.<br>" +
-				"<br>" +
-				"Due to client limitations only the last 100 commands used will be shown in this table."
+						"The ordering of these values are from newest to oldest.<br>" +
+						"<br>" +
+						"This means the first command listed will be the first commands<br>" +
+						"shown when you hit Page-Up key while using the Developer Console.<br>" +
+						"<br>" +
+						"Due to client limitations only the last 100 commands used will be shown in this table."
 				);
 		DeveloperConsoleHistoryTable.getTableHeader().setReorderingAllowed(false);
 		DeveloperConsoleHistoryTable.getTableHeader().setResizingAllowed(false);
 		DeveloperConsoleHistoryTable.setFillsViewportHeight(true);
 		DeveloperConsoleHistoryTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		DeveloperConsoleHistoryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        final JScrollPane pane = new JScrollPane(DeveloperConsoleHistoryTable);
-        pane.getVerticalScrollBar().setCursor(VResizeCursor);
-        pane.setBounds(15, 85, 685, 440);
+		final JScrollPane pane = new JScrollPane(DeveloperConsoleHistoryTable);
+		pane.getVerticalScrollBar().setCursor(VResizeCursor);
+		pane.setBounds(15, 85, 685, 440);
 		SpecialMechanicsTab.add(pane);
 		for(int i = 0; i < 100; i++){
 			DeveloperConsoleHistoryTable.setValueAt(i+1, i, 0);
@@ -1338,7 +1332,7 @@ public class NXTSettingsGUI extends JFrame {
 		}
 	}
 	private static int GetRow(int Row){
-		int Value = (15 + (30 * Row));
+		final int Value = (15 + (30 * Row));
 		return Value;
 	}
 }

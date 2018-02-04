@@ -337,10 +337,10 @@ public class Mechanics {
 	}
 
 	public static void CheckWorldMapIcons(){
-		for (Object[] Icon : Storage.WorldMapIcons) {
-				Storage.WorldMapIconStorage[(int)Icon[0]] = Storage.WorldMapIconStorage[(int)Icon[0]] = -1;
+		for (final Object[] Icon : Storage.WorldMapIcons) {
+			Storage.WorldMapIconStorage[(int)Icon[0]] = Storage.WorldMapIconStorage[(int)Icon[0]] = -1;
 		}
-		for (Object[] Icon : Storage.WorldMapIcons) {
+		for (final Object[] Icon : Storage.WorldMapIcons) {
 			if (! (boolean) Icon[1]) {
 				Storage.WorldMapIconStorage[(int)Icon[0]] = Storage.WorldMapIconStorage[(int)Icon[0]] += ((int)Icon[3]+1);
 			}
@@ -356,7 +356,7 @@ public class Mechanics {
 					NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(1);
 				}
 			} else if (Storage.nxtGraphicsSetting_ScreenSizingMode == 3){
-				NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(2);	
+				NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(2);
 			} else {
 				NXTSettingsGUI.ScreenSizingModeComboBox.setSelectedIndex(1);
 			}

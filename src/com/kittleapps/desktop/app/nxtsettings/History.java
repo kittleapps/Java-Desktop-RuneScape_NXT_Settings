@@ -54,18 +54,18 @@ public class History {
 	nxtClientSettings_SettingsVersion,
 	FrameRate,
 	OS_TYPE
-;
+	;
 
-public static String
+	public static String
 	nxtClientSettings_TemporaryUserID = "",
 	nxtClientSettings_TemporaryUsername = "",
 	OS = System.getProperty("os.name").toLowerCase(),
 	NXT_REGISTRY_LOCATION_BASE,
 	Cache_settings_location,
 	configuration_location
-;
+	;
 
-public static boolean
+	public static boolean
 	nxtGraphicsSetting_FlickeringEffects = true,
 	nxtGraphicsSetting_TerrainBlending = true,
 	nxtGraphicsSetting_GroundDecor = true,
@@ -84,7 +84,7 @@ public static boolean
 	nxtClientSettings_AskBeforeQuitting = true,
 
 	History_Saved
-;
+	;
 
 	public static void init(){
 		// Initialize the temporary History values with the currently set ones.

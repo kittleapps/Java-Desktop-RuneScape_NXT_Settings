@@ -80,7 +80,7 @@ public class Legality {
 		 */
 		Storage.nxtClientSettings_TemporaryUsername = NXTSettingsGUI.UsernameInput.getText();
 		if ((NXTSettingsGUI.UsernameInput.getText() != null) &&
-		   !NXTSettingsGUI.UsernameInput.getText().equals("")){
+				!NXTSettingsGUI.UsernameInput.getText().equals("")){
 			NXTSettingsGUI.RememberUsernameCheckbox.setSelected(true);
 		}
 		Storage.nxtClientSettings_RememberUsername = NXTSettingsGUI.RememberUsernameCheckbox.isSelected();
