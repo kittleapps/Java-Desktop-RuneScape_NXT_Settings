@@ -73,6 +73,7 @@ public class Storage {
 
 		OS = System.getProperty("os.name").toLowerCase(),
 		NXT_REGISTRY_LOCATION_BASE,
+		Cache_location,
 		Cache_settings_location,
 		configuration_location
 	;

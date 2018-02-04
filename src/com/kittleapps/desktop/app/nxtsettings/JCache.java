@@ -122,6 +122,11 @@ public class JCache {
 							Storage.nxtClientSettings_LanguageSelected = 0;
 						}
 				    }
+				    if (fileContent.get(i).toLowerCase().startsWith("cache_folder=")) {
+						Storage.Cache_location = fileContent.get(i).trim()
+																	  		.replace(fileContent.get(i).substring(0, 13), "")
+																	  		.replace("\\", "/") + "/RuneScape/";
+					}
 				    if (fileContent.get(i).toLowerCase().startsWith("user_folder=")) {
 						Storage.Cache_settings_location = fileContent.get(i).trim()
 																	  		.replace(fileContent.get(i).substring(0, 12), "")
@@ -185,6 +190,12 @@ public class JCache {
 			System.exit(0);
 		}
 		Legality.CheckSettings();
+		try {
+			BugCorrector.CheckKnownBugs();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void ReadConfigSettings(){
