@@ -238,7 +238,6 @@ public class NXTSettingsGUI extends JFrame {
 		SpecialMechanicsTab.setLayout(null);
 
 		final ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		System.out.println(""+classloader.getResource("Default_cursor.png").getPath());
 		final Image DefaultCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Default_cursor.png")),
 				HResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(horizontal)_cursor.png")),
 				VResizeCursorImg = Toolkit.getDefaultToolkit().getImage(classloader.getResource("Resize_(vertical)_cursor.png"));
