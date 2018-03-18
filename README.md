@@ -81,6 +81,7 @@ See [Here](https://raw.githubusercontent.com/kittleapps/Java-Desktop-RuneScape_N
 * Compatibility Mode toggling
 * Switching to Compatibility Mode on-error (or when your GPU's drivers are outdated) toggling
 * Prompting on-exiting toggling
+* Customisation wardrobe sorting
 * Language setting changing
 * Presets
   * These follow the same ones in-game, with two joke ones, and the [RuneScape Wiki Guidelines](http://runescape.wikia.com/wiki/RuneScape:Images_and_media_policy#Content)

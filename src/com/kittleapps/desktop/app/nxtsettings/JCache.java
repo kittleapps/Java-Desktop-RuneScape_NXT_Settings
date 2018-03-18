@@ -193,7 +193,6 @@ public class JCache {
 		try {
 			BugCorrector.CheckKnownBugs();
 		} catch (final IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -663,6 +662,16 @@ public class JCache {
 					else {
 						Storage.nxtClientSettings_MusicSorting = rs.getInt("DATA");
 						NXTSettingsGUI.InGameMusicSortingComboBox.setSelectedIndex(rs.getInt("DATA"));
+					}
+					break;
+
+				case Storage.CACHE_KEY_VT_VERC_CUSTOMIZATIONS_WARDROBE:
+					int TempData = rs.getInt("DATA");
+					for (int i = 0; i < Storage.CustomisationWardrobeSlots.length; i++) {
+						if (TempData == Storage.CustomisationWardrobeSlots[i]) {
+							Storage.nxtClientSettings_CustomisationsWardrobe = i;
+							NXTSettingsGUI.CustomisationsWardrobeSortingComboBox.setSelectedIndex(i);
+						}
 					}
 					break;
 
@@ -1185,7 +1194,9 @@ public class JCache {
 					Write(false, Storage.CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER,	0);
 				}
 			}
-
+			if (History.nxtClientSettings_CustomisationsWardrobe != Storage.nxtClientSettings_CustomisationsWardrobe) {
+				Write(false, Storage.CACHE_KEY_VT_VERC_CUSTOMIZATIONS_WARDROBE,	Storage.CustomisationWardrobeSlots[Storage.nxtClientSettings_CustomisationsWardrobe]);
+			}
 			Storage.stmt.addBatch("DELETE FROM 'console';");
 			int DeveloperConsoleHistoryIndex = 0;
 			for (int i = 0; i < 100; i++){

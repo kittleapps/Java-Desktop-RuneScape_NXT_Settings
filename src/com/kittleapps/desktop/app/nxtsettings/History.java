@@ -50,6 +50,7 @@ public class History {
 	nxtClientSettings_FriendsChatListDivider,
 	nxtClientSettings_ClanChatListDivider,
 	nxtClientSettings_GuestClanChatListDivider,
+	nxtClientSettings_CustomisationsWardrobe,
 	nxtClientSettings_LanguageSelected,
 	nxtClientSettings_SettingsVersion,
 	FrameRate,
@@ -139,6 +140,7 @@ public class History {
 		nxtClientSettings_FriendsChatListDivider			=	Storage.nxtClientSettings_FriendsChatListDivider;
 		nxtClientSettings_ClanChatListDivider				=	Storage.nxtClientSettings_ClanChatListDivider;
 		nxtClientSettings_GuestClanChatListDivider			=	Storage.nxtClientSettings_GuestClanChatListDivider;
+		nxtClientSettings_CustomisationsWardrobe			=	Storage.nxtClientSettings_CustomisationsWardrobe;
 		nxtClientSettings_LanguageSelected					=	Storage.nxtClientSettings_LanguageSelected;
 
 		// User Settings (Strings)

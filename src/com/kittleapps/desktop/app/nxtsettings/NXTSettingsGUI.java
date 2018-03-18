@@ -83,6 +83,7 @@ public class NXTSettingsGUI extends JFrame {
 	InGameMusicSortingComboBox,
 	InGameEmoteSortingComboBox,
 	WorldMapOverlayComboBox,
+	CustomisationsWardrobeSortingComboBox,
 	LanguageSelectionComboBox;
 
 	public static JSlider
@@ -753,19 +754,18 @@ public class NXTSettingsGUI extends JFrame {
 		InGameWorldSortingComboBox.setBounds(170, GetRow(3), 265, 25);
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
 
-		final JLabel EmoteSelectionLabel = new JLabel("Emote-List Sorting");
-		EmoteSelectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		EmoteSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		EmoteSelectionLabel.setBounds(440, GetRow(3), 130, 25);
-		EmoteSelectionLabel.setLabelFor(LanguageSelectionComboBox);
-		ClientSettingsTab.add(EmoteSelectionLabel);
+		final JLabel CustomisationsWardrobeLabel = new JLabel("Wardrobe-List Sorting");
+		CustomisationsWardrobeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		CustomisationsWardrobeLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		CustomisationsWardrobeLabel.setBounds(440, GetRow(3), 130, 25);
+		ClientSettingsTab.add(CustomisationsWardrobeLabel);
 
-		InGameEmoteSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[20]);
-		InGameEmoteSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameEmoteSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_EmoteSorting = InGameEmoteSortingComboBox.getSelectedIndex());
-		InGameEmoteSortingComboBox.setBounds(575, GetRow(3), 130, 25);
-		ClientSettingsTab.add(InGameEmoteSortingComboBox);
-
+		CustomisationsWardrobeSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[23]);
+		CustomisationsWardrobeSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		CustomisationsWardrobeSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_CustomisationsWardrobe = CustomisationsWardrobeSortingComboBox.getSelectedIndex());
+		CustomisationsWardrobeSortingComboBox.setBounds(575, GetRow(3), 130, 25);
+		ClientSettingsTab.add(CustomisationsWardrobeSortingComboBox);
+		
 		final JLabel WorldMapSettingsLabel = new JLabel("World Map Settings");
 		WorldMapSettingsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		WorldMapSettingsLabel.setBounds(15, GetRow(4), 150, 25);
@@ -784,9 +784,21 @@ public class NXTSettingsGUI extends JFrame {
 		WorldMapIconSelectionButton.addActionListener(arg0 -> new NXTWorldMapSelectionGUI());
 		ClientSettingsTab.add(WorldMapIconSelectionButton);
 
+		final JLabel EmoteSelectionLabel = new JLabel("Emote-List Sorting");
+		EmoteSelectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		EmoteSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		EmoteSelectionLabel.setBounds(440, GetRow(5), 130, 25);
+		ClientSettingsTab.add(EmoteSelectionLabel);
+
+		InGameEmoteSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[20]);
+		InGameEmoteSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameEmoteSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_EmoteSorting = InGameEmoteSortingComboBox.getSelectedIndex());
+		InGameEmoteSortingComboBox.setBounds(575, GetRow(5), 130, 25);
+		ClientSettingsTab.add(InGameEmoteSortingComboBox);
+		
 		final JLabel MiscTogglesLabel = new JLabel("ToggleScape Toggles");
 		MiscTogglesLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		MiscTogglesLabel.setBounds(15, GetRow(5), 150, 25);
+		MiscTogglesLabel.setBounds(15, GetRow(6), 150, 25);
 		ClientSettingsTab.add(MiscTogglesLabel);
 
 		InGameTaskPopupsCheckbox = new JCheckBox("Show Task Completed Popups?");
@@ -794,7 +806,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameTaskPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_TaskCompletedPopup = InGameTaskPopupsCheckbox.isSelected());
 		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameTaskPopupsCheckbox.setBounds(170, GetRow(5), 265, 25);
+		InGameTaskPopupsCheckbox.setBounds(170, GetRow(6), 265, 25);
 		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
 
 		InGameMouseOverPopupsCheckbox = new JCheckBox("Show Mouse-Over/Hover-Over Tooltips?");
@@ -802,15 +814,16 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseOverPopupsCheckbox.setToolTipText("Toggle the In-Game Hover-Over tooltips.");
 		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameMouseOverPopupsCheckbox.setBackground(optionBackgroundColor);
-		InGameMouseOverPopupsCheckbox.setBounds(440, GetRow(5), 265, 25);
+		InGameMouseOverPopupsCheckbox.setBounds(440, GetRow(6), 265, 25);
 		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
 
 		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
 		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
 		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
-		MinimizeMainAbilityBarCheckBox.setBounds(440, GetRow(6), 265, 25);
+		MinimizeMainAbilityBarCheckBox.setBounds(440, GetRow(7), 265, 25);
 		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
+		
 
 		/* Separate */
 

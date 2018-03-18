@@ -59,6 +59,7 @@ public class Storage {
 	nxtClientSettings_FriendsChatListDivider,
 	nxtClientSettings_ClanChatListDivider,
 	nxtClientSettings_GuestClanChatListDivider,
+	nxtClientSettings_CustomisationsWardrobe,
 	nxtClientSettings_LanguageSelected,
 	nxtClientSettings_SettingsVersion,
 	nxtClientSettings_SettingsVersionHistory,
@@ -107,6 +108,7 @@ public class Storage {
 	CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED = "4667",
 	CACHE_KEY_VT_VARC_OoO_ROTATION_SPEED = "4668",
 	CACHE_KEY_VT_VERC_MUSIC_SORTING = "5917",
+	CACHE_KEY_VT_VERC_CUSTOMIZATIONS_WARDROBE = "5936",
 	CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
 	CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
 	CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK = "6348"
@@ -493,9 +495,48 @@ public class Storage {
 				"Legend+Key Minimized;Overview Hidden",
 				"Legend+Key Minimized;Key Hidden",
 				"Legend+Key Minimized;Key+Overview Hidden"
-			}
+			},
+			{
+				/* 23: Customizations Wardrobe Sorting */
+				"Aura - List",
+				"Aura - Grid",
+				"Head - List",
+				"Head - Grid",
+				"Back - List",
+				"Back - Grid",
+				"Neck - List",
+				"Neck - Grid",
+				"Wings - List",
+				"Wings - Grid",
+				"Torso - List",
+				"Torso - Grid",
+				"Main-Hand - List",
+				"Main-Hand - Grid",
+				"Off-Hand - List",
+				"Off-Hand - Grid",
+				"Legs - List",
+				"Legs - Grid",
+				"Hands - List",
+				"Hands - Grid",
+				"Feet - List",
+				"Feet - Grid"
+			},
 	};
 
+	public static int[] CustomisationWardrobeSlots = 
+		{
+				59928,57880,
+				2584,536,
+				6680,4632,
+				10776,8728,
+				76312,74264,
+				18968,16920,
+				14872,12824,
+				23064,21016,
+				31256,29208,
+				39448,37400,
+				43544,41496
+		};
 	public static Object[][] WorldMapIcons = {
 			//{Index, "Label", Offset-1},
 			{1, true, "Agility Training", -131073},
