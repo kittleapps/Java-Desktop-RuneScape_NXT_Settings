@@ -479,22 +479,22 @@ public class Storage {
 			},
 			{
 				/* 22: World Map Overlays */
-				"Legend+Key Expanded;Key+Overview Visible",
-				"Legend+Key Expanded;Overview Hidden",
-				"Legend+Key Expanded;Key Hidden",
-				"Legend+Key Expanded;Key+Overview Hidden",
-				"Legend Minimized;Key+Overview Visible",
-				"Legend Minimized;Overview Hidden",
-				"Legend Minimized;Key Hidden",
-				"Legend Minimized;Key+Overview Hidden",
-				"Key Minimized;Key+Overview Visible",
-				"Key Minimized;Overview Hidden",
-				"Key Minimized;Key Hidden",
-				"Key Minimized;Key+Overview Hidden",
-				"Legend+Key Minimized;Key+Overview Visible",
-				"Legend+Key Minimized;Overview Hidden",
-				"Legend+Key Minimized;Key Hidden",
-				"Legend+Key Minimized;Key+Overview Hidden"
+				"Legend+Key Expanded; Key+Overview Visible",
+				"Legend+Key Expanded; Overview Hidden",
+				"Legend+Key Expanded; Key Hidden",
+				"Legend+Key Expanded; Key+Overview Hidden",
+				"Legend Minimized; Key+Overview Visible",
+				"Legend Minimized; Overview Hidden",
+				"Legend Minimized; Key Hidden",
+				"Legend Minimized; Key+Overview Hidden",
+				"Key Minimized; Key+Overview Visible",
+				"Key Minimized; Overview Hidden",
+				"Key Minimized; Key Hidden",
+				"Key Minimized; Key+Overview Hidden",
+				"Legend+Key Minimized; Key+Overview Visible",
+				"Legend+Key Minimized; Overview Hidden",
+				"Legend+Key Minimized; Key Hidden",
+				"Legend+Key Minimized; Key+Overview Hidden"
 			},
 			{
 				/* 23: Customizations Wardrobe Sorting */

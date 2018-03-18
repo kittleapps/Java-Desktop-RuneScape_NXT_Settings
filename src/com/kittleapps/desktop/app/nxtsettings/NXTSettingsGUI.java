@@ -671,17 +671,35 @@ public class NXTSettingsGUI extends JFrame {
 		UsernameInput.setFont(new Font("Dialog", Font.PLAIN, 12));
 		UsernameLabel.setLabelFor(UsernameInput);
 		UsernameInput.setToolTipText(Storage.USERNAME_INPUT_TOOLTIP);
-		UsernameInput.setBounds(170, GetRow(0), 310, 25);
+		UsernameInput.setBounds(170, GetRow(0), 265, 25);
 		ClientSettingsTab.add(UsernameInput);
-		UsernameInput.setColumns(10);
 
 		RememberUsernameCheckbox = new JCheckBox("Remember Saved Username?");
 		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
 		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
-		RememberUsernameCheckbox.setBounds(485, GetRow(0), 220, 25);
+		RememberUsernameCheckbox.setBounds(440, GetRow(0), 265, 25);
 		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RememberUsernameCheckbox);
+
+		final JLabel WallpaperLabel = new JLabel("Wallpaper Settings");
+		WallpaperLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		WallpaperLabel.setBounds(15, GetRow(1), 130, 25);
+		ClientSettingsTab.add(WallpaperLabel);
+
+		LoginWallpaperIDComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[19]);
+		LoginWallpaperIDComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		LoginWallpaperIDComboBox.addItemListener(e -> Storage.nxtClientSettings_LoginWallpaperID = LoginWallpaperIDComboBox.getSelectedIndex());
+		LoginWallpaperIDComboBox.setBounds(170, GetRow(1), 265, 25);
+		ClientSettingsTab.add(LoginWallpaperIDComboBox);
+
+		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize Saved Wallpaper?");
+		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
+		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
+		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		RandomizeLoginWallpaperCheckbox.setBounds(440, GetRow(1), 265, 25);
+		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
+		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
 
 		final Object[] WORLDS = new Object[256];
 		for (int i = 1; i < WORLDS.length; i++){
@@ -689,60 +707,41 @@ public class NXTSettingsGUI extends JFrame {
 		}
 		WORLDS[0] = "None";
 
-		final JLabel FavouriteWorld1Label = new JLabel("Favourite World 1");
+		final JLabel FavouriteWorld1Label = new JLabel("Favourite Worlds");
 		FavouriteWorld1Label.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld1Label.setBounds(15, GetRow(1), 150, 25);
+		FavouriteWorld1Label.setBounds(15, GetRow(2), 150, 25);
 		ClientSettingsTab.add(FavouriteWorld1Label);
 
 		FavouriteWorld1ComboBox = new JComboBox<>(WORLDS);
 		FavouriteWorld1ComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		FavouriteWorld1ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld1 = (FavouriteWorld1ComboBox.getSelectedIndex()));
-		FavouriteWorld1ComboBox.setBounds(170, GetRow(1), 85, 25);
+		FavouriteWorld1ComboBox.setBounds(170, GetRow(2), 85, 25);
 		ClientSettingsTab.add(FavouriteWorld1ComboBox);
-
-		final JLabel FavouriteWorld2Label = new JLabel("Favourite World 2");
-		FavouriteWorld2Label.setHorizontalAlignment(SwingConstants.CENTER);
-		FavouriteWorld2Label.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld2Label.setBounds(260, GetRow(1), 130, 25);
-		ClientSettingsTab.add(FavouriteWorld2Label);
 
 		FavouriteWorld2ComboBox = new JComboBox<>(WORLDS);
 		FavouriteWorld2ComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		FavouriteWorld2ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld2 = (FavouriteWorld2ComboBox.getSelectedIndex()));
-		FavouriteWorld2ComboBox.setBounds(395, GetRow(1), 85, 25);
+		FavouriteWorld2ComboBox.setBounds(260, GetRow(2), 85, 25);
 		ClientSettingsTab.add(FavouriteWorld2ComboBox);
-
-		final JLabel FavouriteWorld3Label = new JLabel("Favourite World 3");
-		FavouriteWorld3Label.setHorizontalAlignment(SwingConstants.CENTER);
-		FavouriteWorld3Label.setFont(new Font("Dialog", Font.PLAIN, 11));
-		FavouriteWorld3Label.setBounds(485, GetRow(1), 130, 25);
-		ClientSettingsTab.add(FavouriteWorld3Label);
 
 		FavouriteWorld3ComboBox = new JComboBox<>(WORLDS);
 		FavouriteWorld3ComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		FavouriteWorld3ComboBox.addItemListener(e -> Storage.nxtClientSettings_FavouriteWorld3 = (FavouriteWorld3ComboBox.getSelectedIndex()));
-		FavouriteWorld3ComboBox.setBounds(620, GetRow(1), 85, 25);
+		FavouriteWorld3ComboBox.setBounds(350, GetRow(2), 85, 25);
 		ClientSettingsTab.add(FavouriteWorld3ComboBox);
+		
+		final JLabel CustomisationsWardrobeLabel = new JLabel("Wardrobe-List Sorting");
+		CustomisationsWardrobeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		CustomisationsWardrobeLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		CustomisationsWardrobeLabel.setBounds(440, GetRow(2), 130, 25);
+		ClientSettingsTab.add(CustomisationsWardrobeLabel);
 
-		final JLabel WallpaperLabel = new JLabel("Wallpaper Settings");
-		WallpaperLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		WallpaperLabel.setBounds(15, GetRow(2), 130, 25);
-		ClientSettingsTab.add(WallpaperLabel);
-
-		LoginWallpaperIDComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[19]);
-		LoginWallpaperIDComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		LoginWallpaperIDComboBox.addItemListener(e -> Storage.nxtClientSettings_LoginWallpaperID = LoginWallpaperIDComboBox.getSelectedIndex());
-		LoginWallpaperIDComboBox.setBounds(170, GetRow(2), 265, 25);
-		ClientSettingsTab.add(LoginWallpaperIDComboBox);
-
-		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize The Wallpaper?");
-		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
-		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
-		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		RandomizeLoginWallpaperCheckbox.setBounds(440, GetRow(2), 265, 25);
-		RandomizeLoginWallpaperCheckbox.setBackground(optionBackgroundColor);
-		ClientSettingsTab.add(RandomizeLoginWallpaperCheckbox);
-
+		CustomisationsWardrobeSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[23]);
+		CustomisationsWardrobeSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		CustomisationsWardrobeSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_CustomisationsWardrobe = CustomisationsWardrobeSortingComboBox.getSelectedIndex());
+		CustomisationsWardrobeSortingComboBox.setBounds(575, GetRow(2), 130, 25);
+		ClientSettingsTab.add(CustomisationsWardrobeSortingComboBox);
+		
 		final JLabel InGameWorldSortingLabel = new JLabel("World-List Menu Sorting");
 		InGameWorldSortingLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameWorldSortingLabel.setBounds(15, GetRow(3), 150, 25);
@@ -753,18 +752,18 @@ public class NXTSettingsGUI extends JFrame {
 		InGameWorldSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_WorldSorting = InGameWorldSortingComboBox.getSelectedIndex());
 		InGameWorldSortingComboBox.setBounds(170, GetRow(3), 265, 25);
 		ClientSettingsTab.add(InGameWorldSortingComboBox);
+		
+		final JLabel EmoteSelectionLabel = new JLabel("Emote-List Sorting");
+		EmoteSelectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		EmoteSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
+		EmoteSelectionLabel.setBounds(440, GetRow(3), 130, 25);
+		ClientSettingsTab.add(EmoteSelectionLabel);
 
-		final JLabel CustomisationsWardrobeLabel = new JLabel("Wardrobe-List Sorting");
-		CustomisationsWardrobeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		CustomisationsWardrobeLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		CustomisationsWardrobeLabel.setBounds(440, GetRow(3), 130, 25);
-		ClientSettingsTab.add(CustomisationsWardrobeLabel);
-
-		CustomisationsWardrobeSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[23]);
-		CustomisationsWardrobeSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		CustomisationsWardrobeSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_CustomisationsWardrobe = CustomisationsWardrobeSortingComboBox.getSelectedIndex());
-		CustomisationsWardrobeSortingComboBox.setBounds(575, GetRow(3), 130, 25);
-		ClientSettingsTab.add(CustomisationsWardrobeSortingComboBox);
+		InGameEmoteSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[20]);
+		InGameEmoteSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		InGameEmoteSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_EmoteSorting = InGameEmoteSortingComboBox.getSelectedIndex());
+		InGameEmoteSortingComboBox.setBounds(575, GetRow(3), 130, 25);
+		ClientSettingsTab.add(InGameEmoteSortingComboBox);
 		
 		final JLabel WorldMapSettingsLabel = new JLabel("World Map Settings");
 		WorldMapSettingsLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -784,21 +783,9 @@ public class NXTSettingsGUI extends JFrame {
 		WorldMapIconSelectionButton.addActionListener(arg0 -> new NXTWorldMapSelectionGUI());
 		ClientSettingsTab.add(WorldMapIconSelectionButton);
 
-		final JLabel EmoteSelectionLabel = new JLabel("Emote-List Sorting");
-		EmoteSelectionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		EmoteSelectionLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		EmoteSelectionLabel.setBounds(440, GetRow(5), 130, 25);
-		ClientSettingsTab.add(EmoteSelectionLabel);
-
-		InGameEmoteSortingComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[20]);
-		InGameEmoteSortingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		InGameEmoteSortingComboBox.addItemListener(e -> Storage.nxtClientSettings_EmoteSorting = InGameEmoteSortingComboBox.getSelectedIndex());
-		InGameEmoteSortingComboBox.setBounds(575, GetRow(5), 130, 25);
-		ClientSettingsTab.add(InGameEmoteSortingComboBox);
-		
 		final JLabel MiscTogglesLabel = new JLabel("ToggleScape Toggles");
 		MiscTogglesLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		MiscTogglesLabel.setBounds(15, GetRow(6), 150, 25);
+		MiscTogglesLabel.setBounds(15, GetRow(5), 150, 25);
 		ClientSettingsTab.add(MiscTogglesLabel);
 
 		InGameTaskPopupsCheckbox = new JCheckBox("Show Task Completed Popups?");
@@ -806,7 +793,7 @@ public class NXTSettingsGUI extends JFrame {
 		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameTaskPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_TaskCompletedPopup = InGameTaskPopupsCheckbox.isSelected());
 		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameTaskPopupsCheckbox.setBounds(170, GetRow(6), 265, 25);
+		InGameTaskPopupsCheckbox.setBounds(170, GetRow(5), 265, 25);
 		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
 
 		InGameMouseOverPopupsCheckbox = new JCheckBox("Show Mouse-Over/Hover-Over Tooltips?");
@@ -814,14 +801,14 @@ public class NXTSettingsGUI extends JFrame {
 		InGameMouseOverPopupsCheckbox.setToolTipText("Toggle the In-Game Hover-Over tooltips.");
 		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		InGameMouseOverPopupsCheckbox.setBackground(optionBackgroundColor);
-		InGameMouseOverPopupsCheckbox.setBounds(440, GetRow(6), 265, 25);
+		InGameMouseOverPopupsCheckbox.setBounds(440, GetRow(5), 265, 25);
 		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
 
 		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
 		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
 		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
-		MinimizeMainAbilityBarCheckBox.setBounds(440, GetRow(7), 265, 25);
+		MinimizeMainAbilityBarCheckBox.setBounds(440, GetRow(6), 265, 25);
 		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
 		
 
