@@ -77,6 +77,7 @@ public class History {
 	nxtClientSettings_LoopCurrentTrack,
 	nxtClientSettings_RandomizeLoginWallpaper = true,
 	nxtClientSettings_RememberUsername = true,
+	nxtClientSettings_HideUsername = true,
 	nxtClientSettings_MouseOverTooltip = true,
 	nxtClientSettings_TaskCompletedPopup = true,
 	nxtClientSettings_AbilityBarMinimized,
@@ -159,6 +160,7 @@ public class History {
 		nxtClientSettings_LoopCurrentTrack					=	Storage.nxtClientSettings_LoopCurrentTrack;
 		nxtClientSettings_RandomizeLoginWallpaper			=	Storage.nxtClientSettings_RandomizeLoginWallpaper;
 		nxtClientSettings_RememberUsername					=	Storage.nxtClientSettings_RememberUsername;
+		nxtClientSettings_HideUsername						=	Storage.nxtClientSettings_HideUsername;
 		nxtClientSettings_MouseOverTooltip					=	Storage.nxtClientSettings_MouseOverTooltip;
 		nxtClientSettings_TaskCompletedPopup				=	Storage.nxtClientSettings_TaskCompletedPopup;
 		nxtClientSettings_AbilityBarMinimized				=	Storage.nxtClientSettings_AbilityBarMinimized;

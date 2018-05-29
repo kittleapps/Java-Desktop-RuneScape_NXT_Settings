@@ -482,6 +482,11 @@ public class JCache {
 					NXTSettingsGUI.RememberUsernameCheckbox.setSelected(Storage.nxtClientSettings_RememberUsername);
 					break;
 
+				case Storage.CACHE_KEY_VT_VARC_HIDE_USERNAME:
+					Storage.nxtClientSettings_HideUsername = rs.getString("DATA").equals("1");
+					NXTSettingsGUI.HideUsernameCheckbox.setSelected(Storage.nxtClientSettings_HideUsername);
+					break;
+					
 				case Storage.CACHE_KEY_VT_VARC_CAMERA_ZOOM:
 					if (rs.getInt("DATA") > NXTSettingsGUI.InGameCameraZoomSlider.getMaximum()){
 						Storage.nxtClientSettings_CameraZoom = NXTSettingsGUI.InGameCameraZoomSlider.getMaximum();
@@ -1162,6 +1167,15 @@ public class JCache {
 			Storage.nxtClientSettings_TemporaryUsername = "";
 			Storage.nxtClientSettings_TemporaryUserID = "";
 
+
+			if (History.nxtClientSettings_HideUsername != Storage.nxtClientSettings_HideUsername) {
+				if (Storage.nxtClientSettings_HideUsername) {
+					//Intentionally Swapped.
+					Write(false, Storage.CACHE_KEY_VT_VARC_HIDE_USERNAME,	0);
+				}	else {
+					Write(false, Storage.CACHE_KEY_VT_VARC_HIDE_USERNAME,	1);
+				}
+			}
 			if (History.nxtClientSettings_FavouriteWorld1 != Storage.nxtClientSettings_FavouriteWorld1) {
 				if (Storage.nxtClientSettings_FavouriteWorld1 <= 0){
 					Write(false, Storage.CACHE_KEY_VT_VARC_FAVOURITE_WORLD_1,	-1);

@@ -42,6 +42,7 @@ public class NXTSettingsGUI extends JFrame {
 	TerrainBlendingCheckbox,
 	HeatHazeCheckbox,
 	RememberUsernameCheckbox,
+	HideUsernameCheckbox,
 	RandomizeLoginWallpaperCheckbox,
 	HoverOverTextCheckbox,
 	LoopCurrentMusicTrackCheckbox,
@@ -674,13 +675,21 @@ public class NXTSettingsGUI extends JFrame {
 		UsernameInput.setBounds(170, GetRow(0), 265, 25);
 		ClientSettingsTab.add(UsernameInput);
 
-		RememberUsernameCheckbox = new JCheckBox("Remember Saved Username?");
+		RememberUsernameCheckbox = new JCheckBox("Remember Username?");
 		RememberUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		RememberUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_RememberUsername = RememberUsernameCheckbox.isSelected());
 		RememberUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
-		RememberUsernameCheckbox.setBounds(440, GetRow(0), 265, 25);
+		RememberUsernameCheckbox.setBounds(440, GetRow(0), 140, 25);
 		RememberUsernameCheckbox.setBackground(optionBackgroundColor);
 		ClientSettingsTab.add(RememberUsernameCheckbox);
+		
+		HideUsernameCheckbox = new JCheckBox("Hide Username?");
+		HideUsernameCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
+		HideUsernameCheckbox.addActionListener(e -> Storage.nxtClientSettings_HideUsername = HideUsernameCheckbox.isSelected());
+		HideUsernameCheckbox.setToolTipText(Storage.REMEMBER_USERNAME_TOOLTIP);
+		HideUsernameCheckbox.setBounds(585, GetRow(0), 120, 25);
+		HideUsernameCheckbox.setBackground(optionBackgroundColor);
+		ClientSettingsTab.add(HideUsernameCheckbox);
 
 		final JLabel WallpaperLabel = new JLabel("Wallpaper Settings");
 		WallpaperLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -693,7 +702,7 @@ public class NXTSettingsGUI extends JFrame {
 		LoginWallpaperIDComboBox.setBounds(170, GetRow(1), 265, 25);
 		ClientSettingsTab.add(LoginWallpaperIDComboBox);
 
-		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize Saved Wallpaper?");
+		RandomizeLoginWallpaperCheckbox = new JCheckBox("Randomize Wallpaper?");
 		RandomizeLoginWallpaperCheckbox.addActionListener(e -> Storage.nxtClientSettings_RandomizeLoginWallpaper = RandomizeLoginWallpaperCheckbox.isSelected());
 		RandomizeLoginWallpaperCheckbox.setToolTipText(Storage.RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP);
 		RandomizeLoginWallpaperCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));

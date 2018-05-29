@@ -111,7 +111,8 @@ public class Storage {
 	CACHE_KEY_VT_VERC_CUSTOMIZATIONS_WARDROBE = "5936",
 	CACHE_KEY_VT_VERC_WALLPAPER_ID = "6040",
 	CACHE_KEY_VT_VERC_RANDOMIZE_WALLPAPER = "6042",
-	CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK = "6348"
+	CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK = "6348",
+	CACHE_KEY_VT_VARC_HIDE_USERNAME = "6406";
 	;
 
 	public static boolean
@@ -125,6 +126,7 @@ public class Storage {
 	nxtClientSettings_LoopCurrentTrack,
 	nxtClientSettings_RandomizeLoginWallpaper = true,
 	nxtClientSettings_RememberUsername = true,
+	nxtClientSettings_HideUsername = true,
 	nxtClientSettings_MouseOverTooltip = true,
 	nxtClientSettings_TaskCompletedPopup = true,
 	nxtClientSettings_AbilityBarMinimized,
@@ -447,9 +449,12 @@ public class Storage {
 				"Menaphos Tombs",
 				"Menaphos Thralls",
 				"Menaphos Characters",
-				"Ghost Stries of Gielinor",
+				"Ghost Stories of Gielinor",
 				"Dimension of the Damned",
 				"The G-Nome Project",
+				"Pieces of Hate",
+				"Deep-sea Fishing",
+				"Solak",
 				"Unknown Wallpaper"
 			},
 			{
