@@ -290,7 +290,7 @@ public class Storage {
 				"High",
 			},
 			{
-				/* 10: Depth of Field (Placeholders) */
+				/* 10: Depth of Field (Not Used, Kept for Easy of IDs) */
 				"Off",
 				"Near-Focus Blur",
 				"Far-Focus Blur",
@@ -299,7 +299,7 @@ public class Storage {
 				/* 11: Texture Quality */
 				"Off",
 				"Compressed",
-				//"Uncompressed"
+				//"Uncompressed" // Currently disabled in live. Uncomment when fixed?
 			},
 			{
 				/* 12: Anisotropic Filtering */
@@ -668,11 +668,11 @@ public class Storage {
 	};
 	public final static String
 	// HTML-Based Tooltip storage.
-	AO_TOOLTIP = "<html>" + "FXAA: Fast approximate anti-aliasing is a<br>" + "high performance screen space anti-<br>"
-			+ "aliasing technique.<br>" + "<br>" + "MSAA: Multisample anti-aliasing is a<br>"
-			+ "superior form of antialiasing over image<br>" + "space techniques like FXAA, but with a<br>"
-			+ "much higher performance requirement.<br>" + "<br>" + "FXAA+MSAA: Add FXAA to MSAA to enable<br>"
-			+ "anti-aliasing to transparent objects, but<br>" + "will result in slightly blurrier images." + "</html>",
+			AO_TOOLTIP = "<html>" + "FXAA: Fast approximate anti-aliasing is a<br>" + "high performance screen space anti-<br>"
+					+ "aliasing technique.<br>" + "<br>" + "MSAA: Multisample anti-aliasing is a<br>"
+					+ "superior form of antialiasing over image<br>" + "space techniques like FXAA, but with a<br>"
+					+ "much higher performance requirement.<br>" + "<br>" + "FXAA+MSAA: Add FXAA to MSAA to enable<br>"
+					+ "anti-aliasing to transparent objects, but<br>" + "will result in slightly blurrier images." + "</html>",
 			MAXFOREGOUNDFPS_TOOLTIP = "<html>"
 					+ "Manually set the maximum Frames-Per-Second (FPS) while NXT is the focused window.<br>" + "<br>"
 					+ "The default value for this entry is +10 of your refresh rate. (Example: 60hz = 70 Foreground FPS)"
@@ -690,11 +690,6 @@ public class Storage {
 					+ "<br>" + "The default value for this entry is 100.<br>" + "<br>"
 					+ "Note: This option is currently experimental, and may cause graphical issues for some.<br>"
 					+ "This includes blurs, and loss of FPS depending on the settings used." + "</html>",
-			DOF_TOOLTIP = "<html>" + "This option is not released in the live versions, this is merely a placeholder."
-					+ "</html>",
-			HEATHAZE_TOOLTIP = "<html>"
-					+ "Note: This option is not released in the live versions, this is merely a placeholder."
-					+ "</html>",
 			USERNAME_INPUT_TOOLTIP = "<html>" + "This will be the display username when loading NXT.<br>"
 					+ "Currently this field allows Jagex's Colour+Sprite flags to be used.<br>" + "<br>"
 					+ "Note: When using sprite+colour flags it will still read is-if you types them here<br>"
@@ -735,7 +730,9 @@ public class Storage {
 			GRAPHICS_PRESET_TOOLTIP = "<html>" + "Checking this will unlock the graphics presets." + "</html>",
 			GRAPHICS_PRESET_BUTTON_TOOLTIP = "<html>" + "Note: This will overwrite your current settings.<br>"
 					+ "You will be required to change them back manually, or re-read to restore prior to writing."
-					+ "</html>"																																									;
+					+ "</html>"
+			;
+	
 	public static void init() {
 		/*
 		 * > Initialize the OS_Type
