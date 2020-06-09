@@ -21,7 +21,6 @@ public class History {
 	nxtGraphicsSetting_RemoveRoofs,
 	nxtGraphicsSetting_MaxForegroundFps,
 	nxtGraphicsSetting_MaxBackgroundFps,
-	nxtGraphicsSetting_DepthOfField,
 	nxtGraphicsSetting_ScreenSizingMode,
 	nxtGraphicsSetting_ResizableResolution,
 	nxtClientSettings_FavouriteWorld1,
@@ -67,6 +66,10 @@ public class History {
 	;
 
 	public static boolean
+	nxtGraphicsSetting_DepthOfField = true,
+	nxtGraphicsSetting_SmoothClipFade = true,
+	nxtGraphicsSetting_EntityHighlights = true,
+	nxtGraphicsSetting_CanopyCutout = true,
 	nxtGraphicsSetting_FlickeringEffects = true,
 	nxtGraphicsSetting_TerrainBlending = true,
 	nxtGraphicsSetting_GroundDecor = true,
@@ -78,9 +81,6 @@ public class History {
 	nxtClientSettings_RandomizeLoginWallpaper = true,
 	nxtClientSettings_RememberUsername = true,
 	nxtClientSettings_HideUsername = true,
-	nxtClientSettings_MouseOverTooltip = true,
-	nxtClientSettings_TaskCompletedPopup = true,
-	nxtClientSettings_AbilityBarMinimized,
 	nxtClientSettings_CompatibilityMode,
 	nxtClientSettings_AskToSwitchToCompatibility = true,
 	nxtClientSettings_AskBeforeQuitting = true,
@@ -110,7 +110,6 @@ public class History {
 		nxtGraphicsSetting_RemoveRoofs						=	Storage.nxtGraphicsSetting_RemoveRoofs;
 		nxtGraphicsSetting_MaxForegroundFps					=	Storage.nxtGraphicsSetting_MaxForegroundFps;
 		nxtGraphicsSetting_MaxBackgroundFps					=	Storage.nxtGraphicsSetting_MaxBackgroundFps;
-		nxtGraphicsSetting_DepthOfField						=	Storage.nxtGraphicsSetting_DepthOfField;
 		nxtGraphicsSetting_ScreenSizingMode					=	Storage.nxtGraphicsSetting_ScreenSizingMode;
 		nxtGraphicsSetting_ResizableResolution				=	Storage.nxtGraphicsSetting_ResizableResolution;
 
@@ -154,6 +153,10 @@ public class History {
 		nxtGraphicsSetting_GroundDecor						=	Storage.nxtGraphicsSetting_GroundDecor;
 		nxtGraphicsSetting_Shadows							=	Storage.nxtGraphicsSetting_Shadows;
 		nxtGraphicsSetting_CustomCursors					=	Storage.nxtGraphicsSetting_CustomCursors;
+		nxtGraphicsSetting_CanopyCutout		 				=	Storage.nxtGraphicsSetting_CanopyCutout;
+		nxtGraphicsSetting_SmoothClipFade					=	Storage.nxtGraphicsSetting_SmoothClipFade;
+		nxtGraphicsSetting_EntityHighlights					=	Storage.nxtGraphicsSetting_EntityHighlights;
+		nxtGraphicsSetting_DepthOfField						=	Storage.nxtGraphicsSetting_DepthOfField;
 		nxtGraphicsSetting_LoadingScreens					=	Storage.nxtGraphicsSetting_LoadingScreens;
 
 		// Client Settings (booleans)
@@ -161,9 +164,6 @@ public class History {
 		nxtClientSettings_RandomizeLoginWallpaper			=	Storage.nxtClientSettings_RandomizeLoginWallpaper;
 		nxtClientSettings_RememberUsername					=	Storage.nxtClientSettings_RememberUsername;
 		nxtClientSettings_HideUsername						=	Storage.nxtClientSettings_HideUsername;
-		nxtClientSettings_MouseOverTooltip					=	Storage.nxtClientSettings_MouseOverTooltip;
-		nxtClientSettings_TaskCompletedPopup				=	Storage.nxtClientSettings_TaskCompletedPopup;
-		nxtClientSettings_AbilityBarMinimized				=	Storage.nxtClientSettings_AbilityBarMinimized;
 
 		// Initializer boolean
 		History_Saved = true;

@@ -29,7 +29,6 @@ public class Storage {
 	nxtGraphicsSetting_RemoveRoofs,
 	nxtGraphicsSetting_MaxForegroundFps,
 	nxtGraphicsSetting_MaxBackgroundFps,
-	nxtGraphicsSetting_DepthOfField,
 	nxtGraphicsSetting_ScreenSizingMode,
 	nxtGraphicsSetting_ResizableResolution,
 
@@ -91,8 +90,6 @@ public class Storage {
 	CACHE_KEY_VT_VARC_FRIENDS_LIST_DIVIDER = "1036",
 	CACHE_KEY_VT_VARC_FRIENDS_CHAT_LIST_DIVIDER = "1505",
 	CACHE_KEY_VT_VARC_GUEST_CLAN_CHAT_LIST_DIVIDER = "1506",
-	CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP = "1429",
-	CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS = "1686",
 	CACHE_KEY_VT_VARC_CAMERA_ZOOM = "1971",
 	CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED = "2058",
 	CACHE_KEY_VT_VARC_EMOTE_SORTING = "2768",
@@ -116,6 +113,10 @@ public class Storage {
 	;
 
 	public static boolean
+	nxtGraphicsSetting_DepthOfField = true,
+	nxtGraphicsSetting_SmoothClipFade = true,
+	nxtGraphicsSetting_EntityHighlights = true,
+	nxtGraphicsSetting_CanopyCutout = true,
 	nxtGraphicsSetting_FlickeringEffects = true,
 	nxtGraphicsSetting_TerrainBlending = true,
 	nxtGraphicsSetting_GroundDecor = true,
@@ -127,9 +128,6 @@ public class Storage {
 	nxtClientSettings_RandomizeLoginWallpaper = true,
 	nxtClientSettings_RememberUsername = true,
 	nxtClientSettings_HideUsername = true,
-	nxtClientSettings_MouseOverTooltip = true,
-	nxtClientSettings_TaskCompletedPopup = true,
-	nxtClientSettings_AbilityBarMinimized,
 	nxtClientSettings_CompatibilityMode,
 	nxtClientSettings_AskToSwitchToCompatibility = true,
 	nxtClientSettings_AskBeforeQuitting = true,
@@ -301,7 +299,7 @@ public class Storage {
 				/* 11: Texture Quality */
 				"Off",
 				"Compressed",
-				"Uncompressed"
+				//"Uncompressed"
 			},
 			{
 				/* 12: Anisotropic Filtering */
@@ -670,142 +668,74 @@ public class Storage {
 	};
 	public final static String
 	// HTML-Based Tooltip storage.
-	AO_TOOLTIP =
-	"<html>" +
-			"FXAA: Fast approximate anti-aliasing is a<br>" +
-			"high performance screen space anti-<br>" +
-			"aliasing technique.<br>" +
-			"<br>" +
-			"MSAA: Multisample anti-aliasing is a<br>" +
-			"superior form of antialiasing over image<br>" +
-			"space techniques like FXAA, but with a<br>" +
-			"much higher performance requirement.<br>" +
-			"<br>" +
-			"FXAA+MSAA: Add FXAA to MSAA to enable<br>" +
-			"anti-aliasing to transparent objects, but<br>" +
-			"will result in slightly blurrier images." +
-			"</html>",
-			MAXFOREGOUNDFPS_TOOLTIP =
-			"<html>" +
-					"Manually set the maximum Frames-Per-Second (FPS) while NXT is the focused window.<br>" +
-					"<br>" +
-					"The default value for this entry is +10 of your refresh rate. (Example: 60hz = 70 Foreground FPS)" +
-					"</html>",
-					MAXBACKGOUNDFPS_TOOLTIP =
-					"<html>" +
-							"Manually set the maximum Frames-Per-Second (FPS) while NXT is not the focused window.<br>" +
-							"<br>" +
-							"The default value for this entry is 30. (Half the \"normal\" refresh rate for monitors which is 60hz)" +
-							"</html>",
-							INTERFACESCALING_TOOLTIP =
-							"<html>" +
-									"Manually set the interface scaling for all interfaces.<br>" +
-									"<br>" +
-									"The default value for this option is 100.<br>" +
-									"<br>" +
-									"Note: This option is currently experimental, and may cause graphical issues for some.<br>" +
-									"This includes messing up some layouts while using the New Interface System."+
-									"</html>",
-									GAMESCALING_TOOLTIP =
-									"<html>" +
-											"Manually set the game render scaling for the 3D world underlay.<br>" +
-											"<br>" +
-											"The default value for this entry is 100.<br>" +
-											"<br>" +
-											"Note: This option is currently experimental, and may cause graphical issues for some.<br>" +
-											"This includes blurs, and loss of FPS depending on the settings used."+
-											"</html>",
-											DOF_TOOLTIP =
-											"<html>"+
-													"This option is not released in the live versions, this is merely a placeholder." +
-													"</html>",
-													HEATHAZE_TOOLTIP =
-													"<html>"+
-															"Note: This option is not released in the live versions, this is merely a placeholder." +
-															"</html>",
-															USERNAME_INPUT_TOOLTIP =
-															"<html>"+
-																	"This will be the display username when loading NXT.<br>"+
-																	"Currently this field allows Jagex's Colour+Sprite flags to be used.<br>" +
-																	"<br>"+
-																	"Note: When using sprite+colour flags it will still read is-if you types them here<br>" +
-																	"Graphically it may be a login-able name, but it will have invalid characters/login names.<br>"+
-																	"Some HTML elements like &lt;br&gt;, &lt;b&gt;, and &lt;i&gt; can be used as well." +
-																	"</html>",
-																	FAVOURITE_WORLD_INPUT_TOOLTIP =
-																	"<html>"+
-																			"To clear this slot use the value -1.<br>"+
-																			"If Slots 1 or 2 have -1 as their value, any later numbers will be disabled.<br>" +
-																			"The removal is currently not a NXT limitation, but it causes graphical issues." +
-																			"</html>",
-																			GLOBAL_AUDIO_MUTE_TOOLTIP =
-																			"<html>"+
-																					"Disables the audio streams while logged in the game.<br>" +
-																					"Other volume setting's options will remain uneffected." +
-																					"</html>",
-																					REMEMBER_USERNAME_TOOLTIP =
-																					"<html>" +
-																							"If unchecked: NXT will clear the username on the next client load.<br>" +
-																							"<br>" +
-																							"Note: This feature is redundant for this program if the username field is empty." +
-																							"</html>",
-																							RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP =
-																							"<html>"+
-																									"Randomize your login screen's wallpaper.<br>" +
-																									"<br>" +
-																									"Note: The first frame of this will be the wallpaper to the left.<br>" +
-																									"If this option is unchecked, that wallpaper will be used." +
-																									"</html>",
-																									WALLPAPER_ID_TOOLTIP =
-																									"<html>" +
-																											"Input your desired wallpaper id.<br>" +
-																											"<br>" +
-																											"The default value for this entry is 0." +
-																											"<br>" +
-																											"Note: This will apply to the first wallpaper while randomizing.<br>" +
-																											"This will also be the static id if randomizing is off.<br>" +
-																											"</html>",
-																											ADD_SPRITE_FLAG_TOOLTIP =
-																											"<html>" +
-																													"Adds the &lt;sprite=#,#&gt; flag to your username field.<br>" +
-																													"This flag is that Jagex uses to add sprites to the chatbox e.g. staffmodlevel Crowns." +
-																													"</html>",
-																													ADD_COLOUR_FLAG_TOOLTIP =
-																													"<html>" +
-																															"Adds the &lt;col=RRGGBB&gt; flag to your username field.<br>" +
-																															"This flag is used by Jagex to change the colours of text full or mid-sentence e.g: Green warnings.<br>" +
-																															"As far as I've known, this does NOT support alpha. Keep it in RRGGBB Hex format." +
-																															"</html>",
-																															CLEAR_DEV_CONSOLE_LOGS_TOOLTIP =
-																															"<html>" +
-																																	"This will clear the Developer Console's command history logs."+
-																																	"</html>",
-																																	POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP =
-																																	"<html>" +
-																																			"This will populate the Developer Console's command history with player-allowed commands." +
-																																			"</html>",
-																																			POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP =
-																																			"<html>" +
-																																					"This will populate the Developer Console's command history with all known commands.<br>" +
-																																					"<br>" +
-																																					"Note: This list in incomplete, and many commands are not use-able by players."+
-																																					"</html>",
-																																					BOOSTED_VOLUMES_TOOLTIP =
-																																					"<html>" +
-																																							"Checking this will make the slider's maximum goto '254'<br>"+
-																																							"When the volume's over the default '127' it will allow a boosted volume to occur.<br>"+
-																																							"This allows for louder sound effects, like mining sounds, to be heard better."+
-																																							"</html>",
-																																							GRAPHICS_PRESET_TOOLTIP =
-																																							"<html>" +
-																																									"Checking this will unlock the graphics presets."+
-																																									"</html>",
-																																									GRAPHICS_PRESET_BUTTON_TOOLTIP =
-																																									"<html>" +
-																																											"Note: This will overwrite your current settings.<br>"+
-																																											"You will be required to change them back manually, or re-read to restore prior to writing."+
-																																											"</html>"
-																																											;
+	AO_TOOLTIP = "<html>" + "FXAA: Fast approximate anti-aliasing is a<br>" + "high performance screen space anti-<br>"
+			+ "aliasing technique.<br>" + "<br>" + "MSAA: Multisample anti-aliasing is a<br>"
+			+ "superior form of antialiasing over image<br>" + "space techniques like FXAA, but with a<br>"
+			+ "much higher performance requirement.<br>" + "<br>" + "FXAA+MSAA: Add FXAA to MSAA to enable<br>"
+			+ "anti-aliasing to transparent objects, but<br>" + "will result in slightly blurrier images." + "</html>",
+			MAXFOREGOUNDFPS_TOOLTIP = "<html>"
+					+ "Manually set the maximum Frames-Per-Second (FPS) while NXT is the focused window.<br>" + "<br>"
+					+ "The default value for this entry is +10 of your refresh rate. (Example: 60hz = 70 Foreground FPS)"
+					+ "</html>",
+			MAXBACKGOUNDFPS_TOOLTIP = "<html>"
+					+ "Manually set the maximum Frames-Per-Second (FPS) while NXT is not the focused window.<br>"
+					+ "<br>"
+					+ "The default value for this entry is 30. (Half the \"normal\" refresh rate for monitors which is 60hz)"
+					+ "</html>",
+			INTERFACESCALING_TOOLTIP = "<html>" + "Manually set the interface scaling for all interfaces.<br>" + "<br>"
+					+ "The default value for this option is 100.<br>" + "<br>"
+					+ "Note: This option is currently experimental, and may cause graphical issues for some.<br>"
+					+ "This includes messing up some layouts while using the New Interface System." + "</html>",
+			GAMESCALING_TOOLTIP = "<html>" + "Manually set the game render scaling for the 3D world underlay.<br>"
+					+ "<br>" + "The default value for this entry is 100.<br>" + "<br>"
+					+ "Note: This option is currently experimental, and may cause graphical issues for some.<br>"
+					+ "This includes blurs, and loss of FPS depending on the settings used." + "</html>",
+			DOF_TOOLTIP = "<html>" + "This option is not released in the live versions, this is merely a placeholder."
+					+ "</html>",
+			HEATHAZE_TOOLTIP = "<html>"
+					+ "Note: This option is not released in the live versions, this is merely a placeholder."
+					+ "</html>",
+			USERNAME_INPUT_TOOLTIP = "<html>" + "This will be the display username when loading NXT.<br>"
+					+ "Currently this field allows Jagex's Colour+Sprite flags to be used.<br>" + "<br>"
+					+ "Note: When using sprite+colour flags it will still read is-if you types them here<br>"
+					+ "Graphically it may be a login-able name, but it will have invalid characters/login names.<br>"
+					+ "Some HTML elements like &lt;br&gt;, &lt;b&gt;, and &lt;i&gt; can be used as well." + "</html>",
+			FAVOURITE_WORLD_INPUT_TOOLTIP = "<html>" + "To clear this slot use the value -1.<br>"
+					+ "If Slots 1 or 2 have -1 as their value, any later numbers will be disabled.<br>"
+					+ "The removal is currently not a NXT limitation, but it causes graphical issues." + "</html>",
+			GLOBAL_AUDIO_MUTE_TOOLTIP = "<html>" + "Disables the audio streams while logged in the game.<br>"
+					+ "Other volume setting's options will remain uneffected." + "</html>",
+			REMEMBER_USERNAME_TOOLTIP = "<html>"
+					+ "If unchecked: NXT will clear the username on the next client load.<br>" + "<br>"
+					+ "Note: This feature is redundant for this program if the username field is empty." + "</html>",
+			RANDOMIZE_LOGIN_WALLPAPER_TOOLTIP = "<html>" + "Randomize your login screen's wallpaper.<br>" + "<br>"
+					+ "Note: The first frame of this will be the wallpaper to the left.<br>"
+					+ "If this option is unchecked, that wallpaper will be used." + "</html>",
+			WALLPAPER_ID_TOOLTIP = "<html>" + "Input your desired wallpaper id.<br>" + "<br>"
+					+ "The default value for this entry is 0." + "<br>"
+					+ "Note: This will apply to the first wallpaper while randomizing.<br>"
+					+ "This will also be the static id if randomizing is off.<br>" + "</html>",
+			ADD_SPRITE_FLAG_TOOLTIP = "<html>" + "Adds the &lt;sprite=#,#&gt; flag to your username field.<br>"
+					+ "This flag is that Jagex uses to add sprites to the chatbox e.g. staffmodlevel Crowns."
+					+ "</html>",
+			ADD_COLOUR_FLAG_TOOLTIP = "<html>" + "Adds the &lt;col=RRGGBB&gt; flag to your username field.<br>"
+					+ "This flag is used by Jagex to change the colours of text full or mid-sentence e.g: Green warnings.<br>"
+					+ "As far as I've known, this does NOT support alpha. Keep it in RRGGBB Hex format." + "</html>",
+			CLEAR_DEV_CONSOLE_LOGS_TOOLTIP = "<html>" + "This will clear the Developer Console's command history logs."
+					+ "</html>",
+			POPULATE_PLAYER_DEV_CONSOLE_LOGS_TOOLTIP = "<html>"
+					+ "This will populate the Developer Console's command history with player-allowed commands."
+					+ "</html>",
+			POPULATE_JAGEX_DEV_CONSOLE_LOGS_TOOLTIP = "<html>"
+					+ "This will populate the Developer Console's command history with all known commands.<br>" + "<br>"
+					+ "Note: This list in incomplete, and many commands are not use-able by players." + "</html>",
+			BOOSTED_VOLUMES_TOOLTIP = "<html>" + "Checking this will make the slider's maximum goto '254'<br>"
+					+ "When the volume's over the default '127' it will allow a boosted volume to occur.<br>"
+					+ "This allows for louder sound effects, like mining sounds, to be heard better." + "</html>",
+			GRAPHICS_PRESET_TOOLTIP = "<html>" + "Checking this will unlock the graphics presets." + "</html>",
+			GRAPHICS_PRESET_BUTTON_TOOLTIP = "<html>" + "Note: This will overwrite your current settings.<br>"
+					+ "You will be required to change them back manually, or re-read to restore prior to writing."
+					+ "</html>"																																									;
 	public static void init() {
 		/*
 		 * > Initialize the OS_Type

@@ -30,6 +30,9 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_Shadows = false;
 			Storage.nxtGraphicsSetting_GroundDecor = false;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
+			Storage.nxtGraphicsSetting_CanopyCutout = false;
+			Storage.nxtGraphicsSetting_SmoothClipFade = false;
+			Storage.nxtGraphicsSetting_DepthOfField = false;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
@@ -62,6 +65,9 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_Shadows = true;
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
+			Storage.nxtGraphicsSetting_CanopyCutout = false;
+			Storage.nxtGraphicsSetting_SmoothClipFade = false;
+			Storage.nxtGraphicsSetting_DepthOfField = false;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
@@ -96,6 +102,9 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_Shadows = true;
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
+			Storage.nxtGraphicsSetting_CanopyCutout = true;
+			Storage.nxtGraphicsSetting_SmoothClipFade = true;
+			Storage.nxtGraphicsSetting_DepthOfField = false;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
@@ -128,6 +137,9 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_Shadows = true;
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
+			Storage.nxtGraphicsSetting_CanopyCutout = true;
+			Storage.nxtGraphicsSetting_SmoothClipFade = true;
+			Storage.nxtGraphicsSetting_DepthOfField = true;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
@@ -160,6 +172,9 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_Shadows = true;
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
+			Storage.nxtGraphicsSetting_CanopyCutout = true;
+			Storage.nxtGraphicsSetting_SmoothClipFade = true;
+			Storage.nxtGraphicsSetting_DepthOfField = true;
 			Storage.nxtClientSettings_GameWorldScaling = 100;
 			NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_DrawDistance);
 			NXTSettingsGUI.ShadowQualityComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_ShadowQuality);
@@ -196,6 +211,9 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_GroundDecor = true;
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
 			Storage.nxtGraphicsSetting_FlickeringEffects = true;
+			Storage.nxtGraphicsSetting_CanopyCutout = true;
+			Storage.nxtGraphicsSetting_SmoothClipFade = true;
+			Storage.nxtGraphicsSetting_DepthOfField = true;
 			Storage.nxtGraphicsSetting_CustomCursors = true;
 			Storage.nxtGraphicsSetting_MaxForegroundFps = 300;
 			Storage.nxtGraphicsSetting_MaxBackgroundFps = 300;
@@ -241,6 +259,9 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_TerrainBlending = true;
 			Storage.nxtGraphicsSetting_FlickeringEffects = true;
 			Storage.nxtGraphicsSetting_CustomCursors = true;
+			Storage.nxtGraphicsSetting_CanopyCutout = true;
+			Storage.nxtGraphicsSetting_SmoothClipFade = true;
+			Storage.nxtGraphicsSetting_DepthOfField = true;
 			Storage.nxtGraphicsSetting_MaxForegroundFps = 60;
 			Storage.nxtGraphicsSetting_MaxBackgroundFps = 45;
 			Storage.nxtClientSettings_UIScaling = 100;
@@ -288,8 +309,12 @@ public class Mechanics {
 			Storage.nxtGraphicsSetting_Shadows = false;
 			Storage.nxtGraphicsSetting_GroundDecor = false;
 			Storage.nxtGraphicsSetting_TerrainBlending = false;
-			Storage.nxtGraphicsSetting_MaxForegroundFps = 15;
+			Storage.nxtGraphicsSetting_CanopyCutout = false;
+			Storage.nxtGraphicsSetting_SmoothClipFade = false;
+			Storage.nxtGraphicsSetting_DepthOfField = false;
+			Storage.nxtGraphicsSetting_MaxForegroundFps = 5;
 			Storage.nxtGraphicsSetting_MaxBackgroundFps = 5;
+			Storage.nxtClientSettings_UIScaling = 400;
 			Storage.nxtClientSettings_GameWorldScaling = 35;
 			NXTSettingsGUI.BrightnessSlider.setValue(Storage.nxtGraphicsSetting_Brightness);
 			NXTSettingsGUI.RemoveRoofsComboBox.setSelectedIndex(Storage.nxtGraphicsSetting_RemoveRoofs);

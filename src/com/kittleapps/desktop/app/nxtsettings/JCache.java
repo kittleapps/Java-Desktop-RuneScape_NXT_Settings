@@ -226,6 +226,21 @@ public class JCache {
 					NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(rs.getString("DATA").equals("1"));
 					break;
 
+				case "SmoothClipFade":
+					Storage.nxtGraphicsSetting_SmoothClipFade = rs.getString("DATA").equals("1");
+					NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(rs.getString("DATA").equals("1"));
+					break;
+
+				case "CanopyCutout":
+					Storage.nxtGraphicsSetting_CanopyCutout = rs.getString("DATA").equals("1");
+					NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(rs.getString("DATA").equals("1"));
+					break;
+
+				case "EntityHighlights":
+					Storage.nxtGraphicsSetting_EntityHighlights = rs.getString("DATA").equals("1");
+					NXTSettingsGUI.EntityHighlightsCheckbox.setSelected(rs.getString("DATA").equals("1"));
+					break;
+
 				case "DrawDistance":
 					Storage.nxtGraphicsSetting_DrawDistance = rs.getInt("DATA");
 					NXTSettingsGUI.DrawDistanceComboBox.setSelectedIndex(rs.getInt("DATA"));
@@ -383,8 +398,8 @@ public class JCache {
 					break;
 
 				case "DOF":
-					Storage.nxtGraphicsSetting_DepthOfField = rs.getInt("DATA");
-					NXTSettingsGUI.DepthOfFieldComboBox.setSelectedIndex(rs.getInt("DATA"));
+					Storage.nxtGraphicsSetting_DepthOfField = rs.getString("DATA").equals("1");
+					NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(rs.getString("DATA").equals("1"));
 					break;
 
 				case "HeatHaze":
@@ -622,16 +637,6 @@ public class JCache {
 					}
 					break;
 
-				case Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS:
-					Storage.nxtClientSettings_MouseOverTooltip = rs.getString("DATA").equals("1");
-					NXTSettingsGUI.InGameMouseOverPopupsCheckbox.setSelected(rs.getString("DATA").equals("1"));
-					break;
-
-				case Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP:
-					Storage.nxtClientSettings_TaskCompletedPopup = rs.getString("DATA").equals("0");
-					NXTSettingsGUI.InGameTaskPopupsCheckbox.setSelected(rs.getString("DATA").equals("0"));
-					break;
-
 				case Storage.CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK:
 					Storage.nxtClientSettings_LoopCurrentTrack = rs.getString("DATA").equals("1");
 					NXTSettingsGUI.LoopCurrentMusicTrackCheckbox.setSelected(rs.getString("DATA").equals("1"));
@@ -678,11 +683,6 @@ public class JCache {
 							NXTSettingsGUI.CustomisationsWardrobeSortingComboBox.setSelectedIndex(i);
 						}
 					}
-					break;
-
-				case Storage.CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED:
-					Storage.nxtClientSettings_AbilityBarMinimized = rs.getString("DATA").equals("1");
-					NXTSettingsGUI.MinimizeMainAbilityBarCheckBox.setSelected(rs.getString("DATA").equals("1"));
 					break;
 
 				case Storage.CACHE_KEY_VT_VARC_OoO_MOVEMENT_SPEED:
@@ -984,7 +984,32 @@ public class JCache {
 				Write(true,	"VolumetricLighting",	Storage.nxtGraphicsSetting_VolumetricLighting);
 			}
 			if (History.nxtGraphicsSetting_DepthOfField != Storage.nxtGraphicsSetting_DepthOfField) {
-				Write(true,	"DOF",	Storage.nxtGraphicsSetting_DepthOfField);
+				if (Storage.nxtGraphicsSetting_DepthOfField) {
+					Write(true,	"DOF", 1);
+				}	else {
+					Write(true,	"DOF", 0);
+				}
+			}
+			if (History.nxtGraphicsSetting_CanopyCutout != Storage.nxtGraphicsSetting_CanopyCutout) {
+				if (Storage.nxtGraphicsSetting_CanopyCutout) {
+					Write(true,	"CanopyCutout", 1);
+				}	else {
+					Write(true,	"CanopyCutout", 0);
+				}
+			}
+			if (History.nxtGraphicsSetting_SmoothClipFade != Storage.nxtGraphicsSetting_SmoothClipFade) {
+				if (Storage.nxtGraphicsSetting_SmoothClipFade) {
+					Write(true,	"SmoothClipFade", 1);
+				}	else {
+					Write(true,	"SmoothClipFade", 0);
+				}
+			}
+			if (History.nxtGraphicsSetting_EntityHighlights != Storage.nxtGraphicsSetting_EntityHighlights) {
+				if (Storage.nxtGraphicsSetting_EntityHighlights) {
+					Write(true,	"EntityHighlights", 1);
+				}	else {
+					Write(true,	"EntityHighlights", 0);
+				}
 			}
 			if ((History.nxtGraphicsSetting_ScreenSizingMode != Storage.nxtGraphicsSetting_ScreenSizingMode) ||
 					(History.nxtGraphicsSetting_ResizableResolution != Storage.nxtGraphicsSetting_ResizableResolution)) {
@@ -1119,34 +1144,12 @@ public class JCache {
 			if (History.nxtClientSettings_OoORotationSpeed != Storage.nxtClientSettings_OoORotationSpeed) {
 				Write(false, Storage.CACHE_KEY_VT_VARC_OoO_ROTATION_SPEED,	Storage.nxtClientSettings_OoORotationSpeed);
 			}
-			if (History.nxtClientSettings_AbilityBarMinimized != Storage.nxtClientSettings_AbilityBarMinimized) {
-				if (Storage.nxtClientSettings_AbilityBarMinimized) {
-					Write(false, Storage.CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED,	1);
-				}	else {
-					Write(false, Storage.CACHE_KEY_VT_VARC_ABILITY_BAR_MINIMIZED,	0);
-				}
-			}
 
 			if (History.nxtClientSettings_LoopCurrentTrack != Storage.nxtClientSettings_LoopCurrentTrack) {
 				if (Storage.nxtClientSettings_LoopCurrentTrack) {
 					Write(false, Storage.CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK,	1);
 				}	else {
 					Write(false, Storage.CACHE_KEY_VT_VERC_LOOP_CURRENT_TRACK,	0);
-				}
-			}
-			if (History.nxtClientSettings_MouseOverTooltip != Storage.nxtClientSettings_MouseOverTooltip) {
-				if (Storage.nxtClientSettings_MouseOverTooltip) {
-					Write(false, Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS,	1);
-				}	else {
-					Write(false, Storage.CACHE_KEY_VT_VARC_HOVER_OVER_TOOLTIPS,	0);
-				}
-			}
-			if (History.nxtClientSettings_TaskCompletedPopup != Storage.nxtClientSettings_TaskCompletedPopup) {
-				if (Storage.nxtClientSettings_TaskCompletedPopup) {
-					//Intentionally Swapped.
-					Write(false, Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP,	0);
-				}	else {
-					Write(false, Storage.CACHE_KEY_VT_VARC_TASKS_COMPLETED_POPUP,	1);
 				}
 			}
 

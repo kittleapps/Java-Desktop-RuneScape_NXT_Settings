@@ -34,12 +34,16 @@ import javax.swing.table.DefaultTableModel;
 public class NXTSettingsGUI extends JFrame {
 	private static final long serialVersionUID = -4228920598014351419L;
 	public static JCheckBox
+	DepthOfFieldCheckbox,
 	FlickeringEffectsCheckbox,
 	ShadowsCheckbox,
 	CustomCursorsCheckbox,
 	LoadingScreensCheckbox,
 	GroundDecorationsCheckbox,
 	TerrainBlendingCheckbox,
+	SmoothClipFadeCheckbox,
+	CanopyCutoutCheckbox,
+	EntityHighlightsCheckbox,
 	HeatHazeCheckbox,
 	RememberUsernameCheckbox,
 	HideUsernameCheckbox,
@@ -67,7 +71,6 @@ public class NXTSettingsGUI extends JFrame {
 	LightingDetailComboBox,
 	AmbientOcclusionComboBox,
 	BloomQualityComboBox,
-	DepthOfFieldComboBox,
 	TextureQualityComboBox,
 	AnisotropicFilteringComboBox,
 	VolumetricLightingComboBox,
@@ -370,19 +373,10 @@ public class NXTSettingsGUI extends JFrame {
 		UIScalingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		UIScalingComboBox.addItemListener(e -> Storage.nxtClientSettings_UIScaling = ((UIScalingComboBox.getSelectedIndex()*5)+100));
 		UIScalingComboBox.setBounds(165, GetRow(8), 175, 25);
-		GraphicsSettingsTab.add(UIScalingComboBox);
+		UIScalingComboBox.setToolTipText("READ-ONLY: Currently Disabled by Jagex. Enable in-code if untrue.");
+		UIScalingComboBox.setEnabled(false);
+		GraphicsSettingsTab.add(UIScalingComboBox);	
 
-		final JLabel DepthOfFieldLabel = new JLabel("  Depth of Field");
-		DepthOfFieldLabel.setToolTipText(Storage.DOF_TOOLTIP);
-		DepthOfFieldLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		DepthOfFieldLabel.setBounds(15, GetRow(9), 150, 25);
-		GraphicsSettingsTab.add(DepthOfFieldLabel);
-
-		DepthOfFieldComboBox = new JComboBox<>(Storage.SETTINGS_OPTIONS[10]);
-		DepthOfFieldComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
-		DepthOfFieldComboBox.addItemListener(e -> Storage.nxtGraphicsSetting_DepthOfField = ((DepthOfFieldComboBox.getSelectedIndex()*5)+35));
-		DepthOfFieldComboBox.setBounds(165, GetRow(9), 175, 25);
-		GraphicsSettingsTab.add(DepthOfFieldComboBox);
 
 		FlickeringEffectsCheckbox = new JCheckBox(String.format("%-85s", "Flickering Effects"));
 		FlickeringEffectsCheckbox.setBackground(optionBackgroundColor);
@@ -393,7 +387,7 @@ public class NXTSettingsGUI extends JFrame {
 		FlickeringEffectsCheckbox.setBounds(15, GetRow(10), 325, 25);
 		GraphicsSettingsTab.add(FlickeringEffectsCheckbox);
 
-		CustomCursorsCheckbox = new JCheckBox(String.format("%-81s", "Custom Cursors"));
+		CustomCursorsCheckbox = new JCheckBox(String.format("%-82s", "Custom Cursors"));
 		CustomCursorsCheckbox.setBackground(optionBackgroundColor);
 		CustomCursorsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		CustomCursorsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_CustomCursors = CustomCursorsCheckbox.isSelected());
@@ -411,6 +405,25 @@ public class NXTSettingsGUI extends JFrame {
 		GroundDecorationsCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
 		GroundDecorationsCheckbox.setBounds(15, GetRow(12), 325, 25);
 		GraphicsSettingsTab.add(GroundDecorationsCheckbox);
+		
+		DepthOfFieldCheckbox = new JCheckBox(String.format("%-87s", "Depth of Field"));
+		DepthOfFieldCheckbox.setBackground(optionBackgroundColor);
+		DepthOfFieldCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		DepthOfFieldCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_DepthOfField = DepthOfFieldCheckbox.isSelected());
+		DepthOfFieldCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
+		DepthOfFieldCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
+		DepthOfFieldCheckbox.setBounds(15, GetRow(13), 325, 25);
+		GraphicsSettingsTab.add(DepthOfFieldCheckbox);
+		
+		CanopyCutoutCheckbox = new JCheckBox(String.format("%-81s", "Tree Canopy Fade"));
+		CanopyCutoutCheckbox.setBackground(optionBackgroundColor);
+		CanopyCutoutCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		CanopyCutoutCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_CanopyCutout = CanopyCutoutCheckbox.isSelected());
+		CanopyCutoutCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
+		CanopyCutoutCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
+		CanopyCutoutCheckbox.setBounds(15, GetRow(14), 325, 25);
+		CanopyCutoutCheckbox.setSelected(true);
+		GraphicsSettingsTab.add(CanopyCutoutCheckbox);
 
 
 
@@ -533,6 +546,8 @@ public class NXTSettingsGUI extends JFrame {
 		GameWorldScalingComboBox.setFont(new Font("Dialog", Font.PLAIN, 12));
 		GameWorldScalingComboBox.addItemListener(e -> Storage.nxtClientSettings_GameWorldScaling = ((GameWorldScalingComboBox.getSelectedIndex()*5)+35));
 		GameWorldScalingComboBox.setBounds(528, GetRow(8), 175, 25);
+		GameWorldScalingComboBox.setToolTipText("READ-ONLY: Currently Disabled by Jagex. Enable in-code if untrue.");
+		GameWorldScalingComboBox.setEnabled(false);
 		GraphicsSettingsTab.add(GameWorldScalingComboBox);
 
 		final JLabel ScreensizingModeLabel = new JLabel("  Screen Sizing Mode");
@@ -579,6 +594,24 @@ public class NXTSettingsGUI extends JFrame {
 		TerrainBlendingCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
 		TerrainBlendingCheckbox.setBounds(378, GetRow(12), 325, 25);
 		GraphicsSettingsTab.add(TerrainBlendingCheckbox);
+		
+		SmoothClipFadeCheckbox = new JCheckBox(String.format("%-75s", "Smooth Camera Fade"));
+		SmoothClipFadeCheckbox.setBackground(optionBackgroundColor);
+		SmoothClipFadeCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		SmoothClipFadeCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_SmoothClipFade = SmoothClipFadeCheckbox.isSelected());
+		SmoothClipFadeCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
+		SmoothClipFadeCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
+		SmoothClipFadeCheckbox.setBounds(378, GetRow(13), 325, 25);
+		GraphicsSettingsTab.add(SmoothClipFadeCheckbox);
+		
+		EntityHighlightsCheckbox = new JCheckBox(String.format("%-75s", "Mouse-over Entity Highlights"));
+		EntityHighlightsCheckbox.setBackground(optionBackgroundColor);
+		EntityHighlightsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 12));
+		EntityHighlightsCheckbox.addActionListener(e -> Storage.nxtGraphicsSetting_EntityHighlights = EntityHighlightsCheckbox.isSelected());
+		EntityHighlightsCheckbox.setHorizontalAlignment(SwingConstants.TRAILING);
+		EntityHighlightsCheckbox.setHorizontalTextPosition(SwingConstants.LEADING);
+		EntityHighlightsCheckbox.setBounds(378, GetRow(14), 325, 25);
+		GraphicsSettingsTab.add(EntityHighlightsCheckbox);
 
 
 
@@ -791,34 +824,6 @@ public class NXTSettingsGUI extends JFrame {
 		WorldMapIconSelectionButton.setBounds(440, GetRow(4), 265, 25);
 		WorldMapIconSelectionButton.addActionListener(arg0 -> new NXTWorldMapSelectionGUI());
 		ClientSettingsTab.add(WorldMapIconSelectionButton);
-
-		final JLabel MiscTogglesLabel = new JLabel("ToggleScape Toggles");
-		MiscTogglesLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-		MiscTogglesLabel.setBounds(15, GetRow(5), 150, 25);
-		ClientSettingsTab.add(MiscTogglesLabel);
-
-		InGameTaskPopupsCheckbox = new JCheckBox("Show Task Completed Popups?");
-		InGameTaskPopupsCheckbox.setToolTipText("Toggle the In-Game Task Completed Popups.");
-		InGameTaskPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameTaskPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_TaskCompletedPopup = InGameTaskPopupsCheckbox.isSelected());
-		InGameTaskPopupsCheckbox.setBackground(new Color(40, 40, 40));
-		InGameTaskPopupsCheckbox.setBounds(170, GetRow(5), 265, 25);
-		ClientSettingsTab.add(InGameTaskPopupsCheckbox);
-
-		InGameMouseOverPopupsCheckbox = new JCheckBox("Show Mouse-Over/Hover-Over Tooltips?");
-		InGameMouseOverPopupsCheckbox.addActionListener(e -> Storage.nxtClientSettings_MouseOverTooltip = InGameMouseOverPopupsCheckbox.isSelected());
-		InGameMouseOverPopupsCheckbox.setToolTipText("Toggle the In-Game Hover-Over tooltips.");
-		InGameMouseOverPopupsCheckbox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		InGameMouseOverPopupsCheckbox.setBackground(optionBackgroundColor);
-		InGameMouseOverPopupsCheckbox.setBounds(440, GetRow(5), 265, 25);
-		ClientSettingsTab.add(InGameMouseOverPopupsCheckbox);
-
-		MinimizeMainAbilityBarCheckBox = new JCheckBox("Minimize The Main Ability Bar?");
-		MinimizeMainAbilityBarCheckBox.addActionListener(e -> Storage.nxtClientSettings_AbilityBarMinimized = MinimizeMainAbilityBarCheckBox.isSelected());
-		MinimizeMainAbilityBarCheckBox.setFont(new Font("Dialog", Font.PLAIN, 11));
-		MinimizeMainAbilityBarCheckBox.setBackground(optionBackgroundColor);
-		MinimizeMainAbilityBarCheckBox.setBounds(440, GetRow(6), 265, 25);
-		ClientSettingsTab.add(MinimizeMainAbilityBarCheckBox);
 		
 
 		/* Separate */
