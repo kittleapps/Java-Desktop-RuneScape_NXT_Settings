@@ -190,11 +190,6 @@ public class JCache {
 			System.exit(0);
 		}
 		Legality.CheckSettings();
-		try {
-			BugCorrector.CheckKnownBugs();
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public static void ReadConfigSettings(){
