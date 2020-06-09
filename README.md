@@ -29,9 +29,7 @@ See [Here](https://raw.githubusercontent.com/kittleapps/Java-Desktop-RuneScape_N
 **Current Features**:
 
 * All current graphics settings options.
-  * Depth of Field is currently just a placeholder.
-  * Game Render and Interface/UI Scaling options are added. They are live, but currently their options are not.
-    * These scaling mechanics are currently experimental, and not meant for full use my players. Visual issues may occur.
+  * Game Render and Interface/UI Scaling options are added. They are live, but currently their options are not usable.
 * Most audio options
   * Looping the current Music Track.
   * Music List Sorting.
@@ -56,12 +54,9 @@ See [Here](https://raw.githubusercontent.com/kittleapps/Java-Desktop-RuneScape_N
 * World Map Overlay toggling.
 * World Map Icon Editing.
   * This defaults to all icons shown unless you specify otherwise.
-* Mouse-over/Hover-over tooltip toggling.
-* Task completed popup toggling.
 * In-Game camera Zoom changing.
   * This doesn't allow any illegal values, as it will revert to default.
 * Orb of Oculus/Freecam's Movement & Rotation Speed changing.
-* Minimized main ability bar toggling.
 * Randomizing the wallpaper
   * This includes setting the regular ID for the wallpaper if not randomizing. This ID can change with any update, unfortunately.
   * The id used will be the first wallpaper shown while randomizing.
