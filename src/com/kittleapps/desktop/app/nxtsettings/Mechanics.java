@@ -48,6 +48,9 @@ public class Mechanics {
 			NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling - 35) / 5);
 			break;
 		case "low":
@@ -83,6 +86,9 @@ public class Mechanics {
 			NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling - 35) / 5);
 			break;
 		case "mid":
@@ -120,6 +126,9 @@ public class Mechanics {
 			NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling - 35) / 5);
 			break;
 		case "high":
@@ -155,6 +164,9 @@ public class Mechanics {
 			NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling - 35) / 5);
 			break;
 		case "ultra":
@@ -190,6 +202,9 @@ public class Mechanics {
 			NXTSettingsGUI.ShadowsCheckbox.setSelected(Storage.nxtGraphicsSetting_Shadows);
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.GameWorldScalingComboBox.setSelectedIndex((Storage.nxtClientSettings_GameWorldScaling - 35) / 5);
 			break;
 		case "max":
@@ -234,6 +249,9 @@ public class Mechanics {
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
 			NXTSettingsGUI.FlickeringEffectsCheckbox.setSelected(Storage.nxtGraphicsSetting_FlickeringEffects);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
 			NXTSettingsGUI.MaxForegroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxForegroundFps / 5) - 1);
 			NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxBackgroundFps / 5) - 1);
@@ -281,6 +299,9 @@ public class Mechanics {
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
 			NXTSettingsGUI.FlickeringEffectsCheckbox.setSelected(Storage.nxtGraphicsSetting_FlickeringEffects);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
 			NXTSettingsGUI.MaxForegroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxForegroundFps / 5) - 1);
 			NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxBackgroundFps / 5) - 1);
@@ -333,6 +354,9 @@ public class Mechanics {
 			NXTSettingsGUI.GroundDecorationsCheckbox.setSelected(Storage.nxtGraphicsSetting_GroundDecor);
 			NXTSettingsGUI.TerrainBlendingCheckbox.setSelected(Storage.nxtGraphicsSetting_TerrainBlending);
 			NXTSettingsGUI.FlickeringEffectsCheckbox.setSelected(Storage.nxtGraphicsSetting_FlickeringEffects);
+			NXTSettingsGUI.CanopyCutoutCheckbox.setSelected(Storage.nxtGraphicsSetting_CanopyCutout);
+			NXTSettingsGUI.SmoothClipFadeCheckbox.setSelected(Storage.nxtGraphicsSetting_SmoothClipFade);
+			NXTSettingsGUI.DepthOfFieldCheckbox.setSelected(Storage.nxtGraphicsSetting_DepthOfField);
 			NXTSettingsGUI.CustomCursorsCheckbox.setSelected(Storage.nxtGraphicsSetting_CustomCursors);
 			NXTSettingsGUI.MaxForegroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxForegroundFps / 5) - 1);
 			NXTSettingsGUI.MaxBackgroundFpsComboBox.setSelectedIndex((Storage.nxtGraphicsSetting_MaxBackgroundFps / 5) - 1);
